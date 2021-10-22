@@ -1,0 +1,37 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "ecmaVersion": 12
+  },
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "no-return-await": "error",
+    "prefer-arrow-callback": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "semi": true,
+        "tabWidth": 2,
+        "arrowParens": "always",
+        "endOfLine": "auto"
+      }
+    ],
+    "require-await": "off",
+    "no-unused-vars": [
+      "off",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ]
+  }
+}
