@@ -1,8 +1,8 @@
 ---
 name: "[TASK]"
-about: Task Card Template
-title: ''
-labels: ''
+about: "[TASK] Task Card Template"
+title: "[TASK]"
+labels: BE, FE, SR
 assignees: ''
 
 ---
