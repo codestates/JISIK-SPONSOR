@@ -1,28 +1,25 @@
 ---
-name: "[TASK]"
+name: "[TASK] FE_"
 about: "[TASK] Task Card Template"
-title: "[TASK]"
-labels: BE, FE, SR
+title: "[TASK] FE_"
+labels: FE
 assignees: ''
 
 ---
 
 ### **ISSUE**
 
-- Group: `client`, `server`, `sr`
-- Type: `bug`, `feature`, `delete`
-- Detail: fix actions from client redux
+- Group: `client`
+- Type: `feature`
+- Detail: 
 
 ### **TODO**
 
 - [ ]  Job1
 - [ ]  Job2
-- [ ]  Job3
+
 
 ### **Estimated time**
-
-> Pick one
-> 
 
 ### **`1h`**
 
@@ -30,6 +27,6 @@ assignees: ''
 ### **Labels**
 
 - Estimated time: `E: 1h`
-- Group : `client`, `server`
-- Sprint: `Sprint__NUMBER__`
+- Group : `client`
+- Sprint: `Sprint1_Bare-Minimum`
 - Urgency: `High`, `Middle`, `Low`
