@@ -18,7 +18,7 @@ sequelize
 
 // Server Running
 let server;
-console.log(__dirname + '/key.pem');
+
 if (
   fs.existsSync(__dirname + '/key.pem') &&
   fs.existsSync(__dirname + '/cert.pem')

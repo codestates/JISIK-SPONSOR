@@ -26,6 +26,13 @@ app.use(
 
 // Routing
 app.get('/', (req, res) => {
+  const cookieOptions = {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    secure: true,
+    httpOnly: true,
+    sameSite: 'none'
+  };
+  res.cookie('test cookie', 'cookie~~!!', cookieOptions);
   res.send('Jisik Sponsor!');
 });
 
