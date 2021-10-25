@@ -13,7 +13,7 @@ sequelize
     console.log('👉👈 Database connection successfully!');
   })
   .catch((err) => {
-    console.error(err);
+    console.error('🗄  Database Error! ' + err);
   });
 
 // Server Running
