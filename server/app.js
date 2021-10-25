@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     httpOnly: true,
     sameSite: 'none'
   };
-  res.cookie('test cookie', 'cookie~~!!', cookieOptions);
+  res.cookie('JisicTestCookie', 'cookie~~!!', cookieOptions);
   res.send('Jisik Sponsor!');
 });
 
