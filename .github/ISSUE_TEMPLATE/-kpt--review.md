@@ -1,7 +1,7 @@
 ---
 name: "[KPT] Review"
 about: KPT Review Template
-title: ''
+title: "[\U0001F4D1 KPT] "
 labels: ''
 assignees: ''
 
