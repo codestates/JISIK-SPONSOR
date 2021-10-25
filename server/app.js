@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [process.env.CLIENT_ORIGIN],
+    origin: [process.env.CLIENT_ORIGIN, process.env.CLIENT_ORIGIN_SUB],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
   })
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     httpOnly: true,
     sameSite: 'none'
   };
-  res.cookie('JisicTestCookie', 'cookie~~!!', cookieOptions);
+  res.cookie('JisikTestCookie', 'cookie~~!!', cookieOptions);
   res.send('Jisik Sponsor!');
 });
 
