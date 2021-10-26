@@ -1,3 +1,6 @@
+import styled, { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 * {
   box-sizing: border-box;
 }
@@ -5,6 +8,7 @@
 body {
   margin: 0;
   width: 100vw;
+  font-family: 'Noto Sans KR', sans-serif
 }
 
 h1,
@@ -151,3 +155,4 @@ a {
   color: inherit;
   text-decoration: none;
 }
+`;
