@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface authentification {
+  isLogin: boolean;
+}
+
 const initialState = { isLogin: false };
 
 const authSlice = createSlice({
