@@ -2,17 +2,16 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
   width: 100vw;
-  height: 515px;
   background-color: #343a40;
-  padding: 80px 270px;
+  padding: 80px 0;
 `;
 
 export const FooterWrapper = styled.div`
-  display: flex;
-  width: 900px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  max-width: 960px;
+  padding: 0 30px;
+  margin: 0 auto;
+  text-align: center;
 
   img {
     width: 272px;
@@ -21,15 +20,9 @@ export const FooterWrapper = styled.div`
 `;
 
 export const TeamBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 900px;
-  height: 265px;
-  /* background-color: beige; */
+  width: 100%;
   margin-top: 50px;
   border-top: 1px solid rgba(248, 249, 250, 0.3);
-  position: relative;
 
   img {
     width: 40px;
@@ -39,23 +32,25 @@ export const TeamBox = styled.div`
 
 export const MemberBox = styled.div`
   display: flex;
+  justify-content: center;
   gap: 10px;
-  width: 733px;
-  position: absolute;
-  top: 50px;
-  /* margin-bottom: 50px; */
+  width: 100%;
+  margin: 50px 0;
 `;
 
 export const MemberProfile = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: 10px;
 `;
 
 export const MemberInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: center;
   color: #ced4da;
 
   & > span {
@@ -76,12 +71,12 @@ export const MemberInfo = styled.div`
 `;
 
 export const Social = styled.div`
-  display: flex;
   width: 100%;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
   gap: 20px;
-  position: absolute;
-  top: 150px;
 
   img {
     width: 32px;
@@ -90,7 +85,6 @@ export const Social = styled.div`
 `;
 
 export const Copyright = styled.p`
-  position: absolute;
   bottom: 0;
   font-family: Lato;
   font-size: 20px;
