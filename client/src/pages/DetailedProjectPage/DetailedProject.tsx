@@ -4,7 +4,8 @@ import ProjectContent from 'components/DetailedProject/ProjectContent/ProjectCon
 import Profile from 'components/DetailedProject/Profile/Profile';
 import Comments from 'components/DetailedProject/Comments/Comments';
 import Sponsors from 'components/DetailedProject/Sponsors/Sponsors';
-import { ProjectContainer } from './styled';
+import TopButton from '../../images/icons/gotop-icon.png';
+import { GoTopButton, ProjectContainer } from './styled';
 
 const DetailedProject = () => {
   return (
@@ -14,6 +15,9 @@ const DetailedProject = () => {
       <Profile />
       <Comments />
       <Sponsors />
+      <GoTopButton href="#">
+        <img src={TopButton} alt="Top-button" />
+      </GoTopButton>
     </ProjectContainer>
   );
 };
