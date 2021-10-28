@@ -1,14 +1,17 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
+    ${reset};
+    
 * {
   box-sizing: border-box;
+  
 }
 
 body {
   margin: 0;
   width: 100vw;
-  font-family: 'Noto Sans KR', sans-serif
 }
 
 h1,
@@ -109,6 +112,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -156,3 +160,5 @@ a {
   text-decoration: none;
 }
 `;
+
+export default GlobalStyles;

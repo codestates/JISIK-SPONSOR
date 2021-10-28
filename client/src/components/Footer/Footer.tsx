@@ -1,7 +1,7 @@
 import React from 'react';
-
+import { Test } from './styled';
 const Footer = () => {
-  return <div></div>;
+  return <Test></Test>;
 };
 
 export default Footer;
