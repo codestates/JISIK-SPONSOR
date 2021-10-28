@@ -3,6 +3,7 @@ import Footer from 'components/Footer/Footer';
 import { ThemeProvider } from 'styled-components';
 import Header from 'components/Header/Header';
 import Modal from 'components/Modal/Modal';
+
 import GlobalStyles from 'styles/GlobalStyles';
 
 const theme = {
