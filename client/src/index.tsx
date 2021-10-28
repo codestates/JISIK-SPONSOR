@@ -12,6 +12,7 @@ import storage from 'redux-persist/lib/storage';
 // persistConfig는 새로운 persist를 선언한다.
 // key: reducer의 어느 지점에서부터 데이터를 저장할 것인지
 // storage: 웹의 localstorage를 뜻한다.
+
 const persistConfig = {
   key: 'root',
   version: 1,
