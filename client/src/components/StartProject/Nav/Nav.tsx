@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 function Nav() {
   const page = useSelector((state: RootState) => state.page);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(basic());
   }, []);

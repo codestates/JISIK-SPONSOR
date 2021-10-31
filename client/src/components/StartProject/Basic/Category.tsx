@@ -24,61 +24,25 @@ function Category() {
   return (
     <CategoryContainer>
       <div>
-        <input
-          type="checkbox"
-          id="humanities"
-          onChange={checkOnlyOne}
-          name="category"
-        />
+        <input type="checkbox" id="humanities" onChange={checkOnlyOne} />
         <label htmlFor="humanities">인문학</label>
-        <input
-          type="checkbox"
-          id="SocialScience"
-          name="category"
-          onChange={checkOnlyOne}
-        />
+        <input type="checkbox" id="SocialScience" onChange={checkOnlyOne} />
         <label htmlFor="Social science">사회과학</label>
-        <input
-          type="checkbox"
-          id="naturalScience"
-          name="category"
-          onChange={checkOnlyOne}
-        />
+        <input type="checkbox" id="naturalScience" onChange={checkOnlyOne} />
         <label htmlFor="natural science">자연과학</label>
-        <input
-          type="checkbox"
-          id="Engineering"
-          name="category"
-          onChange={checkOnlyOne}
-        />
+        <input type="checkbox" id="Engineering" onChange={checkOnlyOne} />
         <label htmlFor="Engineering">공학</label>
       </div>
       <div>
-        <input
-          type="checkbox"
-          id="Medicine"
-          name="category"
-          onChange={checkOnlyOne}
-        />
+        <input type="checkbox" id="Medicine" onChange={checkOnlyOne} />
         <label htmlFor="Medicine">의약학</label>
-        <input
-          type="checkbox"
-          id="Agricultural"
-          name="category"
-          onChange={checkOnlyOne}
-        />
+        <input type="checkbox" id="Agricultural" onChange={checkOnlyOne} />
         <label htmlFor="Agricultural">농수해양학</label>
-        <input
-          type="checkbox"
-          id="Art"
-          name="category"
-          onChange={checkOnlyOne}
-        />
+        <input type="checkbox" id="Art" onChange={checkOnlyOne} />
         <label htmlFor="Art">예술체육학</label>
         <input
           type="checkbox"
           id="CombinationStudies"
-          name="category"
           onChange={checkOnlyOne}
         />
         <label htmlFor="CombinationStudies">복합학</label>
