@@ -1,4 +1,6 @@
 module.exports = {
-  userRouter: require('./userRouter.js'),
+  indexRouter: require('./indexRouter'),
+  viewRouter: require('./viewRouter'),
+  userRouter: require('./userRouter'),
   projectRouter: require('./projectRouter')
 };

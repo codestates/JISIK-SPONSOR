@@ -24,8 +24,13 @@ module.exports = {
       },
       category_id: {
         allowNull: false,
+        defaultValue: 1,
         type: Sequelize.INTEGER,
         references: { model: 'categories', key: 'id' }
+      },
+      project_team_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'project_teams', key: 'id' }
       },
       description: {
         type: Sequelize.STRING(255)
@@ -44,6 +49,7 @@ module.exports = {
       },
       status: {
         allowNull: false,
+        defaultValue: '작성중',
         type: Sequelize.STRING(64)
       },
       goal: {

@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       category_id: {
         allowNull: false,
+        defaultValue: 1,
+        type: DataTypes.INTEGER
+      },
+      project_team_id: {
         type: DataTypes.INTEGER
       },
       description: {
@@ -53,12 +57,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       status: {
         allowNull: false,
+        defaultValue: '작성중',
         type: DataTypes.STRING(64)
       },
       goal: {
         type: DataTypes.DECIMAL(12, 2)
       },
       pledged: {
+        type: DataTypes.DECIMAL(12, 2)
+      },
+      remainder: {
         type: DataTypes.DECIMAL(12, 2)
       },
       investors: {

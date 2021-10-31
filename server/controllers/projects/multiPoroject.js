@@ -1,12 +1,13 @@
-const models = require('../../models');
+const { project, category, user } = require('../../models');
 const { Op } = require('sequelize');
 
 module.exports = {
   get: async (req, res) => {
     try {
-      let { author, category, offset, limit, order, sort, search } = req.query;
+      let { author, categoryName, offset, limit, order, sort, search } =
+        req.query;
 
-      if (category === '전체') category = null;
+      if (categoryName === '전체') category = null;
 
       // 정렬 : 기본 값은 id 기준 내림차순이다.
       if (sort) sort = sort.toUpperCase();
@@ -31,7 +32,7 @@ module.exports = {
         else limit = Number(limit);
       }
 
-      const total = await models.project.count();
+      const total = await project.count();
       const lastPage = Math.ceil(total / limit);
 
       // 페이지네이션 : offset 은 문자, 음수 조회 시 최소값으로, 페이지 범위 초과 조회 시 최대값으로 적용된다.
@@ -40,8 +41,9 @@ module.exports = {
       else offset = Number(offset);
 
       // 모든 게시물 조회한다.
-      const projects = await models.project.findAndCountAll({
+      const projects = await project.findAndCountAll({
         where: {
+          [Op.not]: [{ status: '작성중' }],
           [Op.and]: [
             search
               ? {
@@ -54,33 +56,14 @@ module.exports = {
               : null
           ]
         },
-        attributes: [
-          'id',
-          'title',
-          'path',
-          'description',
-          'thumbnail_url',
-          'term',
-          'start_date',
-          'end_date',
-          'status',
-          'goal',
-          'pledged',
-          'investors',
-          'comments',
-          'wishes',
-          'views',
-          'created_at',
-          'updated_at'
-        ],
         include: [
           {
-            model: models.category, // categories 테이블 조인
+            model: category, // categories 테이블 조인
             attributes: ['name'],
-            where: category ? { name: category } : {}
+            where: categoryName ? { name: categoryName } : {}
           },
           {
-            model: models.user, // users 테이블 조인
+            model: user, // users 테이블 조인
             attributes: ['name', 'nickname', 'bio', 'profile_url'],
             where: {
               [Op.and]: [

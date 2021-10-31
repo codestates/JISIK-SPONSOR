@@ -1,3 +1,5 @@
 module.exports = {
-  multiPoroject: require('./multiPoroject')
+  addProject: require('./addProject'),
+  multiPoroject: require('./multiPoroject'),
+  singleProject: require('./singleProject')
 };

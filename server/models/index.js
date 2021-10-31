@@ -44,7 +44,14 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // Associations Setting
-const { user, project, category } = sequelize.models;
+const {
+  user,
+  project,
+  category,
+  project_team,
+  budget_item,
+  project_milestone
+} = sequelize.models;
 
 // one to many
 user.hasMany(project, { foreignKey: 'user_id' });
@@ -52,5 +59,14 @@ project.belongsTo(user, { foreignKey: 'user_id' });
 
 category.hasMany(project, { foreignKey: 'category_id' });
 project.belongsTo(category, { foreignKey: 'category_id' });
+
+project_team.hasOne(project, { foreignKey: 'project_team_id' });
+project.belongsTo(project_team, { foreignKey: 'project_team_id' });
+
+project.hasMany(budget_item, { foreignKey: 'project_id' });
+budget_item.belongsTo(project, { foreignKey: 'project_id' });
+
+project.hasMany(project_milestone, { foreignKey: 'project_id' });
+project_milestone.belongsTo(project, { foreignKey: 'project_id' });
 
 module.exports = db;
