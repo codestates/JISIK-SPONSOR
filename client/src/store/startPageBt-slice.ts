@@ -39,15 +39,9 @@ const changePage = createSlice({
         (state.budget = false),
         (state.details = false),
         (state.team = true);
-    },
-    reset: (state: button) => {
-      (state.basic = false),
-        (state.budget = false),
-        (state.details = false),
-        (state.team = false);
     }
   }
 });
 
-export const { basic, budget, details, team, reset } = changePage.actions;
+export const { basic, budget, details, team } = changePage.actions;
 export default changePage.reducer;

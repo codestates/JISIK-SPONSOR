@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import Nav from './Nav';
-import BasicInfo from './BasicInfo';
-import BudgetInfo from './BudgetInfo';
-import DetailsInfo from './DetailsInfo';
+import Nav from '../../components/StartProject/Nav/Nav';
+import BasicInfo from 'components/StartProject/Basic/BasicInfo';
+import BudgetInfo from 'components/StartProject/Budget/BudgetInfo';
+import DetailsInfo from 'components/StartProject/Detail/DetailsInfo';
 import { RootState } from 'index';
-import TeamInfo from './TeamInfo';
+import TeamInfo from 'components/StartProject/Team/TeamInfo';
 
 const StartProject = () => {
   const { basic, budget, details, team } = useSelector(

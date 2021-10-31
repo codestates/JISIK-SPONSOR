@@ -1,13 +1,18 @@
 import React from 'react';
-import SettingNav from './SettingNav';
-// import ProfileSetting from './ProfileSetting';
-import AccountSetting from './AccountSetting';
+import SettingNav from 'components/SettingProfile/SettingNav/SettingNav';
+import { RootState } from 'index';
+import { useSelector } from 'react-redux';
+import ProfileSetting from 'components/SettingProfile/ProfileSetting/ProfileSetting';
+import AccountSetting from 'components/SettingProfile/AccountSetting/AccountSetting';
 const Setting = () => {
+  const { profile, account } = useSelector(
+    (state: RootState) => state.settingBt
+  );
   return (
     <>
       <SettingNav />
-      {/* <ProfileSetting /> */}
-      <AccountSetting />
+      {profile && <ProfileSetting />}
+      {account && <AccountSetting />}
     </>
   );
 };
