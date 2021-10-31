@@ -1,10 +1,12 @@
 require('dotenv').config();
 const fs = require('fs');
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
+const { auth } = require('./controllers');
 
 // Handling unexpected exceptions
 process.on('uncaughtException', (err) => {
@@ -25,16 +27,22 @@ app.use(
 );
 
 // Routing
-app.get('/', (req, res) => {
-  const cookieOptions = {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    secure: true,
-    httpOnly: true,
-    sameSite: 'none'
-  };
-  res.cookie('JisikTestCookie', 'cookie~~!!', cookieOptions);
-  res.send('Jisik Sponsor!');
+app.get('/', (req, res) => res.send('Jisik Sponsor!'));
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/login.html'));
 });
+app.post('/login', auth.login);
+
+app.get('/logout', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/logout.html'));
+});
+app.post('/logout', auth.logout);
+
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/signup.html'));
+});
+app.post('/signup', auth.signup);
 
 // Error handling
 app.use((req, res, next) => {
