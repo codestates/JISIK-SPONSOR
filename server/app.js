@@ -63,6 +63,10 @@ app.get('/confirm/email', async (req, res) => {
   res.redirect(url);
 });
 
+app.get('/upload', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/upload.html'));
+});
+
 app.use('/users', router.userRouter);
 
 // Error handling
