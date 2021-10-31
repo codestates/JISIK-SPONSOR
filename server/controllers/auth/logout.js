@@ -1,9 +1,9 @@
-const userAuthen = require('../authentication/userAuthen');
+const userAuthen = require('../../middlewares/authorized/userAuthen');
 
 module.exports = async (req, res) => {
   try {
     // 로그인 인증 검사
-    const userInfo = await userAuthen(req, res);
+    await userAuthen(req, res);
     // 쿠키 삭제
     res.cookie('accessToken', null, { maxAge: 0 });
     res.status(200).json({ message: 'ok' });

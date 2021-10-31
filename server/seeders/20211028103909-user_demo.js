@@ -14,7 +14,8 @@ module.exports = {
         password: hash,
         nickname: '관리자',
         role_id: 1,
-        signup_method: '일반'
+        signup_method: '일반',
+        email_verified: true
       },
       {
         name: '관리자 데모',
@@ -22,7 +23,8 @@ module.exports = {
         password: hash,
         nickname: '관리자 데모',
         role_id: 2,
-        signup_method: '일반'
+        signup_method: '일반',
+        email_verified: true
       },
       {
         name: '김코딩',
@@ -30,7 +32,8 @@ module.exports = {
         password: hash,
         nickname: '코난',
         role_id: 3,
-        signup_method: '일반'
+        signup_method: '일반',
+        email_verified: true
       }
     ]);
   },

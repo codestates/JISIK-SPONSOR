@@ -7,6 +7,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const { auth } = require('./controllers');
+const { user } = require('./models');
 
 // Handling unexpected exceptions
 process.on('uncaughtException', (err) => {
@@ -43,6 +44,23 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/signup.html'));
 });
 app.post('/signup', auth.signup);
+
+app.get('/confirm/email', async (req, res) => {
+  const { key } = req.query;
+  console.log(key);
+
+  const findUser = await user.findOne({ where: { key_for_verify: key } });
+  if (!findUser) return res.status(404).send('Not Found!');
+
+  const updateUser = await user.update(
+    { email_verified: true },
+    { where: { key_for_verify: key } }
+  );
+
+  const url = process.env.SERVER_ORIGIN + '/login';
+
+  res.redirect(url);
+});
 
 // Error handling
 app.use((req, res, next) => {

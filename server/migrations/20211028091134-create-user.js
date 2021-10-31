@@ -46,6 +46,7 @@ module.exports = {
         type: Sequelize.STRING(255)
       },
       email_verified: {
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       key_for_verify: {

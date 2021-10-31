@@ -1,14 +1,15 @@
 const bcrypt = require('bcrypt');
-const { Op } = require('sequelize');
 const { user } = require('../../models');
 const {
   generateAccessToken,
   sendAccessToken,
   checkAccessToken
-} = require('../tokenFunction');
+} = require('../../middlewares/tokenFunction');
 
 module.exports = async (req, res) => {
   try {
+    // [에러 처리]
+
     // 이미 로그인 되어있는 경우
     const { accessToken } = req.cookies;
     const accessTokenData = checkAccessToken(accessToken);
@@ -26,17 +27,18 @@ module.exports = async (req, res) => {
     // 등록된 회원이 존재하는지 확인한다.
     const userInfo = await user.findOne({ where: { email } });
     if (!userInfo) {
-      return res
-        .status(403)
-        .json({ message: 'Not authorized! non-existent account' });
+      return res.status(403).json({ message: 'Non-existent account!' });
     }
 
     // 등록된 회원이 존재한다면 비밀번호를 확인한다.
     const match = await bcrypt.compare(password, userInfo.dataValues.password);
     if (!match) {
-      return res
-        .status(403)
-        .json({ message: 'Not authorized! passwords do not match.' });
+      return res.status(403).json({ message: 'Passwords do not match!' });
+    }
+
+    // 등록된 회원이 이메일 인증을 완료했는지 확인한다.
+    if (userInfo.dataValues.email_verified !== true) {
+      return res.status(403).json({ message: 'Email is not verified!' });
     }
 
     // 회원의 비밀번호와 역할을 삭제한다.
