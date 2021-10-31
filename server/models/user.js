@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(64)
       },
       nickname: {
-        allowNull: false,
         unique: true,
         type: DataTypes.STRING(128)
       },
@@ -48,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       role_id: {
         allowNull: false,
-        defaultValue: 2,
+        defaultValue: 3,
         type: DataTypes.INTEGER
       },
       signup_method: {
