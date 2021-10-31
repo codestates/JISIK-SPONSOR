@@ -68,6 +68,7 @@ app.get('/upload', (req, res) => {
 });
 
 app.use('/users', router.userRouter);
+app.use('/projects', router.projectRouter);
 
 // Error handling
 app.use((req, res, next) => {

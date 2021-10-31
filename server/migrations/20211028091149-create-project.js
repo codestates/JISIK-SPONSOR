@@ -52,6 +52,9 @@ module.exports = {
       pledged: {
         type: Sequelize.DECIMAL(12, 2)
       },
+      remainder: {
+        type: Sequelize.DECIMAL(12, 2)
+      },
       investors: {
         defaultValue: 0,
         type: Sequelize.INTEGER
