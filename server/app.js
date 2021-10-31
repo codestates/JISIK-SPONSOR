@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const { auth } = require('./controllers');
 const { user } = require('./models');
+const router = require('./routers');
 
 // Handling unexpected exceptions
 process.on('uncaughtException', (err) => {
@@ -61,6 +62,8 @@ app.get('/confirm/email', async (req, res) => {
 
   res.redirect(url);
 });
+
+app.use('/users', router.userRouter);
 
 // Error handling
 app.use((req, res, next) => {
