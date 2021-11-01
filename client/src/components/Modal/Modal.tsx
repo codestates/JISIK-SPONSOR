@@ -7,7 +7,6 @@ const Modal = () => {
   const { loginModal, signupModal } = useSelector(
     (state: RootState) => state.modal
   );
-  console.log(loginModal, signupModal);
 
   return (
     <>

@@ -111,4 +111,10 @@ export const ProfileContent = styled.div`
       margin-bottom: 10px;
     }
   }
+
+  @media screen and (max-width: 576px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
 `;

@@ -47,6 +47,12 @@ export const ProjectHeader = styled.div`
     display: flex;
     justify-content: space-between;
   }
+
+  @media screen and (max-width: 576px) {
+    > p {
+      width: 100%;
+    }
+  }
 `;
 
 export const BudgetDetail = styled.div`

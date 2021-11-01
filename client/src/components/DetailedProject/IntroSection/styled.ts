@@ -66,6 +66,17 @@ export const MainContent = styled.div`
     height: 320px;
     margin-bottom: 20px;
   }
+
+  @media screen and (max-width: 576px) {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    img {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const SubContent = styled.div`
@@ -91,6 +102,20 @@ export const SubContent = styled.div`
     width: 270px;
     height: 15px;
     margin-bottom: 10px;
+  }
+
+  @media screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 30px;
+
+    img {
+      width: 100%;
+      /* margin-bottom: 20px; */
+    }
   }
 `;
 
@@ -123,6 +148,10 @@ export const Funding = styled.div`
 
   & > p:last-child {
     margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
   }
 `;
 
@@ -162,6 +191,13 @@ export const FundInput = styled.div`
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+  @media screen and (max-width: 576px) {
+    width: 100%;
+
+    div > input {
+      width: 50%;
+    }
+  }
 `;
 
 export const HashTagContainer = styled.div`
@@ -180,4 +216,9 @@ export const HashTag = styled.button`
   line-height: 1.4;
   border-radius: 3px;
   cursor: pointer;
+
+  @media screen and (max-width: 576px) {
+    width: 20%;
+    font-size: 12px;
+  }
 `;
