@@ -35,17 +35,11 @@ module.exports = {
         }
       });
 
-      if (findUserInfos) {
-        return res
-          .status(409)
-          .json({ message: 'This nickname information cannot be registered' });
-      }
+      if (findUserInfos) return res.status(409).json({ message: 'This nickname information cannot be registered' });
 
       // 요청 바디에 password가 있다면 새로운 비밀번호를 해싱한다.
       let hash;
-      if (password) {
-        hash = await bcrypt.hash(password, 12);
-      }
+      if (password) hash = await bcrypt.hash(password, 12);
 
       // 회원의 정보를 업데이트한다.
       const updateUserId = await user.update(

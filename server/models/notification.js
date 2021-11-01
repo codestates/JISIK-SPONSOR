@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class comments extends Model {
+  class notification extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  comments.init(
+  notification.init(
     {
       id: {
         allowNull: false,
@@ -32,10 +32,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'comments',
+      modelName: 'notification',
       createdAt: 'created_at',
       updatedAt: 'updated_at'
     }
   );
-  return comments;
+  return notification;
 };

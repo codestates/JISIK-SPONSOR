@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      project_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'projects', key: 'id' }
+      },
       project_team_id: {
         allowNull: false,
         type: Sequelize.INTEGER,

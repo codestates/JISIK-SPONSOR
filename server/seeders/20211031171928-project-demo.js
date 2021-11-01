@@ -65,6 +65,7 @@ module.exports = {
         path: '공감이-대인관계를-어떻게-향상시킬-수-있을까-김코딩-3',
         user_id: 3,
         category_id: 1,
+        project_team_id: 3,
         description: '인지 부조화 및 자기 인식 이론에 대한 연구를...',
         term: 30,
         start_date: '2021-11-01 00:00:00',

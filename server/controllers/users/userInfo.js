@@ -6,16 +6,12 @@ module.exports = {
       const { userId } = req.params;
 
       // 요청이 잘못된 경우
-      if (isNaN(userId) === true) {
-        return res.status(400).json({ message: 'Bad Request!' });
-      }
+      if (isNaN(userId) === true) return res.status(400).json({ message: 'Bad Request!' });
 
       const userInfo = await user.findOne({ where: { id: userId } });
 
       // 존재하지 않는 경우
-      if (!userInfo) {
-        return res.status(404).json({ message: 'Not Found!' });
-      }
+      if (!userInfo) return res.status(404).json({ message: 'Not Found!' });
 
       // 공개 프로필 외 회원의 정보는 삭제한다.
       delete userInfo.dataValues.email;

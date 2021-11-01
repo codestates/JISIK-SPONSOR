@@ -49,6 +49,7 @@ const {
   project,
   category,
   project_team,
+  project_team_member,
   budget_item,
   project_milestone
 } = sequelize.models;
@@ -65,6 +66,9 @@ project.belongsTo(project_team, { foreignKey: 'project_team_id' });
 
 project.hasMany(budget_item, { foreignKey: 'project_id' });
 budget_item.belongsTo(project, { foreignKey: 'project_id' });
+
+project.hasMany(project_team_member, { foreignKey: 'project_id' });
+project_team_member.belongsTo(project, { foreignKey: 'project_id' });
 
 project.hasMany(project_milestone, { foreignKey: 'project_id' });
 project_milestone.belongsTo(project, { foreignKey: 'project_id' });

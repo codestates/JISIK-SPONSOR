@@ -18,9 +18,8 @@ module.exports = {
         return res.status(400).json({ message: 'Already logged in!' });
       }
 
-      const { email, password } = req.body;
-
       // 요청이 잘못된 경우
+      const { email, password } = req.body;
       if (!email || !password) {
         return res.status(400).json({ message: 'Bad Request!' });
       }

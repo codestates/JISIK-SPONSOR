@@ -19,6 +19,18 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      project_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
+      title: {
+        allowNull: false,
+        type: DataTypes.STRING(255)
+      },
+      goal_date: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,

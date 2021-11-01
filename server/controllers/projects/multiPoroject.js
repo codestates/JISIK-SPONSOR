@@ -4,10 +4,21 @@ const { Op } = require('sequelize');
 module.exports = {
   get: async (req, res) => {
     try {
-      let { author, categoryName, offset, limit, order, sort, search } =
+      let { author, categoryName, status, offset, limit, order, sort, search } =
         req.query;
 
+      // 카테고리 : 기본 값은 없다.
       if (categoryName === '전체') category = null;
+
+      // 상태 : 기본 값은 없다.
+      if (
+        status !== '작성중' &&
+        status !== '대기중' &&
+        status !== '진행중' &&
+        status !== '성사됨'
+      ) {
+        status = null;
+      }
 
       // 정렬 : 기본 값은 id 기준 내림차순이다.
       if (sort) sort = sort.toUpperCase();
@@ -43,8 +54,9 @@ module.exports = {
       // 모든 게시물 조회한다.
       const projects = await project.findAndCountAll({
         where: {
-          [Op.not]: [{ status: '작성중' }],
+          [Op.not]: [!status ? { status: '작성중' } : null],
           [Op.and]: [
+            status ? { status } : null,
             search
               ? {
                   [Op.or]: [

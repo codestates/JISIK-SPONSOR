@@ -39,6 +39,12 @@ module.exports = {
             attributes: ['team_name', 'team_description', 'profile_url']
           },
           {
+            model: project_team_member, // project_team_members 테이블 조인
+            attributes: ['id', 'name', 'bio'],
+            where: { project_id: projectId },
+            separate: true
+          },
+          {
             model: budget_item, // budget_items 테이블 조인
             attributes: ['id', 'title', 'amount'],
             where: { project_id: projectId },
@@ -158,7 +164,7 @@ module.exports = {
 
       // 업데이트한 게시물 정보를 조회한다.
       const newProjectInfo = await project.findOne({
-        where: { id: projectInfo.id },
+        where: { id: projectId },
         include: [
           {
             model: category, // categories 테이블 조인
@@ -170,11 +176,25 @@ module.exports = {
           },
           {
             model: project_team, // project_teams 테이블 조인
-            attributes: ['team_name', 'team_bio', 'profile_url']
+            attributes: ['team_name', 'team_description', 'profile_url']
           },
           {
-            model: budget_item, // project_teams 테이블 조인
-            attributes: ['id', 'title', 'amount']
+            model: project_team_member, // project_team_members 테이블 조인
+            attributes: ['id', 'name', 'bio'],
+            where: { project_id: projectId },
+            separate: true
+          },
+          {
+            model: budget_item, // budget_items 테이블 조인
+            attributes: ['id', 'title', 'amount'],
+            where: { project_id: projectId },
+            separate: true
+          },
+          {
+            model: project_milestone, // project_milestones 테이블 조인
+            attributes: ['id', 'title', 'goal_date'],
+            where: { project_id: projectId },
+            separate: true
           }
         ]
       });
