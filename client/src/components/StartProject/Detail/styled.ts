@@ -122,7 +122,7 @@ export const TimeLineListContainer = styled.ul`
   > li {
     display: flex;
     margin-top: 5px;
-    align-items: center;
+    align-items: flex-end;
     > div {
       display: flex;
       flex-direction: column;
@@ -151,13 +151,18 @@ export const TimeLineListContainer = styled.ul`
       }
     }
 
-    > div:last-child {
+    > div:nth-child(2) {
+      margin-right: 10px;
       > span {
         font-size: 12.8px;
         font-weight: 700;
         line-height: 1.45em;
         color: ${({ theme }) => theme.colors.suppotWord};
       }
+    }
+
+    > button:nth-child(3) {
+      margin-right: 5px;
     }
   }
 

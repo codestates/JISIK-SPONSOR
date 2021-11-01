@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Container,
   ProjectBody,
   FocusMemo,
   TextareaCss,
-  SaveButton
+  SaveButton,
+  EditButton,
+  ErrorMessage
 } from '../commonStyled';
 import {
   ProjectMotive,
@@ -30,6 +32,7 @@ interface DetailMemoProps {
 }
 
 function DetailsInfo() {
+  const ulElement = useRef<HTMLUListElement>(null);
   const [timelineList, setTimeLineList] = useState<number[]>([0]);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [showMemo, setShowMemo] = useState<DetailMemoProps>({
@@ -40,12 +43,86 @@ function DetailsInfo() {
     timelineMemo: false,
     detailMemo: false
   });
+  const [timelineContent, setTimeLineContent] = useState<string>('');
+  const [isVaild, setIsVaild] = useState(false);
+  console.log(timelineContent);
 
   const addTimeLineList = () => {
+    if (!timelineContent) {
+      setIsVaild(true);
+      return;
+    }
     setTimeLineList([
       ...timelineList,
       timelineList[timelineList.length - 1] + 1
     ]);
+    handleDisable();
+    setTimeLineContent('');
+    setIsVaild(false);
+  };
+
+  const removeTimelineList = (idx: number) => {
+    if (timelineList.length === 1) return;
+    const filter = timelineList.filter((list) => list !== idx);
+    setTimeLineList(filter);
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTimeLineContent(e.target.value);
+  };
+
+  const editButton = (idx: number, e: React.MouseEvent<HTMLButtonElement>) => {
+    // textContent === '수정'이라면 disable해제 후 textContent를 '완료'로 변경
+    if (e.currentTarget.textContent === '수정') {
+      let length = ulElement.current?.children.length;
+      if (!length) return;
+      for (let i = 0; i < length; i++) {
+        let content = ulElement.current?.children[i].children[0].children[1];
+        if (!content) return;
+        if (Number(content.getAttribute('id')) === idx) {
+          content.removeAttribute('disabled');
+          e.currentTarget.textContent = '완료';
+          return;
+        }
+      }
+    } else {
+      // textContent === '완료'라면 textContent를 '수정'로 변경 하고 disable할함수실행
+      e.currentTarget.textContent = '수정';
+      handleDisable(idx);
+    }
+  };
+
+  const handleDisable = (idx?: number) => {
+    // 버튼이 '완료'일때 누르면 input창을 다시 disable상태로 변경
+    if (idx || idx === 0) {
+      ulElement.current?.children[idx].children[0].children[1].setAttribute(
+        'disabled',
+        ''
+      );
+      ulElement.current?.children[idx].children[1].children[1].setAttribute(
+        'disabled',
+        ''
+      );
+      return;
+    }
+
+    // 항목을 추가 했을 때 추가한걸 제외한 나머지 input을 disable로 변경
+    let length = ulElement.current?.children.length;
+    console.log(ulElement.current?.children[0].children[0].children[1]);
+    console.log(length);
+    if (!length) return;
+    for (let i = 0; i < length - 1; i++) {
+      ulElement.current?.children[i].children[0].children[1].setAttribute(
+        'disabled',
+        ''
+      );
+      ulElement.current?.children[
+        i
+      ].children[1].children[1].children[0].children[0].setAttribute(
+        'disabled',
+        ''
+      );
+    }
   };
   return (
     <Container>
@@ -106,12 +183,12 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, timelineMemo: false })}
         >
           <h3>프로젝트 타임라인</h3>
-          <TimeLineListContainer>
+          <TimeLineListContainer ref={ulElement}>
             {timelineList.map((el) => (
               <li key={el}>
                 <div>
                   <label>일정 내용</label>
-                  <input type="text" />
+                  <input type="text" id={String(el)} onChange={handleInput} />
                 </div>
                 <div>
                   <span>목표 날짜</span>
@@ -123,12 +200,21 @@ function DetailsInfo() {
                     minDate={new Date()}
                   />
                 </div>
+                <EditButton onClick={(e) => editButton(el, e)}>수정</EditButton>
+                <EditButton onClick={() => removeTimelineList(el)}>
+                  삭제
+                </EditButton>
               </li>
             ))}
             <FocusMemo>
               프로젝트가 어떻게 진행할지 일정 계획을 간단하게 작성해주세요.
             </FocusMemo>
           </TimeLineListContainer>
+          {isVaild && (
+            <ErrorMessage>
+              빈칸을 채워야 일정 항목을 추가하실 수 있습니다.
+            </ErrorMessage>
+          )}
           <AddTimeLineButton onClick={addTimeLineList}>
             일정 항목 추가
           </AddTimeLineButton>
