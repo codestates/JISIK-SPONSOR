@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import Logo from 'images/logo-img.png';
 import Search from 'images/icons/search-icon.png';
 import { NavContainer, NavbarL, NavbarR, NavButton } from './styled';
+import { useDispatch } from 'react-redux';
+import { showLoginModal, showSignupModal } from 'store/modal-slice';
 
-const Header: React.FC = () => {
+const Header = () => {
+  const dispatch = useDispatch();
   return (
     <NavContainer>
       <NavbarL>
@@ -23,8 +26,12 @@ const Header: React.FC = () => {
       </Link>
       <NavbarR>
         <img src={Search} alt="search-icon" />
-        <NavButton>로그인</NavButton>
-        <NavButton>회원가입</NavButton>
+        <NavButton onClick={() => dispatch(showLoginModal(true))}>
+          로그인
+        </NavButton>
+        <NavButton onClick={() => dispatch(showSignupModal(true))}>
+          회원가입
+        </NavButton>
       </NavbarR>
     </NavContainer>
   );

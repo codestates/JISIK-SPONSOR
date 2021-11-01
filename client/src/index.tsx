@@ -10,6 +10,7 @@ import storage from 'redux-persist/lib/storage';
 import loginSlice, { authentification } from 'store/login-slice';
 import modalSlice, { modal } from 'store/modal-slice';
 import PageBtSlice, { button } from 'store/startPageBt-slice';
+import myPageTabSlice, { MyPageTabs } from 'store/mypage-slice';
 
 // persistConfig는 새로운 persist를 선언한다.
 // key: reducer의 어느 지점에서부터 데이터를 저장할 것인지
@@ -24,7 +25,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   login: loginSlice,
   modal: modalSlice,
-  page: PageBtSlice
+  page: PageBtSlice,
+  myPage: myPageTabSlice
 });
 
 // persistReducer는 persisConfig가 추가된 reducer을 반환한다.
@@ -43,6 +45,7 @@ export interface RootState {
   login: authentification;
   modal: modal;
   page: button;
+  myPage: MyPageTabs;
 }
 // persistStore는 새로고침, 종료해도 지속될 store생성
 let persistor = persistStore(store);

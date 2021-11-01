@@ -4,7 +4,7 @@ export interface modal {
   loginModal: boolean;
   signupModal: boolean;
 }
-const initialState: modal = { loginModal: false, signupModal: true };
+const initialState: modal = { loginModal: false, signupModal: false };
 
 const modalBox = createSlice({
   name: 'modal',
