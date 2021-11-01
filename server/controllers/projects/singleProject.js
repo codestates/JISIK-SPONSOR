@@ -120,42 +120,73 @@ module.exports = {
       } = req.body;
 
       // 카테고리 id 찾기
-      const categoryInfo = await category.findOnd({
-        where: { name: categoryName }
-      });
+      let categoryInfo;
+      if (categoryName) {
+        categoryInfo = await category.findOne({
+          where: { name: categoryName }
+        });
+      }
+
+      // path 업데이트
+      let path;
+      if (title) {
+        path = title
+          .toLowerCase()
+          .replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ') // 특수문자 제거하기
+          .replace(/^\s+|\s+$/gm, '') // 문자열의 시작과 끝에서 공백 자르기
+          .replace(/\s+/g, '-'); // 공백을 하이픈으로 변환
+        path = path + '-' + userInfo.name + '-' + userInfo.id;
+      }
 
       // 게시물 정보를 업데이트한다.
+      // body로 들어온 것은 body로 업데이트 한다.
+      // 안들어 온경우 기존 정보가 있으면 유지하고 그것도 없으면 null이다.
       await project.update(
         {
-          title: title !== null ? title : projectInfo.title,
-          description:
-            description !== null ? description : projectInfo.description,
-          category_id:
-            categoryName !== null ? categoryInfo.id : projectInfo.category_id,
-          term: term !== null ? term : projectInfo.term,
-          goal: goal !== null ? goal : projectInfo.goal,
-          project_background:
-            project_background !== null
-              ? project_background
-              : projectInfo.project_background,
-          project_progress:
-            project_progress !== null
-              ? project_progress
-              : projectInfo.project_progress,
-          project_goals:
-            project_goals !== null ? project_goals : projectInfo.project_goals,
-          budget_synopsis:
-            budget_synopsis !== null
-              ? budget_synopsis
-              : projectInfo.budget_synopsis,
-          milestone_description:
-            milestone_description !== null
-              ? milestone_description
-              : projectInfo.milestone_description,
-          researcher_word:
-            researcher_word !== null
-              ? researcher_word
-              : projectInfo.researcher_word
+          title: title ? title : projectInfo.title,
+          path: path ? path : projectInfo.path,
+          description: description
+            ? description
+            : projectInfo.description
+            ? projectInfo.description
+            : null,
+          category_id: categoryName
+            ? categoryInfo.id
+            : projectInfo.category_id
+            ? projectInfo.category_id
+            : null,
+          term: term ? term : projectInfo.term ? projectInfo.term : null,
+          goal: goal ? goal : projectInfo.goal ? projectInfo.goal : null,
+          project_background: project_background
+            ? project_background
+            : projectInfo.project_background
+            ? projectInfo.project_background
+            : null,
+          project_progress: project_progress
+            ? project_progress
+            : projectInfo.project_progress
+            ? projectInfo.project_progress
+            : null,
+          project_goals: project_goals
+            ? project_goals
+            : projectInfo.project_goals
+            ? projectInfo.project_goals
+            : null,
+          budget_synopsis: budget_synopsis
+            ? budget_synopsis
+            : projectInfo.budget_synopsis
+            ? projectInfo.budget_synopsis
+            : null,
+          milestone_description: milestone_description
+            ? milestone_description
+            : projectInfo.milestone_description
+            ? projectInfo.milestone_description
+            : null,
+          researcher_word: researcher_word
+            ? researcher_word
+            : projectInfo.researcher_word
+            ? projectInfo.researcher_word
+            : null
         },
         { where: { id: projectInfo.id } }
       );
@@ -171,27 +202,27 @@ module.exports = {
           {
             model: user, // users 테이블 조인
             attributes: ['name', 'nickname', 'bio', 'profile_url']
-          },
-          {
-            model: project_team, // project_teams 테이블 조인
-            attributes: ['id', 'team_name', 'team_description', 'profile_url'],
-            separate: true
-          },
-          {
-            model: project_team_member, // project_team_members 테이블 조인
-            attributes: ['id', 'name', 'bio'],
-            separate: true
-          },
-          {
-            model: budget_item, // budget_items 테이블 조인
-            attributes: ['id', 'title', 'amount'],
-            separate: true
-          },
-          {
-            model: project_milestone, // project_milestones 테이블 조인
-            attributes: ['id', 'title', 'goal_date'],
-            separate: true
           }
+          // {
+          //   model: project_team, // project_teams 테이블 조인
+          //   attributes: ['id', 'team_name', 'team_description', 'profile_url'],
+          //   separate: true
+          // },
+          // {
+          //   model: project_team_member, // project_team_members 테이블 조인
+          //   attributes: ['id', 'name', 'bio'],
+          //   separate: true
+          // },
+          // {
+          //   model: budget_item, // budget_items 테이블 조인
+          //   attributes: ['id', 'title', 'amount'],
+          //   separate: true
+          // },
+          // {
+          //   model: project_milestone, // project_milestones 테이블 조인
+          //   attributes: ['id', 'title', 'goal_date'],
+          //   separate: true
+          // }
         ]
       });
 
@@ -207,9 +238,8 @@ module.exports = {
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      let projectId = req.params.projectId;
-
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
+      let projectId = req.params.projectId;
       if (isNaN(projectId)) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
@@ -217,12 +247,12 @@ module.exports = {
       projectId = Number(projectId);
       const projectInfo = await project.findOne({ where: { id: projectId } });
 
-      // 게시물이 존재하지 않는 경우 다음을 리턴한다.
+      // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
       if (!projectInfo) {
         return res.status(404).json({ message: 'Not Found!' });
       }
 
-      // 현재 유저가 게시물을 삭제할 권한이 없는경우 다음을 리턴한다.
+      // 현재 회원이 프로젝트를 삭제할 권한이 없는경우 다음을 리턴한다.
       if (userInfo.id !== projectInfo.user_id && userInfo.role !== 1) {
         return res.status(403).json({ message: 'Not authorized!' });
       }

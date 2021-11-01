@@ -7,9 +7,6 @@ module.exports = {
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      // 새로운 프로젝트의 팀을 생성한다.
-      const projectTeam = await project_team.create({ user_id: userInfo.id });
-
       // 새로운 프로젝트의 URL을 생성한다.
       const { title } = await req.body;
       const path = title
@@ -22,8 +19,13 @@ module.exports = {
       const newProject = await project.create({
         title,
         path: path + '-' + userInfo.name + '-' + userInfo.id,
-        user_id: userInfo.dataValues.id,
-        project_team_id: projectTeam.id
+        user_id: userInfo.dataValues.id
+      });
+
+      // 새로운 프로젝트의 팀을 생성한다.
+      await project_team.create({
+        user_id: userInfo.id,
+        project_id: newProject.id
       });
 
       // 새로 생성한 프로젝트의 아이디를 반환한다.

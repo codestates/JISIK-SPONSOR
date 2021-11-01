@@ -54,7 +54,8 @@ module.exports = {
       // 모든 게시물 조회한다.
       const projects = await project.findAndCountAll({
         where: {
-          [Op.not]: [!status ? { status: '작성중' } : null],
+          // query로 status가 들어오면 해당 not 연산자는 사용 X, 기본은 '작성중'인 프로젝트는 출력 안함.
+          [Op.not]: [status ? { status: null } : { status: '작성중' }],
           [Op.and]: [
             status ? { status } : null,
             search
