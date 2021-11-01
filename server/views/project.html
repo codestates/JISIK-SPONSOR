@@ -54,9 +54,16 @@
 
     <h4>프로젝트(id 4) 팀 수정</h4>
     <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
-    <form action="/projects/4/teams/:teamId/4" method="POST" enctype="multipart/form-data">
-      <input type="text" name="team_name" />
-      <input type="text" name="teamDescription" />
+    <form action="/projects/4/teams/4" method="POST">
+      <input type="text" name="teamName" placeholder="팀명"/>
+      <input type="text" name="teamDescription" placeholder="설명"/>
+      <input type="submit" value="업로드" />
+    </form>
+
+    <h4>프로젝트(id 4) 팀 프로필 업로드</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/4/profile" method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" />
       <input type="submit" value="업로드" />
     </form>
   </body>

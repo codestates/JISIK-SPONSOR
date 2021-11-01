@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { projects } = require('../controllers');
+const { projects, teams } = require('../controllers');
 const uploadThumbnail = require('../middlewares/uploadFile/projectThumbnail');
+const uploadTeamProfile = require('../middlewares/uploadFile/uploadTeamProfile');
 
 router
   .route('/')
@@ -19,6 +20,17 @@ router.post(
   projects.thumbnail.validation,
   uploadThumbnail.single('image'),
   projects.thumbnail.upload
+);
+
+// Project Teams API
+router.post('/:projectId/teams/:teamId', teams.teamInfo.patch); // HTML 테스트용
+router.patch('/:projectId/teams/:teamId', teams.teamInfo.patch);
+
+router.post(
+  '/:projectId/teams/:teamId/profile',
+  teams.teamProfile.validation,
+  uploadTeamProfile.single('image'),
+  teams.teamProfile.upload
 );
 
 module.exports = router;

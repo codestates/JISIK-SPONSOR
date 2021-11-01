@@ -15,6 +15,6 @@ router.post(
   users.profile.upload
 );
 
-router.get('/:userId', users.userinfo.get);
+router.get('/:userId', users.userInfo.get);
 
 module.exports = router;
