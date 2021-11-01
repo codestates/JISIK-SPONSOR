@@ -1,9 +1,4 @@
-const {
-  project,
-  project_team,
-  project_team_member,
-  budget_item
-} = require('../../models');
+const { project, budget_item } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
 
 module.exports = {
@@ -135,7 +130,7 @@ module.exports = {
         attributes: ['id', 'title', 'amount']
       });
 
-      // 업데이트한 팀원 정보를 반환한다.
+      // 업데이트한 예산 항목 정보를 반환한다.
       res.status(200).json({ budget_items: newBudgetInfo });
     } catch (err) {
       console.error(err);
@@ -195,7 +190,7 @@ module.exports = {
       // 예산 항목 레코드를 삭제한다.
       await budget_item.destroy({ where: { id: budgetId } });
 
-      // 삭제된 팀원 아이디를 반환한다.
+      // 삭제된 예산 항목 아이디를 반환한다.
       res.status(200).json({ id: budgetId });
     } catch (err) {
       console.error(err);

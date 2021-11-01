@@ -98,5 +98,21 @@
       <input type="text" name="amount" placeholder="금액"/>
       <input type="submit" value="수정" />
     </form>
+
+    <h4>프로젝트(id 4) 계획 항목 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/milestones" method="POST">
+      <input type="text" name="title" placeholder="항목명"/>
+      <input type="text" name="goalDate" placeholder="날짜"/>
+      <input type="submit" value="추가" />
+    </form>
+
+    <h4>프로젝트(id 4) 계획 항목(id 7) 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/milestones/7" method="POST">
+      <input type="text" name="title" placeholder="항목명"/>
+      <input type="text" name="goalDate" placeholder="날짜"/>
+      <input type="submit" value="수정" />
+    </form>
   </body>
 </html>

@@ -52,4 +52,13 @@ router
   .patch(projects.budgets.patch)
   .delete(projects.budgets.delete);
 
+// Project Milestones API
+router.post('/:projectId/milestones', projects.milestones.post);
+
+router
+  .route('/:projectId/milestones/:milestoneId')
+  .post(projects.milestones.patch) // HTML 테스트용
+  .patch(projects.milestones.patch)
+  .delete(projects.milestones.delete);
+
 module.exports = router;
