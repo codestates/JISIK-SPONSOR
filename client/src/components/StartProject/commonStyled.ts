@@ -174,3 +174,12 @@ export const ProjectCoverImage = styled(SubTitleCss)`
     }
   }
 `;
+
+export const EditButton = styled(AddButton)`
+  width: 73px;
+`;
+
+export const ErrorMessage = styled.div`
+  color: #b40e0e;
+  margin-top: 5px;
+`;

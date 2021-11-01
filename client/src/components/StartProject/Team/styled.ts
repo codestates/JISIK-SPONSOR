@@ -29,9 +29,9 @@ export const ProjectTeamMember = styled(SubTitleCss)<FoucsProps>`
 
 export const AddTeamMember = styled.ul`
   margin-top: 20px;
-  /* position: relative; */
   > li {
     display: flex;
+    align-items: flex-end;
     margin-top: 5px;
     > div {
       display: flex;
@@ -60,6 +60,14 @@ export const AddTeamMember = styled.ul`
         width: 160px;
       }
     }
+
+    > div:nth-child(2) {
+      margin-right: 10px;
+    }
+
+    > button:nth-child(3) {
+      margin-right: 5px;
+    }
   }
 
   li:first-child {
@@ -68,9 +76,7 @@ export const AddTeamMember = styled.ul`
 `;
 
 export const AddTeamMemberButton = styled(AddButton)`
-  position: absolute;
-  top: 65px;
-  right: 175px;
+  margin-top: 20px;
 `;
 
 // 프로젝트 팀 소개
@@ -97,8 +103,6 @@ export const ProjectTeamInfo = styled(SubTitleCss)<FoucsProps>`
 
 // 프로젝트 팀 이미지
 export const ProjectTeamImg = styled(ProjectCoverImage)`
-  position: relative;
-
   > label {
     width: 300px;
   }

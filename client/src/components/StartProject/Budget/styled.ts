@@ -15,6 +15,7 @@ export const BudgetListContainer = styled.ul`
 
   > li {
     display: flex;
+    align-items: flex-end;
     margin-top: 5px;
     > div {
       display: flex;
@@ -44,22 +45,28 @@ export const BudgetListContainer = styled.ul`
       }
     }
 
-    > div:last-child {
-      > input[type='number']::-webkit-outer-spin-button,
+    > div:nth-child(2) {
+      margin-right: 10px;
+      input[type='number']::-webkit-outer-spin-button,
       input[type='number']::-webkit-inner-spin-button {
         -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
       }
     }
-
-    li:first-child {
-      margin-top: 0;
+    > button:nth-child(3) {
+      margin-right: 5px;
     }
+  }
+
+  li:first-child {
+    margin-top: 0;
   }
 `;
 
 export const TotalAmount = styled.div`
   position: absolute;
-  right: -100px;
+  right: -200px;
   top: 0;
   background: #ffffff;
   border: 2px solid #e9ecef;

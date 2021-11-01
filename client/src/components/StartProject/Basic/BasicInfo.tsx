@@ -5,7 +5,8 @@ import {
   FocusMemo,
   TextareaCss,
   SaveButton,
-  AddButton
+  AddButton,
+  ErrorMessage
 } from '../commonStyled';
 import {
   ProjectTitle,
@@ -35,6 +36,7 @@ function BasicInfo() {
     periodMemo: false,
     infoMemo: false
   });
+  const [isVaild, setIsVaild] = useState(false);
 
   const options = [
     { value: '7일', label: '7일' },
@@ -45,7 +47,10 @@ function BasicInfo() {
   ];
 
   const addTags = (value: string) => {
-    if (hashtag.length >= 3) return;
+    if (hashtag.length >= 3) {
+      setIsVaild(true);
+      return;
+    }
     const filtered = hashtag.filter((tag) => tag === value);
     if (value !== '' && filtered.length === 0) {
       setHashtag([...hashtag, value]);
@@ -54,7 +59,9 @@ function BasicInfo() {
   };
 
   const removeTags = (removeIdx: number) => {
-    console.log(hashtag);
+    if (hashtag.length <= 3) {
+      setIsVaild(false);
+    }
     const filter = hashtag.filter((_, idx) => idx !== removeIdx);
     setHashtag(filter);
   };
@@ -98,6 +105,9 @@ function BasicInfo() {
           </p>
           <input type="text" onChange={handleHashTag} value={tagInput} />
           <AddButton onClick={() => addTags(tagInput)}>해시태그 추가</AddButton>
+          {isVaild && (
+            <ErrorMessage>해시태그는 3개이상 추가하실수 없습니다.</ErrorMessage>
+          )}
           <div>
             <ul>
               {hashtag.map((tag, idx) => (
