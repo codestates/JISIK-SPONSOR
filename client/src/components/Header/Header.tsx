@@ -6,7 +6,9 @@ import { NavContainer, NavbarL, NavbarR, NavButton } from './styled';
 import { useDispatch } from 'react-redux';
 import { showLoginModal, showSignupModal } from 'store/modal-slice';
 
+
 const Header = () => {
+
   const dispatch = useDispatch();
   return (
     <NavContainer>

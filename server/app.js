@@ -1,10 +1,13 @@
 require('dotenv').config();
 const fs = require('fs');
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
+const { auth } = require('./controllers');
+const { user } = require('./models');
 
 // Handling unexpected exceptions
 process.on('uncaughtException', (err) => {
@@ -25,15 +28,38 @@ app.use(
 );
 
 // Routing
-app.get('/', (req, res) => {
-  const cookieOptions = {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    secure: true,
-    httpOnly: true,
-    sameSite: 'none'
-  };
-  res.cookie('JisikTestCookie', 'cookie~~!!', cookieOptions);
-  res.send('Jisik Sponsor!');
+app.get('/', (req, res) => res.send('Jisik Sponsor!'));
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/login.html'));
+});
+app.post('/login', auth.login);
+
+app.get('/logout', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/logout.html'));
+});
+app.post('/logout', auth.logout);
+
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/signup.html'));
+});
+app.post('/signup', auth.signup);
+
+app.get('/confirm/email', async (req, res) => {
+  const { key } = req.query;
+  console.log(key);
+
+  const findUser = await user.findOne({ where: { key_for_verify: key } });
+  if (!findUser) return res.status(404).send('Not Found!');
+
+  const updateUser = await user.update(
+    { email_verified: true },
+    { where: { key_for_verify: key } }
+  );
+
+  const url = process.env.SERVER_ORIGIN + '/login';
+
+  res.redirect(url);
 });
 
 // Error handling
