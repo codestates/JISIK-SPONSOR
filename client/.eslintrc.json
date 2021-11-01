@@ -13,7 +13,10 @@
     },
     "ecmaVersion": 12
   },
-  "plugins": ["prettier", "react"],
+  "plugins": [
+    "prettier",
+    "react"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",
@@ -36,12 +39,23 @@
     "require-await": "off",
     "no-unused-vars": [
       "error",
-      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
     ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       2,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
     ]
   },
   "settings": {
