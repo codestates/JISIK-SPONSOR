@@ -47,4 +47,9 @@ export const SponsorsList = styled.div`
     width: 50px;
     height: 50px;
   }
+
+  @media screen and (max-width: 576px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;

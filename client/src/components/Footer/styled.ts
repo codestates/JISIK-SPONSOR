@@ -36,6 +36,12 @@ export const MemberBox = styled.div`
   gap: 10px;
   width: 100%;
   margin: 50px 0;
+
+  @media screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export const MemberProfile = styled.div`

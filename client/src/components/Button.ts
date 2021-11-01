@@ -10,4 +10,8 @@ export const StyledButton = styled.button`
   line-height: 1.4;
   border-radius: 5px;
   cursor: pointer;
+
+  @media screen and (max-width: 576px) {
+    width: 70%;
+  }
 `;
