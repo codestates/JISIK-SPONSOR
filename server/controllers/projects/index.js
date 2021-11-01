@@ -7,5 +7,6 @@ module.exports = {
   teamProfile: require('./teamProfile'),
   teamMembers: require('./teamMembers'),
   budgets: require('./budgets'),
-  milestones: require('./milestones')
+  milestones: require('./milestones'),
+  tags: require('./tags')
 };

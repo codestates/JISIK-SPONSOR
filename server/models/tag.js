@@ -3,7 +3,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class tag extends Model {
     /**
-     * 필요
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
@@ -19,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
+      },
+      name: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING(255)
       },
       created_at: {
         allowNull: false,

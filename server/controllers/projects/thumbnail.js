@@ -61,7 +61,7 @@ module.exports = {
       );
 
       // 업로드한 프로젝트 썸네일 이미지 URL 을 리턴한다.
-      return res.status(200).json({ thumbnail_url: '/' + imageURL });
+      return res.status(201).json({ thumbnail_url: '/' + imageURL });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error!' });

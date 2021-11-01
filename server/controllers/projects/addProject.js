@@ -13,7 +13,7 @@ module.exports = {
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      // Body가 전달되지 않았다면 다음을 리턴한다.
+      // 요청이 잘못된 경우는 다음을 리턴한다.
       const { title } = await req.body;
       if (!title) return res.status(400).json({ message: 'Bad Request!' });
 

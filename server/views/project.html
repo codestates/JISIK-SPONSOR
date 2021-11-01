@@ -114,5 +114,12 @@
       <input type="text" name="goalDate" placeholder="날짜"/>
       <input type="submit" value="수정" />
     </form>
+
+    <h4>프로젝트(id 4) 태그 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/tags" method="POST">
+      <input type="text" name="tagName" placeholder="태그"/>
+      <input type="submit" value="추가" />
+    </form>
   </body>
 </html>

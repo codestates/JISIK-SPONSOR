@@ -61,4 +61,12 @@ router
   .patch(projects.milestones.patch)
   .delete(projects.milestones.delete);
 
+// Project Tags API
+router
+  .route('/:projectId/tags')
+  .get(projects.tags.get)
+  .post(projects.tags.post);
+
+router.delete('/:projectId/tags/:projectTagId', projects.tags.delete);
+
 module.exports = router;

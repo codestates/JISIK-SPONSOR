@@ -72,7 +72,7 @@ module.exports = {
       );
 
       // 업로드한 프로젝트 팀 프로필 이미지 URL 을 리턴한다.
-      return res.status(200).json({ profile_url: '/' + imageURL });
+      return res.status(201).json({ profile_url: '/' + imageURL });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error!' });

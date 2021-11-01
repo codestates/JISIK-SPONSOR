@@ -1,12 +1,7 @@
 'use strict';
-require('dotenv').config();
-const bcrypt = require('bcrypt');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    // Password encryption
-    const hash = await bcrypt.hash(process.env.ADMIN_UESRS_PASS, 12);
-
     return queryInterface.bulkInsert('budget_items', [
       {
         project_id: 1,
