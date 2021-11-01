@@ -19,6 +19,23 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      user_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
+      project_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
+      team_name: {
+        type: DataTypes.STRING(255)
+      },
+      team_description: {
+        type: DataTypes.TEXT
+      },
+      profile_url: {
+        type: DataTypes.STRING(255)
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,

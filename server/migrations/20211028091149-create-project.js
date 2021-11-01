@@ -24,6 +24,7 @@ module.exports = {
       },
       category_id: {
         allowNull: false,
+        defaultValue: 1,
         type: Sequelize.INTEGER,
         references: { model: 'categories', key: 'id' }
       },
@@ -44,12 +45,16 @@ module.exports = {
       },
       status: {
         allowNull: false,
+        defaultValue: '작성중',
         type: Sequelize.STRING(64)
       },
       goal: {
         type: Sequelize.DECIMAL(12, 2)
       },
       pledged: {
+        type: Sequelize.DECIMAL(12, 2)
+      },
+      remainder: {
         type: Sequelize.DECIMAL(12, 2)
       },
       investors: {

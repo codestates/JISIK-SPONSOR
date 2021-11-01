@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project</title>
+  </head>
+  <body>
+    <h4>프로젝트 생성</h4>
+    <form action="/projects" method="POST">
+      <input type="text" name="title" placeholder="제목" />
+      <button type="submit">프로젝트 생성</button>
+    </form>
+
+    <h4>프로젝트(id 4) 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4" method="POST">
+      <input type="text" name="title" placeholder="제목" /><br />
+      <input type="text" name="categoryName" placeholder="카테고리" /><br />
+      <input type="text" name="description" placeholder="간단설명" /><br />
+      <input type="text" name="term" placeholder="기간" /><br />
+      <input type="text" name="goal" placeholder="목표금액" /><br />
+      <textarea
+        name="project_background"
+        placeholder="프로젝트 배경 설명"
+      ></textarea><br />
+      <textarea
+        name="project_progress"
+        placeholder="프로젝트 진행 상황 설명"
+      ></textarea><br />
+      <textarea
+        name="budget_synopsis"
+        placeholder="프로젝트 예산 상세 설명"
+      ></textarea><br />
+      <textarea
+        name="milestone_description"
+        placeholder="프로젝트 계획 상세 설명"
+      ></textarea><br />
+      </textarea>
+      <textarea
+        name="researcher_word"
+        placeholder="연구자의 한 마디"
+      ></textarea><br />
+      <button type="submit">프로젝트 수정</button>
+    </form>
+
+    <h4>프로젝트(id 4) 썸네일 업로드</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/thumbnail" method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" />
+      <input type="submit" value="업로드" />
+    </form>
+
+    <h4>프로젝트(id 4) 팀 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/:teamId/4" method="POST" enctype="multipart/form-data">
+      <input type="text" name="team_name" />
+      <input type="text" name="teamDescription" />
+      <input type="submit" value="업로드" />
+    </form>
+  </body>
+</html>
