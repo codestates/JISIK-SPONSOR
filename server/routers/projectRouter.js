@@ -80,4 +80,11 @@ router
   .patch(projects.comments.patch)
   .delete(projects.comments.delete);
 
+// Project Wishes API
+router
+  .route('/:projectId/wishes')
+  .get(projects.wishes.get)
+  .post(projects.wishes.post)
+  .delete(projects.wishes.delete);
+
 module.exports = router;

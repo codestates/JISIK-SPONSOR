@@ -9,5 +9,6 @@ module.exports = {
   budgets: require('./budgets'),
   milestones: require('./milestones'),
   tags: require('./tags'),
+  wishes: require('./wishes'),
   comments: require('./comments')
 };
