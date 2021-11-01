@@ -56,30 +56,38 @@ export const ModalBody = styled.div`
   > form {
     display: flex;
     flex-direction: column;
-
-    > label {
-      color: #212529;
-      font-size: 12.8px;
-      font-weight: 500;
-      line-height: 1.45em;
-
-      &:nth-child(3) {
-        margin-top: 10px;
-      }
-      &:nth-child(5) {
-        margin-top: 10px;
-      }
-      &:nth-child(7) {
-        margin-top: 10px;
-      }
-    }
+    gap: 10px;
+    font-size: 12.8px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #212529;
 
     > input {
-      margin-top: 10px;
       border: 2px solid #e9ecef;
       border-radius: 5px;
       height: 35px;
+
+      &.invalid {
+        border: 1px solid #dd584a;
+        background-color: #fddddd;
+      }
     }
+  }
+
+  p {
+    font-size: 12px;
+    color: #dd584a;
+  }
+`;
+
+export const ErrMsg = styled.div`
+  &.hidden {
+    display: none;
+  }
+
+  &.errMsg {
+    font-size: 12px;
+    color: #dd584a;
   }
 `;
 
