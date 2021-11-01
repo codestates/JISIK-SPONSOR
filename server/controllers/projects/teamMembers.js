@@ -108,7 +108,8 @@ module.exports = {
         teamInfo.id !== memberInfo.project_team_id
       ) {
         return res.status(403).json({
-          message: 'Bad Request! - Project and team are not connected.'
+          message:
+            'Bad Request! - Project, team and team member are not connected.'
         });
       }
 
@@ -138,17 +139,17 @@ module.exports = {
           name: name ? name : memberInfo.name ? memberInfo.name : null,
           bio: bio ? bio : memberInfo.bio ? memberInfo.bio : null
         },
-        { where: { id: memberInfo.id } }
+        { where: { id: memberId } }
       );
 
       // 업데이트한 팀원 정보를 조회한다.
       const newMemberInfo = await project_team_member.findOne({
-        where: { id: memberInfo.id },
+        where: { id: memberId },
         attributes: ['id', 'name', 'bio']
       });
 
       // 업데이트한 팀원 정보를 반환한다.
-      res.status(200).json({ project_team_member: newMemberInfo });
+      res.status(200).json({ project_team_members: newMemberInfo });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error!' });
@@ -212,9 +213,7 @@ module.exports = {
        */
 
       // 팀원 레코드를 삭제한다.
-      await project_team_member.destroy({
-        where: { id: memberId }
-      });
+      await project_team_member.destroy({ where: { id: memberId } });
 
       // 삭제된 팀원 아이디를 반환한다.
       res.status(200).json({ id: memberId });

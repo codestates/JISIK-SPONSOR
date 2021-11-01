@@ -43,4 +43,13 @@ router
   .patch(projects.teamMembers.patch)
   .delete(projects.teamMembers.delete);
 
+// Project Budgets API
+router.post('/:projectId/budgets', projects.budgets.post);
+
+router
+  .route('/:projectId/budgets/:budgetId')
+  .post(projects.budgets.patch) // HTML 테스트용
+  .patch(projects.budgets.patch)
+  .delete(projects.budgets.delete);
+
 module.exports = router;
