@@ -34,7 +34,7 @@ module.exports = {
       const newProject = await project.create({
         title,
         path: path + '-' + userInfo.name + '-' + userInfo.id,
-        user_id: userInfo.dataValues.id
+        user_id: userInfo.id
       });
 
       // 새로운 프로젝트의 팀을 생성한다.
@@ -44,7 +44,7 @@ module.exports = {
       });
 
       // 새로 생성한 프로젝트의 아이디를 반환한다.
-      res.status(201).json({ id: newProject.dataValues.id });
+      res.status(201).json({ id: newProject.id });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: 'Server error!' });

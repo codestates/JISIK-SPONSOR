@@ -8,5 +8,6 @@ module.exports = {
   teamMembers: require('./teamMembers'),
   budgets: require('./budgets'),
   milestones: require('./milestones'),
-  tags: require('./tags')
+  tags: require('./tags'),
+  comments: require('./comments')
 };

@@ -121,5 +121,12 @@
       <input type="text" name="tagName" placeholder="태그"/>
       <input type="submit" value="추가" />
     </form>
+
+    <h4>프로젝트(id 1) 댓글 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/1/comments" method="POST">
+      <input type="text" name="content" placeholder="댓글 작성"/>
+      <input type="submit" value="추가" />
+    </form>
   </body>
 </html>

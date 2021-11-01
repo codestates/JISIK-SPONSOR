@@ -69,4 +69,15 @@ router
 
 router.delete('/:projectId/tags/:projectTagId', projects.tags.delete);
 
+// Project Comments API
+router
+  .route('/:projectId/comments')
+  .get(projects.comments.get)
+  .post(projects.comments.post);
+
+router
+  .route('/:projectId/comments/:commentId')
+  .patch(projects.comments.patch)
+  .delete(projects.comments.delete);
+
 module.exports = router;

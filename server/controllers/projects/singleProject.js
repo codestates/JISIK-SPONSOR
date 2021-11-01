@@ -71,7 +71,7 @@ module.exports = {
 
       // 프로젝트에 조회수를 + 1 한다.
       const updateProject = await projectInfo.update(
-        { views: projectInfo.dataValues.views + 1 },
+        { views: projectInfo.views + 1 },
         { where: { id: projectId } }
       );
 
