@@ -6,8 +6,7 @@ const {
   project_team_member,
   budget_item,
   project_milestone,
-  wishe,
-  comment
+  tag_project
 } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
 
@@ -36,18 +35,17 @@ module.exports = {
           },
           {
             model: project_team, // project_teams 테이블 조인
-            attributes: ['team_name', 'team_description', 'profile_url']
+            attributes: ['id', 'team_name', 'team_description', 'profile_url'],
+            separate: true
           },
           {
             model: project_team_member, // project_team_members 테이블 조인
             attributes: ['id', 'name', 'bio'],
-            where: { project_id: projectId },
             separate: true
           },
           {
             model: budget_item, // budget_items 테이블 조인
             attributes: ['id', 'title', 'amount'],
-            where: { project_id: projectId },
             separate: true
           },
           {
@@ -176,24 +174,22 @@ module.exports = {
           },
           {
             model: project_team, // project_teams 테이블 조인
-            attributes: ['team_name', 'team_description', 'profile_url']
+            attributes: ['id', 'team_name', 'team_description', 'profile_url'],
+            separate: true
           },
           {
             model: project_team_member, // project_team_members 테이블 조인
             attributes: ['id', 'name', 'bio'],
-            where: { project_id: projectId },
             separate: true
           },
           {
             model: budget_item, // budget_items 테이블 조인
             attributes: ['id', 'title', 'amount'],
-            where: { project_id: projectId },
             separate: true
           },
           {
             model: project_milestone, // project_milestones 테이블 조인
             attributes: ['id', 'title', 'goal_date'],
-            where: { project_id: projectId },
             separate: true
           }
         ]
@@ -231,16 +227,36 @@ module.exports = {
         return res.status(403).json({ message: 'Not authorized!' });
       }
 
-      // 게시물과 연관된 좋아요 레코드를 삭제한다.
-      await wishe.destroy({ where: { project_id: projectInfo.id } });
+      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (삭제 불가능)
+      if (projectInfo.status !== '작성중') {
+        return res
+          .status(403)
+          .json({ message: 'This is not the project are "작성중"!' });
+      }
 
-      // 게시물과 연관된 댓글 레코드를 삭제한다.
-      await comment.destroy({ where: { project_id: projectInfo.id } });
+      // 프로젝트 팀과 연관된 팀원 레코드를 삭제한다.
+      await project_team_member.destroy({
+        where: { project_id: projectInfo.id }
+      });
 
-      // 게시물 삭제한다.
+      // 프로젝트와 연관된 팀 레코드를 삭제한다.
+      await project_team.destroy({ where: { project_id: projectInfo.id } });
+
+      // 프로젝트와 연관된 예산 레코드를 삭제한다.
+      await budget_item.destroy({ where: { project_id: projectInfo.id } });
+
+      // 프로젝트와 연관된 계획 레코드를 삭제한다.
+      await project_milestone.destroy({
+        where: { project_id: projectInfo.id }
+      });
+
+      // 프로젝트와 연관된 태그 레코드를 삭제한다.
+      await tag_project.destroy({ where: { project_id: projectInfo.id } });
+
+      // 프로젝트를 삭제한다.
       await project.destroy({ where: { id: projectInfo.id } });
 
-      // 삭제된 게시물 아이디를 반환한다.
+      // 삭제된 프로젝트 아이디를 반환한다.
       res.status(200).json({ id: projectInfo.dataValues.id });
     } catch (err) {
       console.error(err);

@@ -37,9 +37,6 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 1,
         type: DataTypes.INTEGER
       },
-      project_team_id: {
-        type: DataTypes.INTEGER
-      },
       description: {
         type: DataTypes.STRING(255)
       },

@@ -28,10 +28,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'categories', key: 'id' }
       },
-      project_team_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'project_teams', key: 'id' }
-      },
       description: {
         type: Sequelize.STRING(255)
       },

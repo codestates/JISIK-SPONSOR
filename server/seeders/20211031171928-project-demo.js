@@ -8,7 +8,6 @@ module.exports = {
         path: '산호가-더-높은-온도에-적응할-수-있을까-지식스폰서-1',
         user_id: 1,
         category_id: 3,
-        project_team_id: 1,
         description:
           '기후 변화에 직면하여 산호초를 보호하기 위한 긴급 조치가 필요합니다. 하와이에서 유출...',
         term: 30,
@@ -37,7 +36,6 @@ module.exports = {
         path: '거대-바이러스는-어떻게-해양-생태계에-영향을-미칠까-지식스폰서-1',
         user_id: 1,
         category_id: 3,
-        project_team_id: 2,
         description: '박테리아보다 큰 거대 바이러스 발견했습니다...',
         term: 30,
         start_date: '2021-11-01 00:00:00',
@@ -65,7 +63,6 @@ module.exports = {
         path: '공감이-대인관계를-어떻게-향상시킬-수-있을까-김코딩-3',
         user_id: 3,
         category_id: 1,
-        project_team_id: 3,
         description: '인지 부조화 및 자기 인식 이론에 대한 연구를...',
         term: 30,
         start_date: '2021-11-01 00:00:00',
