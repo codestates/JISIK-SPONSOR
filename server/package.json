@@ -26,6 +26,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.2",
     "nodemailer": "^6.7.0",
+    "pug": "^3.0.2",
     "sequelize": "^6.8.0",
     "sequelize-cli": "^6.2.0"
   },

@@ -9,22 +9,26 @@ const {
 module.exports = {
   post: async (req, res) => {
     try {
-      // [에러 처리]
+      /**
+       *
+       * [에러 처리]
+       *
+       */
 
-      // 이미 로그인 되어있는 경우
+      // 이미 로그인 되어있는 경우는 다음을 리턴한다.
       const { accessToken } = req.cookies;
       const accessTokenData = checkAccessToken(accessToken);
       if (accessTokenData) {
         return res.status(400).json({ message: 'Already logged in!' });
       }
 
-      // 요청이 잘못된 경우
+      // 요청이 잘못된 경우는 다음을 리턴한다.
       const { email, password } = req.body;
       if (!email || !password) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
-      // 등록된 회원이 존재하는지 확인한다.
+      // 등록된 회원이 존재하는 경우는 다음을 리턴한다.
       const userInfo = await user.findOne({ where: { email } });
       if (!userInfo) {
         return res.status(403).json({ message: 'Non-existent account!' });
@@ -35,14 +39,22 @@ module.exports = {
         password,
         userInfo.dataValues.password
       );
+
+      // 비밀번호가 잘못된 경우 다음을 리턴한다.
       if (!match) {
         return res.status(403).json({ message: 'Passwords do not match!' });
       }
 
-      // 등록된 회원이 이메일 인증을 완료했는지 확인한다.
+      // 등록된 회원이 이메일 인증을 완료하지 않은 경우는 다음을 리턴한다.
       if (userInfo.dataValues.email_verified !== true) {
         return res.status(403).json({ message: 'Email is not verified!' });
       }
+
+      /**
+       *
+       * [로그인 성공]
+       *
+       */
 
       // 회원의 비밀번호와 역할을 삭제한다.
       delete userInfo.dataValues.password;

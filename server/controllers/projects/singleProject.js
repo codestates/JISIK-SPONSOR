@@ -13,15 +13,19 @@ const userAuthen = require('../../middlewares/authorized/userAuthen');
 module.exports = {
   get: async (req, res) => {
     try {
-      let projectId = req.params.projectId;
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
 
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
+      const { projectId } = req.params;
       if (isNaN(projectId)) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
-      projectId = Number(projectId);
-      // 단일 게시물을 조회한다.
+      // 특정 프로젝트를 조회한다.
       const projectInfo = await project.findOne({
         where: { id: projectId },
         include: [
@@ -35,13 +39,7 @@ module.exports = {
           },
           {
             model: project_team, // project_teams 테이블 조인
-            attributes: [
-              'id',
-              'user_id',
-              'team_name',
-              'team_description',
-              'profile_url'
-            ],
+            attributes: ['id', 'team_name', 'team_description', 'profile_url'],
             separate: true
           },
           {
@@ -57,22 +55,27 @@ module.exports = {
           {
             model: project_milestone, // project_milestones 테이블 조인
             attributes: ['id', 'title', 'goal_date'],
-            where: { project_id: projectId },
             separate: true
           }
         ]
       });
 
-      // 존재하지 않는 경우 다음을 리턴한다.
+      // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
       if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
 
-      // 게시물의 조회수를 + 1 한다.
+      /**
+       *
+       * [특정 프로젝트 조회]
+       *
+       */
+
+      // 프로젝트에 조회수를 + 1 한다.
       const updateProject = await projectInfo.update(
         { views: projectInfo.dataValues.views + 1 },
         { where: { id: projectId } }
       );
 
-      // 단일 게시물을 리턴한다.
+      // 특정 프로젝트를 리턴한다.
       return res.status(200).json({ projects: updateProject });
     } catch (err) {
       console.error(err);
@@ -81,33 +84,44 @@ module.exports = {
   },
   patch: async (req, res) => {
     try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      let projectId = req.params.projectId;
-
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
+      const { projectId } = req.params;
       if (isNaN(projectId)) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
-      // 게시물이 존재하지 않는 경우 다음을 리턴한다.
+      // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
       const projectInfo = await project.findOne({ where: { id: projectId } });
       if (!projectInfo) {
         return res.status(404).json({ message: 'Not Found!' });
       }
 
-      // 현재 회원이 게시물을 수정할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== projectInfo.user_id && userInfo.role !== 1) {
+      // 현재 회원이 프로젝트를 수정할 권한이 없는 경우 다음을 리턴한다.
+      if (projectInfo.user_id !== userInfo.id && userInfo.role_id !== 1) {
         return res.status(403).json({ message: 'Not authorized!' });
       }
 
-      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
+      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (수정 불가)
       if (projectInfo.status !== '작성중') {
         return res
           .status(403)
           .json({ message: 'This is not the project are "작성중"!' });
       }
+
+      /**
+       *
+       * [프로젝트 수정]
+       *
+       */
 
       const {
         title,
@@ -142,7 +156,7 @@ module.exports = {
         path = path + '-' + userInfo.name + '-' + userInfo.id;
       }
 
-      // 게시물 정보를 업데이트한다.
+      // 프로젝트 정보를 업데이트한다.
       // body로 들어온 것은 body로 업데이트 한다.
       // 안들어 온경우 기존 정보가 있으면 유지하고 그것도 없으면 null이다.
       await project.update(
@@ -195,7 +209,7 @@ module.exports = {
         { where: { id: projectInfo.id } }
       );
 
-      // 업데이트한 게시물 정보를 조회한다.
+      // 업데이트한 프로젝트 정보를 조회한다.
       const newProjectInfo = await project.findOne({
         where: { id: projectId },
         include: [
@@ -206,31 +220,31 @@ module.exports = {
           {
             model: user, // users 테이블 조인
             attributes: ['name', 'nickname', 'bio', 'profile_url']
+          },
+          {
+            model: project_team, // project_teams 테이블 조인
+            attributes: ['id', 'team_name', 'team_description', 'profile_url'],
+            separate: true
+          },
+          {
+            model: project_team_member, // project_team_members 테이블 조인
+            attributes: ['id', 'name', 'bio'],
+            separate: true
+          },
+          {
+            model: budget_item, // budget_items 테이블 조인
+            attributes: ['id', 'title', 'amount'],
+            separate: true
+          },
+          {
+            model: project_milestone, // project_milestones 테이블 조인
+            attributes: ['id', 'title', 'goal_date'],
+            separate: true
           }
-          // {
-          //   model: project_team, // project_teams 테이블 조인
-          //   attributes: ['id', 'team_name', 'team_description', 'profile_url'],
-          //   separate: true
-          // },
-          // {
-          //   model: project_team_member, // project_team_members 테이블 조인
-          //   attributes: ['id', 'name', 'bio'],
-          //   separate: true
-          // },
-          // {
-          //   model: budget_item, // budget_items 테이블 조인
-          //   attributes: ['id', 'title', 'amount'],
-          //   separate: true
-          // },
-          // {
-          //   model: project_milestone, // project_milestones 테이블 조인
-          //   attributes: ['id', 'title', 'goal_date'],
-          //   separate: true
-          // }
         ]
       });
 
-      // 업데이트한 게시물 정보를 반환한다.
+      // 업데이트한 프로젝트 정보를 반환한다.
       res.status(200).json({ projects: newProjectInfo });
     } catch (err) {
       console.error(err);
@@ -239,25 +253,29 @@ module.exports = {
   },
   delete: async (req, res) => {
     try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
-      let projectId = req.params.projectId;
+      const { projectId } = req.params;
       if (isNaN(projectId)) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
-      projectId = Number(projectId);
-      const projectInfo = await project.findOne({ where: { id: projectId } });
-
       // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
+      const projectInfo = await project.findOne({ where: { id: projectId } });
       if (!projectInfo) {
         return res.status(404).json({ message: 'Not Found!' });
       }
 
       // 현재 회원이 프로젝트를 삭제할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== projectInfo.user_id && userInfo.role !== 1) {
+      if (projectInfo.user_id !== userInfo.id && userInfo.role_id !== 1) {
         return res.status(403).json({ message: 'Not authorized!' });
       }
 
@@ -267,6 +285,10 @@ module.exports = {
           .status(403)
           .json({ message: 'This is not the project are "작성중"!' });
       }
+
+      /**
+       * [프로젝트 삭제]
+       */
 
       // 프로젝트 팀과 연관된 팀원 레코드를 삭제한다.
       await project_team_member.destroy({

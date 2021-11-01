@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
@@ -10,6 +11,10 @@ const router = require('./routers');
 process.on('uncaughtException', (err) => {
   console.log('uncaughtException : ', err);
 });
+
+// Template engine setting
+app.set('views', path.join(__dirname, 'templates'));
+app.set('view engine', 'pug');
 
 // Middleware
 app.use(morgan('dev'));

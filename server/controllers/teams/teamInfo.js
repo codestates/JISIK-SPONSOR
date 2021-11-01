@@ -4,12 +4,17 @@ const userAuthen = require('../../middlewares/authorized/userAuthen');
 module.exports = {
   patch: async (req, res) => {
     try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      const { projectId, teamId } = req.params;
-
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
+      const { projectId, teamId } = req.params;
       if (isNaN(projectId) || isNaN(teamId)) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
@@ -30,7 +35,7 @@ module.exports = {
       }
 
       // 현재 회원이 프로젝트 팀을 수정할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== teamInfo.user_id && userInfo.role !== 1) {
+      if (userInfo.id !== teamInfo.user_id && userInfo.role_id !== 1) {
         return res.status(403).json({ message: 'Not authorized!' });
       }
 
@@ -40,6 +45,12 @@ module.exports = {
           .status(403)
           .json({ message: 'This is not the project are "작성중"!' });
       }
+
+      /**
+       *
+       * [프로젝트 팀 정보 수정]
+       *
+       */
 
       const { teamName, teamDescription } = req.body;
 

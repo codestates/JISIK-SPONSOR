@@ -4,12 +4,17 @@ const userAuthen = require('../../middlewares/authorized/userAuthen');
 module.exports = {
   validation: async (req, res, next) => {
     try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      const { projectId, teamId } = req.params;
-
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
+      const { projectId, teamId } = req.params;
       if (isNaN(projectId) || isNaN(teamId)) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
@@ -30,7 +35,7 @@ module.exports = {
       }
 
       // 현재 회원이 프로젝트 팀을 수정할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== teamInfo.user_id && userInfo.role !== 1) {
+      if (userInfo.id !== teamInfo.user_id && userInfo.role_id !== 1) {
         return res.status(403).json({ message: 'Not authorized!' });
       }
 
@@ -41,7 +46,7 @@ module.exports = {
           .json({ message: 'This is not the project are "작성중"!' });
       }
 
-      // 다음 미들웨어로 이동한다.
+      // 다음 작업(이미지 업로드)을 진행한다.
       next();
     } catch (err) {
       console.error(err);
@@ -50,6 +55,12 @@ module.exports = {
   },
   upload: async (req, res) => {
     try {
+      /**
+       *
+       * [프로젝트 팀 프로필 정보 업로드]
+       *
+       */
+
       // profile URL과 projectId를 추출한다.
       const imageURL = req.file.key;
       const { teamId } = req.params;
@@ -59,6 +70,8 @@ module.exports = {
         { profile_url: '/' + imageURL },
         { where: { id: teamId } }
       );
+
+      // 업로드한 프로젝트 팀 프로필 이미지 URL 을 리턴한다.
       return res.status(200).json({ profile_url: '/' + imageURL });
     } catch (err) {
       console.error(err);
