@@ -35,7 +35,13 @@ module.exports = {
           },
           {
             model: project_team, // project_teams 테이블 조인
-            attributes: ['id', 'team_name', 'team_description', 'profile_url'],
+            attributes: [
+              'id',
+              'user_id',
+              'team_name',
+              'team_description',
+              'profile_url'
+            ],
             separate: true
           },
           {
@@ -85,10 +91,8 @@ module.exports = {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
-      projectId = Number(projectId);
-      const projectInfo = await project.findOne({ where: { id: projectId } });
-
       // 게시물이 존재하지 않는 경우 다음을 리턴한다.
+      const projectInfo = await project.findOne({ where: { id: projectId } });
       if (!projectInfo) {
         return res.status(404).json({ message: 'Not Found!' });
       }

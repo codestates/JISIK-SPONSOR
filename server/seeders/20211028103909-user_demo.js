@@ -34,6 +34,15 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true
+      },
+      {
+        name: '박해커',
+        email: 'parkhacker@gmail.com',
+        password: hash,
+        nickname: '해커',
+        role_id: 3,
+        signup_method: '일반',
+        email_verified: true
       }
     ]);
   },

@@ -25,6 +25,12 @@ module.exports = {
         project_id: 3,
         team_name: '심리 연구소',
         team_description: '20년 동안 심리에 대해 꾸준히 연구해오고 있습니다.'
+      },
+      {
+        user_id: 4,
+        project_id: 4,
+        team_name: '이것저것 연구소',
+        team_description: '20년 동안 이것저것 대해 꾸준히 연구해오고 있습니다.'
       }
     ]);
   },

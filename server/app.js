@@ -25,9 +25,9 @@ app.use(
 );
 
 // Routing
-app.use('/views', router.viewRouter);
-app.use('/users', router.userRouter);
 app.use('/projects', router.projectRouter);
+app.use('/users', router.userRouter);
+app.use('/views', router.viewRouter);
 app.use('/', router.indexRouter);
 
 // Error handling
