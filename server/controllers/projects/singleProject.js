@@ -313,7 +313,7 @@ module.exports = {
       await project.destroy({ where: { id: projectInfo.id } });
 
       // 삭제된 프로젝트 아이디를 반환한다.
-      res.status(200).json({ id: projectInfo.dataValues.id });
+      res.status(200).json({ id: projectInfo.id });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error!' });

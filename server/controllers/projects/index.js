@@ -2,5 +2,10 @@ module.exports = {
   addProject: require('./addProject'),
   multiPoroject: require('./multiPoroject'),
   singleProject: require('./singleProject'),
-  thumbnail: require('./thumbnail')
+  thumbnail: require('./thumbnail'),
+  teamInfo: require('./teamInfo'),
+  teamProfile: require('./teamProfile'),
+  teamMembers: require('./teamMembers'),
+  budgets: require('./budgets'),
+  milestones: require('./milestones')
 };

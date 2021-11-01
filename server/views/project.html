@@ -66,5 +66,21 @@
       <input type="file" name="image" />
       <input type="submit" value="업로드" />
     </form>
+
+    <h4>프로젝트(id 4) 팀의 팀원 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/4/members" method="POST">
+      <input type="text" name="name" placeholder="이름"/>
+      <input type="text" name="bio" placeholder="소개"/>
+      <input type="submit" value="업로드" />
+    </form>
+
+    <h4>프로젝트(id 4) 팀의 팀원(id 6) 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/4/members/6" method="POST">
+      <input type="text" name="name" placeholder="이름"/>
+      <input type="text" name="bio" placeholder="소개"/>
+      <input type="submit" value="업로드" />
+    </form>
   </body>
 </html>

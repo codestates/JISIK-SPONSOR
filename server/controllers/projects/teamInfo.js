@@ -59,13 +59,13 @@ module.exports = {
         {
           team_name: teamName
             ? teamName
-            : teamInfo.teamName
-            ? teamInfo.teamName
+            : teamInfo.team_name
+            ? teamInfo.team_name
             : null,
           team_description: teamDescription
             ? teamDescription
-            : teamInfo.teamDescription
-            ? teamInfo.teamDescription
+            : teamInfo.team_description
+            ? teamInfo.team_description
             : null
         },
         { where: { id: teamInfo.id } }

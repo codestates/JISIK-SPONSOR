@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const { projects, teams } = require('../controllers');
+const { projects } = require('../controllers');
 const uploadThumbnail = require('../middlewares/uploadFile/projectThumbnail');
 const uploadTeamProfile = require('../middlewares/uploadFile/uploadTeamProfile');
 
+// Projects API
 router
   .route('/')
   .get(projects.multiPoroject.get)
@@ -23,14 +24,23 @@ router.post(
 );
 
 // Project Teams API
-router.post('/:projectId/teams/:teamId', teams.teamInfo.patch); // HTML 테스트용
-router.patch('/:projectId/teams/:teamId', teams.teamInfo.patch);
-
 router.post(
   '/:projectId/teams/:teamId/profile',
-  teams.teamProfile.validation,
+  projects.teamProfile.validation,
   uploadTeamProfile.single('image'),
-  teams.teamProfile.upload
+  projects.teamProfile.upload
 );
+
+router.post('/:projectId/teams/:teamId', projects.teamInfo.patch); // HTML 테스트용
+router.patch('/:projectId/teams/:teamId', projects.teamInfo.patch);
+
+// Project Team Members API
+router.post('/:projectId/teams/:teamId/members', projects.teamMembers.post);
+
+router
+  .route('/:projectId/teams/:teamId/members/:memberId')
+  .post(projects.teamMembers.patch) // HTML 테스트용
+  .patch(projects.teamMembers.patch)
+  .delete(projects.teamMembers.delete);
 
 module.exports = router;
