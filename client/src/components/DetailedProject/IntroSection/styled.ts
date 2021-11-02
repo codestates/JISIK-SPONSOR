@@ -67,7 +67,12 @@ export const MainContent = styled.div`
     margin-bottom: 20px;
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 718px) {
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
@@ -104,17 +109,18 @@ export const SubContent = styled.div`
     margin-bottom: 10px;
   }
 
-  @media screen and (max-width: 576px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
+  @media screen and (max-width: 900px) {
+    margin-bottom: 30px;
+    img {
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 718px) {
     margin-bottom: 30px;
 
     img {
-      width: 100%;
-      /* margin-bottom: 20px; */
+      width: 70%;
     }
   }
 `;
@@ -150,8 +156,12 @@ export const Funding = styled.div`
     margin-bottom: 30px;
   }
 
-  @media screen and (max-width: 576px) {
-    width: 100%;
+  @media screen and (max-width: 900px) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: 718px) {
+    width: 70%;
   }
 `;
 
@@ -191,12 +201,8 @@ export const FundInput = styled.div`
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 718px) {
     width: 100%;
-
-    div > input {
-      width: 50%;
-    }
   }
 `;
 
@@ -216,9 +222,4 @@ export const HashTag = styled.button`
   line-height: 1.4;
   border-radius: 3px;
   cursor: pointer;
-
-  @media screen and (max-width: 576px) {
-    width: 20%;
-    font-size: 12px;
-  }
 `;

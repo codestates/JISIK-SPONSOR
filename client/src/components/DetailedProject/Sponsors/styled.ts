@@ -48,8 +48,9 @@ export const SponsorsList = styled.div`
     height: 50px;
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 718px) {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
   }
 `;

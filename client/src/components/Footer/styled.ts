@@ -37,10 +37,10 @@ export const MemberBox = styled.div`
   width: 100%;
   margin: 50px 0;
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 718px) {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
   }
 `;
 

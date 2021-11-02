@@ -10,16 +10,10 @@ export const MobileNavBar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin: 10px 15px; */
     width: 100%;
-
-    div > img {
-      height: 30px;
-      width: 30px;
-    }
   }
 
-  @media screen and (min-width: 576px) {
+  @media screen and (min-width: 718px) {
     div {
       display: none;
     }
