@@ -50,12 +50,7 @@
             // 요청 성공 시
             console.log(data);
             console.log('주문 요청 성공');
-            requestPay(
-              data.merchant_uid,
-              order.projectTitle,
-              order.amount,
-              order.buyerTel
-            );
+            requestPay(data.order);
           })
           .fail(() => {
             // 요청 실패 시
@@ -66,7 +61,7 @@
           });
       }
       // 실제 결제부터 결제 검증까지
-      function requestPay(merchantUid, projectTitle, amount, buyerTel) {
+      function requestPay(order) {
         // PG 결제 프로세스 호출 시 전달됨
         const param = {
           pg: 'html5_inicis',
@@ -74,14 +69,14 @@
           // 가맹점(나)에서 생성/관리하는 고유 주문번호
           // 이미 결제가 승인 된(status: paid) merchant_uid로는 재결제 불가
           // 원래는 아임포트 API 호출 전 서버에서 데이터베이스에 주문 레코드를 생성 후 해당 UID로 진행
-          merchant_uid: merchantUid,
+          merchant_uid: order.merchant_uid,
           // 주문명 : 원활한 결제정보 확인을 위해 입력 권장
           // PG사마다 차이가 있지만, 16자이내로 작성 권장
-          name: projectTitle,
-          amount: amount,
-          buyer_email: 'email@gmail.com', // (권장)
-          buyer_name: '홍길순', // (필수)
-          buyer_tel: buyerTel, // (필수)
+          name: order.name,
+          amount: order.amount,
+          buyer_name: order.buyer_name, // (필수)
+          buyer_tel: order.buyer_tel, // (필수)
+          buyer_email: order.buyer_email, // (권장)
           // 모바일 환경에서 PG사의 웹사이트로 리디렉션되면 콜백 함수가 실행되지 않기 때문에 아래와 같이 해준다.
           // 결제 프로세스 완료 후 리디렉션 될 URL (성공, 실패 등 모두 포함)
           m_redirect_url: '/payments/complete/mobile'

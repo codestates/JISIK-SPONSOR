@@ -1,4 +1,6 @@
+require('dotenv').config();
 const path = require('path');
+const pug = require('pug');
 const router = require('express').Router();
 
 router.get('/login', (req, res) => {

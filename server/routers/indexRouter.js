@@ -1,5 +1,3 @@
-const pug = require('pug');
-const path = require('path');
 const router = require('express').Router();
 const { auth, orders } = require('../controllers');
 
@@ -14,18 +12,6 @@ router.post('/signup', auth.signup.post);
 
 // Email verified
 router.get('/confirm/email', auth.confirm.email);
-
-// HTML template engine
-router.get('/pug', (req, res) => {
-  const fileURL = path.join(
-    __dirname,
-    '../templates/email/customer-new-account.pug'
-  );
-  const compiledFunction = pug.compileFile(fileURL);
-
-  const options = { title: '퍼그지롱롱' };
-  res.send(compiledFunction(options));
-});
 
 // Payments API: User Order
 router.get('/orders/:userId', orders.orders.get);

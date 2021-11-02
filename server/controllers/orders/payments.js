@@ -1,6 +1,8 @@
 require('dotenv').config();
 const axios = require('axios');
-const { order, project_investor } = require('../../models');
+const { project, order, project_investor } = require('../../models');
+const { successSpon } = require('../../middlewares/email/email-content');
+const emailSend = require('../../middlewares/email/email-send');
 
 module.exports = {
   complete: async (req, res) => {
@@ -50,7 +52,11 @@ module.exports = {
         });
       }
 
-      // 결제금액 일치 => 결제 된 금액 === 결제 되어야 하는 금액
+      /**
+       *
+       * [결제금액 일치, 주문 성공]
+       *
+       */
 
       // 주문 테이블에 결제 정보 저장
       await order.update(
@@ -90,7 +96,27 @@ module.exports = {
         pledged: updateOrder.amount
       });
 
-      // 이메일 전송 필요!
+      /**
+       *
+       * [후원 내역 이메일 전송]
+       *
+       */
+
+      // 프로젝트 URL 조회
+      const projectInfo = await project.findOne({
+        where: { id: updateOrder.project_id }
+      });
+
+      const url = process.env.CLIENT_ORIGIN + '/' + projectInfo.path;
+
+      // 이메일 전송
+      const emailContent = successSpon(
+        updateOrder.buyer_email,
+        updateOrder.buyer_name,
+        url,
+        updateOrder
+      );
+      emailSend(emailContent);
 
       switch (paymentData.status) {
         case 'paid': // 결제 완료

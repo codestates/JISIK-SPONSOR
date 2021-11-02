@@ -1,5 +1,6 @@
-const { URL } = require('url');
 const { user } = require('../../models');
+const { newAccount } = require('../../middlewares/email/email-content');
+const emailSend = require('../../middlewares/email/email-send');
 
 module.exports = {
   email: async (req, res) => {
@@ -15,6 +16,16 @@ module.exports = {
         { email_verified: true },
         { where: { key_for_verify: key } }
       );
+
+      /**
+       *
+       * [회원가입 환영 이메일 전송]
+       *
+       */
+
+      // 이메일 전송
+      const emailContent = newAccount(findUser.email, findUser.name);
+      emailSend(emailContent);
 
       // 로그인 페이지로 리디렉션한다. (클라이언트 URL로 변경 필요)
       const url = process.env.SERVER_ORIGIN + '/views/login';

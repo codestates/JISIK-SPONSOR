@@ -1,4 +1,4 @@
-const { order } = require('../../models');
+const { project, order } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
 
 module.exports = {
@@ -60,6 +60,17 @@ module.exports = {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
+      // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
+      const projectInfo = await project.findOne({ where: { id: projectId } });
+      if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
+
+      // 현재 프로젝트가 "진행중"이 아닌경우 다음을 리턴한다.
+      if (projectInfo.status !== '진행중') {
+        return res
+          .status(403)
+          .json({ message: 'This is not the project are "진행중"!' });
+      }
+
       /**
        *
        * [주문 생성]
@@ -85,10 +96,10 @@ module.exports = {
       });
 
       // 생성된 주문 번호를 리턴한다.
-      res.status(201).json({ merchant_uid: newOrder.merchant_uid, newOrder });
+      res.status(201).json({ order: newOrder });
     } catch (err) {
       console.error(err);
-      res.status(400).json({ message: 'Server Error' });
+      res.status(500).json({ message: 'Server Error' });
     }
   }
 };
