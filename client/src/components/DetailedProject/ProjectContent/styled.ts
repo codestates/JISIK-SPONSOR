@@ -48,7 +48,7 @@ export const ProjectHeader = styled.div`
     justify-content: space-between;
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 718px) {
     > p {
       width: 100%;
     }

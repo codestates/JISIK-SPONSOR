@@ -13,8 +13,12 @@ const MobileNav = () => {
     <MobileNavBar>
       <div>
         <div>
-          <img src={Menubar} alt="menu-bar" />
-          <img src={Cancelbar} alt="menu-bar" />
+          <button>
+            <img src={Menubar} alt="menu-bar" />
+          </button>
+          <button>
+            <img src={Cancelbar} alt="menu-bar" />
+          </button>
         </div>
         <NavbarR>
           <img src={Search} alt="search-icon" />

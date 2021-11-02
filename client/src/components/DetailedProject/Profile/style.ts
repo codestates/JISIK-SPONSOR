@@ -112,7 +112,7 @@ export const ProfileContent = styled.div`
     }
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 718px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;

@@ -11,7 +11,11 @@ export const StyledButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
 
-  @media screen and (max-width: 576px) {
-    width: 70%;
+  @media screen and (max-width: 900px) {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 718px) {
+    width: 50%;
   }
 `;

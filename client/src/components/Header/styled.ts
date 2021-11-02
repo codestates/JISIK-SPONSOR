@@ -33,7 +33,7 @@ export const NavContainer = styled.header`
     }
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 718px) {
     background-color: #f7f7f7;
     display: flex;
     justify-content: center;
