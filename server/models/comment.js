@@ -19,6 +19,18 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      user_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
+      project_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
+      content: {
+        allowNull: false,
+        type: DataTypes.TEXT
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,

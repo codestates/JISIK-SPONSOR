@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      name: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING(255)
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,

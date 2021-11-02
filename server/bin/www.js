@@ -6,6 +6,11 @@ const { sequelize } = require('../models');
 
 const PORT = process.env.PORT_NUMVER || 4000;
 
+// Handling unexpected exceptions
+process.on('uncaughtException', (err) => {
+  console.log('uncaughtException : ', err);
+});
+
 // Check DB connection
 sequelize
   .sync({ force: false })
@@ -17,24 +22,8 @@ sequelize
   });
 
 // Server Running
-let server;
+app.listen(PORT, () => {
+  console.log(`🚀 server runnning - port ${PORT}`);
+});
 
-if (
-  fs.existsSync(__dirname + '/key.pem') &&
-  fs.existsSync(__dirname + '/cert.pem')
-) {
-  const privateKey = fs.readFileSync(__dirname + '/key.pem', 'utf8');
-  const certificate = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
-  const credentials = { key: privateKey, cert: certificate };
-
-  server = https.createServer(credentials, app);
-  server.listen(PORT, () => {
-    console.log(`🚀 HTTPS server runnning - port ${PORT}`);
-  });
-} else {
-  server = app.listen(PORT, () => {
-    console.log(`🚀 server runnning - port ${PORT}`);
-  });
-}
-
-module.exports = server;
+module.exports = app;

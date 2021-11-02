@@ -1,9 +1,15 @@
-const { project, category, user } = require('../../models');
+const { user, project, category } = require('../../models');
 const { Op } = require('sequelize');
 
 module.exports = {
   get: async (req, res) => {
     try {
+      /**
+       *
+       * [초기화 or 값 적용]
+       *
+       */
+
       let { author, categoryName, status, offset, limit, order, sort, search } =
         req.query;
 
@@ -51,7 +57,13 @@ module.exports = {
       else if (Number(offset) > lastPage) offset = lastPage;
       else offset = Number(offset);
 
-      // 모든 게시물 조회한다.
+      /**
+       *
+       * [모든 프로젝트 조회]
+       *
+       */
+
+      // 모든 프로젝트를 조회한다.
       const projects = await project.findAndCountAll({
         where: {
           // query로 status가 들어오면 해당 not 연산자는 사용 X, 기본은 '작성중'인 프로젝트는 출력 안함.
@@ -90,7 +102,7 @@ module.exports = {
         limit: limit
       });
 
-      // 모든 게시물을 반환한다.
+      // 모든 프로젝트를 반환한다.
       return res.status(200).json({
         posts: { count: projects.count, page: offset, rows: projects.rows }
       });

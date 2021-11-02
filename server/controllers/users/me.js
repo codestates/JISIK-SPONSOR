@@ -22,33 +22,54 @@ module.exports = {
   },
   patch: async (req, res) => {
     try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
       const { name, nickname, bio, mobile, password } = req.body;
 
-      // 이미 존재하는 닉네임이면 요청을 거절한다.
-      const findUserInfos = await user.findOne({
+      // 나를 제외한 회원 중에서 찾는다.
+      const findUserInfo = await user.findOne({
         where: {
           nickname,
-          [Op.not]: [{ id: userInfo.id }] // 나를 제외한 회원 중에서 찾는다.
+          [Op.not]: [{ id: userInfo.id }]
         }
       });
 
-      if (findUserInfos) return res.status(409).json({ message: 'This nickname information cannot be registered' });
+      // 이미 존재하는 닉네임이면 요청을 거절한다.
+      if (findUserInfo) {
+        return res.status(409).json({
+          message: 'This nickname information cannot be registered'
+        });
+      }
 
-      // 요청 바디에 password가 있다면 새로운 비밀번호를 해싱한다.
+      /**
+       *
+       * [회원 정보 수정]
+       *
+       */
+
+      // 요청 바디에 password 가 있다면 새로운 비밀번호를 해싱한다.
       let hash;
       if (password) hash = await bcrypt.hash(password, 12);
 
       // 회원의 정보를 업데이트한다.
-      const updateUserId = await user.update(
+      await user.update(
         {
-          name: name !== null ? name : userInfo.name,
-          nickname: nickname !== null ? nickname : userInfo.nickname,
-          bio: bio !== null ? bio : userInfo.bio,
-          mobile: mobile !== null ? mobile : userInfo.mobile,
-          password: password !== null ? hash : userInfo.password
+          name: name ? name : userInfo.name,
+          nickname: nickname
+            ? nickname
+            : userInfo.nickname
+            ? userInfo.nickname
+            : null,
+          bio: bio ? bio : userInfo.bio ? userInfo.bio : null,
+          mobile: mobile ? mobile : userInfo.mobile ? userInfo.mobile : null,
+          password: password ? hash : userInfo.password
         },
         { where: { id: userInfo.id } }
       );
