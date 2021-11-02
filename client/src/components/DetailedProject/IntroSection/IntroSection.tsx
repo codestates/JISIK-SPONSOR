@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Category,
   MainContent,
@@ -10,12 +11,34 @@ import {
   HashTagContainer
 } from './styled';
 import { StyledButton } from 'components/Button';
+import { REACT_APP_API_URL } from 'config';
+import axios from 'axios';
 import CategoryIcon from '../../../images/icons/category-icon-8.png';
 import YellowStar from '../../../images/star-yellow.png';
+import WhiteStar from '../../../images/star-white.png';
 import Wormhole from '../../../images/wormhole.jpg';
 import Gauge from '../../../images/gauge.png';
 
 const IntroSection = () => {
+  const [favorite, setFavorite] = useState<boolean>(false);
+
+  const FavoriteHandler = async () => {
+    try {
+      if (!favorite) {
+        const favored = await axios.post(
+          `${REACT_APP_API_URL}/posts/1/wishes`,
+          {},
+          { withCredentials: true }
+        );
+        console.log(favored);
+        setFavorite(true);
+        console.log(REACT_APP_API_URL);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <ProjectWrapper>
       <Category>
@@ -23,9 +46,15 @@ const IntroSection = () => {
           <img src={CategoryIcon} alt="category-icon" />
           <span>복합학</span>
         </div>
-        <a href="">
-          <img src={YellowStar} alt="yellow-star" />
-        </a>
+        {favorite ? (
+          <button onClick={FavoriteHandler}>
+            <img src={YellowStar} alt="yellow-star" />
+          </button>
+        ) : (
+          <button onClick={FavoriteHandler}>
+            <img src={WhiteStar} alt="yellow-star" />
+          </button>
+        )}
       </Category>
       <ProjectTitle>
         <h1>외계인은 정말로 존재할까?</h1>

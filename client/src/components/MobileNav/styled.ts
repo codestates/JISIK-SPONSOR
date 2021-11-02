@@ -44,6 +44,7 @@ export const Menubox = styled.div`
   width: 50vw;
   position: sticky;
   bottom: 0;
+  transition: all 0.5s;
 
   img {
     height: 15%;

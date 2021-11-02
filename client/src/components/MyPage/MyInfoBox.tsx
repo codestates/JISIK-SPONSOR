@@ -48,11 +48,31 @@ const MyInfoBox = () => {
           내가 쓴 댓글
         </TabBtn>
       </MyInfoTabs>
-      <Cards>
-        <div>Card 1</div>
-        <div>Card 2</div>
-        <div>Card 3</div>
-      </Cards>
+      {myPageTab.myProject && (
+        <Cards>
+          <div>Card 1</div>
+          <div>Card 2</div>
+          <div>Card 3</div>
+        </Cards>
+      )}
+      {myPageTab.backedProject && (
+        <Cards>
+          <div>Card 1</div>
+        </Cards>
+      )}
+      {myPageTab.favorites && (
+        <Cards>
+          <div>Card 1</div>
+          <div>Card 2</div>
+        </Cards>
+      )}
+      {myPageTab.myComments && (
+        <>
+          <div>Comment 1</div>
+          <div>Comment 2</div>
+          <div>Comment 3</div>
+        </>
+      )}
     </MyInfoWrapper>
   );
 };

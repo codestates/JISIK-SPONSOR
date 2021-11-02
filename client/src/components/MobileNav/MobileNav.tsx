@@ -85,7 +85,23 @@ const MobileNav = () => {
         )}
         {!isLogin && (
           <div>
-            <div></div>
+            <div>
+              <MobileNavIcon>
+                {!clickedMenu ? (
+                  <button className="menu" onClick={menubarHandler}>
+                    <img src={Menubar} alt="menu-bar" />
+                  </button>
+                ) : (
+                  <button className="cancel">
+                    <img
+                      src={Cancelbar}
+                      alt="menu-bar"
+                      onClick={menubarHandler}
+                    />
+                  </button>
+                )}
+              </MobileNavIcon>
+            </div>
             <NavbarR>
               <img src={Search} alt="search-icon" />
               <NavButton onClick={() => dispatch(showLoginModal(true))}>

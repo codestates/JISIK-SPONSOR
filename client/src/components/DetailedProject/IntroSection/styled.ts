@@ -20,20 +20,26 @@ export const Category = styled.div`
   align-items: center;
   margin-bottom: 15px;
 
-  & > div {
+  > div {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
   }
 
-  & > div > img {
-    width: 20px;
-    height: 20px;
+  > button {
+    border: none;
+    background: none;
   }
 
-  & > a > img {
-    width: 27px;
-    height: 27px;
+  > button > img {
+    width: 35px;
+    height: 35px;
   }
 `;
 

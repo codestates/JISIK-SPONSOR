@@ -85,6 +85,11 @@ export const MyInfoWrapper = styled.div`
 export const MyInfoTabs = styled.div`
   display: flex;
   gap: 15px;
+
+  @media screen and (max-width: 893px) {
+    flex-wrap: wrap;
+    /* position: sticky; */
+  }
 `;
 
 const selectedTab = css`
@@ -109,6 +114,11 @@ export const TabBtn = styled.button<MypageTab>`
       props.favorites ||
       props.myComments) &&
     selectedTab}
+
+  @media screen and (max-width: 893px) {
+    padding: 6px 12px;
+    font-size: 15px;
+  }
 `;
 
 export const Cards = styled.div`
@@ -119,5 +129,9 @@ export const Cards = styled.div`
     width: 280px;
     height: 441px;
     background-color: seagreen;
+  }
+
+  @media screen and (max-width: 1031px) {
+    flex-wrap: wrap;
   }
 `;
