@@ -3,7 +3,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class order extends Model {
     /**
-     * 필요
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
@@ -19,6 +18,77 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
+      },
+      user_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
+      project_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
+      merchant_uid: {
+        allowNull: false,
+        type: DataTypes.STRING(255)
+      },
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING(255)
+      },
+      amount: {
+        allowNull: false,
+        type: DataTypes.DECIMAL(12, 2)
+      },
+      buyer_name: {
+        allowNull: false,
+        type: DataTypes.STRING(128)
+      },
+      buyer_tel: {
+        allowNull: false,
+        type: DataTypes.STRING(64)
+      },
+      buyer_email: {
+        allowNull: false,
+        type: DataTypes.STRING(128)
+      },
+      buyer_addr: {
+        type: DataTypes.STRING(255)
+      },
+      buyer_postcode: {
+        type: DataTypes.STRING(255)
+      },
+      success: {
+        type: DataTypes.BOOLEAN
+      },
+      status: {
+        type: DataTypes.STRING(64)
+      },
+      imp_uid: {
+        type: DataTypes.STRING(255)
+      },
+      pg_provider: {
+        type: DataTypes.STRING(255)
+      },
+      pg_tid: {
+        type: DataTypes.STRING(255)
+      },
+      pay_method: {
+        type: DataTypes.STRING(64)
+      },
+      paid_amount: {
+        type: DataTypes.INTEGER
+      },
+      paid_at: {
+        type: DataTypes.INTEGER
+      },
+      receipt_url: {
+        type: DataTypes.STRING(255)
+      },
+      card_name: {
+        type: DataTypes.STRING(255)
+      },
+      apply_num: {
+        type: DataTypes.STRING(255)
       },
       created_at: {
         allowNull: false,

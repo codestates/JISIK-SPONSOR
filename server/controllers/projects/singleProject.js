@@ -11,6 +11,76 @@ const {
 const userAuthen = require('../../middlewares/authorized/userAuthen');
 
 module.exports = {
+  slug: async (req, res) => {
+    try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
+      // 쿼리가 없으면 다음을 리턴한다.
+      const { slug } = req.query;
+      if (!slug) return res.status(400).json({ message: 'Bad Request!' });
+      console.log(slug);
+
+      // 특정 프로젝트를 조회한다.
+      const projectInfo = await project.findOne({
+        where: { path: slug },
+        include: [
+          {
+            model: category, // categories 테이블 조인
+            attributes: ['name']
+          },
+          {
+            model: user, // users 테이블 조인
+            attributes: ['name', 'nickname', 'bio', 'profile_url']
+          },
+          {
+            model: project_team, // project_teams 테이블 조인
+            attributes: ['id', 'team_name', 'team_description', 'profile_url'],
+            separate: true
+          },
+          {
+            model: project_team_member, // project_team_members 테이블 조인
+            attributes: ['id', 'name', 'bio'],
+            separate: true
+          },
+          {
+            model: budget_item, // budget_items 테이블 조인
+            attributes: ['id', 'title', 'amount'],
+            separate: true
+          },
+          {
+            model: project_milestone, // project_milestones 테이블 조인
+            attributes: ['id', 'title', 'goal_date'],
+            separate: true
+          }
+        ]
+      });
+
+      // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
+      if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
+
+      /**
+       *
+       * [특정 프로젝트 조회]
+       *
+       */
+
+      // 프로젝트에 조회수를 + 1 한다.
+      const updateProject = await projectInfo.update(
+        { views: projectInfo.views + 1 },
+        { where: { id: projectInfo.id } }
+      );
+
+      // 특정 프로젝트를 리턴한다.
+      return res.status(200).json({ projects: updateProject });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Server error! ' });
+    }
+  },
   get: async (req, res) => {
     try {
       /**

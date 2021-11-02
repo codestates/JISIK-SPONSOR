@@ -9,6 +9,8 @@ router
   .get(projects.multiPoroject.get)
   .post(projects.addProject.post);
 
+router.get('/single', projects.singleProject.slug);
+
 router
   .route('/:projectId')
   .get(projects.singleProject.get)
