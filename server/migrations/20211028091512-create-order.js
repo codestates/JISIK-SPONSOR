@@ -20,6 +20,7 @@ module.exports = {
       },
       merchant_uid: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING(255)
       },
       name: {
@@ -49,12 +50,17 @@ module.exports = {
         type: Sequelize.STRING(255)
       },
       success: {
-        type: Sequelize.BOOLEAN
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       status: {
-        type: Sequelize.STRING(64)
+        allowNull: false,
+        type: Sequelize.STRING(64),
+        defaultValue: 'unpaid'
       },
       imp_uid: {
+        unique: true,
         type: Sequelize.STRING(255)
       },
       pg_provider: {

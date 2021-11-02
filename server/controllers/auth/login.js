@@ -56,9 +56,10 @@ module.exports = {
        *
        */
 
-      // 회원의 비밀번호와 역할을 삭제한다.
+      // 회원의 비밀번호와 역할, 이메일 인증 코드를 삭제한다.
       delete userInfo.dataValues.password;
       delete userInfo.dataValues.role_id;
+      delete userInfo.dataValues.key_for_verify;
 
       // 토큰을 발급하고 쿠키에 저장한다.
       const newAccessToken = generateAccessToken(userInfo.dataValues);

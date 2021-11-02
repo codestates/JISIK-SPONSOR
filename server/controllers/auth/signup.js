@@ -64,6 +64,7 @@ module.exports = {
         process.env.SERVER_ORIGIN + '/confirm/email?key=' + key_for_verify;
 
       const smtpTransport = {
+        // service: process.env.NODEMAILER_SERVICE,
         host: process.env.NODEMAILER_HOST,
         port: process.env.NODEMAILER_PORT,
         secure: false,
@@ -80,10 +81,10 @@ module.exports = {
         html: `<h2>안녕하세요 ${name}님.</h2><br />이메일 계정을 인증받으시려면 아래 링크를 클릭해주세요. (혹시 잘못 전달되었다면 이 이메일을 무시하셔도 됩니다)<br><a href="${url}">링크를 클릭하여 이메일 인증</a>`
       };
 
-      const emailSend = async (data) => {
+      const emailSend = async (emailContent) => {
         nodemailer
           .createTransport(smtpTransport)
-          .sendMail(data, (err, info) => {
+          .sendMail(emailContent, (err, info) => {
             if (err) console.log(err);
             console.log('email has been sent!', info);
           });

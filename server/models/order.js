@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       merchant_uid: {
         allowNull: false,
+        unique: true,
         type: DataTypes.STRING(255)
       },
       name: {
@@ -58,12 +59,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255)
       },
       success: {
-        type: DataTypes.BOOLEAN
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       },
       status: {
-        type: DataTypes.STRING(64)
+        allowNull: false,
+        type: DataTypes.STRING(64),
+        defaultValue: 'unpaid'
       },
       imp_uid: {
+        unique: true,
         type: DataTypes.STRING(255)
       },
       pg_provider: {

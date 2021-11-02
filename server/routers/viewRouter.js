@@ -21,4 +21,8 @@ router.get('/projects', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/project.html'));
 });
 
+router.get('/orders', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/orders.html'));
+});
+
 module.exports = router;
