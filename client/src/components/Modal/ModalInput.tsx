@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ModalBody, LoginButton, ButtonGroup } from './styled';
 import kakao from '../../images/icons/kakao.png';
 import google from '../../images/icons/Google.png';
-
+import axios from 'axios';
+import { REACT_APP_API_URL } from 'config';
+import { UserInfoData } from './type';
 const ModalInput = () => {
   const [enteredEmail, setEnteredEmail] = useState<string>('');
   const [enteredPassword, setEnteredPassword] = useState<string>('');
+
   const [enteredEmailTouched, setEnteredEmailTouched] =
     useState<boolean>(false);
   const [enteredPasswordTouched, setEnteredPasswordTouched] =
@@ -41,6 +44,23 @@ const ModalInput = () => {
     setEnteredPasswordTouched(false);
   };
 
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post<UserInfoData>(
+        `${REACT_APP_API_URL}/login`,
+        {
+          email: enteredEmail,
+          password: enteredPassword
+        },
+        {
+          withCredentials: true
+        }
+      );
+      console.log('response', response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const emailInputClasses = emailIsInvalid ? 'invalid' : 'form';
   const passwordInputClasses = passwordIsInvalid ? 'invalid' : 'form';
 
@@ -69,7 +89,9 @@ const ModalInput = () => {
         </form>
       </ModalBody>
       <ButtonGroup>
-        <LoginButton disabled={!formIsValid}>로그인</LoginButton>
+        <LoginButton disabled={!formIsValid} onClick={handleLogin}>
+          로그인
+        </LoginButton>
         <LoginButton>
           <img src={google} />
           <span>구글 로그인</span>
