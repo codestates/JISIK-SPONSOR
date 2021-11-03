@@ -4,6 +4,10 @@ import { SubTitleCss, ProjectCoverImage } from '../commonStyled';
 interface FoucsProps {
   showMemo: boolean;
 }
+
+interface ImageProps {
+  size?: boolean;
+}
 // 프로젝트 제목
 export const ProjectTitle = styled.div<FoucsProps>`
   margin-top: 40px;
@@ -180,7 +184,8 @@ export const ProjectSimpleInfo = styled(SubTitleCss)<FoucsProps>`
 `;
 
 // 프로젝트 커버이미지
-export const ProjectCoverIma = styled(ProjectCoverImage)`
+export const ProjectCoverIma = styled(ProjectCoverImage)<ImageProps>`
+  ${(props) => (props.size ? css`` : css``)}
   @media screen and (max-width: 600px) {
     > label {
       width: 100%;

@@ -158,14 +158,14 @@ export const ProjectCoverImage = styled(SubTitleCss)`
     background: #f3f0ff;
     width: 560px;
     margin-top: 10px;
-
+    cursor: pointer;
     > img {
       width: 60px;
       height: 60px;
     }
 
     > span:nth-child(2) {
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 500;
       line-height: 1.45em;
       color: #9775fa;

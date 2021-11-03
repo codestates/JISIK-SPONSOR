@@ -36,7 +36,7 @@ export const Section2 = styled.section`
       padding: 10px;
     }
 
-    > a > span {
+    > button {
       display: block;
       background: ${({ theme }) => theme.colors.violet};
       padding: 10px;

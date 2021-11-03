@@ -21,14 +21,32 @@ import {
 import Category from './Category';
 import coverImg from 'images/icons/cover-image.png';
 import { useState } from 'react';
-
+import axios from 'axios';
+import { REACT_APP_API_URL } from 'config';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'index';
+import { setHashTagId } from 'store/projectState-slice';
+import { projectHashTagProps } from './type';
 interface BasicMemoProps {
   titleMemo: boolean;
   periodMemo: boolean;
   infoMemo: boolean;
 }
 
+interface BasicInfoProps {
+  title: string;
+  simpleInpo: string;
+}
+// declare module 'react' {
+//   interface ImgHTMLAttributes<T> extends HTMLAttributes<T> {
+//     size?: true | false;
+//   }
+// }
 function BasicInfo() {
+  const dispatch = useDispatch();
+  const HashTagArr = useSelector((state: RootState) => state.projectSt.hashTag);
+  const projectId = useSelector((state: RootState) => state.projectSt.id);
+
   const [tagInput, setTagInput] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [showMemo, setShowMemo] = useState<BasicMemoProps>({
@@ -36,17 +54,24 @@ function BasicInfo() {
     periodMemo: false,
     infoMemo: false
   });
-  const [isVaild, setIsVaild] = useState(false);
-
+  const [isVaild, setIsVaild] = useState<boolean>(false);
+  const [basicInfo, setBasicInpo] = useState<BasicInfoProps>({
+    title: '',
+    simpleInpo: ''
+  });
+  const [periodValue, setPeriodValue] = useState<number>(0);
+  const [categoryValue, setCategoryValue] = useState<string>('');
+  const [imgSrc, setImgSrc] = useState<string>('');
+  // const [size, setSize] = useState<boolean>(false);
   const options = [
-    { value: '7일', label: '7일' },
-    { value: '14일', label: '14일' },
-    { value: '21일', label: '21일' },
-    { value: '30일', label: '30일' },
-    { value: '45일', label: '45일' }
+    { value: '7', label: '7일' },
+    { value: '14', label: '14일' },
+    { value: '21', label: '21일' },
+    { value: '30', label: '30일' },
+    { value: '45', label: '45일' }
   ];
 
-  const addTags = (value: string) => {
+  const addTags = async (value: string) => {
     if (hashtag.length >= 3) {
       setIsVaild(true);
       return;
@@ -54,6 +79,16 @@ function BasicInfo() {
     const filtered = hashtag.filter((tag) => tag === value);
     if (value !== '' && filtered.length === 0) {
       setHashtag([...hashtag, value]);
+      const response = await axios.post<projectHashTagProps>(
+        `${REACT_APP_API_URL}/projects/${projectId}/tags`,
+        {
+          tagName: tagInput
+        },
+        {
+          withCredentials: true
+        }
+      );
+      dispatch(setHashTagId(response.data.id));
       setTagInput('');
     }
   };
@@ -62,12 +97,59 @@ function BasicInfo() {
     if (hashtag.length <= 3) {
       setIsVaild(false);
     }
+    const selectRemove = HashTagArr[removeIdx];
+    axios.delete(
+      `${REACT_APP_API_URL}/projects/${projectId}/tags/${selectRemove}`,
+      {
+        withCredentials: true
+      }
+    );
     const filter = hashtag.filter((_, idx) => idx !== removeIdx);
     setHashtag(filter);
   };
 
   const handleHashTag = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
+  };
+
+  const handleBasicInformation =
+    (key: string) =>
+    (e?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setBasicInpo({
+        ...basicInfo,
+        [key]: e?.target.value
+      });
+    };
+
+  const handlePeriod = (option: any) => {
+    setPeriodValue(Number(option.value));
+  };
+
+  const handleSaveContent = async () => {
+    const { title, simpleInpo } = basicInfo;
+    const response = await axios.patch(
+      `${REACT_APP_API_URL}/projects/${projectId}`,
+      {
+        title: title,
+        categoryName: categoryValue,
+        term: periodValue,
+        researcherWord: simpleInpo
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log('프로젝트저장', response);
+  };
+  const handleCoverIma = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const imageFile = e.target.files[0];
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(imageFile);
+      fileReader.onload = (e: any) => {
+        setImgSrc(e.target.result);
+      };
+    }
   };
 
   return (
@@ -81,7 +163,7 @@ function BasicInfo() {
           onBlur={() => setShowMemo({ ...showMemo, titleMemo: false })}
         >
           <h3>프로젝트 제목</h3>
-          <input type="text" />
+          <input type="text" onChange={handleBasicInformation('title')} />
           <FocusMemo>
             제목은 간단하고 간결해야 합니다. 훌륭한 제목은 독자에게 연구에 대한
             명확한 이해를 제공합니다.
@@ -94,7 +176,7 @@ function BasicInfo() {
             최대 1개의 카테고리를 설정 할 수 있습니다.카테고리는 검색 시 필터로
             사용되며, 프로젝트를 찾는데 도움이 될 수 있습니다.
           </p>
-          <Category />
+          <Category setCategoryValue={setCategoryValue} />
         </ProjectCategory>
 
         <ProjectHashTag>
@@ -135,6 +217,7 @@ function BasicInfo() {
             classNamePrefix="Select"
             options={options}
             placeholder="날짜 선택"
+            onChange={(option) => handlePeriod(option)}
           />
           <FocusMemo>대부분 30일을 선택합니다.</FocusMemo>
         </ProjectFundingPeriod>
@@ -145,21 +228,21 @@ function BasicInfo() {
           onBlur={() => setShowMemo({ ...showMemo, infoMemo: false })}
         >
           <h3>프로젝트에 대한 한 줄 소개</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleBasicInformation('simpleInpo')} />
           <FocusMemo>프로젝트에 대한 간략한 요약을 위한 것입니다.</FocusMemo>
         </ProjectSimpleInfo>
 
         <ProjectCoverIma>
           <h3>표지 이미지</h3>
           <label htmlFor="coverImage">
-            <img src={coverImg} />
+            <img src={imgSrc || coverImg} />
             <span>사진을 추가하려면 클릭하세요.</span>
             <span>JPG, PNG, GIF - 50MB 파일 제한</span>
           </label>
-          <input type="file" id="coverImage" />
+          <input type="file" id="coverImage" onChange={handleCoverIma} />
         </ProjectCoverIma>
 
-        <SaveButton>저장하고 계속하기</SaveButton>
+        <SaveButton onClick={handleSaveContent}>저장하고 계속하기</SaveButton>
       </ProjectBody>
     </Container>
   );
