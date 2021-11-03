@@ -1,9 +1,10 @@
 require('dotenv').config();
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer');
 const { user } = require('../../models');
 const { checkAccessToken } = require('../../middlewares/tokenFunction');
+const { emailVerify } = require('../../middlewares/email/email-content');
+const emailSend = require('../../middlewares/email/email-send');
 
 module.exports = {
   post: async (req, res) => {
@@ -57,38 +58,19 @@ module.exports = {
         key_for_verify
       });
 
-      // [이메일 인증 이메일 전송]
+      /**
+       *
+       * [이메일 인증 이메일 전송]
+       *
+       */
 
       // 이메일 인증 확인 URL
       const url =
         process.env.SERVER_ORIGIN + '/confirm/email?key=' + key_for_verify;
 
-      const smtpTransport = {
-        host: process.env.NODEMAILER_HOST,
-        port: process.env.NODEMAILER_PORT,
-        secure: false,
-        auth: {
-          user: process.env.NODEMAILER_USER,
-          pass: process.env.NODEMAILER_PASS
-        }
-      };
-
-      const emailContent = {
-        from: '"지식스폰서" <staff@jisiksponsor.com>',
-        to: email,
-        subject: '회원가입 이메일 인증을 진행해주세요.',
-        html: `<h2>안녕하세요 ${name}님.</h2><br />이메일 계정을 인증받으시려면 아래 링크를 클릭해주세요. (혹시 잘못 전달되었다면 이 이메일을 무시하셔도 됩니다)<br><a href="${url}">링크를 클릭하여 이메일 인증</a>`
-      };
-
-      const emailSend = async (data) => {
-        nodemailer
-          .createTransport(smtpTransport)
-          .sendMail(data, (err, info) => {
-            if (err) console.log(err);
-            console.log('email has been sent!', info);
-          });
-      };
-
+      // 이메일 전송
+      const emailContent = emailVerify(email, name, url);
+      // console.log(emailContent);
       emailSend(emailContent);
 
       // 새로 생성한 회원의 아이디를 반환한다.
