@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface PageProps {
-  profile?: boolean;
+  profiles?: boolean;
   account?: boolean;
   onClick?: () => void;
 }
@@ -12,7 +12,7 @@ const selectButton = css`
 `;
 export const ProjectNav = styled.nav`
   background: #e9ecef;
-  padding: 30px 270px 30px 270px;
+  padding: 30px 20%;
   display: flex;
   justify-content: space-between;
 `;
@@ -42,5 +42,5 @@ export const NavButton = styled.button<PageProps>`
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  ${(props) => (props.profile || props.account) && selectButton}
+  ${(props) => (props.profiles || props.account) && selectButton}
 `;

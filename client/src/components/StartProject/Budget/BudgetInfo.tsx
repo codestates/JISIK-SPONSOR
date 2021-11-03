@@ -27,6 +27,11 @@ interface BudgetContentProps {
 
 function BudgetInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
+
+  const [grossAmountArr, setGrossAmountArr] = useState<number[]>([]);
+  console.log('grossAmountArr', grossAmountArr);
+  const [grossAmount, setGrossAmount] = useState<number>(0);
+
   const [budgetList, setBudgetList] = useState<number[]>([0]);
   const [showMemo, setShowMemo] = useState<BudgetMemoProps>({
     planMemo: false
@@ -104,6 +109,9 @@ function BudgetInfo() {
       setIsVaild(true);
       return;
     }
+    setGrossAmount(grossAmount + Number(amount));
+    setGrossAmountArr([...grossAmountArr, Number(amount)]);
+
     setBudgetList([...budgetList, budgetList[budgetList.length - 1] + 1]);
     handleDisable();
     setBudgetContent({
@@ -117,6 +125,14 @@ function BudgetInfo() {
     if (budgetList.length === 1) return;
     const filter = budgetList.filter((list) => list !== idx);
     setBudgetList(filter);
+
+    let copyAmount = grossAmountArr.slice(0);
+    copyAmount.splice(idx, 1, 0);
+    setGrossAmountArr(copyAmount);
+    const gross = copyAmount.reduce((acc, cur) => {
+      return acc + cur;
+    }, 0);
+    setGrossAmount(gross);
   };
   return (
     <Container>
@@ -169,7 +185,7 @@ function BudgetInfo() {
           <BudgetListAdd onClick={addBudgetList}>예산 항목 추가</BudgetListAdd>
           <TotalAmount>
             <h2>펀딩 총액</h2>
-            <span>0원</span>
+            <span>{grossAmount}원</span>
           </TotalAmount>
         </ProjectBudgetList>
 

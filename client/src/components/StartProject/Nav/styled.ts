@@ -14,9 +14,16 @@ const selectButton = css`
 `;
 export const ProjectNav = styled.nav`
   background: #e9ecef;
-  padding: 30px 270px 30px 270px;
+  padding: 30px 270px;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 1400px) {
+    padding: 30px 150px;
+  }
+  @media screen and (max-width: 950px) {
+    padding: 30px;
+  }
 `;
 
 export const NavButtonGroup = styled.div`
@@ -47,6 +54,14 @@ export const NavButton = styled.button<PageProps>`
   ${(props) =>
     (props.basic || props.budget || props.details || props.team) &&
     selectButton}
+
+  @media screen and (max-width:1200px) {
+    font-size: 12.8px;
+    width: 70px;
+  }
+  @media screen and (max-width: 950px) {
+    width: 60px;
+  }
 `;
 
 export const ResultButton = styled.div`

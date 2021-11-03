@@ -54,11 +54,14 @@ export const FocusMemo = styled.p`
   padding: 30px 40px 30px 40px;
   position: absolute;
   top: 0;
-  right: -200px;
+  right: -15%;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.45em;
   color: #495057;
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 export const TextareaCss = styled.textarea`
@@ -69,6 +72,9 @@ export const TextareaCss = styled.textarea`
   margin-top: 10px;
   width: 560px;
   height: 100px;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export const SaveButton = styled.button`
@@ -177,6 +183,11 @@ export const ProjectCoverImage = styled(SubTitleCss)`
 
 export const EditButton = styled(AddButton)`
   width: 73px;
+
+  @media screen and (max-width: 850px) {
+    font-size: 12.8px;
+    width: 3em;
+  }
 `;
 
 export const ErrorMessage = styled.div`

@@ -26,6 +26,11 @@ export const ProjectMotive = styled(SubTitleCss)<FoucsProps>`
             display: none;
           `}
   }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
+  }
 `;
 
 // 프로젝트 진행 상황
@@ -47,6 +52,11 @@ export const ProjectProgress = styled(SubTitleCss)<FoucsProps>`
         : css`
             display: none;
           `}
+  }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
   }
 `;
 
@@ -70,6 +80,11 @@ export const ProjectGoal = styled(SubTitleCss)<FoucsProps>`
             display: none;
           `}
   }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
+  }
 `;
 
 // 추가정보(OPTIONS)
@@ -92,6 +107,11 @@ export const ProjectAddOptions = styled(SubTitleCss)<FoucsProps>`
             display: none;
           `}
   }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
+  }
 `;
 
 // 프로젝트 타임라인
@@ -113,6 +133,11 @@ export const ProjectTimeLine = styled(SubTitleCss)<FoucsProps>`
         : css`
             display: none;
           `}
+  }
+  @media screen and (max-width: 1200px) {
+    p {
+      display: none;
+    }
   }
 `;
 
@@ -159,10 +184,40 @@ export const TimeLineListContainer = styled.ul`
         line-height: 1.45em;
         color: ${({ theme }) => theme.colors.suppotWord};
       }
+
+      > input {
+        border: 2px solid #e9ecef;
+        border-radius: 5px;
+        width: 160px;
+      }
     }
 
     > button:nth-child(3) {
       margin-right: 5px;
+    }
+    @media screen and (max-width: 850px) {
+      > div:first-child {
+        > input:last-child {
+          width: 300px;
+        }
+      }
+      > div:nth-child(2) {
+        > input:last-child {
+          width: 120px;
+        }
+      }
+    }
+    @media screen and (max-width: 640px) {
+      > div:first-child {
+        > input:last-child {
+          width: 200px;
+        }
+      }
+      > div:nth-child(2) {
+        input {
+          width: 120px;
+        }
+      }
     }
   }
 
@@ -202,5 +257,10 @@ export const ProjectTimeLineDetail = styled(SubTitleCss)<FoucsProps>`
         : css`
             display: none;
           `}
+  }
+  @media screen and (max-width: 1200px) {
+    p {
+      display: none;
+    }
   }
 `;

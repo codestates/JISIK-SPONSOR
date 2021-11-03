@@ -13,7 +13,7 @@ function SettingNav() {
       <ProjectNav>
         <NavButtonGroup>
           <NavButton
-            profile={changePage.profile}
+            profiles={changePage.profile}
             onClick={() => dispatch(profile())}
           >
             프로필

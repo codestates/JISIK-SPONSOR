@@ -34,6 +34,17 @@ export const ProjectTitle = styled.div<FoucsProps>`
             display: none;
           `}
   }
+
+  @media screen and (max-width: 600px) {
+    > input {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    > p {
+      display: none;
+    }
+  }
 `;
 
 // 프로젝트 카테고리
@@ -92,6 +103,11 @@ export const ProjectHashTag = styled(SubTitleCss)`
       }
     }
   }
+  @media screen and (max-width: 550px) {
+    > button {
+      margin-top: 10px;
+    }
+  }
 `;
 
 // 프로젝트 펀딩기간
@@ -118,6 +134,11 @@ export const ProjectFundingPeriod = styled(SubTitleCss)<FoucsProps>`
         : css`
             display: none;
           `}
+  }
+  @media screen and (max-width: 1200px) {
+    > p {
+      display: none;
+    }
   }
 `;
 
@@ -151,10 +172,21 @@ export const ProjectSimpleInfo = styled(SubTitleCss)<FoucsProps>`
             display: none;
           `}
   }
+  @media screen and (max-width: 1200px) {
+    > p {
+      display: none;
+    }
+  }
 `;
 
 // 프로젝트 커버이미지
-export const ProjectCoverIma = styled(ProjectCoverImage)``;
+export const ProjectCoverIma = styled(ProjectCoverImage)`
+  @media screen and (max-width: 600px) {
+    > label {
+      width: 100%;
+    }
+  }
+`;
 
 export const CategoryContainer = styled.div`
   > div {

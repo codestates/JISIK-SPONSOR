@@ -41,5 +41,9 @@ export const SettingSelfIntroduction = styled(SubTitleCss)`
     margin-top: 10px;
     width: 560px;
     height: 100px;
+
+    @media screen and (max-width: 630px) {
+      width: 100%;
+    }
   }
 `;

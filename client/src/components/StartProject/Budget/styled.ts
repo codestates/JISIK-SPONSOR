@@ -57,6 +57,19 @@ export const BudgetListContainer = styled.ul`
     > button:nth-child(3) {
       margin-right: 5px;
     }
+
+    @media screen and (max-width: 850px) {
+      > div:first-child {
+        > input:last-child {
+          width: 300px;
+        }
+      }
+      > div:nth-child(2) {
+        > input:last-child {
+          width: 100px;
+        }
+      }
+    }
   }
 
   li:first-child {
@@ -76,12 +89,22 @@ export const TotalAmount = styled.div`
   justify-content: center;
   align-items: center;
   padding: 25px 68px;
+  @media screen and (max-width: 1350px) {
+    right: 50px;
+    top: -100px;
+  }
+  @media screen and (max-width: 750px) {
+    padding: 20px 50px;
+  }
 
   > h2 {
     font-size: 31.25px;
     font-weight: 700;
     line-height: 1.4em;
     color: #343a40;
+    @media screen and (max-width: 750px) {
+      font-size: 20px;
+    }
   }
 
   > span {
@@ -91,6 +114,9 @@ export const TotalAmount = styled.div`
     font-weight: 700;
     line-height: 1.4em;
     color: ${({ theme }) => theme.colors.suppotWord};
+    @media screen and (max-width: 750px) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -118,5 +144,10 @@ export const ProjectBudgetPlan = styled(SubTitleCss)<FoucsProps>`
         : css`
             display: none;
           `}
+  }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
   }
 `;

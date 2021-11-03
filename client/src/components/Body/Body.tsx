@@ -6,6 +6,7 @@ import FAQ from 'pages/FAQPage/FAQ';
 import Main from 'pages/MainPage/Main';
 import MyPage from 'pages/MyPage/MyPage';
 import Setting from 'pages/SettingPage/Setting';
+import Start from 'pages/StartPage/Start';
 import StartProject from 'pages/StartProjectPage/StartProject';
 import { Route, Switch } from 'react-router';
 
@@ -39,6 +40,9 @@ const Body = () => {
         </Route>
         <Route path="/start-project">
           <StartProject />
+        </Route>
+        <Route path="/start">
+          <Start />
         </Route>
       </Switch>
     </main>
