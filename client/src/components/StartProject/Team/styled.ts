@@ -25,6 +25,11 @@ export const ProjectTeamMember = styled(SubTitleCss)<FoucsProps>`
             display: none;
           `}
   }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
+  }
 `;
 
 export const AddTeamMember = styled.ul`
@@ -68,6 +73,31 @@ export const AddTeamMember = styled.ul`
     > button:nth-child(3) {
       margin-right: 5px;
     }
+
+    @media screen and (max-width: 900px) {
+      > div:first-child {
+        > input:last-child {
+          width: 100px;
+        }
+      }
+      > div:nth-child(2) {
+        > input:last-child {
+          width: 300px;
+        }
+      }
+    }
+    @media screen and (max-width: 700px) {
+      > div:first-child {
+        > input:last-child {
+          width: 80px;
+        }
+      }
+      > div:nth-child(2) {
+        > input:last-child {
+          width: 200px;
+        }
+      }
+    }
   }
 
   li:first-child {
@@ -99,6 +129,11 @@ export const ProjectTeamInfo = styled(SubTitleCss)<FoucsProps>`
             display: none;
           `}
   }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
+  }
 `;
 
 // 프로젝트 팀 이미지
@@ -127,5 +162,10 @@ export const ProjectLastSentence = styled(SubTitleCss)<FoucsProps>`
         : css`
             display: none;
           `}
+  }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
   }
 `;

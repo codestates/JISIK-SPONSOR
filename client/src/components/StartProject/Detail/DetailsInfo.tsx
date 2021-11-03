@@ -16,11 +16,8 @@ import {
   ProjectTimeLine,
   ProjectTimeLineDetail,
   AddTimeLineButton,
-  TimeLineListContainer,
-  DateInput
+  TimeLineListContainer
 } from './styled';
-import 'react-datepicker/dist/react-datepicker.css';
-import { ko } from 'date-fns/esm/locale';
 
 interface DetailMemoProps {
   motiveMemo: boolean;
@@ -30,11 +27,14 @@ interface DetailMemoProps {
   timelineMemo: boolean;
   detailMemo: boolean;
 }
+interface TimeLineContentProps {
+  content: string;
+  date: string;
+}
 
 function DetailsInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
   const [timelineList, setTimeLineList] = useState<number[]>([0]);
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [showMemo, setShowMemo] = useState<DetailMemoProps>({
     motiveMemo: false,
     progressMemo: false,
@@ -43,12 +43,16 @@ function DetailsInfo() {
     timelineMemo: false,
     detailMemo: false
   });
-  const [timelineContent, setTimeLineContent] = useState<string>('');
-  const [isVaild, setIsVaild] = useState(false);
+  const [timelineContent, setTimeLineContent] = useState<TimeLineContentProps>({
+    content: '',
+    date: ''
+  });
   console.log(timelineContent);
+  const [isVaild, setIsVaild] = useState<boolean>(false);
 
   const addTimeLineList = () => {
-    if (!timelineContent) {
+    const { content, date } = timelineContent;
+    if (!content || !date) {
       setIsVaild(true);
       return;
     }
@@ -57,7 +61,10 @@ function DetailsInfo() {
       timelineList[timelineList.length - 1] + 1
     ]);
     handleDisable();
-    setTimeLineContent('');
+    setTimeLineContent({
+      content: '',
+      date: ''
+    });
     setIsVaild(false);
   };
 
@@ -67,9 +74,13 @@ function DetailsInfo() {
     setTimeLineList(filter);
   };
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTimeLineContent(e.target.value);
-  };
+  const handleInput =
+    (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTimeLineContent({
+        ...timelineContent,
+        [key]: e.target.value
+      });
+    };
 
   const editButton = (idx: number, e: React.MouseEvent<HTMLButtonElement>) => {
     // textContent === '수정'이라면 disable해제 후 textContent를 '완료'로 변경
@@ -78,9 +89,11 @@ function DetailsInfo() {
       if (!length) return;
       for (let i = 0; i < length; i++) {
         let content = ulElement.current?.children[i].children[0].children[1];
-        if (!content) return;
+        let date = ulElement.current?.children[i].children[1].children[1];
+        if (!content || !date) return;
         if (Number(content.getAttribute('id')) === idx) {
           content.removeAttribute('disabled');
+          date.removeAttribute('disabled');
           e.currentTarget.textContent = '완료';
           return;
         }
@@ -108,22 +121,20 @@ function DetailsInfo() {
 
     // 항목을 추가 했을 때 추가한걸 제외한 나머지 input을 disable로 변경
     let length = ulElement.current?.children.length;
-    console.log(ulElement.current?.children[0].children[0].children[1]);
-    console.log(length);
+
     if (!length) return;
     for (let i = 0; i < length - 1; i++) {
       ulElement.current?.children[i].children[0].children[1].setAttribute(
         'disabled',
         ''
       );
-      ulElement.current?.children[
-        i
-      ].children[1].children[1].children[0].children[0].setAttribute(
+      ulElement.current?.children[i].children[1].children[1].setAttribute(
         'disabled',
         ''
       );
     }
   };
+
   return (
     <Container>
       <ProjectBody>
@@ -188,17 +199,15 @@ function DetailsInfo() {
               <li key={el}>
                 <div>
                   <label>일정 내용</label>
-                  <input type="text" id={String(el)} onChange={handleInput} />
+                  <input
+                    type="text"
+                    id={String(el)}
+                    onChange={handleInput('content')}
+                  />
                 </div>
                 <div>
                   <span>목표 날짜</span>
-                  <DateInput
-                    selected={startDate}
-                    onChange={(date: Date | null) => setStartDate(date)}
-                    locale={ko}
-                    dateFormat="yyyy년 MM월 dd일"
-                    minDate={new Date()}
-                  />
+                  <input type="date" onChange={handleInput('date')} />
                 </div>
                 <EditButton onClick={(e) => editButton(el, e)}>수정</EditButton>
                 <EditButton onClick={() => removeTimelineList(el)}>
@@ -215,6 +224,7 @@ function DetailsInfo() {
               빈칸을 채워야 일정 항목을 추가하실 수 있습니다.
             </ErrorMessage>
           )}
+
           <AddTimeLineButton onClick={addTimeLineList}>
             일정 항목 추가
           </AddTimeLineButton>
