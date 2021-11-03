@@ -10,8 +10,41 @@ import ProjectProgress from '../../../images/project-progress.png';
 import ProjectGoal from '../../../images/project-goal.png';
 import ProjectBudget from '../../../images/project-budget.png';
 import ProjectTimeline from '../../../images/project-timeline.png';
+import { Project } from '../type';
 
-const ProjectContent = () => {
+interface ProjectProps {
+  project: Project;
+}
+
+const ProjectContent = ({ project }: ProjectProps) => {
+  // console.log(project);
+
+  const {
+    project_background,
+    project_goals,
+    project_progress,
+    budget_items,
+    project_milestones,
+    budget_synopsis,
+    milestone_description
+  } = project;
+
+  // 금액 숫자에 3단위로 콤마를 추가해주는 함수
+  const numWithCommas = (num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  // 예산 금액을 숫자로 바꾸고, 금액 숫자에 콤마를 추가해주는 함수
+  const updatedBudgetNum =
+    budget_items &&
+    budget_items.map((item) => {
+      return {
+        id: item.id,
+        title: item.title,
+        amount: numWithCommas(Number(item.amount))
+      };
+    });
+
   return (
     <ProjectWrapper>
       <ProjectHeader>
@@ -19,69 +52,38 @@ const ProjectContent = () => {
           <img src={ProjectBackground} alt="" />
           <h2>프로젝트 배경</h2>
         </div>
-        <p>
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은
-          존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한
-          확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한 확신이 들었고,
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었다.
-        </p>
+        <p>{project_background}</p>
       </ProjectHeader>
       <ProjectHeader>
         <div>
           <img src={ProjectProgress} alt="" />
           <h2>프로젝트 진행상황</h2>
         </div>
-        <p>
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은
-          존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한
-          확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한 확신이 들었고,
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었다.
-        </p>
+        <p>{project_progress}</p>
       </ProjectHeader>
       <ProjectHeader>
         <div>
           <img src={ProjectGoal} alt="" />
           <h2>프로젝트 목표</h2>
         </div>
-        <p>
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은
-          존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한
-          확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한 확신이 들었고,
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었다.
-        </p>
+        <p>{project_goals}</p>
       </ProjectHeader>
       <ProjectHeader>
         <div>
           <img src={ProjectBudget} alt="" />
           <h2>프로젝트 예산</h2>
         </div>
-        <p>
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은
-          존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한
-          확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한 확신이 들었고,
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었다.
-        </p>
+        <p>{budget_synopsis}</p>
         <BudgetDetail>
-          <div>
-            <span>교통비</span>
-            <span>30,000원</span>
-          </div>
-          <div>
-            <span>식비</span>
-            <span>30,000원</span>
-          </div>
-          <div>
-            <span>연구비</span>
-            <span>30,000원</span>
-          </div>
+          {updatedBudgetNum &&
+            updatedBudgetNum.map((budget) => {
+              return (
+                <div key={budget.id}>
+                  <span>{budget.title}</span>
+                  <span>₩ {budget.amount}</span>
+                </div>
+              );
+            })}
         </BudgetDetail>
       </ProjectHeader>
       <ProjectHeader>
@@ -89,31 +91,17 @@ const ProjectContent = () => {
           <img src={ProjectTimeline} alt="" />
           <h2>프로젝트 타임라인</h2>
         </div>
-        <p>
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은
-          존재할거라는 강한 확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한
-          확신이 들었고, 어느곳이든 외계인은 존재할거라는 강한 확신이 들었고,
-          어느곳이든 외계인은 존재할거라는 강한 확신이 들었고, 어느곳이든
-          외계인은 존재할거라는 강한 확신이 들었다.
-        </p>
+        <p>{milestone_description}</p>
         <Timeline>
-          <div>
-            <span>2021.10.15</span>
-            <span>프로젝트 시작</span>
-          </div>
-          <div>
-            <span>2021.10.19</span>
-            <span>1차 초안 시작</span>
-          </div>
-          <div>
-            <span>2021.10.22</span>
-            <span>2차 초안 시작</span>
-          </div>
-          <div>
-            <span>2021.11.10</span>
-            <span>연구결과 발표</span>
-          </div>
+          {project_milestones &&
+            project_milestones.map((milestone) => {
+              return (
+                <div key={milestone.id}>
+                  <span>{milestone.goal_date}</span>
+                  <span>{milestone.title}</span>
+                </div>
+              );
+            })}
         </Timeline>
       </ProjectHeader>
     </ProjectWrapper>

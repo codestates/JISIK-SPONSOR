@@ -71,3 +71,16 @@ export interface Project {
 export interface Data {
   projects: Project;
 }
+
+export interface FavState {
+  state: boolean;
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+}
+
+export interface Tags {
+  tags: Tag[];
+}
