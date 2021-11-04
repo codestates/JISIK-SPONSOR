@@ -8,6 +8,8 @@ import yellowline from '../../images/YellowLine.png';
 import yellowcircle from '../../images/yellowcircle.png';
 
 export const Container = styled.div`
+  font-size: 50px;
+  font-weight: 600;
   padding: 70px;
   text-align: center;
   background-image: url(${cloud});
@@ -15,12 +17,13 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-position: 50% 60%;
   font-family: 'Noto Sans KR', sans-serif;
+  margin-bottom: 30px;
 `;
 
 export const Text = styled.div`
-  font-size: 25px;
+  font-size: 40px;
   color: #495057;
-  line-height: 0.5;
+  line-height: 1.5;
   margin-top: 20px;
   font-weight: 600;
 `;
@@ -28,96 +31,133 @@ export const Text = styled.div`
 export const Container2 = styled.div`
   padding: 70px;
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
-  inline-height: 0.5;
-  margin-left: 580px;
+  font-size: 32px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+`;
+
+export const Text2 = styled.div`
+  font-size: 16px;
+  font-weight: 400;
+  color: #495057;
+  line-height: 1.5;
+  margin-top: 20px;
 `;
 
 export const Question = styled.div`
   background-image: url(${question1});
-  background-size: 14%;
+  background-size: 35%;
   background-repeat: no-repeat;
-  background-position: 63% 50%;
-`;
-
-export const Text2 = styled.div`
-  font-size: 11px;
-  color: #495057;
-  line-height: 0.5;
-  margin-top: 20px;
+  background-position: 85% 50%;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 export const Bluestar1 = styled.div`
   background-image: url(${bluestar});
-  background-size: 1%;
-  background-position: 34% 31%;
+  background-size: 3%;
+  background-position: 4.3% 18.5%;
   background-repeat: no-repeat;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 export const YellowLine = styled.div`
   background-image: url(${yellowline});
-  background-size: 7.5%;
-  background-position: 36.9% 64.5%;
   background-repeat: no-repeat;
+  background-size: 20%;
+  background-position: 7% 67%;
+
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 export const StartProject = styled.div`
   text-align: center;
   color: #eee;
   background-color: #7048e8;
-  padding: 22px;
+  padding: 80px;
+  line-height: 1.5;
+  font-size: 32px;
 `;
 
 export const Button = styled.button`
   border-radius: 10px;
   box-sizing: border-box;
-  width: 12%;
-  height: 58px;
-  font-size: 16px;
+  width: 22%;
+  height: 85px;
+  font-size: 30px;
   font-weight: 600;
   border: 3px solid #343a40;
   box-shadow: 0 5px;
+  margin-top: 50px;
 `;
 
 export const YellowCircle = styled.div`
   background-image: url(${yellowcircle});
   background-repeat: no-repeat;
-  background-size: 6%;
-  background-position: 58.5% 56.5%;
+  background-size: 15%;
+  background-position: 64% 53%;
+
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 export const Container3 = styled.div`
-  padding: 70px 400px;
+  padding: 70px;
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
-  inline-height: 0.5;
-  margin-left: 580px;
+  font-size: 32px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 1070px;
+  margin-left: 430px;
+  margin-bottom: 30px;
 `;
 
 export const Question1 = styled.div`
   background-image: url(${question2});
-  background-size: 14%;
+  background-size: 35%;
   background-repeat: no-repeat;
-  background-position: 40% 50%;
+  background-position: 10% 50%;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 export const Bluestar2 = styled.div`
   background-image: url(${bluestar});
-  background-size: 1%;
-  background-position: 51.5% 31%;
+  background-size: 3%;
+  background-position: 45% 18.5%;
   background-repeat: no-repeat;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 export const Question3 = styled.div`
   background-image: url(${question3});
-  background-size: 14%;
+  background-size: 35%;
   background-repeat: no-repeat;
-  background-position: 65% 50%;
+  background-position: 85% 50%;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 export const YellowLine2 = styled.div`
   background-image: url(${yellowline});
-  background-size: 5%;
-  background-position: 40.5% 57%;
   background-repeat: no-repeat;
+  background-size: 12%;
+  background-position: 20% 54%;
+
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;

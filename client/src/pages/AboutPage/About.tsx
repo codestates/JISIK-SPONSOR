@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 import {
   Container,
@@ -33,9 +34,9 @@ const About = () => {
           </div>
         </Container>
 
-        <Question>
-          <Bluestar1>
-            <YellowLine>
+        <YellowLine>
+          <Question>
+            <Bluestar1>
               <Container2>
                 <h2>1. 꼭 대학에 가야 연구할 수 있나요?</h2>
                 <Text2>
@@ -45,13 +46,13 @@ const About = () => {
                   <p>자신의 아이디어를 세상에 알리고 실현시킬 수 있어요.</p>
                 </Text2>
               </Container2>
-            </YellowLine>
-          </Bluestar1>
-        </Question>
+            </Bluestar1>
+          </Question>
+        </YellowLine>
 
-        <Question1>
-          <Bluestar2>
-            <YellowCircle>
+        <YellowCircle>
+          <Question1>
+            <Bluestar2>
               <Container3>
                 <h2>2. 간단하고 빠른 프로젝트 올리기</h2>
                 <Text2>
@@ -63,13 +64,13 @@ const About = () => {
                   <p>간단하고 빠르게 자신의 프로젝트를 올릴 수 있어요.</p>
                 </Text2>
               </Container3>
-            </YellowCircle>
-          </Bluestar2>
-        </Question1>
+            </Bluestar2>
+          </Question1>
+        </YellowCircle>
 
-        <Question3>
-          <Bluestar1>
-            <YellowLine2>
+        <YellowLine2>
+          <Question3>
+            <Bluestar1>
               <Container2>
                 <h2>3. 커피 한 잔 가격으로 프로젝트 참여 가능</h2>
                 <Text2>
@@ -78,9 +79,9 @@ const About = () => {
                   <p>연구자와 교류하며 연구 결과를 받아볼 수 있어요.</p>
                 </Text2>
               </Container2>
-            </YellowLine2>
-          </Bluestar1>
-        </Question3>
+            </Bluestar1>
+          </Question3>
+        </YellowLine2>
 
         <StartProject>
           <div>
