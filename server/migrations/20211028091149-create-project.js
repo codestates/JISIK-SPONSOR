@@ -45,7 +45,7 @@ module.exports = {
       },
       status: {
         allowNull: false,
-        defaultValue: '작성중',
+        defaultValue: 'draft',
         type: Sequelize.STRING(64)
       },
       goal: {
