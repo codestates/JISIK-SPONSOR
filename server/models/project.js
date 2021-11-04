@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       status: {
         allowNull: false,
-        defaultValue: '작성중',
+        defaultValue: 'draft',
         type: DataTypes.STRING(64)
       },
       goal: {
