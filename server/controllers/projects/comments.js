@@ -63,10 +63,10 @@ module.exports = {
       if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
 
       // 현재 프로젝트가 "작성중" 이면 다음을 리턴한다. (댓글 작성 불가)
-      if (projectInfo.status === '작성중') {
+      if (projectInfo.status === 'draft') {
         return res
           .status(403)
-          .json({ message: 'This is the project are "작성중"!' });
+          .json({ message: 'This project status is not "draft" !' });
       }
 
       // 요청이 잘못된 경우 다음을 리턴한다.

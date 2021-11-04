@@ -34,10 +34,10 @@ module.exports = {
       }
 
       // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (프로필 변경 불가능)
-      if (projectInfo.status !== '작성중') {
+      if (projectInfo.status !== 'draft') {
         return res
           .status(403)
-          .json({ message: 'This is not the project are "작성중"!' });
+          .json({ message: 'This project status is not "draft" !' });
       }
 
       // 다음 작업(이미지 업로드)을 진행한다.

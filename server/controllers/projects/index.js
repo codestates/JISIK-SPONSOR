@@ -11,5 +11,6 @@ module.exports = {
   tags: require('./tags'),
   wishes: require('./wishes'),
   comments: require('./comments'),
-  sponsors: require('./sponsors')
+  sponsors: require('./sponsors'),
+  status: require('./status')
 };

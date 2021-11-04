@@ -18,10 +18,12 @@ module.exports = {
 
       // 상태 : 기본 값은 없다.
       if (
-        status !== '작성중' &&
-        status !== '대기중' &&
-        status !== '진행중' &&
-        status !== '성사됨'
+        status !== 'draft' && // 작성중 (테스트용)
+        status !== 'submitted' && // 제출됨 (테스트용)
+        status !== 'approved' && // 승인됨 (테스트용)
+        status !== 'in progress' && // 진행중
+        status !== 'achieved' && // 성사됨
+        status !== 'canceled' // 취소됨
       ) {
         status = null;
       }
