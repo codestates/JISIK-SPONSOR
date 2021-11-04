@@ -7,6 +7,13 @@ import usericon from '../../../images/user-icon.png';
 import ingbar from '../../../images/ingbar.png';
 import clock from '../../../images/clock.png';
 
+export const Postcardwrap = styled.div`
+  background-color: pink;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+`;
+
 export const Postcardimg = styled.div`
   background-image: url(${postcardimg});
   background-repeat: no-repeat;
