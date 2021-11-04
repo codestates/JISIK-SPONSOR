@@ -92,4 +92,7 @@ router
 // Project Sponsors API
 router.get('/:projectId/sponsors', projects.sponsors.get);
 
+// Project Status API
+router.post('/:projectId/status', projects.status.post);
+
 module.exports = router;

@@ -183,10 +183,10 @@ module.exports = {
       }
 
       // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (수정 불가)
-      if (projectInfo.status !== '작성중') {
+      if (projectInfo.status !== 'draft') {
         return res
           .status(403)
-          .json({ message: 'This is not the project are "작성중"!' });
+          .json({ message: 'This project status is not "draft" !' });
       }
 
       /**
@@ -361,10 +361,10 @@ module.exports = {
       }
 
       // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (삭제 불가능)
-      if (projectInfo.status !== '작성중') {
+      if (projectInfo.status !== 'draft') {
         return res
           .status(403)
-          .json({ message: 'This is not the project are "작성중"!' });
+          .json({ message: 'This project status is not "draft" !' });
       }
 
       /**

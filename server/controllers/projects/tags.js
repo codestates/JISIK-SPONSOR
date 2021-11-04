@@ -80,10 +80,10 @@ module.exports = {
       }
 
       // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== '작성중') {
+      if (projectInfo.status !== 'draft') {
         return res
           .status(403)
-          .json({ message: 'This is not the project are "작성중"!' });
+          .json({ message: 'This project status is not "draft" !' });
       }
 
       // 요청이 잘못된 경우는 다음을 리턴한다.
@@ -160,10 +160,10 @@ module.exports = {
       }
 
       // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== '작성중') {
+      if (projectInfo.status !== 'draft') {
         return res
           .status(403)
-          .json({ message: 'This is not the project are "작성중"!' });
+          .json({ message: 'This project status is not "draft" !' });
       }
 
       /**
