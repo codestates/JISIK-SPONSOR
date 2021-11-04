@@ -7,6 +7,11 @@ module.exports = {
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
+      // 이미지 파일이 존재하지 않는 경우 다음을 리턴한다.
+      if (!req.file) {
+        return res.status(400).json({ message: 'Bad Request!' });
+      }
+
       // next로 userId 전달
       req.userId = userInfo.dataValues.id;
       next();
