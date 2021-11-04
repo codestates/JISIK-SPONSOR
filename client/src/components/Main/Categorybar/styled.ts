@@ -45,6 +45,8 @@ export const Li = styled.li`
     display: inline-block;
   }
   & img {
+    width: 30px;
+    height: 30px;
     vertical-align: middle;
     margin-right: 10px;
   }

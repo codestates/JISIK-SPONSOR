@@ -21,7 +21,7 @@ module.exports = {
         status !== 'draft' && // 작성중 (테스트용)
         status !== 'submitted' && // 제출됨 (테스트용)
         status !== 'approved' && // 승인됨 (테스트용)
-        status !== 'in progress' && // 진행중
+        status !== 'inprogress' && // 진행중
         status !== 'achieved' && // 성사됨
         status !== 'canceled' // 취소됨
       ) {
@@ -107,7 +107,7 @@ module.exports = {
 
       // 모든 프로젝트를 반환한다.
       return res.status(200).json({
-        posts: { count: projects.count, page: offset, rows: projects.rows }
+        projects: { count: projects.count, page: offset, rows: projects.rows }
       });
     } catch (err) {
       console.error(err);

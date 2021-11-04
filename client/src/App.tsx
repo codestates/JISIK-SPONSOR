@@ -1,9 +1,9 @@
 import { ThemeProvider } from 'styled-components';
-// import Header from 'components/Header/Header';
+import Header from 'components/Header/Header';
 import Body from 'components/Body/Body';
-// import Footer from 'components/Footer/Footer';
-// import Modal from 'components/Modal/Modal';
-// import MobileNav from 'components/MobileNav/MobileNav';
+import Footer from 'components/Footer/Footer';
+import Modal from 'components/Modal/Modal';
+import MobileNav from 'components/MobileNav/MobileNav';
 import GlobalStyles from 'styles/GlobalStyles';
 
 const theme = {
@@ -22,11 +22,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
-        {/* <Header /> */}
+        <Header />
         <Body />
-        {/* <Footer /> */}
-        {/* <Modal /> */}
-        {/* <MobileNav /> */}
+        <Footer />
+        <Modal />
+        <MobileNav />
       </>
     </ThemeProvider>
   );

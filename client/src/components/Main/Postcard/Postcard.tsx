@@ -1,52 +1,78 @@
 /*eslint-disable*/
-import React from 'react';
-import { Postcardimg, Star, Hashtag, Title, Text, User, Username, Ingbar, Money, Percent, Clock, Day } from './styled';
+import { Link } from 'react-router-dom';
+import usericon from '../../../images/user-icon.png';
+import clock from '../../../images/clock.png';
+import {
+  Li,
+  ImageWrap,
+  InfoWrap,
+  TopInfo,
+  BottomInfo,
+  UserInfo,
+  BudgetInfo,
+  LeftWrap,
+  RightWrap
+} from './styled';
+import { Row } from '../AchievedSection/type';
 
-const Postcard = () => {
-    return (
-        <div>
-            <Star>
-                <Postcardimg>
-                    <div></div>
-                </Postcardimg>
-            </Star>
-            <Hashtag>
-                <div></div>
-            </Hashtag>
-            <Title>
-                <p>
-                    AI와 원격 기술을 사용하여 실시간으
-                </p>
-                <p>
-                    로 쥐가오리 개체를 식별할 수...
-                </p>
-            </Title>
-            <Text>
-                <p>이 프로젝트는 AI, 고해상도 카메라 및 기존 만</p>
-                <p>타 행동 연구를 결합하여 프로그램을 테스트합</p>
-                <p>니다.</p>
-            </Text>
-            <User>
-                <Username>
-                    <div>Kim coding</div>
-                </Username>
-            </User>
-            <Ingbar>
-                <div></div>
-            </Ingbar>
-            <Clock>
-                <Money>
-                    <div>3,000,000원</div>
-                    <Percent>
-                        <div>37%</div>
-                    </Percent>
-                </Money>
-            </Clock>
-            <Day>
-                <div>30 days left</div>
-            </Day>
-        </div>
-    );
+interface Props {
+  project: Row;
 }
+
+const Postcard = ({ project }: Props) => {
+  // console.log(new Date(project.start_date).getFullYear());
+  const goal: string = Number(project.goal).toLocaleString();
+  const percent: number = (Number(project.pledged) / Number(project.goal)) * 10;
+  const projectLink: string = '/detailed-project/' + project.path;
+
+  return (
+    <Li>
+      <Link to={projectLink}>
+        <article>
+          {/* project.thumbnail_url 던져주면 css안에 들어갈 수 있게 */}
+          <ImageWrap />
+          <InfoWrap>
+            <TopInfo>
+              <span>{project.category.name}</span>
+              <h2>{project.title}</h2>
+              <p>{project.description}</p>
+            </TopInfo>
+            <BottomInfo>
+              <UserInfo>
+                <img
+                  src={
+                    project.author.profile_url
+                      ? 'https://jisiksponsor.com' + project.author.profile_url // config.js 로 바꿔주세요.
+                      : usericon
+                  }
+                />
+                <span>{project.author.name}</span>
+              </UserInfo>
+              <BudgetInfo>
+                <span></span>
+                <div>
+                  <LeftWrap>
+                    {/* 돈이라서 콤바 필요 */}
+                    <big>{goal}원</big>
+                    <small>
+                      {project.goal && project.pledged
+                        ? percent.toFixed(2)
+                        : '0'}
+                      %
+                    </small>
+                  </LeftWrap>
+                  <RightWrap>
+                    <img src={clock} />
+                    <span>finished</span>
+                  </RightWrap>
+                </div>
+              </BudgetInfo>
+            </BottomInfo>
+          </InfoWrap>
+        </article>
+      </Link>
+    </Li>
+  );
+};
 
 export default Postcard;

@@ -20,6 +20,7 @@ export const Title = styled.h2`
   font-size: 39.06px;
   color: #eee;
   line-height: 1.5;
+  font-weight: 500;
   margin-bottom: 40px;
 `;
 

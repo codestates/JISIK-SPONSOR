@@ -6,7 +6,7 @@ import yellowhighlight from '../../../images/yellowhighlight.png';
 export const Section = styled.section`
   width: 100%;
   padding: 60px 0;
-  background-color: white;
+  background-color: #f1f3f5;
 `;
 
 export const Wrap = styled.div`

@@ -59,7 +59,7 @@ const Board = () => {
           </BoardCategoryLine>
         </ul>
 
-        <Postcard />
+        {/* <Postcard /> */}
 
         <Link to="/startproject">
           <SponsorButton>
