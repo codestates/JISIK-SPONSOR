@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const { project, order, project_investor } = require('../../models');
+const { project, order, project_sponsor } = require('../../models');
 const { successSpon } = require('../../middlewares/email/email-content');
 const emailSend = require('../../middlewares/email/email-send');
 
@@ -90,7 +90,7 @@ module.exports = {
       });
 
       // 후원 레코드 생성
-      const newInvestor = await project_investor.create({
+      const newSponsor = await project_sponsor.create({
         user_id: updateOrder.user_id,
         project_id: updateOrder.project_id,
         pledged: updateOrder.amount

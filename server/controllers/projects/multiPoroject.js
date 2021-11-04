@@ -35,7 +35,7 @@ module.exports = {
         order !== 'wishes' && // 인기순
         order !== 'comments' && // 댓글순
         order !== 'pledged' && // 최다후원금순
-        order !== 'investors' && // 최다후원인순
+        order !== 'sponsors' && // 최다후원인순
         order !== 'remainder' && // 성공임박순
         order !== 'end_date' // 마감임박순
       ) {
