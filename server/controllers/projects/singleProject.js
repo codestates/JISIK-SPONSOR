@@ -34,6 +34,7 @@ module.exports = {
           },
           {
             model: user, // users 테이블 조인
+            as: 'author',
             attributes: ['name', 'nickname', 'bio', 'profile_url']
           },
           {
@@ -105,6 +106,7 @@ module.exports = {
           },
           {
             model: user, // users 테이블 조인
+            as: 'author',
             attributes: ['name', 'nickname', 'bio', 'profile_url']
           },
           {
@@ -198,13 +200,13 @@ module.exports = {
         categoryName,
         description,
         term,
-        goal,
-        project_background,
-        project_progress,
-        project_goals,
-        budget_synopsis,
-        milestone_description,
-        researcher_word
+        goalAmount,
+        background,
+        progress,
+        goals,
+        budgetSynopsis,
+        milestoneDescription,
+        researcherWord
       } = req.body;
 
       // 카테고리 id 찾기
@@ -243,35 +245,43 @@ module.exports = {
             : projectInfo.category_id
             ? projectInfo.category_id
             : null,
-          term: term ? term : projectInfo.term ? projectInfo.term : null,
-          goal: goal ? goal : projectInfo.goal ? projectInfo.goal : null,
-          project_background: project_background
-            ? project_background
+          term: term
+            ? Number(term)
+            : projectInfo.term
+            ? projectInfo.term
+            : null,
+          goal: goalAmount
+            ? goalAmount
+            : projectInfo.goal
+            ? projectInfo.goal
+            : null,
+          project_background: background
+            ? background
             : projectInfo.project_background
             ? projectInfo.project_background
             : null,
-          project_progress: project_progress
-            ? project_progress
+          project_progress: progress
+            ? progress
             : projectInfo.project_progress
             ? projectInfo.project_progress
             : null,
-          project_goals: project_goals
-            ? project_goals
+          project_goals: goals
+            ? goals
             : projectInfo.project_goals
             ? projectInfo.project_goals
             : null,
-          budget_synopsis: budget_synopsis
-            ? budget_synopsis
+          budget_synopsis: budgetSynopsis
+            ? budgetSynopsis
             : projectInfo.budget_synopsis
             ? projectInfo.budget_synopsis
             : null,
-          milestone_description: milestone_description
-            ? milestone_description
+          milestone_description: milestoneDescription
+            ? milestoneDescription
             : projectInfo.milestone_description
             ? projectInfo.milestone_description
             : null,
-          researcher_word: researcher_word
-            ? researcher_word
+          researcher_word: researcherWord
+            ? researcherWord
             : projectInfo.researcher_word
             ? projectInfo.researcher_word
             : null

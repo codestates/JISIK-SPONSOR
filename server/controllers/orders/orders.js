@@ -20,7 +20,7 @@ module.exports = {
       }
 
       // 현재 회원이 조회할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== userId && userInfo.role_id !== 1) {
+      if (userInfo.id !== Number(userId) && userInfo.role_id !== 1) {
         return res.status(403).json({ message: 'Not authorized!' });
       }
 
