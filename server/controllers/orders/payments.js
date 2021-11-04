@@ -93,7 +93,8 @@ module.exports = {
       const newSponsor = await project_sponsor.create({
         user_id: updateOrder.user_id,
         project_id: updateOrder.project_id,
-        pledged: updateOrder.amount
+        pledged: updateOrder.amount,
+        status: '후원성공'
       });
 
       /**
