@@ -24,7 +24,6 @@ function CreateTitle() {
           withCredentials: true
         }
       );
-
       dispatch(getProjectId(response.data.id));
       history.push('/start-project');
     } else {
