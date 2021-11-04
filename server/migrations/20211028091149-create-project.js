@@ -57,7 +57,7 @@ module.exports = {
       remainder: {
         type: Sequelize.DECIMAL(12, 2)
       },
-      investors: {
+      sponsors: {
         defaultValue: 0,
         type: Sequelize.INTEGER
       },

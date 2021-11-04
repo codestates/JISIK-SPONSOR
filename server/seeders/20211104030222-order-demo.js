@@ -4,7 +4,6 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('orders', [
       {
-        id: 1,
         user_id: 3,
         project_id: 1,
         merchant_uid: 'OID1635993886679-1',
@@ -26,9 +25,7 @@ module.exports = {
         receipt_url:
           'https://npg.nicepay.co.kr/issue/IssueLoader.do?TID=nictest00m01012111041146088583&type=0&InnerWin=Y',
         card_name: '해피카드',
-        apply_num: '28882363',
-        created_at: '2021-11-02T20:33:53.000Z',
-        updated_at: '2021-11-02T20:33:53.000Z'
+        apply_num: '28882363'
       }
     ]);
   },
