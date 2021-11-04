@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   ProjectBody,
@@ -15,7 +15,8 @@ import {
   ProjectFundingPeriod,
   ProjectSimpleInfo,
   ProjectCoverIma,
-  CustomSelect
+  CustomSelect,
+  ProjectSelectIma
 } from './styled';
 
 import Category from './Category';
@@ -25,8 +26,13 @@ import axios from 'axios';
 import { REACT_APP_API_URL } from 'config';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'index';
-import { setHashTagId } from 'store/projectState-slice';
-import { projectHashTagProps } from './type';
+import {
+  setHashTagId,
+  resetHashTagId,
+  getTeamId
+} from 'store/projectState-slice';
+import { BasicObject, projectHashTagProps, HashtagProps } from './type';
+
 interface BasicMemoProps {
   titleMemo: boolean;
   periodMemo: boolean;
@@ -37,11 +43,12 @@ interface BasicInfoProps {
   title: string;
   simpleInpo: string;
 }
-// declare module 'react' {
-//   interface ImgHTMLAttributes<T> extends HTMLAttributes<T> {
-//     size?: true | false;
-//   }
+
+// interface termProps {
+//   value?: string;
+//   label?: string;
 // }
+
 function BasicInfo() {
   const dispatch = useDispatch();
   const HashTagArr = useSelector((state: RootState) => state.projectSt.hashTag);
@@ -59,10 +66,57 @@ function BasicInfo() {
     title: '',
     simpleInpo: ''
   });
+
   const [periodValue, setPeriodValue] = useState<number>(0);
+  // const [defaultTerm, setDefaultTerm] = useState<termProps>();
+
+  // console.log('defaultTerm', defaultTerm);
   const [categoryValue, setCategoryValue] = useState<string>('');
   const [imgSrc, setImgSrc] = useState<string>('');
-  // const [size, setSize] = useState<boolean>(false);
+
+  useEffect(() => {
+    // (기본정보) 제목,카테고리,기간,한줄소개 get;
+    axios
+      .get<BasicObject>(`${REACT_APP_API_URL}/projects/${projectId}`, {
+        withCredentials: true
+      })
+      .then((res) => {
+        // category, term,
+        console.log(res.data.projects);
+        dispatch(getTeamId(res.data.projects.project_teams[0].id));
+        const { title, term, category, researcher_word } = res.data.projects;
+        console.log('@@@', category.name);
+        setCategoryValue(category.name);
+        const option = options.filter(
+          (option) => Number(option.value) === term
+        );
+        console.log(option);
+        // setDefaultTerm({
+        //   value: '7',
+        //   label: '7일'
+        // });
+        setBasicInpo({
+          title: title,
+          simpleInpo: researcher_word
+        });
+      });
+
+    //(기본정보) 해시태그 get
+    axios
+      .get<HashtagProps>(`${REACT_APP_API_URL}/projects/${projectId}/tags`, {
+        withCredentials: true
+      })
+      .then((res) => {
+        dispatch(resetHashTagId());
+        const arr: string[] = [];
+        res.data.tags.forEach((el) => {
+          dispatch(setHashTagId(el.id));
+          arr.push(el.name);
+        });
+        setHashtag(arr);
+      });
+  }, []);
+
   const options = [
     { value: '7', label: '7일' },
     { value: '14', label: '14일' },
@@ -127,13 +181,14 @@ function BasicInfo() {
 
   const handleSaveContent = async () => {
     const { title, simpleInpo } = basicInfo;
+    console.log('periodValue', periodValue);
     const response = await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {
         title: title,
         categoryName: categoryValue,
         term: periodValue,
-        researcherWord: simpleInpo
+        description: simpleInpo
       },
       {
         withCredentials: true
@@ -149,6 +204,19 @@ function BasicInfo() {
       fileReader.onload = (e: any) => {
         setImgSrc(e.target.result);
       };
+
+      const formData = new FormData();
+      formData.append('image', imageFile);
+      console.log('@@', formData.get('image'));
+      axios
+        .post(
+          `${REACT_APP_API_URL}/projects/${projectId}/thumbnail`,
+          formData,
+          {
+            withCredentials: true
+          }
+        )
+        .then((res) => console.log(res));
     }
   };
 
@@ -163,7 +231,11 @@ function BasicInfo() {
           onBlur={() => setShowMemo({ ...showMemo, titleMemo: false })}
         >
           <h3>프로젝트 제목</h3>
-          <input type="text" onChange={handleBasicInformation('title')} />
+          <input
+            type="text"
+            onChange={handleBasicInformation('title')}
+            value={basicInfo.title || ''}
+          />
           <FocusMemo>
             제목은 간단하고 간결해야 합니다. 훌륭한 제목은 독자에게 연구에 대한
             명확한 이해를 제공합니다.
@@ -176,7 +248,10 @@ function BasicInfo() {
             최대 1개의 카테고리를 설정 할 수 있습니다.카테고리는 검색 시 필터로
             사용되며, 프로젝트를 찾는데 도움이 될 수 있습니다.
           </p>
-          <Category setCategoryValue={setCategoryValue} />
+          <Category
+            setCategoryValue={setCategoryValue}
+            categoryValue={categoryValue}
+          />
         </ProjectCategory>
 
         <ProjectHashTag>
@@ -217,6 +292,7 @@ function BasicInfo() {
             classNamePrefix="Select"
             options={options}
             placeholder="날짜 선택"
+            // defaultValue={defaultTerm}
             onChange={(option) => handlePeriod(option)}
           />
           <FocusMemo>대부분 30일을 선택합니다.</FocusMemo>
@@ -228,19 +304,32 @@ function BasicInfo() {
           onBlur={() => setShowMemo({ ...showMemo, infoMemo: false })}
         >
           <h3>프로젝트에 대한 한 줄 소개</h3>
-          <TextareaCss onChange={handleBasicInformation('simpleInpo')} />
+          <TextareaCss
+            onChange={handleBasicInformation('simpleInpo')}
+            value={basicInfo.simpleInpo || ''}
+          />
           <FocusMemo>프로젝트에 대한 간략한 요약을 위한 것입니다.</FocusMemo>
         </ProjectSimpleInfo>
 
-        <ProjectCoverIma>
-          <h3>표지 이미지</h3>
-          <label htmlFor="coverImage">
-            <img src={imgSrc || coverImg} />
-            <span>사진을 추가하려면 클릭하세요.</span>
-            <span>JPG, PNG, GIF - 50MB 파일 제한</span>
-          </label>
-          <input type="file" id="coverImage" onChange={handleCoverIma} />
-        </ProjectCoverIma>
+        {imgSrc ? (
+          <ProjectSelectIma>
+            <h3>표지 이미지</h3>
+            <label htmlFor="coverImage">
+              <img src={imgSrc} />
+            </label>
+            <input type="file" id="coverImage" onChange={handleCoverIma} />
+          </ProjectSelectIma>
+        ) : (
+          <ProjectCoverIma>
+            <h3>표지 이미지</h3>
+            <label htmlFor="coverImage">
+              <img src={coverImg} />
+              <span>사진을 추가하려면 클릭하세요.</span>
+              <span>JPG, PNG, GIF - 50MB 파일 제한</span>
+            </label>
+            <input type="file" id="coverImage" onChange={handleCoverIma} />
+          </ProjectCoverIma>
+        )}
 
         <SaveButton onClick={handleSaveContent}>저장하고 계속하기</SaveButton>
       </ProjectBody>

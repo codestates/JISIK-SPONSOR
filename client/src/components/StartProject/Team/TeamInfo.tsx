@@ -14,32 +14,52 @@ import {
   AddTeamMemberButton,
   ProjectTeamInfo,
   ProjectTeamImg,
-  ProjectLastSentence
+  ProjectLastSentence,
+  ProjectTeamName,
+  ProjectSelectIma
 } from './styled';
 import coverImg from 'images/icons/cover-image.png';
-
+import axios from 'axios';
+import { REACT_APP_API_URL } from 'config';
+import { RootState } from 'index';
+import { useSelector } from 'react-redux';
 interface TeamMemoProps {
   memberMemo: boolean;
   teamMemo: boolean;
   sentenceMemo: boolean;
+  teamNameMemo: boolean;
 }
 
 interface TeamContentProps {
   content: string;
   bio: string;
 }
+interface TeamTextProps {
+  teamName: string;
+  teamIntro: string;
+  researchWord: string;
+}
 
 function TeamInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
+  const projectId = useSelector((state: RootState) => state.projectSt.id);
+  const teamId = useSelector((state: RootState) => state.projectSt.teamId);
   const [memberList, setMemberList] = useState<number[]>([0]);
+  const [imgSrc, setImgSrc] = useState<string>('');
   const [showMemo, setShowMemo] = useState<TeamMemoProps>({
     memberMemo: false,
     teamMemo: false,
-    sentenceMemo: false
+    sentenceMemo: false,
+    teamNameMemo: false
   });
   const [teamContent, setTeamContent] = useState<TeamContentProps>({
     content: '',
     bio: ''
+  });
+  const [teamText, setTeamText] = useState<TeamTextProps>({
+    teamName: '',
+    teamIntro: '',
+    researchWord: ''
   });
 
   const [isVaild, setIsVaild] = useState(false);
@@ -52,7 +72,19 @@ function TeamInfo() {
       });
     };
 
-  const addMemberList = () => {
+  const handleTextArea =
+    (key: string) =>
+    (
+      e:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
+      setTeamText({
+        ...teamText,
+        [key]: e.target.value
+      });
+    };
+  const addMemberList = async () => {
     const { content, bio } = teamContent;
     if (!content || !bio) {
       setIsVaild(true);
@@ -60,6 +92,18 @@ function TeamInfo() {
     }
     setMemberList([...memberList, memberList[memberList.length - 1] + 1]);
     handleDisable();
+    console.log(projectId, teamId);
+    const response = await axios.post(
+      `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/members`,
+      {
+        name: content,
+        bio: bio
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log('팀원생성', response);
     setTeamContent({
       content: '',
       bio: ''
@@ -126,6 +170,46 @@ function TeamInfo() {
       handleDisable(idx);
     }
   };
+
+  const handleCoverIma = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const imageFile = e.target.files[0];
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(imageFile);
+      fileReader.onload = (e: any) => {
+        setImgSrc(e.target.result);
+      };
+
+      const formData = new FormData();
+      formData.append('image', imageFile);
+      console.log('@@', formData.get('image'));
+      axios
+        .post(
+          `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/profile`,
+          formData,
+          {
+            withCredentials: true
+          }
+        )
+        .then((res) => console.log(res));
+    }
+  };
+
+  const handleSaveContent = async () => {
+    const { teamName, teamIntro, researchWord } = teamText;
+    console.log(researchWord);
+    const response = await axios.patch(
+      `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}`,
+      {
+        teamName: teamName,
+        teamDescription: teamIntro
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log('프로젝트저장', response);
+  };
   return (
     <Container>
       <ProjectBody>
@@ -147,6 +231,7 @@ function TeamInfo() {
                     type="text"
                     id={String(el)}
                     onChange={handleInput('content')}
+                    placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
                   />
                 </div>
                 <div>
@@ -155,6 +240,7 @@ function TeamInfo() {
                     type="text"
                     id={String(el)}
                     onChange={handleInput('bio')}
+                    placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
                   />
                 </div>
                 <EditButton onClick={(e) => editButton(el, e)}>수정</EditButton>
@@ -175,28 +261,48 @@ function TeamInfo() {
           </FocusMemo>
         </ProjectTeamMember>
 
+        <ProjectTeamName
+          showMemo={showMemo.teamNameMemo}
+          onFocus={() => setShowMemo({ ...showMemo, teamNameMemo: true })}
+          onBlur={() => setShowMemo({ ...showMemo, teamNameMemo: false })}
+        >
+          <h3>프로젝트 팀명</h3>
+          <input type="text" onChange={handleTextArea('teamName')} />
+          <FocusMemo>프로젝트를 진행하는 팀의 이름을 작명해주세요.</FocusMemo>
+        </ProjectTeamName>
+
         <ProjectTeamInfo
           showMemo={showMemo.teamMemo}
           onFocus={() => setShowMemo({ ...showMemo, teamMemo: true })}
           onBlur={() => setShowMemo({ ...showMemo, teamMemo: false })}
         >
           <h3>프로젝트 팀 소개</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea('teamIntro')} />
           <FocusMemo>
             프로젝트를 진행하는 팀 또는 개인을 알려주세요. 이전 프로젝트, 기타
             활동 내용 등을 공개해보세요.
           </FocusMemo>
         </ProjectTeamInfo>
 
-        <ProjectTeamImg>
-          <h3>팀 또는 개인 대표 이미지</h3>
-          <label htmlFor="TeamImg">
-            <img src={coverImg} />
-            <span>사진을 추가하려면 클릭하세요.</span>
-            <span>JPG, PNG, GIF - 50MB 파일 제한</span>
-          </label>
-          <input type="file" id="TeamImg" />
-        </ProjectTeamImg>
+        {imgSrc ? (
+          <ProjectSelectIma>
+            <h3>팀 또는 개인 대표 이미지</h3>
+            <label htmlFor="TeamImg">
+              <img src={imgSrc} />
+            </label>
+            <input type="file" id="TeamImg" onChange={handleCoverIma} />
+          </ProjectSelectIma>
+        ) : (
+          <ProjectTeamImg>
+            <h3>팀 또는 개인 대표 이미지</h3>
+            <label htmlFor="TeamImg">
+              <img src={coverImg} />
+              <span>사진을 추가하려면 클릭하세요.</span>
+              <span>JPG, PNG, GIF - 50MB 파일 제한</span>
+            </label>
+            <input type="file" id="TeamImg" onChange={handleCoverIma} />
+          </ProjectTeamImg>
+        )}
 
         <ProjectLastSentence
           showMemo={showMemo.sentenceMemo}
@@ -204,13 +310,13 @@ function TeamInfo() {
           onBlur={() => setShowMemo({ ...showMemo, sentenceMemo: false })}
         >
           <h3>연구자의 한 마디</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea('researchWord')} />
           <FocusMemo>
             후원자들에게 어필 할 수 있는 강력한 한 마디를 작성해주세요.
           </FocusMemo>
         </ProjectLastSentence>
 
-        <SaveButton>저장하고 계속하기</SaveButton>
+        <SaveButton onClick={handleSaveContent}>저장하고 계속하기</SaveButton>
       </ProjectBody>
     </Container>
   );

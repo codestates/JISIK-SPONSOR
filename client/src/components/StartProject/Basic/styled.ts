@@ -5,9 +5,6 @@ interface FoucsProps {
   showMemo: boolean;
 }
 
-interface ImageProps {
-  size?: boolean;
-}
 // 프로젝트 제목
 export const ProjectTitle = styled.div<FoucsProps>`
   margin-top: 40px;
@@ -184,8 +181,24 @@ export const ProjectSimpleInfo = styled(SubTitleCss)<FoucsProps>`
 `;
 
 // 프로젝트 커버이미지
-export const ProjectCoverIma = styled(ProjectCoverImage)<ImageProps>`
-  ${(props) => (props.size ? css`` : css``)}
+export const ProjectCoverIma = styled(ProjectCoverImage)`
+  @media screen and (max-width: 600px) {
+    > label {
+      width: 100%;
+    }
+  }
+`;
+
+export const ProjectSelectIma = styled(ProjectCoverImage)`
+  > label {
+    width: 570px;
+    height: 170px;
+    padding: 0;
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
   @media screen and (max-width: 600px) {
     > label {
       width: 100%;

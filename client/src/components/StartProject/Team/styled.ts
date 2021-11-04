@@ -136,13 +136,61 @@ export const ProjectTeamInfo = styled(SubTitleCss)<FoucsProps>`
   }
 `;
 
+//프로젝트 팀 명
+export const ProjectTeamName = styled(SubTitleCss)<FoucsProps>`
+  position: relative;
+
+  > input {
+    margin-top: 10px;
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    height: 40px;
+  }
+  > p:last-child {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.45em;
+    color: #495057;
+    margin-top: 10px;
+
+    ${(props) =>
+      props.showMemo
+        ? css`
+            display: block;
+          `
+        : css`
+            display: none;
+          `}
+  }
+  @media screen and (max-width: 1200px) {
+    > p:last-child {
+      display: none;
+    }
+  }
+`;
+
 // 프로젝트 팀 이미지
 export const ProjectTeamImg = styled(ProjectCoverImage)`
   > label {
     width: 300px;
   }
 `;
-
+export const ProjectSelectIma = styled(ProjectCoverImage)`
+  > label {
+    width: 300px;
+    height: 174px;
+    padding: 0;
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    > label {
+      width: 100%;
+    }
+  }
+`;
 // 연구자의 한 마디
 export const ProjectLastSentence = styled(SubTitleCss)<FoucsProps>`
   position: relative;

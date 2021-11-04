@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Container,
   ProjectBody,
@@ -15,7 +17,8 @@ import {
   TotalAmount,
   BudgetListContainer
 } from './styled';
-
+import { REACT_APP_API_URL } from 'config';
+import { RootState } from 'index';
 interface BudgetMemoProps {
   planMemo: boolean;
 }
@@ -27,9 +30,8 @@ interface BudgetContentProps {
 
 function BudgetInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
-
+  const projectId = useSelector((state: RootState) => state.projectSt.id);
   const [grossAmountArr, setGrossAmountArr] = useState<number[]>([]);
-  console.log('grossAmountArr', grossAmountArr);
   const [grossAmount, setGrossAmount] = useState<number>(0);
 
   const [budgetList, setBudgetList] = useState<number[]>([0]);
@@ -40,8 +42,10 @@ function BudgetInfo() {
     content: '',
     amount: ''
   });
+  const [budgetPlan, setBudgetPlan] = useState<string>('');
   const [isVaild, setIsVaild] = useState(false);
 
+  useEffect(() => {}, []);
   const handleInput =
     (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setBudgetContent({
@@ -103,7 +107,7 @@ function BudgetInfo() {
     }
   };
 
-  const addBudgetList = () => {
+  const addBudgetList = async () => {
     const { content, amount } = budgetContent;
     if (!content || !amount) {
       setIsVaild(true);
@@ -114,6 +118,17 @@ function BudgetInfo() {
 
     setBudgetList([...budgetList, budgetList[budgetList.length - 1] + 1]);
     handleDisable();
+    const response = await axios.post(
+      `${REACT_APP_API_URL}/projects/${projectId}/budgets`,
+      {
+        title: content,
+        amount: amount
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log('budget', response);
     setBudgetContent({
       content: '',
       amount: ''
@@ -133,6 +148,24 @@ function BudgetInfo() {
       return acc + cur;
     }, 0);
     setGrossAmount(gross);
+  };
+
+  const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setBudgetPlan(e.target.value);
+  };
+
+  const handleSaveContent = async () => {
+    const response = await axios.patch(
+      `${REACT_APP_API_URL}/projects/${projectId}`,
+      {
+        budget_synopsis: budgetPlan,
+        goalAmout: grossAmount
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log('프로젝트저장', response);
   };
   return (
     <Container>
@@ -159,6 +192,7 @@ function BudgetInfo() {
                     type="text"
                     id={String(el)}
                     onChange={handleInput('content')}
+                    placeholder="예산 항목 추가를 누르셔야 작성하신 항목이 반영됩니다"
                   />
                 </div>
                 <div>
@@ -198,13 +232,13 @@ function BudgetInfo() {
           <p>
             프로젝트에 쓰일 예산 항목을 적는 항목입니다. 자세하게 작성해주세요.
           </p>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea} />
           <FocusMemo>
             펀딩 예산이 어떤 식으로 사용 될지 상세 내용을 작성해 주세요.
           </FocusMemo>
         </ProjectBudgetPlan>
 
-        <SaveButton>저장하고 계속하기</SaveButton>
+        <SaveButton onClick={handleSaveContent}>저장하고 계속하기</SaveButton>
       </ProjectBody>
     </Container>
   );
