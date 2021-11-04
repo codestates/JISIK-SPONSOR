@@ -299,6 +299,7 @@ module.exports = {
           },
           {
             model: user, // users 테이블 조인
+            as: 'author',
             attributes: ['name', 'nickname', 'bio', 'profile_url']
           },
           {

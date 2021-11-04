@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
       remainder: {
         type: DataTypes.DECIMAL(12, 2)
       },
-      investors: {
+      sponsors: {
         defaultValue: 0,
         type: DataTypes.INTEGER
       },

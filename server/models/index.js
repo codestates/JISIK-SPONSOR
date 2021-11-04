@@ -54,7 +54,8 @@ const {
   project_milestone,
   tag,
   project_tag,
-  comment
+  comment,
+  project_sponsor
 } = sequelize.models;
 
 // one to many
@@ -81,5 +82,8 @@ project_tag.belongsTo(tag, { foreignKey: 'tag_id' });
 
 user.hasMany(comment, { foreignKey: 'user_id' });
 comment.belongsTo(user, { foreignKey: 'user_id' });
+
+user.hasMany(project_sponsor, { foreignKey: 'user_id' });
+project_sponsor.belongsTo(user, { foreignKey: 'user_id' });
 
 module.exports = db;
