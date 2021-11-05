@@ -25,7 +25,7 @@ const ServiceSection = () => {
           아래 서비스 소개와 FAQ를 통해 더 알아가보세요.
         </Title>
         <CardWrap>
-          <Card to="/">
+          <Card to="/about">
             <ImageWrap>
               <img src={serviceimg} alt="서비스 소개 이미지" />
             </ImageWrap>

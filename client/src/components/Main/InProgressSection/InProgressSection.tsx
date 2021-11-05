@@ -30,7 +30,7 @@ const InProgressSection = () => {
       <Wrap>
         <TitleWrap>
           <h2>진행중인 프로젝트</h2>
-          <Link to="/">모두 보기</Link>
+          <Link to="/board">모두 보기</Link>
         </TitleWrap>
         <Postcards projects={inProgressProjects} />
       </Wrap>
