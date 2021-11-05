@@ -23,6 +23,12 @@ export const ImageWrap = styled.div`
   & img {
     max-width: 100%;
   }
+
+  @media screen and (max-width: 718px) {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 70px;
+  }
 `;
 
 export const LinkWrap = styled.div`

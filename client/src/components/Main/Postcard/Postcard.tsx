@@ -21,7 +21,7 @@ interface Props {
 
 const Postcard = ({ project }: Props) => {
   // console.log(new Date(project.start_date).getFullYear());
-  const goal: string = Number(project.goal).toLocaleString();
+  const goal: string = Number(project.goal).toLocaleString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   const percent: number = (Number(project.pledged) / Number(project.goal)) * 10;
   const projectLink: string = '/detailed-project/' + project.path;
 

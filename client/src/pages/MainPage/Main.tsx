@@ -1,5 +1,5 @@
 /*eslint-disable*/
-// import Sliderbar from '../../components/Main/Sliderbar/Sliderbar';
+import Sliderbar from '../../components/Main/Sliderbar/Sliderbar';
 import InProgressSection from '../../components/Main/InProgressSection/InProgressSection';
 import Categorybar from '../../components/Main/Categorybar/Categorybar';
 import Servicebar from '../../components/Main/Servicebar/Servicebar';
@@ -10,6 +10,7 @@ import Startprojectbar from '../../components/Main/Startprojectbar/Startprojectb
 const Main = () => {
   return (
     <div>
+      <Sliderbar />
       <Categorybar />
       <InProgressSection />
       <Servicebar />

@@ -43,9 +43,11 @@ const Sliderbar = () => {
                                     <div>프로젝트 시작하기</div>
                                 </SliderButton1>
                             </Link>
-                            <SliderButton2>
-                                <div>모든 프로젝트 보기</div>
-                            </SliderButton2>
+                            <Link to="/board">
+                                <SliderButton2>
+                                    <div>모든 프로젝트 보기</div>
+                                </SliderButton2>
+                            </Link>
                         </Slider1>
                     </MainSliderimg>
                 </RightSliderButton>
