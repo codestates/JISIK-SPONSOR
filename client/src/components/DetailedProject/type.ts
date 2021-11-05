@@ -71,3 +71,34 @@ export interface Project {
 export interface Data {
   projects: Project;
 }
+
+export interface FavState {
+  state: boolean;
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+}
+
+export interface Tags {
+  tags: Tag[];
+}
+
+export interface Commentor {
+  nickname: string;
+  profile_url: string;
+}
+
+export interface Comment {
+  id: number;
+  project_id: number;
+  content: string;
+  created_at: Date;
+  updated_at: Date;
+  user: Commentor;
+}
+
+export interface CommentType {
+  comments: Comment[];
+}
