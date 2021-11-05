@@ -143,3 +143,36 @@ export const CommentModiBox = styled.div`
     cursor: pointer;
   }
 `;
+
+export const ModiBox = styled.div`
+  display: flex;
+  /* flex-direction: flex-start; */
+  justify-content: flex-start;
+  margin-left: 60px;
+`;
+
+export const ModiInput = styled.input`
+  width: 70%;
+  height: 10px;
+  padding: 30px;
+  border-radius: 3px;
+  font-size: 16px;
+  border: 1px solid #eee;
+`;
+
+export const ModiButtonGroup = styled.div`
+  display: flex;
+  margin-left: 55px;
+`;
+
+export const ModiButton = styled.button`
+  margin: 10px 5px;
+  width: 60px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  background-color: #fff;
+`;

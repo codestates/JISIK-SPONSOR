@@ -7,7 +7,6 @@ import axios from 'axios';
 
 import HeartIcon from '../../../images/project-heart.png';
 import User from '../../../images/user.png';
-// import { Data } from '../type';
 
 const Sponsors = () => {
   const projectId = useSelector((state: RootState) => state.projectSt.id);
@@ -17,7 +16,7 @@ const Sponsors = () => {
 
   const getSponsors = async () => {
     try {
-      const response = axios.get(url, config);
+      const response = await axios.get(url, config);
       console.log(response);
     } catch (err) {
       console.log(err);
