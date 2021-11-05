@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import Postcard from '../Postcard/Postcard';
 import { PostcardsWrap, Ul } from './styled';
-import { Row } from '../AchievedSection/type';
+import { Row } from '../type';
 
 interface Props {
   projects: Row[];

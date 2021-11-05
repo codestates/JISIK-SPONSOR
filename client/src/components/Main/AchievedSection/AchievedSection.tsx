@@ -2,9 +2,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Postcards from '../Postcards/Postcards';
+import Postcards from '../../ProjectsCards/Postcards/Postcards';
 import { Section, Wrap, TitleWrap } from './styled';
-import { Data, Row } from './type';
+import { Data, Row } from '../../ProjectsCards/type';
 
 const AchievedSection = () => {
   // 변수 선언
@@ -14,7 +14,7 @@ const AchievedSection = () => {
     try {
       // get 요청
       const response = await axios.get<Data>(
-        'http://localhost:4000/projects?status=canceled&limit=3',
+        'http://localhost:4000/projects?status=achieved&limit=3',
         { withCredentials: true }
       );
       // 변수에 업데이트
