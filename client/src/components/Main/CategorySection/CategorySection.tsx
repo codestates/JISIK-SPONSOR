@@ -11,7 +11,7 @@ import agricultural from '../../../images/agricultural.png';
 import artistry from '../../../images/artistry.png';
 import combination from '../../../images/combination.png';
 
-const Categorybar = () => {
+const CategorySection = () => {
   return (
     <Section>
       <Wrap>
@@ -75,4 +75,4 @@ const Categorybar = () => {
   );
 };
 
-export default Categorybar;
+export default CategorySection;

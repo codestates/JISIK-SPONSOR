@@ -8,7 +8,7 @@ import {
   ShowButton
 } from './styled';
 
-const Startprojectbar = () => {
+const StartProjectSection = () => {
   return (
     <Section>
       <Wrap>
@@ -22,4 +22,4 @@ const Startprojectbar = () => {
   );
 };
 
-export default Startprojectbar;
+export default StartProjectSection;

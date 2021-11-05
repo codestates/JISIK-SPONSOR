@@ -26,17 +26,15 @@ const AchievedSection = () => {
   }, []);
 
   return (
-    <div>
-      <Section>
-        <Wrap>
-          <TitleWrap>
-            <h2>성사된 프로젝트</h2>
-            <Link to="/">모두 보기</Link>
-          </TitleWrap>
-          <Postcards projects={achievedProjects}></Postcards>
-        </Wrap>
-      </Section>
-    </div>
+    <Section>
+      <Wrap>
+        <TitleWrap>
+          <h2>성사된 프로젝트</h2>
+          <Link to="/">모두 보기</Link>
+        </TitleWrap>
+        <Postcards projects={achievedProjects}></Postcards>
+      </Wrap>
+    </Section>
   );
 };
 
