@@ -14,8 +14,8 @@ const StartProjectSection = () => {
       <Wrap>
         <Title>Ready to start your project?</Title>
         <ButtonWrap>
-          <StartButton to="/">프로젝트 시작하기</StartButton>
-          <ShowButton to="/">모든 프로젝트 보기</ShowButton>
+          <StartButton to="/start-project">프로젝트 시작하기</StartButton>
+          <ShowButton to="/board">모든 프로젝트 보기</ShowButton>
         </ButtonWrap>
       </Wrap>
     </Section>
