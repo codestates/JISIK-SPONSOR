@@ -1,4 +1,8 @@
+import axios from 'axios';
 import React, { useState, useRef } from 'react';
+import { REACT_APP_API_URL } from 'config';
+import { RootState } from 'index';
+import { useSelector } from 'react-redux';
 import {
   Container,
   ProjectBody,
@@ -12,7 +16,7 @@ import {
   ProjectMotive,
   ProjectProgress,
   ProjectGoal,
-  ProjectAddOptions,
+  // ProjectAddOptions,
   ProjectTimeLine,
   ProjectTimeLineDetail,
   AddTimeLineButton,
@@ -32,8 +36,16 @@ interface TimeLineContentProps {
   date: string;
 }
 
+interface DetailContentProps {
+  motive: string;
+  progress: string;
+  goal: string;
+  options: string;
+  timeLineDes: string;
+}
 function DetailsInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
+  const projectId = useSelector((state: RootState) => state.projectSt.id);
   const [timelineList, setTimeLineList] = useState<number[]>([0]);
   const [showMemo, setShowMemo] = useState<DetailMemoProps>({
     motiveMemo: false,
@@ -47,10 +59,18 @@ function DetailsInfo() {
     content: '',
     date: ''
   });
-  console.log(timelineContent);
+
+  const [detailContent, setDetailContent] = useState<DetailContentProps>({
+    motive: '',
+    progress: '',
+    goal: '',
+    options: '',
+    timeLineDes: ''
+  });
+
   const [isVaild, setIsVaild] = useState<boolean>(false);
 
-  const addTimeLineList = () => {
+  const addTimeLineList = async () => {
     const { content, date } = timelineContent;
     if (!content || !date) {
       setIsVaild(true);
@@ -61,6 +81,17 @@ function DetailsInfo() {
       timelineList[timelineList.length - 1] + 1
     ]);
     handleDisable();
+    const response = await axios.post(
+      `${REACT_APP_API_URL}/projects/${projectId}/milestones`,
+      {
+        title: content,
+        goalDate: date
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log(response);
     setTimeLineContent({
       content: '',
       date: ''
@@ -78,6 +109,14 @@ function DetailsInfo() {
     (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setTimeLineContent({
         ...timelineContent,
+        [key]: e.target.value
+      });
+    };
+
+  const handleTextArea =
+    (key: string) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setDetailContent({
+        ...detailContent,
         [key]: e.target.value
       });
     };
@@ -135,6 +174,24 @@ function DetailsInfo() {
     }
   };
 
+  const handleSaveContent = async () => {
+    const { motive, progress, goal, options, timeLineDes } = detailContent;
+    const response = await axios.patch(
+      `${REACT_APP_API_URL}/projects/${projectId}`,
+      {
+        project_background: motive,
+        project_progress: progress,
+        project_goals: goal,
+        project_description: options,
+        milestone_description: timeLineDes
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log('프로젝트저장', response);
+  };
+
   return (
     <Container>
       <ProjectBody>
@@ -147,7 +204,7 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, motiveMemo: false })}
         >
           <h3>프로젝트 배경</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea('motive')} />
           <FocusMemo>이 프로젝트르 진행하게 된 계기를 작성해주세요.</FocusMemo>
         </ProjectMotive>
 
@@ -157,7 +214,7 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, progressMemo: false })}
         >
           <h3>프로젝트 진행 상황</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea('progress')} />
           <FocusMemo>
             현재 프로젝트의 진행상황이 어디까지 진행되었는지 후원자들에게
             알려주세요.
@@ -170,23 +227,23 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, goalMemo: false })}
         >
           <h3>프로젝트 목표</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea('goal')} />
           <FocusMemo>
             이 프로젝트가 하고자하는 것, 목표를 작성해주세요.
           </FocusMemo>
         </ProjectGoal>
 
-        <ProjectAddOptions
+        {/* <ProjectAddOptions
           showMemo={showMemo.optionsMemo}
           onFocus={() => setShowMemo({ ...showMemo, optionsMemo: true })}
           onBlur={() => setShowMemo({ ...showMemo, optionsMemo: false })}
         >
           <h3>추가 정보(OPTIONS)</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea('options')} />
           <FocusMemo>
             위 질문이외에 추가로 후원자들에게 알려주고 싶은 것들을 작성해주세요.
           </FocusMemo>
-        </ProjectAddOptions>
+        </ProjectAddOptions> */}
 
         <ProjectTimeLine
           showMemo={showMemo.timelineMemo}
@@ -203,6 +260,7 @@ function DetailsInfo() {
                     type="text"
                     id={String(el)}
                     onChange={handleInput('content')}
+                    placeholder="일정 항목 추가를 누르셔야 작성하신 항목이 반영됩니다"
                   />
                 </div>
                 <div>
@@ -236,13 +294,13 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, detailMemo: false })}
         >
           <h3>프로젝트 타임라인 설명</h3>
-          <TextareaCss />
+          <TextareaCss onChange={handleTextArea('timeLineDes')} />
           <FocusMemo>
             후원자가 일정을 보면서, 어떤 작업이 진행될 수 있을지 알 수 있도록
             작성해주세요.
           </FocusMemo>
         </ProjectTimeLineDetail>
-        <SaveButton>저장하고 계속하기</SaveButton>
+        <SaveButton onClick={handleSaveContent}>저장하고 계속하기</SaveButton>
       </ProjectBody>
     </Container>
   );

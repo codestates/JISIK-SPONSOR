@@ -1,123 +1,134 @@
+/*eslint-disable*/
 import styled from 'styled-components';
 import cloud from '../../images/cloud.png';
-import question1 from '../../images/question1.png';
-import question2 from '../../images/question2.png';
-import question3 from '../../images/question3.png';
-import bluestar from '../../images/start-blue.png';
-import yellowline from '../../images/YellowLine.png';
-import yellowcircle from '../../images/yellowcircle.png';
 
-export const Container = styled.div`
-  padding: 70px;
+interface SectionProps {
+  background: string;
+}
+
+interface QuestionSectionProps {
+  deraction: string;
+}
+
+export const Section = styled.section<SectionProps>`
+  padding: 60px 0;
+  background-color: ${(props) =>
+    props.background !== 'image' ? props.background : '#f1f3f5'};
+  background-image: ${(props) =>
+    props.background === 'image' && `url(${cloud})`};
+  background-repeat: ${(props) => props.background === 'image' && 'none'};
+  background-size: ${(props) => props.background === 'image' && 'cover'};
+`;
+
+export const Wrap = styled.div`
+  width: 100%;
+  max-width: 960px;
+  padding: 0 30px;
+  margin: 0 auto;
+  &:nth-child(4) {
+    background: pink;
+  }
+`;
+
+export const BannerSection = styled.div`
   text-align: center;
-  background-image: url(${cloud});
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: 50% 60%;
-  font-family: 'Noto Sans KR', sans-serif;
+  & > h1 {
+    font-size: 31.25px;
+    color: #212529;
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 20px;
+  }
+  & > p {
+    font-size: 25px;
+    color: #495057;
+    line-height: 140%;
+  }
+  & > p > strong {
+    color: #7950f2;
+    font-weight: 600;
+  }
 `;
 
-export const Text = styled.div`
-  font-size: 25px;
-  color: #495057;
-  line-height: 0.5;
-  margin-top: 20px;
-  font-weight: 600;
+export const QuestionSection = styled.div<QuestionSectionProps>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  direction: ${(props) => props.deraction === 'right' && 'rtl'};
+  & div:nth-child(1) {
+    width: 55%;
+    padding: ${(props) => (props.deraction === 'right' ? '0 0 0 15px' : '0')};
+    direction: ${(props) => props.deraction === 'right' && 'initial'};
+  }
+  & div:nth-child(2) {
+    width: 45%;
+    padding: ${(props) =>
+      props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
+  }
 `;
 
-export const Container2 = styled.div`
-  padding: 70px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
-  inline-height: 0.5;
-  margin-left: 580px;
+export const ImageWrap = styled.div`
+  & > img {
+    width: 100%;
+  }
 `;
 
-export const Question = styled.div`
-  background-image: url(${question1});
-  background-size: 14%;
-  background-repeat: no-repeat;
-  background-position: 63% 50%;
+export const TextBoxWrap = styled.div`
+  & > h2 {
+    font-size: 25px;
+    color: #343a40;
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 20px;
+  }
+  & > p {
+    font-size: 16px;
+    color: #495057;
+    line-height: 160%;
+  }
 `;
 
-export const Text2 = styled.div`
-  font-size: 11px;
-  color: #495057;
-  line-height: 0.5;
-  margin-top: 20px;
-`;
-
-export const Bluestar1 = styled.div`
-  background-image: url(${bluestar});
-  background-size: 1%;
-  background-position: 34% 31%;
-  background-repeat: no-repeat;
-`;
-
-export const YellowLine = styled.div`
-  background-image: url(${yellowline});
-  background-size: 7.5%;
-  background-position: 36.9% 64.5%;
-  background-repeat: no-repeat;
-`;
-
-export const StartProject = styled.div`
+export const StartProjectSection = styled.div`
   text-align: center;
-  color: #eee;
-  background-color: #7048e8;
-  padding: 22px;
-`;
-
-export const Button = styled.button`
-  border-radius: 10px;
-  box-sizing: border-box;
-  width: 12%;
-  height: 58px;
-  font-size: 16px;
-  font-weight: 600;
-  border: 3px solid #343a40;
-  box-shadow: 0 5px;
-`;
-
-export const YellowCircle = styled.div`
-  background-image: url(${yellowcircle});
-  background-repeat: no-repeat;
-  background-size: 6%;
-  background-position: 58.5% 56.5%;
-`;
-
-export const Container3 = styled.div`
-  padding: 70px 400px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
-  inline-height: 0.5;
-  margin-left: 580px;
-`;
-
-export const Question1 = styled.div`
-  background-image: url(${question2});
-  background-size: 14%;
-  background-repeat: no-repeat;
-  background-position: 40% 50%;
-`;
-
-export const Bluestar2 = styled.div`
-  background-image: url(${bluestar});
-  background-size: 1%;
-  background-position: 51.5% 31%;
-  background-repeat: no-repeat;
-`;
-
-export const Question3 = styled.div`
-  background-image: url(${question3});
-  background-size: 14%;
-  background-repeat: no-repeat;
-  background-position: 65% 50%;
-`;
-
-export const YellowLine2 = styled.div`
-  background-image: url(${yellowline});
-  background-size: 5%;
-  background-position: 40.5% 57%;
-  background-repeat: no-repeat;
+  & > h2 {
+    font-size: 25px;
+    color: #f8f9fa;
+    line-height: 140%;
+    margin-bottom: 30px;
+  }
+  & > div {
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+  }
+  & > div > a {
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+    font-size: 25px;
+    color: #343a40;
+    font-weight: 500;
+    padding: 25px 60px;
+    border-radius: 10px;
+    border: 3px solid #343a40;
+    background-color: #f8f9fa;
+    transition: 0.2s;
+  }
+  & > div > span {
+    z-index: -1;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: '';
+    clear: both;
+    border-radius: 10px;
+    background-color: #343a40;
+  }
+  & div:hover a {
+    transform: translateY(5px);
+  }
 `;

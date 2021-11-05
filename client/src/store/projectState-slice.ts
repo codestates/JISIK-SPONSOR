@@ -3,12 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface projectStateProps {
   id: number;
   hashTag: number[];
+  teamId: number;
 }
+
 
 const initialState: projectStateProps = {
   id: 0,
   hashTag: []
 };
+
 
 const projectState = createSlice({
   name: 'projectState',
@@ -31,11 +34,27 @@ const projectState = createSlice({
       { payload }: PayloadAction<number>
     ) => {
       state.hashTag.splice(payload, 1);
+    },
+
+    resetHashTagId: (state: projectStateProps) => {
+      state.hashTag = [];
+    },
+
+    getTeamId: (
+      state: projectStateProps,
+      { payload }: PayloadAction<number>
+    ) => {
+      state.teamId = payload;
     }
   }
 });
 
-export const { getProjectId, setHashTagId, removeHashTagId } =
-  projectState.actions;
+export const {
+  getProjectId,
+  setHashTagId,
+  removeHashTagId,
+  resetHashTagId,
+  getTeamId
+} = projectState.actions;
 
 export default projectState.reducer;

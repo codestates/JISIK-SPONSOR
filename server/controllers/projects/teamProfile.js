@@ -13,6 +13,11 @@ module.exports = {
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
+      // 이미지 파일이 존재하지 않는 경우 다음을 리턴한다.
+      if (!req.file) {
+        return res.status(400).json({ message: 'Bad Request!' });
+      }
+
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
       const { projectId, teamId } = req.params;
       if (isNaN(projectId) || isNaN(teamId)) {
@@ -40,10 +45,10 @@ module.exports = {
       }
 
       // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== '작성중') {
+      if (projectInfo.status !== 'draft') {
         return res
           .status(403)
-          .json({ message: 'This is not the project are "작성중"!' });
+          .json({ message: 'This project status is not "draft" !' });
       }
 
       // 다음 작업(이미지 업로드)을 진행한다.

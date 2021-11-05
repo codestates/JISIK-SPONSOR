@@ -1,9 +1,9 @@
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from 'styles/GlobalStyles';
+import Header from 'components/Header/Header';
 import Body from 'components/Body/Body';
 import Footer from 'components/Footer/Footer';
-import { ThemeProvider } from 'styled-components';
-import Header from 'components/Header/Header';
 import Modal from 'components/Modal/Modal';
-import GlobalStyles from 'styles/GlobalStyles';
 import MobileNav from 'components/MobileNav/MobileNav';
 
 const theme = {

@@ -45,7 +45,7 @@ module.exports = {
       },
       status: {
         allowNull: false,
-        defaultValue: '작성중',
+        defaultValue: 'draft',
         type: Sequelize.STRING(64)
       },
       goal: {
@@ -57,7 +57,7 @@ module.exports = {
       remainder: {
         type: Sequelize.DECIMAL(12, 2)
       },
-      investors: {
+      sponsors: {
         defaultValue: 0,
         type: Sequelize.INTEGER
       },

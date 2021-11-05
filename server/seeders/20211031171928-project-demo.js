@@ -13,11 +13,11 @@ module.exports = {
         term: 30,
         start_date: '2021-11-01 00:00:00',
         end_date: '2021-11-30 00:00:00',
-        status: '진행중',
+        status: 'in progress',
         goal: 3000000,
         pledged: 1000000,
         remainder: 2000000,
-        investors: 20,
+        sponsors: 20,
         comments: 5,
         wishes: 10,
         views: 100,
@@ -40,11 +40,11 @@ module.exports = {
         term: 30,
         start_date: '2021-11-01 00:00:00',
         end_date: '2021-11-30 00:00:00',
-        status: '진행중',
+        status: 'in progress',
         goal: 3000000,
         pledged: 2000000,
         remainder: 1000000,
-        investors: 10,
+        sponsors: 10,
         comments: 0,
         wishes: 5,
         views: 50,
@@ -67,11 +67,11 @@ module.exports = {
         term: 30,
         start_date: '2021-11-01 00:00:00',
         end_date: '2021-11-20 00:00:00',
-        status: '진행중',
+        status: 'in progress',
         goal: 1000000,
         pledged: 500000,
         remainder: 500000,
-        investors: 2,
+        sponsors: 2,
         comments: 8,
         wishes: 10,
         views: 342,
@@ -86,6 +86,46 @@ module.exports = {
           '이번 프로젝트는 저에게 있어 아주 중요한 프로젝트입니다. 많은 관심과 응원 부탁드립니다...'
       },
       {
+        title: '이런 저런 연구를 해서 과연 할 수 있을까?1',
+        path: '이런-저런-연구를-해서-과연-할-수-있을까1',
+        user_id: 4,
+        comments: 0,
+        wishes: 0,
+        views: 0,
+        category_id: 1,
+        status: 'draft'
+      },
+      {
+        title: '이런 저런 연구를 해서 과연 할 수 있을까?2',
+        path: '이런-저런-연구를-해서-과연-할-수-있을까2',
+        user_id: 4,
+        comments: 0,
+        wishes: 0,
+        views: 0,
+        category_id: 1,
+        status: 'achieved'
+      },
+      {
+        title: '이런 저런 연구를 해서 과연 할 수 있을까?3',
+        path: '이런-저런-연구를-해서-과연-할-수-있을까3',
+        user_id: 4,
+        comments: 0,
+        wishes: 0,
+        views: 0,
+        category_id: 4,
+        status: 'achieved'
+      },
+      {
+        title: '이런 저런 연구를 해서 과연 할 수 있을까?4',
+        path: '이런-저런-연구를-해서-과연-할-수-있을까4',
+        user_id: 4,
+        comments: 0,
+        wishes: 0,
+        views: 0,
+        category_id: 5,
+        status: 'achieved'
+      },
+      {
         title: '이런 저런 연구를 해서 과연 할 수 있을까?',
         path: '이런-저런-연구를-해서-과연-할-수-있을까',
         user_id: 4,
@@ -93,7 +133,7 @@ module.exports = {
         wishes: 0,
         views: 0,
         category_id: 1,
-        status: '작성중'
+        status: 'canceled'
       }
     ]);
   },

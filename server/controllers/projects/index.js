@@ -10,5 +10,7 @@ module.exports = {
   milestones: require('./milestones'),
   tags: require('./tags'),
   wishes: require('./wishes'),
-  comments: require('./comments')
+  comments: require('./comments'),
+  sponsors: require('./sponsors'),
+  status: require('./status')
 };

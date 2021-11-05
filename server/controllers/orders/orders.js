@@ -20,7 +20,7 @@ module.exports = {
       }
 
       // 현재 회원이 조회할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== userId && userInfo.role_id !== 1) {
+      if (userInfo.id !== Number(userId) && userInfo.role_id !== 1) {
         return res.status(403).json({ message: 'Not authorized!' });
       }
 
@@ -65,10 +65,10 @@ module.exports = {
       if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
 
       // 현재 프로젝트가 "진행중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== '진행중') {
+      if (projectInfo.status !== 'in progress') {
         return res
           .status(403)
-          .json({ message: 'This is not the project are "진행중"!' });
+          .json({ message: 'This project status is not "in progress" !' });
       }
 
       /**

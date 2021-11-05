@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       status: {
         allowNull: false,
-        defaultValue: '작성중',
+        defaultValue: 'draft',
         type: DataTypes.STRING(64)
       },
       goal: {
@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
       remainder: {
         type: DataTypes.DECIMAL(12, 2)
       },
-      investors: {
+      sponsors: {
         defaultValue: 0,
         type: DataTypes.INTEGER
       },

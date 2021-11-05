@@ -18,10 +18,12 @@ module.exports = {
 
       // 상태 : 기본 값은 없다.
       if (
-        status !== '작성중' &&
-        status !== '대기중' &&
-        status !== '진행중' &&
-        status !== '성사됨'
+        status !== 'draft' && // 작성중 (테스트용)
+        status !== 'submitted' && // 제출됨 (테스트용)
+        status !== 'approved' && // 승인됨 (테스트용)
+        status !== 'inprogress' && // 진행중
+        status !== 'achieved' && // 성사됨
+        status !== 'canceled' // 취소됨
       ) {
         status = null;
       }
@@ -35,7 +37,7 @@ module.exports = {
         order !== 'wishes' && // 인기순
         order !== 'comments' && // 댓글순
         order !== 'pledged' && // 최다후원금순
-        order !== 'investors' && // 최다후원인순
+        order !== 'sponsors' && // 최다후원인순
         order !== 'remainder' && // 성공임박순
         order !== 'end_date' // 마감임박순
       ) {
@@ -89,6 +91,7 @@ module.exports = {
           },
           {
             model: user, // users 테이블 조인
+            as: 'author',
             attributes: ['name', 'nickname', 'bio', 'profile_url'],
             where: {
               [Op.and]: [
@@ -104,7 +107,7 @@ module.exports = {
 
       // 모든 프로젝트를 반환한다.
       return res.status(200).json({
-        posts: { count: projects.count, page: offset, rows: projects.rows }
+        projects: { count: projects.count, page: offset, rows: projects.rows }
       });
     } catch (err) {
       console.error(err);

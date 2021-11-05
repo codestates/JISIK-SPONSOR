@@ -159,6 +159,18 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+br {
+  &.br576 {
+    display: none;
+  }
+  @media all and (max-width: 576px) {
+    &.br576 {
+      display: block;
+    }
+  }
+}
+
 `;
 
 export default GlobalStyles;

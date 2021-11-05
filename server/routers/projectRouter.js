@@ -71,6 +71,13 @@ router
 
 router.delete('/:projectId/tags/:projectTagId', projects.tags.delete);
 
+// Project Wishes API
+router
+  .route('/:projectId/wishes')
+  .get(projects.wishes.get)
+  .post(projects.wishes.post)
+  .delete(projects.wishes.delete);
+
 // Project Comments API
 router
   .route('/:projectId/comments')
@@ -82,11 +89,10 @@ router
   .patch(projects.comments.patch)
   .delete(projects.comments.delete);
 
-// Project Wishes API
-router
-  .route('/:projectId/wishes')
-  .get(projects.wishes.get)
-  .post(projects.wishes.post)
-  .delete(projects.wishes.delete);
+// Project Sponsors API
+router.get('/:projectId/sponsors', projects.sponsors.get);
+
+// Project Status API
+router.post('/:projectId/status', projects.status.post);
 
 module.exports = router;

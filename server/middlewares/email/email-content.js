@@ -62,5 +62,74 @@ module.exports = {
       html: compiledFunction(options)
     };
     return emailContent;
+  },
+  projectSubmit: (email, name, project) => {
+    const title = '프로젝트를 제출하셨습니다!';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-submit.pug'
+    );
+
+    const options = {
+      title,
+      name,
+      project,
+      siteURL: process.env.CLIENT_ORIGIN
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: email,
+      subject: `${name}님의 프로젝트를 제출하셨습니다!`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
+  projectApprove: (email, name, project) => {
+    const title = '제출하신 프로젝트가 승인되었습니다!';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-approve.pug'
+    );
+
+    const options = {
+      title,
+      name,
+      project,
+      siteURL: process.env.CLIENT_ORIGIN
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: email,
+      subject: `${name}님의 프로젝트가 승인되었습니다!`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
+  projectReject: (email, name, project) => {
+    const title = '제출하신 프로젝트가 승인 거부되었습니다!';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-reject.pug'
+    );
+
+    const options = {
+      title,
+      name,
+      project,
+      siteURL: process.env.CLIENT_ORIGIN
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: email,
+      subject: `${name}님의 프로젝트가 승인 거부되었습니다!`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
   }
 };

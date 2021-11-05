@@ -55,6 +55,13 @@ module.exports = {
         where: { user_id: userInfo.id, project_id: projectInfo.id }
       });
 
+      // 현재 프로젝트가 "작성중"이면 다음을 리턴한다.
+      if (projectInfo.status === 'draft') {
+        return res
+          .status(403)
+          .json({ message: 'This project status is "draft" !' });
+      }
+
       // 이미 해당 프로젝트에 좋아요를 누른 경우 다음을 리턴한다.
       if (wishInfo) {
         return res.status(400).json({ message: 'Already wished it!' });
