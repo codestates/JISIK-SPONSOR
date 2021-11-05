@@ -4,7 +4,7 @@ import kimimg from '../../../images/kimimg.png';
 import naimg from '../../../images/naimg.png';
 import jisikimg from '../../../images/jisikimg.png';
 
-const Reviewbar = () => {
+const ReviewSection = () => {
   return (
     <Section>
       <Wrap>
@@ -52,4 +52,4 @@ const Reviewbar = () => {
   );
 };
 
-export default Reviewbar;
+export default ReviewSection;
