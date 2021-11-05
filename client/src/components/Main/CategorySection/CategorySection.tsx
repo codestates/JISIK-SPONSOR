@@ -21,52 +21,52 @@ const CategorySection = () => {
         <LinkWrap>
           <Ul>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={humanities} />
                 <span>인문학</span>
-              </Link>
+              </a>
             </Li>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={social} />
                 <span>사회과학</span>
-              </Link>
+              </a>
             </Li>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={natural} />
                 <span>자연과학</span>
-              </Link>
+              </a>
             </Li>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={engineering} />
                 <span>공학</span>
-              </Link>
+              </a>
             </Li>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={medicine} />
                 <span>의약학</span>
-              </Link>
+              </a>
             </Li>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={agricultural} />
                 <span>농수해양학</span>
-              </Link>
+              </a>
             </Li>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={artistry} />
                 <span>예술체육학</span>
-              </Link>
+              </a>
             </Li>
             <Li>
-              <Link to="/">
+              <a>
                 <img src={combination} />
                 <span>복합학</span>
-              </Link>
+              </a>
             </Li>
           </Ul>
         </LinkWrap>

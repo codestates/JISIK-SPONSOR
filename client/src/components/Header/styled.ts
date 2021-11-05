@@ -6,13 +6,20 @@ export const NavContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  /* background-color: beige; */
   width: 100%;
   height: 70px;
-
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   img {
     width: 272px;
     cursor: pointer;
+    transition: all 0.3s;
+  }
+  & img:hover {
+    transform: matrix(1, 0, 0, 1, 0, -2.5);
+    transition: all 0.3s;
+  }
+  & a:hover {
+    color: #7950f2;
   }
 
   @media screen and (max-width: 1031px) {
@@ -105,7 +112,6 @@ export const NavButton = styled.button`
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
-
   &:hover {
     color: #fff;
     background-color: #7950f2;

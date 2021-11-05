@@ -53,13 +53,24 @@ export const Li = styled.li`
   & img {
     width: 30px;
     height: 30px;
+    border-radius: 50%;
     vertical-align: middle;
     margin-right: 10px;
+    transition: all 0.3s;
   }
   & span {
     vertical-align: middle;
     font-size: 16px;
     font-weight: 500;
     color: #495057;
+  }
+  &:hover img {
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+  }
+  &:hover span {
+    font-weight: 600;
+    transition: all 0.3s;
   }
 `;

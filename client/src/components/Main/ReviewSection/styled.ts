@@ -42,6 +42,8 @@ export const Li = styled.li`
   }
   & > div > img {
     display: inline-block;
+    border-radius: 50%;
+    transition: all 0.3s;
   }
   & > div > span {
     display: block;
@@ -59,5 +61,10 @@ export const Li = styled.li`
     font-size: 12.8px;
     color: #495057;
     line-height: 140%;
+  }
+  &:hover > div > img {
+    transform: matrix(1.02, 0, 0, 1.02, 0, 0);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
   }
 `;

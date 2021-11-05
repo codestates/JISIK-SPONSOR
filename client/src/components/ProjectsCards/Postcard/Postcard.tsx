@@ -24,6 +24,13 @@ const Postcard = ({ project }: Props) => {
   const percent: number =
     (Number(project.pledged) / Number(project.goal)) * 100;
   const projectLink: string = '/detailed-project/' + project.path;
+  // 카테고리 배경
+  const background: string = project.category.name;
+  // D-day 계산
+  const startDate = new Date(project.start_date);
+  const endDate = new Date(project.end_date);
+  const gap = endDate.getTime() - startDate.getTime();
+  const dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
 
   return (
     <Li>
@@ -32,7 +39,7 @@ const Postcard = ({ project }: Props) => {
           {/* project.thumbnail_url 던져주면 css안에 들어갈 수 있게 */}
           <ImageWrap />
           <InfoWrap>
-            <TopInfo>
+            <TopInfo background={background}>
               <span>{project.category.name}</span>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
@@ -48,7 +55,7 @@ const Postcard = ({ project }: Props) => {
                 />
                 <span>{project.author.name}</span>
               </UserInfo>
-              <BudgetInfo>
+              <BudgetInfo percent={percent}>
                 <span></span>
                 <div>
                   <LeftWrap>
@@ -63,7 +70,7 @@ const Postcard = ({ project }: Props) => {
                   </LeftWrap>
                   <RightWrap>
                     <img src={clock} />
-                    <span>finished</span>
+                    <span>{dDay !== 0 ? dDay + ' days' : 'finished'}</span>
                   </RightWrap>
                 </div>
               </BudgetInfo>

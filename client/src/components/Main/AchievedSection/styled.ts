@@ -29,8 +29,17 @@ export const TitleWrap = styled.div`
     font-size: 12.8px;
     color: #fff;
     line-height: 140%;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 3px;
+    border: 2px solid #7950f2;
     background-color: #7950f2;
+    transition: 0.3s;
+  }
+  & > a:hover {
+    color: #343a40;
+    font-weight: 600;
+    border: 2px solid #343a40;
+    background-color: #fff;
+    transition: 0.3s;
   }
 `;

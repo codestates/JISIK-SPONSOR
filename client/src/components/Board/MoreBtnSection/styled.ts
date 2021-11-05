@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Section = styled.section`
   width: 100%;
-  padding: 60px 0;
+  padding-bottom: 60px;
 `;
 
 export const Wrap = styled.section`

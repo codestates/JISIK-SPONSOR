@@ -22,7 +22,7 @@ const Header = () => {
             <span>서비스 소개</span>
           </Link>
         </NavbarL>
-        <Link to="/board">
+        <Link to="/">
           <img src={Logo} alt="logo-image" />
         </Link>
         <NavbarR>

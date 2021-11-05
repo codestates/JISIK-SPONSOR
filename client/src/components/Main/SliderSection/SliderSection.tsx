@@ -36,8 +36,8 @@ const SliderSection = () => {
                 지식스폰서에 오신 여러분 환영합니다.
               </p>
               <SlideBtnWrap>
-                <Link to="/">프로젝트 시작하기</Link>
-                <Link to="/">모든 프로젝트 보기</Link>
+                <Link to="/start-project">프로젝트 시작하기</Link>
+                <Link to="/board">모든 프로젝트 보기</Link>
               </SlideBtnWrap>
             </SlideCentent1>
           </Slide>

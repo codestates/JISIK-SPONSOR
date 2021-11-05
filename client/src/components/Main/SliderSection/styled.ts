@@ -8,7 +8,7 @@ import mainSliderImg2 from '../../../images/mainSliderImg2.png';
 
 export const Section = styled.section`
   padding: 60px 0;
-  background-color: pink;
+  background-color: #fff;
 `;
 
 export const Wrap = styled.div`
@@ -34,18 +34,18 @@ export const SliderWrap = styled.ul`
     height: 100%;
     transform: translateX(100%);
   }
-  &:hover > li:nth-child(1) {
+  /* &:hover > li:nth-child(1) {
     transform: translateX(-100%);
   }
   &:hover > li:nth-child(2) {
     transform: translateX(0);
-  }
+  } */
 `;
 
 export const Slide = styled.li`
   width: 100%;
   transition: all 0.5s;
-  background-color: skyblue;
+  /* background-color: skyblue; */
 `;
 
 export const SlideCentent1 = styled.div`
@@ -132,10 +132,10 @@ export const SlideBtnWrap = styled.div`
     font-weight: 500;
     padding: 18px 35px;
     border-radius: 10px;
+    transition: 0.3s;
   }
   & > a:nth-child(1) {
     color: #fff;
-
     border: 3px solid #7950f2;
     background-color: #7950f2;
   }
@@ -143,5 +143,12 @@ export const SlideBtnWrap = styled.div`
     color: #343a40;
     border: 3px solid #343a40;
     background-color: #fff;
+  }
+  & > a:hover {
+    color: #fff;
+    font-weight: 600;
+    border: 3px solid #343a40;
+    background-color: #343a40;
+    transition: 0.3s;
   }
 `;
