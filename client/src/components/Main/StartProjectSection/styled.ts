@@ -38,6 +38,14 @@ export const StartButton = styled(Link)`
   padding: 25px 60px;
   background: #fff;
   margin-right: 15px;
+  transition: 0.3s;
+  &:hover {
+    color: #fff;
+    font-weight: 600;
+    border: 3px solid #fff;
+    background-color: #343a40;
+    transition: 0.3s;
+  }
 `;
 
 export const ShowButton = styled(Link)`
@@ -50,4 +58,12 @@ export const ShowButton = styled(Link)`
   padding: 25px 60px;
   background: #7950f2;
   margin-left: 15px;
+  transition: 0.3s;
+  &:hover {
+    color: #fff;
+    font-weight: 600;
+    border: 3px solid #fff;
+    background-color: #343a40;
+    transition: 0.3s;
+  }
 `;

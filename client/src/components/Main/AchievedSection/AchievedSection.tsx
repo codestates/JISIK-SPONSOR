@@ -35,7 +35,7 @@ const AchievedSection = () => {
       <Wrap>
         <TitleWrap>
           <h2>성사된 프로젝트</h2>
-          <Link to="/">모두 보기</Link>
+          <Link to="/board">모두 보기</Link>
         </TitleWrap>
         {/* 카드에 projects 를 내려준다. */}
         <Postcards projects={achievedProjects}></Postcards>
