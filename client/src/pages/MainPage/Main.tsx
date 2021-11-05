@@ -1,21 +1,22 @@
 /*eslint-disable*/
-// import Sliderbar from '../../components/Main/Sliderbar/Sliderbar';
+import SliderSection from '../../components/Main/SliderSection/SliderSection';
 import InProgressSection from '../../components/Main/InProgressSection/InProgressSection';
-import Categorybar from '../../components/Main/Categorybar/Categorybar';
-import Servicebar from '../../components/Main/Servicebar/Servicebar';
-import Reviewbar from '../../components/Main/Reviewbar/Reviewbar';
+import CategorySection from '../../components/Main/CategorySection/CategorySection';
+import ServiceSection from '../../components/Main/ServiceSection/ServiceSection';
+import ReviewSection from '../../components/Main/ReviewSection/ReviewSection';
 import AchievedSection from '../../components/Main/AchievedSection/AchievedSection';
-import Startprojectbar from '../../components/Main/Startprojectbar/Startprojectbar';
+import StartProjectSection from '../../components/Main/StartProjectSection/StartProjectSection';
 
 const Main = () => {
   return (
     <div>
-      <Categorybar />
+      <SliderSection />
+      <CategorySection />
       <InProgressSection />
-      <Servicebar />
+      <ServiceSection />
       <AchievedSection />
-      <Reviewbar />
-      <Startprojectbar />
+      <ReviewSection />
+      <StartProjectSection />
     </div>
   );
 };
