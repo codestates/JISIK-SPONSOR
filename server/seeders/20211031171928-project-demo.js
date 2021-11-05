@@ -113,9 +113,6 @@ module.exports = {
         pledged: 3000000,
         remainder: 0,
         sponsors: 20,
-        comments: 5,
-        wishes: 10,
-        views: 100,
         status: 'achieved'
       },
       {
@@ -134,9 +131,6 @@ module.exports = {
         pledged: 6000000,
         remainder: 0,
         sponsors: 20,
-        comments: 5,
-        wishes: 10,
-        views: 100,
         status: 'achieved'
       },
       {
@@ -155,9 +149,6 @@ module.exports = {
         pledged: 1000000,
         remainder: 0,
         sponsors: 20,
-        comments: 5,
-        wishes: 10,
-        views: 100,
         status: 'achieved'
       },
       {
