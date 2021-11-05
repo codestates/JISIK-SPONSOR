@@ -23,7 +23,6 @@ const DetailedProject = () => {
   const [teamMember, setTeamMember] = useState<ProjectTeamMember[]>([]);
 
   const detailTab = useSelector((state: RootState) => state.detailPage);
-  console.log(detailTab);
   const history = useHistory();
   const dispatch = useDispatch();
 
