@@ -24,7 +24,6 @@ const MobileNav = () => {
 
   const loggedIn = useSelector((state: RootState) => state.login);
   const { isLogin } = loggedIn;
-  console.log(isLogin);
   const dispatch = useDispatch();
 
   const menubarHandler = () => {

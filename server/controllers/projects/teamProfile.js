@@ -13,11 +13,6 @@ module.exports = {
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      // 이미지 파일이 존재하지 않는 경우 다음을 리턴한다.
-      if (!req.file) {
-        return res.status(400).json({ message: 'Bad Request!' });
-      }
-
       // 매개 변수가 숫자가 아니면 다음을 리턴한다.
       const { projectId, teamId } = req.params;
       if (isNaN(projectId) || isNaN(teamId)) {
@@ -65,6 +60,11 @@ module.exports = {
        * [프로젝트 팀 프로필 정보 업로드]
        *
        */
+
+      // 이미지 파일이 존재하지 않는 경우 다음을 리턴한다.
+      if (!req.file) {
+        return res.status(400).json({ message: 'Bad Request!' });
+      }
 
       // profile URL과 projectId를 추출한다.
       const imageURL = req.file.key;

@@ -33,8 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER
       },
       category_id: {
-        allowNull: false,
-        defaultValue: 1,
         type: DataTypes.INTEGER
       },
       description: {

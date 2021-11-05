@@ -14,9 +14,7 @@ export const MobileNavBar = styled.div`
   }
 
   @media screen and (min-width: 718px) {
-    div {
-      display: none;
-    }
+    display: none;
   }
 `;
 

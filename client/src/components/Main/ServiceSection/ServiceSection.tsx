@@ -11,7 +11,7 @@ import {
 import serviceimg from '../../../images/serviceimg.png';
 import faqimg from '../../../images/faqimg.png';
 
-const Servicebar = () => {
+const ServiceSection = () => {
   return (
     <Section>
       <Wrap>
@@ -59,4 +59,4 @@ const Servicebar = () => {
   );
 };
 
-export default Servicebar;
+export default ServiceSection;

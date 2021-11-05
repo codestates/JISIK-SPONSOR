@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Section, Wrap, TitleWrap } from './styled';
-import Postcards from '../Postcards/Postcards';
+import Postcards from '../../ProjectsCards/Postcards/Postcards';
 import { Data, Row } from './type';
 
 const InProgressSection = () => {

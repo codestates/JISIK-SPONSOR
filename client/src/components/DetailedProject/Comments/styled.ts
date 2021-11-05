@@ -4,7 +4,7 @@ import { StyledButton } from 'components/Button';
 export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: paleturquoise;
+  background-color: #f8f9fa;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
@@ -40,6 +40,8 @@ export const WriteContent = styled.div`
     padding-left: 30px;
     padding-top: 30px;
     margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.4;
   }
 
   & > div > textarea::placeholder {
@@ -68,49 +70,76 @@ export const CommentLists = styled.div`
   flex-direction: column; */
   margin-bottom: 20px;
   border-bottom: 2px solid #e9ecef;
+  position: relative;
 
-  & > div:first-child {
+  > div:first-child {
     display: flex;
     justify-content: space-between;
-  }
-
-  & > div > div {
-    display: flex;
     align-items: center;
-  }
 
-  & > div > div img {
-    height: 50px;
-    width: 50px;
-    margin-right: 15px;
-  }
-
-  & > div:first-child {
-    & > div {
+    > div:first-child {
+      display: flex;
+      align-items: center;
       font-size: 20px;
       font-weight: 700;
       line-height: 1.4;
-      margin-bottom: 20px;
+      margin-bottom: 7px;
+
+      img {
+        height: 50px;
+        width: 50px;
+        margin-right: 15px;
+      }
+    }
+
+    > button {
+      border: none;
+      background: none;
+      cursor: pointer;
+
+      img {
+        width: 21px;
+        height: 25px;
+      }
     }
   }
+`;
 
-  & > div > img {
-    width: 21px;
-    height: 25px;
-  }
+export const CommentContent = styled.div`
+  margin-left: 65px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 20px;
 
-  & > div:nth-child(2) {
-    margin-left: 65px;
-    font-size: 16px;
+  > span {
+    font-size: 12.8px;
     line-height: 1.4;
     font-weight: 500;
-    color: #495057;
-    margin-bottom: 20px;
+  }
+`;
 
-    & > span {
-      font-size: 12.8px;
-      line-height: 1.4;
-      font-weight: 500;
-    }
+export const CommentModiBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  position: absolute;
+  right: 12px;
+  top: 38px;
+
+  button {
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #404040;
+    cursor: pointer;
   }
 `;

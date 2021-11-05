@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
-import Postcard from '../../components/Main/Postcard/Postcard';
+import Postcard from '../../components/ProjectsCards/Postcard/Postcard';
 import {
   Allcategory,
   BoardCategoryLine,
