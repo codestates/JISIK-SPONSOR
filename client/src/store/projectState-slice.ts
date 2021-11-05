@@ -6,12 +6,11 @@ export interface projectStateProps {
   teamId: number;
 }
 
-
 const initialState: projectStateProps = {
   id: 0,
-  hashTag: []
+  hashTag: [],
+  teamId: 0
 };
-
 
 const projectState = createSlice({
   name: 'projectState',
@@ -35,11 +34,9 @@ const projectState = createSlice({
     ) => {
       state.hashTag.splice(payload, 1);
     },
-
     resetHashTagId: (state: projectStateProps) => {
       state.hashTag = [];
     },
-
     getTeamId: (
       state: projectStateProps,
       { payload }: PayloadAction<number>
