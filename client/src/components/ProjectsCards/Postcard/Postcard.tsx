@@ -13,16 +13,16 @@ import {
   LeftWrap,
   RightWrap
 } from './styled';
-import { Row } from '../AchievedSection/type';
+import { Row } from '../type';
 
 interface Props {
   project: Row;
 }
 
 const Postcard = ({ project }: Props) => {
-  // console.log(new Date(project.start_date).getFullYear());
   const goal: string = Number(project.goal).toLocaleString();
-  const percent: number = (Number(project.pledged) / Number(project.goal)) * 10;
+  const percent: number =
+    (Number(project.pledged) / Number(project.goal)) * 100;
   const projectLink: string = '/detailed-project/' + project.path;
 
   return (
@@ -56,7 +56,7 @@ const Postcard = ({ project }: Props) => {
                     <big>{goal}원</big>
                     <small>
                       {project.goal && project.pledged
-                        ? percent.toFixed(2)
+                        ? percent.toFixed()
                         : '0'}
                       %
                     </small>
