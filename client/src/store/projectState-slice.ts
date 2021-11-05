@@ -5,7 +5,10 @@ export interface projectStateProps {
   hashTag: number[];
 }
 
-const initialState: projectStateProps = { id: 0, hashTag: [] };
+const initialState: projectStateProps = {
+  id: 0,
+  hashTag: []
+};
 
 const projectState = createSlice({
   name: 'projectState',
@@ -23,7 +26,6 @@ const projectState = createSlice({
     ) => {
       state.hashTag.push(payload);
     },
-
     removeHashTagId: (
       state: projectStateProps,
       { payload }: PayloadAction<number>

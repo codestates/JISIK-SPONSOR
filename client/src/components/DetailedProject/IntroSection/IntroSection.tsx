@@ -25,8 +25,15 @@ import CategoryIcon8 from '../../../images/icons/category-icon-8.png';
 import YellowStar from '../../../images/star-yellow.png';
 import WhiteStar from '../../../images/star-white.png';
 import Wormhole from '../../../images/wormhole.jpg';
-import Gauge from '../../../images/gauge.png';
+// import Gauge from '../../../images/gauge.png';
 import { Data, FavState, Tags, Tag } from '../type';
+import { Line } from 'rc-progress';
+
+// interface Test {
+//   percent: string;
+//   strokeWidth: string;
+//   strokeColor: string;
+// }
 
 const IntroSection = () => {
   const [favorite, setFavorite] = useState<boolean>(false);
@@ -39,6 +46,7 @@ const IntroSection = () => {
   const [categoryId, setCategoryId] = useState<number>(0);
   const [pledged, setPledged] = useState<number>(0);
   const [tags, setTags] = useState<Tag[]>([]);
+  const [dDay, setdDay] = useState<number>(0);
 
   // console.log(path, tags);
 
@@ -54,7 +62,7 @@ const IntroSection = () => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
-  //3단위가 나뉘어진 숫자
+  //단위가 나뉘어진 숫자
   const goalWithCommas = numWithCommas(goal);
   const pledgedWithCommas = numWithCommas(pledged);
 
@@ -69,19 +77,35 @@ const IntroSection = () => {
         }
       );
 
-      const { id, title, description, category, goal, category_id, pledged } =
-        response.data.projects;
+      const {
+        id,
+        title,
+        description,
+        category,
+        goal,
+        category_id,
+        pledged,
+        end_date
+      } = response.data.projects;
 
       const { name } = category;
 
+      console.log(response);
+
+      // 디데이 계산
+      let today = new Date();
+      let endDate = new Date(end_date);
+      let gap = endDate.getTime() - today.getTime();
+      let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
+
       setTitle(title);
       setDescription(description);
-      // setPath(path);
       setProjectId(id);
       setCategory(name);
       setGoal(Number(goal));
       setCategoryId(category_id);
       setPledged(Number(pledged));
+      setdDay(dDay);
     } catch (err) {
       console.log(err);
       history.push('/404');
@@ -170,12 +194,18 @@ const IntroSection = () => {
         <SubContent>
           <p>{pledgedWithCommas}원</p>
           <p>달성금액</p>
-          <img src={Gauge} alt="" />
+          {/* <img src={Gauge} alt="" /> */}
+          <Line
+            percent={percentage}
+            strokeWidth={4}
+            trailWidth={4}
+            strokeColor="#0CBD7E"
+          />
           <Funding>
             <p>
               <span>{percentage}%</span>
               <span>{goalWithCommas}원</span>
-              <span>12일</span>
+              <span>{dDay}일</span>
             </p>
             <p>
               <span>완료율</span>

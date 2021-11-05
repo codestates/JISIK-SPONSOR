@@ -84,3 +84,21 @@ export interface Tag {
 export interface Tags {
   tags: Tag[];
 }
+
+export interface Commentor {
+  nickname: string;
+  profile_url: string;
+}
+
+export interface Comment {
+  id: number;
+  project_id: number;
+  content: string;
+  created_at: Date;
+  updated_at: Date;
+  user: Commentor;
+}
+
+export interface CommentType {
+  comments: Comment[];
+}

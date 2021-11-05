@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const ProjectContainer = styled.div`
-  background-color: beige;
+  /* background-color: beige; */
   width: 100vw;
   padding: 60px 0;
 `;
 
 export const ProjectWrapper = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
@@ -44,6 +44,8 @@ export const Category = styled.div`
 `;
 
 export const ProjectTitle = styled.div`
+  margin-bottom: 35px;
+
   & > h1 {
     font-size: 40px;
     font-weight: 500;
@@ -61,7 +63,7 @@ export const ProjectTitle = styled.div`
 `;
 
 export const MainContent = styled.div`
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   width: 100%;
   max-width: 960px;
   display: flex;
@@ -71,6 +73,7 @@ export const MainContent = styled.div`
     width: 600px;
     height: 320px;
     margin-bottom: 20px;
+    border-radius: 5px;
   }
 
   @media screen and (max-width: 900px) {
@@ -91,7 +94,7 @@ export const MainContent = styled.div`
 `;
 
 export const SubContent = styled.div`
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
 
   & > p:first-child {
     font-size: 32px;
@@ -185,7 +188,7 @@ export const FundInput = styled.div`
   }
 
   & > div:last-child {
-    margin-bottom: 15px;
+    margin-bottom: 35px;
   }
 
   & > div input {

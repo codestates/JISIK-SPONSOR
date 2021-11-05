@@ -8,7 +8,7 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 60px 30px;
+  padding: 50px 30px;
 `;
 
 export const ProjectHeader = styled.div`

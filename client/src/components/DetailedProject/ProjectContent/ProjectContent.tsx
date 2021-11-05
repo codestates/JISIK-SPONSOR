@@ -97,7 +97,13 @@ const ProjectContent = ({ project }: ProjectProps) => {
             project_milestones.map((milestone) => {
               return (
                 <div key={milestone.id}>
-                  <span>{milestone.goal_date}</span>
+                  <span>
+                    {new Date(milestone.goal_date).toLocaleDateString('ko-KR', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </span>
                   <span>{milestone.title}</span>
                 </div>
               );

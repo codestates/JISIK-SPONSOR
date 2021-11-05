@@ -4,21 +4,28 @@ import ProjectContent from 'components/DetailedProject/ProjectContent/ProjectCon
 import Profile from 'components/DetailedProject/Profile/Profile';
 import Comments from 'components/DetailedProject/Comments/Comments';
 import Sponsors from 'components/DetailedProject/Sponsors/Sponsors';
+import TabButton from 'components/DetailedProject/TabButton/TabButton';
 import TopButton from '../../images/icons/gotop-icon.png';
-import { GoTopButton, ProjectContainer } from './styled';
+import { GoTopButton, ProjectContainer, Wrapper } from './styled';
+import { getProjectId } from 'store/projectState-slice';
+import { useDispatch, useSelector } from 'react-redux';
+// import { RootState } from 'index';
+
 import { REACT_APP_API_URL } from 'config';
 import { useHistory } from 'react-router';
-import { Data } from './type';
-
+import { RootState } from 'index';
+import { Data, ProjectTeam, ProjectTeamMember } from './type';
 import axios from 'axios';
 
 const DetailedProject = () => {
   const [project, setProject] = useState<any>({});
-  const [projectId, setProjectId] = useState<number>(0);
+  const [teams, setTeams] = useState<ProjectTeam[]>([]);
+  const [teamMember, setTeamMember] = useState<ProjectTeamMember[]>([]);
 
+  const detailTab = useSelector((state: RootState) => state.detailPage);
+  console.log(detailTab);
   const history = useHistory();
-
-  // console.log(project);
+  const dispatch = useDispatch();
 
   //최초 렌더링 시 특정 프로젝트의 데이터를 불러오는 함수 실행
   useEffect(() => {
@@ -38,7 +45,9 @@ const DetailedProject = () => {
       const { projects } = response.data;
       const { id } = response.data.projects;
       setProject(projects);
-      setProjectId(id);
+      setTeams(projects.project_teams);
+      setTeamMember(projects.project_team_members);
+      dispatch(getProjectId(id));
     } catch (err) {
       console.log(err);
       history.push('/404');
@@ -48,13 +57,21 @@ const DetailedProject = () => {
   return (
     <ProjectContainer>
       <IntroSection />
-      <ProjectContent project={project} />
-      <Profile />
-      <Comments projectId={projectId} />
-      <Sponsors />
-      <GoTopButton href="#">
-        <img src={TopButton} alt="Top-button" />
-      </GoTopButton>
+      <TabButton />
+      {detailTab.overview && (
+        <>
+          <ProjectContent project={project} />
+          {teams && <Profile teams={teams} teamMember={teamMember} />}
+          <Comments project={project} setProject={setProject} />
+          <Sponsors />
+          <GoTopButton href="#">
+            <img src={TopButton} alt="Top-button" />
+          </GoTopButton>
+        </>
+      )}
+      {detailTab.labnote && (
+        <Wrapper>추후 랩 노트를 위한 페이지입니다.</Wrapper>
+      )}
     </ProjectContainer>
   );
 };
