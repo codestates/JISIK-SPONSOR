@@ -14,6 +14,7 @@ import {
   RightWrap
 } from './styled';
 import { Row } from '../type';
+import { REACT_APP_API_URL } from '../../../config';
 
 interface Props {
   project: Row;
@@ -36,8 +37,7 @@ const Postcard = ({ project }: Props) => {
     <Li>
       <Link to={projectLink}>
         <article>
-          {/* project.thumbnail_url 던져주면 css안에 들어갈 수 있게 */}
-          <ImageWrap />
+          <ImageWrap thumbnail={project.thumbnail_url} />
           <InfoWrap>
             <TopInfo background={background}>
               <span>{project.category.name}</span>
@@ -49,7 +49,7 @@ const Postcard = ({ project }: Props) => {
                 <img
                   src={
                     project.author.profile_url
-                      ? 'https://jisiksponsor.com' + project.author.profile_url // config.js 로 바꿔주세요.
+                      ? REACT_APP_API_URL + project.author.profile_url
                       : usericon
                   }
                 />
@@ -59,7 +59,6 @@ const Postcard = ({ project }: Props) => {
                 <span></span>
                 <div>
                   <LeftWrap>
-                    {/* 돈이라서 콤바 필요 */}
                     <big>{goal}원</big>
                     <small>
                       {project.goal && project.pledged

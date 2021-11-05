@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Section, Wrap } from './styled';
 
 export interface Props {
-  seachQueryFn: (e: any) => void;
+  seachQueryFn: (e: any, search: string) => void;
 }
 
 const SearchSection = ({ seachQueryFn }: Props) => {
@@ -19,10 +19,11 @@ const SearchSection = ({ seachQueryFn }: Props) => {
       <Wrap>
         <input
           onChange={(e) => searchHandle(e)}
+          onKeyPress={(e) => seachQueryFn(e, search)}
           value={search}
           placeholder="검색어를 입력하세요."
         />
-        <button onClick={() => seachQueryFn(search)}>검색</button>
+        <button onClick={(e) => seachQueryFn(e, search)}>검색</button>
       </Wrap>
     </Section>
   );

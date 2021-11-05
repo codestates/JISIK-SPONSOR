@@ -15,6 +15,7 @@ import settingBtSlice, { settingBt } from 'store/settingPageBt-silce';
 import userInfoSlice, { UserInfoProps } from 'store/userInfo-slice';
 import projectState, { projectStateProps } from 'store/projectState-slice';
 import DetailPageSlice, { DetailTabs } from 'store/detailedPageBt-slice';
+import headerSearchSlice, { headerSearch } from 'store/headerSearch-slice';
 
 // persistConfig는 새로운 persist를 선언한다.
 // key: reducer의 어느 지점에서부터 데이터를 저장할 것인지
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
   settingBt: settingBtSlice,
   userInfo: userInfoSlice,
   projectSt: projectState,
-  detailPage: DetailPageSlice
+  detailPage: DetailPageSlice,
+  searchContent: headerSearchSlice
 });
 
 // persistReducer는 persisConfig가 추가된 reducer을 반환한다.
@@ -49,6 +51,7 @@ const store = configureStore({
       }
     })
 });
+
 export interface RootState {
   login: authentification;
   modal: modal;
@@ -58,6 +61,7 @@ export interface RootState {
   userInfo: UserInfoProps;
   projectSt: projectStateProps;
   detailPage: DetailTabs;
+  searchContent: headerSearch;
 }
 // persistStore는 새로고침, 종료해도 지속될 store생성
 let persistor = persistStore(store);
