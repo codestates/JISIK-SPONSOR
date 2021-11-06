@@ -28,9 +28,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'index';
 import {
   setHashTagId,
-  resetHashTagId,
-  getTeamId
-} from 'store/projectState-slice';
+  removeHashTagId,
+  resetHashTagId
+} from 'store/hashtag-slice';
 import { BasicObject, projectHashTagProps, HashtagProps } from './type';
 
 interface BasicMemoProps {
@@ -44,16 +44,11 @@ interface BasicInfoProps {
   simpleInpo: string;
 }
 
-// interface termProps {
-//   value?: string;
-//   label?: string;
-// }
-
 function BasicInfo() {
   const dispatch = useDispatch();
-  const HashTagArr = useSelector((state: RootState) => state.projectSt.hashTag);
+  const HashTagArr = useSelector((state: RootState) => state.hashtag.hashTag);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
-
+  const { projects } = useSelector((state: RootState) => state.project);
   const [tagInput, setTagInput] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [showMemo, setShowMemo] = useState<BasicMemoProps>({
@@ -66,7 +61,6 @@ function BasicInfo() {
     title: '',
     simpleInpo: ''
   });
-
   const [periodValue, setPeriodValue] = useState<number>(0);
   // const [defaultTerm, setDefaultTerm] = useState<termProps>();
 
@@ -81,14 +75,10 @@ function BasicInfo() {
         withCredentials: true
       })
       .then((res) => {
-        // category, term,
-        console.log(res.data.projects);
-        dispatch(getTeamId(res.data.projects.project_teams[0].id));
-        const { title, term, category, researcher_word } = res.data.projects;
-        console.log('@@@', category.name);
-        setCategoryValue(category.name);
+        console.log(res);
+        setCategoryValue(res.data.projects.category.name);
         const option = options.filter(
-          (option) => Number(option.value) === term
+          (option) => Number(option.value) === projects.term
         );
         console.log(option);
         // setDefaultTerm({
@@ -96,12 +86,13 @@ function BasicInfo() {
         //   label: '7일'
         // });
         setBasicInpo({
-          title: title,
-          simpleInpo: researcher_word
+          title: projects.title,
+          simpleInpo: projects.description
         });
       });
 
     //(기본정보) 해시태그 get
+
     axios
       .get<HashtagProps>(`${REACT_APP_API_URL}/projects/${projectId}/tags`, {
         withCredentials: true
@@ -125,14 +116,14 @@ function BasicInfo() {
     { value: '45', label: '45일' }
   ];
 
-  const addTags = async (value: string) => {
+  const addTags = async () => {
     if (hashtag.length >= 3) {
       setIsVaild(true);
       return;
     }
-    const filtered = hashtag.filter((tag) => tag === value);
-    if (value !== '' && filtered.length === 0) {
-      setHashtag([...hashtag, value]);
+    const filtered = hashtag.filter((tag) => tag === tagInput);
+    if (tagInput !== '' && filtered.length === 0) {
+      setHashtag([...hashtag, tagInput]);
       const response = await axios.post<projectHashTagProps>(
         `${REACT_APP_API_URL}/projects/${projectId}/tags`,
         {
@@ -152,12 +143,16 @@ function BasicInfo() {
       setIsVaild(false);
     }
     const selectRemove = HashTagArr[removeIdx];
+
+    console.log('removeIdx', removeIdx);
+    console.log('selectRemove', selectRemove);
     axios.delete(
       `${REACT_APP_API_URL}/projects/${projectId}/tags/${selectRemove}`,
       {
         withCredentials: true
       }
     );
+    dispatch(removeHashTagId(removeIdx));
     const filter = hashtag.filter((_, idx) => idx !== removeIdx);
     setHashtag(filter);
   };
@@ -261,7 +256,7 @@ function BasicInfo() {
             사용되며, 프로젝트를 찾는데 도움이 될 수 있습니다.
           </p>
           <input type="text" onChange={handleHashTag} value={tagInput} />
-          <AddButton onClick={() => addTags(tagInput)}>해시태그 추가</AddButton>
+          <AddButton onClick={() => addTags()}>해시태그 추가</AddButton>
           {isVaild && (
             <ErrorMessage>해시태그는 3개이상 추가하실수 없습니다.</ErrorMessage>
           )}

@@ -1,11 +1,20 @@
 export interface projectHashTagProps {
   id: number;
 }
+export interface Tag {
+  id: number;
+  name: string;
+}
+
+export interface HashtagProps {
+  tags: Tag[];
+}
+
 export interface Category {
   name: string;
 }
 
-export interface User {
+export interface Author {
   name: string;
   nickname: string;
   bio: string;
@@ -37,7 +46,7 @@ export interface ProjectMilestone {
   goal_date: Date;
 }
 
-export interface Project {
+export interface Projects {
   id: number;
   title: string;
   path: string;
@@ -50,7 +59,7 @@ export interface Project {
   goal: string;
   pledged: string;
   remainder: string;
-  investors: number;
+  sponsors: number;
   comments: number;
   wishes: number;
   views: number;
@@ -63,22 +72,13 @@ export interface Project {
   created_at: Date;
   updated_at: Date;
   category: Category;
-  user: User;
+  author: Author;
   project_teams: ProjectTeam[];
   project_team_members: ProjectTeamMember[];
   budget_items: BudgetItem[];
   project_milestones: ProjectMilestone[];
 }
 
-export interface Tag {
-  id: number;
-  name: string;
-}
-
-export interface HashtagProps {
-  tags: Tag[];
-}
-
 export interface BasicObject {
-  projects: Project;
+  projects: Projects;
 }

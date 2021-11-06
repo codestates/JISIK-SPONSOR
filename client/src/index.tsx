@@ -14,8 +14,11 @@ import myPageTabSlice, { MyPageTabs } from 'store/mypage-slice';
 import settingBtSlice, { settingBt } from 'store/settingPageBt-silce';
 import userInfoSlice, { UserInfoProps } from 'store/userInfo-slice';
 import projectState, { projectStateProps } from 'store/projectState-slice';
+import hashtagSlice, { projectHashtagProps } from 'store/hashtag-slice';
+import getProjectSlice from 'store/project-slice';
 import DetailPageSlice, { DetailTabs } from 'store/detailedPageBt-slice';
 import headerSearchSlice, { headerSearch } from 'store/headerSearch-slice';
+
 
 // persistConfig는 새로운 persist를 선언한다.
 // key: reducer의 어느 지점에서부터 데이터를 저장할 것인지
@@ -35,6 +38,8 @@ const rootReducer = combineReducers({
   settingBt: settingBtSlice,
   userInfo: userInfoSlice,
   projectSt: projectState,
+  hashtag: hashtagSlice,
+  project: getProjectSlice
   detailPage: DetailPageSlice,
   searchContent: headerSearchSlice
 });
@@ -60,6 +65,8 @@ export interface RootState {
   settingBt: settingBt;
   userInfo: UserInfoProps;
   projectSt: projectStateProps;
+  hashtag: projectHashtagProps;
+  project: any;
   detailPage: DetailTabs;
   searchContent: headerSearch;
 }

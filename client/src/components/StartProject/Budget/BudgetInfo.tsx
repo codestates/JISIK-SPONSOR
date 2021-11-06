@@ -7,7 +7,6 @@ import {
   FocusMemo,
   TextareaCss,
   SaveButton,
-  EditButton,
   ErrorMessage
 } from '../commonStyled';
 import {
@@ -19,6 +18,8 @@ import {
 } from './styled';
 import { REACT_APP_API_URL } from 'config';
 import { RootState } from 'index';
+import BudgetItems from './BudgetItems';
+import BudgetAddItems from './BudgetAddItems';
 interface BudgetMemoProps {
   planMemo: boolean;
 }
@@ -28,13 +29,33 @@ interface BudgetContentProps {
   amount: string;
 }
 
+interface projectBudgetProps {
+  id: number;
+}
+
+export interface BudgetListProps {
+  id: number;
+  amount: string;
+  title: string;
+}
+
+interface BringListProps {
+  amount: string;
+  content: string;
+}
 function BudgetInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
-  const [grossAmountArr, setGrossAmountArr] = useState<number[]>([]);
-  const [grossAmount, setGrossAmount] = useState<number>(0);
+  const { projects } = useSelector((state: RootState) => state.project);
 
-  const [budgetList, setBudgetList] = useState<number[]>([0]);
+  // const [grossAmountArr, setGrossAmountArr] = useState<number[]>([]);
+  const [grossAmount, setGrossAmount] = useState<number>(0);
+  const [budgetId, setBudgetId] = useState<number[]>([]);
+  const [bringList, setBringList] = useState<BudgetListProps[]>(
+    projects.budget_items
+  );
+
+  const [budgetList, setBudgetList] = useState<BudgetContentProps[]>([]);
   const [showMemo, setShowMemo] = useState<BudgetMemoProps>({
     planMemo: false
   });
@@ -42,10 +63,20 @@ function BudgetInfo() {
     content: '',
     amount: ''
   });
+
   const [budgetPlan, setBudgetPlan] = useState<string>('');
   const [isVaild, setIsVaild] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    let sum = 0;
+    bringList.forEach(
+      (list: BudgetListProps) => (sum = Number(list.amount) + sum)
+    );
+    setGrossAmount(sum);
+    const { budget_synopsis } = projects;
+    setBudgetPlan(budget_synopsis);
+  }, []);
+
   const handleInput =
     (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setBudgetContent({
@@ -54,71 +85,21 @@ function BudgetInfo() {
       });
     };
 
-  const handleDisable = (idx?: number) => {
-    // 버튼이 '완료'일때 누르면 input창을 다시 disable상태로 변경
-
-    if (idx || idx === 0) {
-      ulElement.current?.children[idx].children[0].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      ulElement.current?.children[idx].children[1].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      return;
-    }
-
-    // 항목을 추가 했을 때 추가한걸 제외한 나머지 input을 disable로 변경
-    let length = ulElement.current?.children.length;
-    if (!length) return;
-    for (let i = 0; i < length; i++) {
-      ulElement.current?.children[i].children[0].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      ulElement.current?.children[i].children[1].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-    }
-  };
-
-  const editButton = (idx: number, e: React.MouseEvent<HTMLButtonElement>) => {
-    // textContent === '수정'이라면 disable해제 후 textContent를 '완료'로 변경
-    if (e.currentTarget.textContent === '수정') {
-      let length = ulElement.current?.children.length;
-      if (!length) return;
-      for (let i = 0; i < length; i++) {
-        let content = ulElement.current?.children[i].children[0].children[1];
-        let amount = ulElement.current?.children[i].children[1].children[1];
-        if (!content || !amount) return;
-        if (Number(content.getAttribute('id')) === idx) {
-          content.removeAttribute('disabled');
-          amount.removeAttribute('disabled');
-          e.currentTarget.textContent = '완료';
-          return;
-        }
-      }
-    } else {
-      // textContent === '완료'라면 textContent를 '수정'로 변경 하고 disable할함수실행
-      e.currentTarget.textContent = '수정';
-      handleDisable(idx);
-    }
-  };
-
   const addBudgetList = async () => {
     const { content, amount } = budgetContent;
     if (!content || !amount) {
       setIsVaild(true);
       return;
     }
-    setGrossAmount(grossAmount + Number(amount));
-    setGrossAmountArr([...grossAmountArr, Number(amount)]);
 
-    setBudgetList([...budgetList, budgetList[budgetList.length - 1] + 1]);
-    handleDisable();
-    const response = await axios.post(
+    setBudgetList([
+      ...budgetList,
+      {
+        content: content,
+        amount: amount
+      }
+    ]);
+    const response = await axios.post<projectBudgetProps>(
       `${REACT_APP_API_URL}/projects/${projectId}/budgets`,
       {
         title: content,
@@ -128,26 +109,48 @@ function BudgetInfo() {
         withCredentials: true
       }
     );
-    console.log('budget', response);
+
+    setBudgetId([...budgetId, response.data.id]);
     setBudgetContent({
       content: '',
       amount: ''
     });
-    setIsVaild(false);
+    setGrossAmount(grossAmount + Number(amount));
   };
 
-  const removeBudgetList = (idx: number) => {
-    if (budgetList.length === 1) return;
-    const filter = budgetList.filter((list) => list !== idx);
-    setBudgetList(filter);
+  const removeBudgetList = async (idx: number) => {
+    setGrossAmount(grossAmount - Number(budgetList[idx].amount));
+    const copyList = budgetList.slice();
+    const copyId = budgetId.slice();
+    copyList.splice(idx, 1);
+    copyId.splice(idx, 1);
+    setBudgetList(copyList);
+    setBudgetId(copyId);
+    let removeId = budgetId[idx];
+    await axios.delete<projectBudgetProps>(
+      `${REACT_APP_API_URL}/projects/${projectId}/budgets/${removeId}`,
 
-    let copyAmount = grossAmountArr.slice(0);
-    copyAmount.splice(idx, 1, 0);
-    setGrossAmountArr(copyAmount);
-    const gross = copyAmount.reduce((acc, cur) => {
-      return acc + cur;
-    }, 0);
-    setGrossAmount(gross);
+      {
+        withCredentials: true
+      }
+    );
+  };
+
+  const removeBringList = async (idx: number) => {
+    const filter = bringList.filter((list: BudgetListProps) => list.id !== idx);
+    const AmountFilter = bringList.filter(
+      (list: BudgetListProps) => list.id === idx
+    );
+    setGrossAmount(grossAmount - Number(AmountFilter[0].amount));
+    setBringList(filter);
+
+    await axios.delete<projectBudgetProps>(
+      `${REACT_APP_API_URL}/projects/${projectId}/budgets/${idx}`,
+
+      {
+        withCredentials: true
+      }
+    );
   };
 
   const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -155,17 +158,16 @@ function BudgetInfo() {
   };
 
   const handleSaveContent = async () => {
-    const response = await axios.patch(
+    await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {
-        budget_synopsis: budgetPlan,
+        budgetSynopsis: budgetPlan,
         goalAmout: grossAmount
       },
       {
         withCredentials: true
       }
     );
-    console.log('프로젝트저장', response);
   };
   return (
     <Container>
@@ -183,33 +185,47 @@ function BudgetInfo() {
             예산으로 시작합니다.)
             <br />
           </p>
-          <BudgetListContainer ref={ulElement}>
-            {budgetList.map((el) => (
-              <li key={el}>
-                <div>
-                  <label>예산 내용</label>
-                  <input
-                    type="text"
-                    id={String(el)}
-                    onChange={handleInput('content')}
-                    placeholder="예산 항목 추가를 누르셔야 작성하신 항목이 반영됩니다"
-                  />
-                </div>
-                <div>
-                  <label>금액</label>
-                  <input
-                    type="number"
-                    id={String(el)}
-                    onChange={handleInput('amount')}
-                  />
-                </div>
-                <EditButton onClick={(e) => editButton(el, e)}>수정</EditButton>
 
-                <EditButton onClick={() => removeBudgetList(el)}>
-                  삭제
-                </EditButton>
-              </li>
+          <BudgetListContainer ref={ulElement}>
+            {/* 작성했었던 내용불러오기 */}
+            {bringList.map((item: BudgetListProps) => (
+              <BudgetItems
+                key={item.id}
+                id={item.id}
+                item={item}
+                handleInput={handleInput}
+                removeBringList={removeBringList}
+              />
             ))}
+            {/* 예산 일정 지금추가한거 불러오기 */}
+            {budgetList.map((list: BringListProps, idx) => (
+              <BudgetAddItems
+                key={idx}
+                handleInput={handleInput}
+                removeBudgetList={removeBudgetList}
+                list={list}
+                idx={idx}
+              />
+            ))}
+            {/* 입력input */}
+            <li>
+              <div>
+                <label>예산 내용</label>
+                <input
+                  type="text"
+                  onChange={handleInput('content')}
+                  value={budgetContent.content}
+                />
+              </div>
+              <div>
+                <label>금액</label>
+                <input
+                  type="number"
+                  onChange={handleInput('amount')}
+                  value={budgetContent.amount}
+                />
+              </div>
+            </li>
           </BudgetListContainer>
           {isVaild && (
             <ErrorMessage>
@@ -232,7 +248,7 @@ function BudgetInfo() {
           <p>
             프로젝트에 쓰일 예산 항목을 적는 항목입니다. 자세하게 작성해주세요.
           </p>
-          <TextareaCss onChange={handleTextArea} />
+          <TextareaCss onChange={handleTextArea} value={budgetPlan || ''} />
           <FocusMemo>
             펀딩 예산이 어떤 식으로 사용 될지 상세 내용을 작성해 주세요.
           </FocusMemo>
