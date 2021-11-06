@@ -49,6 +49,7 @@ export const Li = styled.li`
   margin: 7.5px 30px 7.5px 0;
   & a {
     display: inline-block;
+    cursor: pointer;
   }
   & img {
     width: 30px;

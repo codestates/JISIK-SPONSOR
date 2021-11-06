@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import styled from 'styled-components';
 import postcardimg from '../../../images/postcardimg.png';
+import { REACT_APP_API_URL } from '../../../config';
 
 interface PercentProp {
   percent: number;
@@ -8,6 +9,10 @@ interface PercentProp {
 
 interface CategoryProp {
   background: string;
+}
+
+interface ThumbnailProp {
+  thumbnail: string;
 }
 
 export const Li = styled.li`
@@ -27,11 +32,14 @@ export const Li = styled.li`
   }
 `;
 
-export const ImageWrap = styled.div`
+export const ImageWrap = styled.div<ThumbnailProp>`
   position: relative;
   width: 100%;
   height: 165px;
-  background-image: url(${postcardimg});
+  background-image: ${(props) =>
+    props.thumbnail
+      ? `url(${REACT_APP_API_URL + props.thumbnail})`
+      : `url(${postcardimg})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;

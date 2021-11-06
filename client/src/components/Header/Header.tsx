@@ -1,16 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { showLoginModal, showSignupModal } from 'store/modal-slice';
+import {
+  HeaderTag,
+  NavContainer,
+  NavbarL,
+  NavbarR,
+  NavButton,
+  SearchBoxWrap
+} from './styled';
 import Logo from 'images/logo-img.png';
 import Search from 'images/icons/search-icon.png';
-import { NavContainer, NavbarL, NavbarR, NavButton } from './styled';
-import { useDispatch } from 'react-redux';
-import { showLoginModal, showSignupModal } from 'store/modal-slice';
+import XIcon from 'images/icons/search-x-icon.png';
+import { searchContent } from '../../store/headerSearch-slice';
 
 const Header = () => {
+  // const history: any = useHistory();
   const dispatch = useDispatch();
+  const history: any = useHistory();
+
+  const [search, setSearch] = useState<string>('');
+  const [searchHeader, setSearchHeader] = useState<boolean>(false);
+
+  const searchHandle = (e: any) => {
+    setSearch(e.target.value);
+  };
+
+  const moveBoardPageFn = (e: any) => {
+    if (e.key === 'Enter' || e.target.localName === 'span') {
+      dispatch(searchContent(search));
+      history.push({ pathname: '/board', state: { search } });
+      setSearchHeader(false);
+      setSearch('');
+    }
+  };
+
+  const searchBtnClick = () => {
+    setSearchHeader(!searchHeader);
+  };
+
   return (
-    <>
-      <NavContainer>
+    <HeaderTag>
+      <NavContainer searchHeader={searchHeader}>
         <NavbarL>
           <Link to="/board">
             <span>모든 프로젝트</span>
@@ -26,7 +58,7 @@ const Header = () => {
           <img src={Logo} alt="logo-image" />
         </Link>
         <NavbarR>
-          <img src={Search} alt="search-icon" />
+          <img src={Search} alt="search-icon" onClick={searchBtnClick} />
           <NavButton onClick={() => dispatch(showLoginModal(true))}>
             로그인
           </NavButton>
@@ -35,7 +67,19 @@ const Header = () => {
           </NavButton>
         </NavbarR>
       </NavContainer>
-    </>
+      <SearchBoxWrap searchHeader={searchHeader}>
+        <img src={XIcon} alt="search-icon" onClick={searchBtnClick} />
+        <label>
+          <input
+            value={search}
+            placeholder="검색어를 입려하세요."
+            onChange={(e) => searchHandle(e)}
+            onKeyPress={(e) => moveBoardPageFn(e)}
+          />
+          <span onClick={(e) => moveBoardPageFn(e)}>검색</span>
+        </label>
+      </SearchBoxWrap>
+    </HeaderTag>
   );
 };
 
