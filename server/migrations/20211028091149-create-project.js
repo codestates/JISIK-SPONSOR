@@ -36,10 +36,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       start_date: {
-        type: Sequelize.DATE
+        type: 'TIMESTAMP'
       },
       end_date: {
-        type: Sequelize.DATE
+        type: 'TIMESTAMP'
       },
       status: {
         allowNull: false,

@@ -1,0 +1,10 @@
+extends ../layout 
+
+block content 
+  div(style={'padding': '40px', 'color': '#343A40', 'line-height': '160%', 'background': '#F1F3F5'})
+    h3(style={'margin': '0 0 10px 0', 'font-size': '1.2rem'}) #{name}님, 안녕하세요.
+    p(style={'margin': '0', 'font-size': '1rem'}) 신청하신 '#{project.title}' 프로젝트가 펀딩에 실패하였습니다.
+    p(style={'margin': '0', 'font-size': '1rem'}) 이 메일은 자동적으로 발송되는 메일입니다.
+    p(style={'margin': '0', 'font-size': '1rem'}) 펀딩에는 실패하였지만 연구자님의 연구를 항상 응원합니다.
+    p(style={'margin': '0 0 30px 0', 'font-size': '1rem'})  감사합니다!
+    a(href= resourceURL + '/detailed-project/' + project.path style={'display': 'inline-block', 'padding': '15px 25px', 'font-size': '1.2rem', 'font-weight': '500', 'border-radius': '5px', 'color': '#ffffff', 'background': '#7950F2', 'text-decoration': 'none'}) 프로젝트 확인하기

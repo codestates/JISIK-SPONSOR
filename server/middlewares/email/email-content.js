@@ -39,11 +39,11 @@ module.exports = {
     };
     return emailContent;
   },
-  successSpon: (email, name, url, order) => {
+  sponsorSuccess: (email, name, url, order) => {
     const title = '프로젝트를 후원해주셔서 감사합니다!';
     const fileURL = path.join(
       __dirname,
-      '../../templates/emails/success-spon.pug'
+      '../../templates/emails/sponsorship-success.pug'
     );
 
     const options = {
@@ -128,6 +128,124 @@ module.exports = {
       from: '"지식스폰서" <staff@jisiksponsor.com>',
       to: email,
       subject: `${name}님의 프로젝트가 승인 거부되었습니다!`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
+  fundingStart: (email, name, project) => {
+    // 프로젝트가 시작된 모든 이에게 한 번씩 메일 전송
+    const title = '프로젝트 펀딩이 시작되었습니다!';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-funding-start.pug'
+    );
+
+    const options = {
+      title,
+      name,
+      project,
+      resourceURL: process.env.RESOURCE_URL
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: email,
+      subject: `${name}님의 프로젝트 펀딩이 시작되었습니다!`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
+  fundingSuccess: (email, name, project) => {
+    // 프로젝트 성공한 모든 이에게 한 번씩 메일 전송
+    const title = '프로젝트가 펀딩에 성공하였습니다!';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-funding-success.pug'
+    );
+
+    const options = {
+      title,
+      name,
+      project,
+      resourceURL: process.env.RESOURCE_URL
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: email,
+      subject: `${name}님의 프로젝트가 펀딩에 성공하였습니다!`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
+  fundingCanceled: (email, name, project) => {
+    // 프로젝트 실패한 모든 이에게 한 번씩 메일 전송
+    const title = '프로젝트가 펀딩에 실패하였습니다.';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-funding-canceled.pug'
+    );
+
+    const options = {
+      title,
+      name,
+      project,
+      resourceURL: process.env.RESOURCE_URL
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: email,
+      subject: `${name}님의 프로젝트가 펀딩에 실패하였습니다.`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
+  fundingSuccessToSponsor: (emails, project) => {
+    // 프로젝트에 후원한 모든 이에게 한번에 메일 전송
+    const title = '후원하신 프로젝트가 펀딩에 성공하였습니다!';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-funding-success-to-sponsor.pug'
+    );
+
+    const options = {
+      title,
+      project,
+      resourceURL: process.env.RESOURCE_URL
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: emails,
+      subject: `스폰서님께서 후원하신 프로젝트가 펀딩에 성공하였습니다!`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
+  fundingCanceledToSponsor: (emails, project) => {
+    // 프로젝트에 후원한 모든 이에게 한번에 메일 전송
+    const title = '후원하신 프로젝트가 펀딩에 실패하였습니다.';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/project-funding-canceled-to-sponsor.pug'
+    );
+
+    const options = {
+      title,
+      project,
+      resourceURL: process.env.RESOURCE_URL
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: emails,
+      subject: `스폰서님께서 후원하신 프로젝트가 펀딩에 실패하였습니다.`,
       html: compiledFunction(options)
     };
     return emailContent;
