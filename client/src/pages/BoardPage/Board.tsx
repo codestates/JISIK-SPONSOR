@@ -134,7 +134,7 @@ const Board = () => {
       limit: projectLimit + 1
     });
     if (projectLimit < projectTotal) {
-      setProjectLimit(projectLimit + 9);
+      setProjectLimit(projectLimit + 3);
       setBtnClick(true);
     } else {
       // console.log('불러올 프로젝트가 더이상 없습니다.');

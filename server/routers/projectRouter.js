@@ -3,6 +3,19 @@ const { projects } = require('../controllers');
 const uploadThumbnail = require('../middlewares/uploadFile/projectThumbnail');
 const uploadTeamProfile = require('../middlewares/uploadFile/uploadTeamProfile');
 
+// Project Comments API
+router.get('/comments', projects.comments.getAll);
+
+router
+  .route('/:projectId/comments')
+  .get(projects.comments.getSingle)
+  .post(projects.comments.post);
+
+router
+  .route('/:projectId/comments/:commentId')
+  .patch(projects.comments.patch)
+  .delete(projects.comments.delete);
+
 // Projects API
 router
   .route('/')
@@ -77,17 +90,6 @@ router
   .get(projects.wishes.get)
   .post(projects.wishes.post)
   .delete(projects.wishes.delete);
-
-// Project Comments API
-router
-  .route('/:projectId/comments')
-  .get(projects.comments.get)
-  .post(projects.comments.post);
-
-router
-  .route('/:projectId/comments/:commentId')
-  .patch(projects.comments.patch)
-  .delete(projects.comments.delete);
 
 // Project Sponsors API
 router.get('/:projectId/sponsors', projects.sponsors.get);
