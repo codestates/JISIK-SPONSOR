@@ -1,163 +1,134 @@
+/*eslint-disable*/
 import styled from 'styled-components';
 import cloud from '../../images/cloud.png';
-import question1 from '../../images/question1.png';
-import question2 from '../../images/question2.png';
-import question3 from '../../images/question3.png';
-import bluestar from '../../images/start-blue.png';
-import yellowline from '../../images/YellowLine.png';
-import yellowcircle from '../../images/yellowcircle.png';
 
-export const Container = styled.div`
-  font-size: 50px;
-  font-weight: 600;
-  padding: 70px;
+interface SectionProps {
+  background: string;
+}
+
+interface QuestionSectionProps {
+  deraction: string;
+}
+
+export const Section = styled.section<SectionProps>`
+  padding: 60px 0;
+  background-color: ${(props) =>
+    props.background !== 'image' ? props.background : '#f1f3f5'};
+  background-image: ${(props) =>
+    props.background === 'image' && `url(${cloud})`};
+  background-repeat: ${(props) => props.background === 'image' && 'none'};
+  background-size: ${(props) => props.background === 'image' && 'cover'};
+`;
+
+export const Wrap = styled.div`
+  width: 100%;
+  max-width: 960px;
+  padding: 0 30px;
+  margin: 0 auto;
+  &:nth-child(4) {
+    background: pink;
+  }
+`;
+
+export const BannerSection = styled.div`
   text-align: center;
-  background-image: url(${cloud});
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: 50% 60%;
-  font-family: 'Noto Sans KR', sans-serif;
-  margin-bottom: 30px;
+  & > h1 {
+    font-size: 31.25px;
+    color: #212529;
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 20px;
+  }
+  & > p {
+    font-size: 25px;
+    color: #495057;
+    line-height: 140%;
+  }
+  & > p > strong {
+    color: #7950f2;
+    font-weight: 600;
+  }
 `;
 
-export const Text = styled.div`
-  font-size: 40px;
-  color: #495057;
-  line-height: 1.5;
-  margin-top: 20px;
-  font-weight: 600;
+export const QuestionSection = styled.div<QuestionSectionProps>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  direction: ${(props) => props.deraction === 'right' && 'rtl'};
+  & div:nth-child(1) {
+    width: 55%;
+    padding: ${(props) => (props.deraction === 'right' ? '0 0 0 15px' : '0')};
+    direction: ${(props) => props.deraction === 'right' && 'initial'};
+  }
+  & div:nth-child(2) {
+    width: 45%;
+    padding: ${(props) =>
+      props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
+  }
 `;
 
-export const Container2 = styled.div`
-  padding: 70px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-  margin-bottom: 30px;
+export const ImageWrap = styled.div`
+  & > img {
+    width: 100%;
+  }
 `;
 
-export const Text2 = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-  color: #495057;
-  line-height: 1.5;
-  margin-top: 20px;
+export const TextBoxWrap = styled.div`
+  & > h2 {
+    font-size: 25px;
+    color: #343a40;
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 20px;
+  }
+  & > p {
+    font-size: 16px;
+    color: #495057;
+    line-height: 160%;
+  }
 `;
 
-export const Question = styled.div`
-  background-image: url(${question1});
-  background-size: 35%;
-  background-repeat: no-repeat;
-  background-position: 85% 50%;
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-`;
-
-export const Bluestar1 = styled.div`
-  background-image: url(${bluestar});
-  background-size: 3%;
-  background-position: 4.3% 18.5%;
-  background-repeat: no-repeat;
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-`;
-
-export const YellowLine = styled.div`
-  background-image: url(${yellowline});
-  background-repeat: no-repeat;
-  background-size: 20%;
-  background-position: 7% 67%;
-
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-`;
-
-export const StartProject = styled.div`
+export const StartProjectSection = styled.div`
   text-align: center;
-  color: #eee;
-  background-color: #7048e8;
-  padding: 80px;
-  line-height: 1.5;
-  font-size: 32px;
-`;
-
-export const Button = styled.button`
-  border-radius: 10px;
-  box-sizing: border-box;
-  width: 22%;
-  height: 85px;
-  font-size: 30px;
-  font-weight: 600;
-  border: 3px solid #343a40;
-  box-shadow: 0 5px;
-  margin-top: 50px;
-`;
-
-export const YellowCircle = styled.div`
-  background-image: url(${yellowcircle});
-  background-repeat: no-repeat;
-  background-size: 15%;
-  background-position: 64% 53%;
-
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-`;
-
-export const Container3 = styled.div`
-  padding: 70px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  width: 100%;
-  max-width: 1070px;
-  margin-left: 430px;
-  margin-bottom: 30px;
-`;
-
-export const Question1 = styled.div`
-  background-image: url(${question2});
-  background-size: 35%;
-  background-repeat: no-repeat;
-  background-position: 10% 50%;
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-`;
-
-export const Bluestar2 = styled.div`
-  background-image: url(${bluestar});
-  background-size: 3%;
-  background-position: 45% 18.5%;
-  background-repeat: no-repeat;
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-`;
-
-export const Question3 = styled.div`
-  background-image: url(${question3});
-  background-size: 35%;
-  background-repeat: no-repeat;
-  background-position: 85% 50%;
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
-`;
-
-export const YellowLine2 = styled.div`
-  background-image: url(${yellowline});
-  background-repeat: no-repeat;
-  background-size: 12%;
-  background-position: 20% 54%;
-
-  width: 100%;
-  max-width: 1070px;
-  margin: 0 auto;
+  & > h2 {
+    font-size: 25px;
+    color: #f8f9fa;
+    line-height: 140%;
+    margin-bottom: 30px;
+  }
+  & > div {
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+  }
+  & > div > a {
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+    font-size: 25px;
+    color: #343a40;
+    font-weight: 500;
+    padding: 25px 60px;
+    border-radius: 10px;
+    border: 3px solid #343a40;
+    background-color: #f8f9fa;
+    transition: 0.2s;
+  }
+  & > div > span {
+    z-index: -1;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: '';
+    clear: both;
+    border-radius: 10px;
+    background-color: #343a40;
+  }
+  & div:hover a {
+    transform: translateY(5px);
+  }
 `;

@@ -10,7 +10,7 @@ module.exports = {
       '../../templates/emails/user-email-verifi.pug'
     );
 
-    const options = { title, name, url, siteURL: process.env.CLIENT_ORIGIN };
+    const options = { title, name, url, resourceURL: process.env.RESOURCE_URL };
     const compiledFunction = pug.compileFile(fileURL);
 
     const emailContent = {
@@ -28,7 +28,7 @@ module.exports = {
       '../../templates/emails/user-new-account.pug'
     );
 
-    const options = { title, name, siteURL: process.env.CLIENT_ORIGIN };
+    const options = { title, name, resourceURL: process.env.RESOURCE_URL };
     const compiledFunction = pug.compileFile(fileURL);
 
     const emailContent = {
@@ -51,7 +51,7 @@ module.exports = {
       name,
       url,
       order,
-      siteURL: process.env.CLIENT_ORIGIN
+      resourceURL: process.env.RESOURCE_URL
     };
     const compiledFunction = pug.compileFile(fileURL);
 
@@ -74,7 +74,7 @@ module.exports = {
       title,
       name,
       project,
-      siteURL: process.env.CLIENT_ORIGIN
+      resourceURL: process.env.RESOURCE_URL
     };
     const compiledFunction = pug.compileFile(fileURL);
 
@@ -97,7 +97,7 @@ module.exports = {
       title,
       name,
       project,
-      siteURL: process.env.CLIENT_ORIGIN
+      resourceURL: process.env.RESOURCE_URL
     };
     const compiledFunction = pug.compileFile(fileURL);
 
@@ -120,7 +120,7 @@ module.exports = {
       title,
       name,
       project,
-      siteURL: process.env.CLIENT_ORIGIN
+      resourceURL: process.env.RESOURCE_URL
     };
     const compiledFunction = pug.compileFile(fileURL);
 

@@ -1,12 +1,80 @@
-import React from 'react';
-import { CommentWrapper, WriteContent, Button, CommentLists } from './styled';
+import React, { useState, useEffect } from 'react';
+import { CommentWrapper, WriteContent, Button } from './styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { REACT_APP_API_URL } from 'config';
 import CommentIcon from '../../../images/project-comment.png';
-import DotIcon from '../../../images/icons/dots.png';
-import Person1 from '../../../images/people1.png';
-import Person2 from '../../../images/people2.png';
-import Person3 from '../../../images/people3.png';
+import axios from 'axios';
+import { RootState } from 'index';
+import { Comment, CommentType } from '../type';
+import { showLoginModal } from 'store/modal-slice';
+import CommentBox from './CommentBox';
 
-const Comments = () => {
+const Comments = ({ project, setProject }: any) => {
+  const [comment, setComment] = useState<Comment[]>([]);
+  const [newComment, setNewComment] = useState<string>('');
+
+  const dispatch = useDispatch();
+
+  const projectId = useSelector((state: RootState) => state.projectSt.id);
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
+
+  const url = `${REACT_APP_API_URL}/projects/${projectId}/comments`;
+  const config = {
+    withCredentials: true
+  };
+
+  // 최초 렌더링 시 모든 댓글을 불러오는 함수 한번 실행
+  useEffect(() => {
+    getComments();
+  }, []);
+
+  // 특정 프로젝트의 모든 댓글을 불러오는 함수
+  const getComments = async () => {
+    try {
+      const response = await axios.get<CommentType>(url, config);
+      const commentArr = response.data.comments;
+      setComment(commentArr);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 새로운 댓글을 추가하는 함수
+  const addNewComment = async () => {
+    try {
+      if (!isLogin) {
+        dispatch(showLoginModal(true));
+      }
+
+      if (isLogin && newComment) {
+        const newCommentId = await axios.post<CommentType>(
+          url,
+          { content: newComment },
+          config
+        );
+        console.log(newCommentId);
+
+        setProject({ ...project, comments: project.comments + 1 });
+
+        if (newCommentId) {
+          const newlyCreatedComments = await axios.get<CommentType>(
+            `${REACT_APP_API_URL}/projects/${projectId}/comments`
+          );
+          console.log(newlyCreatedComments);
+          setComment(newlyCreatedComments.data.comments);
+        }
+      }
+      setNewComment('');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 댓글 인풋을 받아오는 함수
+  const handleInputValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNewComment(e.currentTarget.value);
+  };
+
   return (
     <CommentWrapper>
       <WriteContent>
@@ -15,51 +83,35 @@ const Comments = () => {
           <span>댓글</span>
         </div>
         <div>
-          <textarea placeholder="댓글을 입력하세요."></textarea>
+          <textarea
+            placeholder="댓글을 입력하세요."
+            onChange={(e) => {
+              handleInputValue(e);
+            }}
+            value={newComment}
+          ></textarea>
         </div>
         <div>
-          <Button>댓글 쓰기</Button>
+          <Button type="submit" onClick={addNewComment}>
+            댓글 쓰기
+          </Button>
         </div>
       </WriteContent>
-      <CommentLists>
-        <div>
-          <div>
-            <img src={Person1} alt="" />
-            <span>Hana Park</span>
-          </div>
-          <img src={DotIcon} alt="" />
-        </div>
-        <div>
-          <p>정말 좋은 연구를 하고 계시네요! 항상 응원합니다!!</p>
-          <span>2021.10.21</span>
-        </div>
-      </CommentLists>
-      <CommentLists>
-        <div>
-          <div>
-            <img src={Person2} alt="" />
-            <span>Donghyun Cho</span>
-          </div>
-          <img src={DotIcon} alt="" />
-        </div>
-        <div>
-          <p>정말 좋은 연구를 하고 계시네요! 항상 응원합니다!!</p>
-          <span>2021.10.21</span>
-        </div>
-      </CommentLists>
-      <CommentLists>
-        <div>
-          <div>
-            <img src={Person3} alt="" />
-            <span>Taewoong Na</span>
-          </div>
-          <img src={DotIcon} alt="" />
-        </div>
-        <div>
-          <p>정말 좋은 연구를 하고 계시네요! 항상 응원합니다!!</p>
-          <span>2021.10.21</span>
-        </div>
-      </CommentLists>
+      {comment.map((item) => {
+        return (
+          <CommentBox
+            key={item.id}
+            id={item.id}
+            author={item.user.nickname}
+            date={item.created_at}
+            content={item.content}
+            setComment={setComment}
+            setProject={setProject}
+            project={project}
+            getComments={getComments}
+          />
+        );
+      })}
     </CommentWrapper>
   );
 };

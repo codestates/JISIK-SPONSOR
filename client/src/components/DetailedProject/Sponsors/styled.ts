@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SponsorsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: pink;
+  /* background-color: pink; */
   width: 100%;
   max-width: 960px;
   margin: 0 auto;

@@ -1,15 +1,9 @@
 import styled from 'styled-components';
 
-export const ProjectContainer = styled.div`
-  background-color: beige;
-  width: 100vw;
-  padding: 60px 0;
-`;
-
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
@@ -37,6 +31,7 @@ export const ProfileContent = styled.div`
   grid-template-columns: 1fr 2fr;
   grid-gap: 30px 0;
   align-items: center;
+  margin-bottom: 30px;
 
   & > div:first-child {
     display: flex;
@@ -93,28 +88,61 @@ export const ProfileContent = styled.div`
     }
   }
 
-  & > div:nth-child(3) {
-    justify-items: center;
-    align-items: center;
-    grid-column: 2;
+  @media screen and (max-width: 718px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+`;
+
+export const ProjectTeamTitle = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #343a40;
+  margin-bottom: 30px;
+`;
+
+export const Team = styled.div`
+  display: grid;
+  width: 722px;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 30px 0;
+  align-items: center;
+
+  img {
+    height: 120px;
+    width: 200px;
+  }
+
+  span {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #343a40;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  p {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.4;
     color: #495057;
 
-    & > span {
-      font-size: 20px;
+    strong {
       font-weight: 700;
-      line-height: 1.4;
-      color: #343a40;
-      display: inline-block;
-      margin-bottom: 10px;
     }
   }
 
-  @media screen and (max-width: 718px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  > div:last-child {
+    grid-column: 2/3;
   }
 `;

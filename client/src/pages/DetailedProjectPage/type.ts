@@ -40,6 +40,7 @@ export interface Project {
   path: string;
   description: string;
   thumbnail_url: string;
+  category_id: number;
   term: number;
   start_date: string;
   end_date: string;

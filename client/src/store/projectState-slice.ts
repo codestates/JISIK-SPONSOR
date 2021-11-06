@@ -20,7 +20,6 @@ const projectState = createSlice({
     ) => {
       state.id = payload;
     },
-
     getTeamId: (
       state: projectStateProps,
       { payload }: PayloadAction<number>

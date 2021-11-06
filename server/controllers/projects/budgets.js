@@ -43,6 +43,11 @@ module.exports = {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
+      // 요청이 잘못된 경우는 다음을 리턴한다.
+      if (isNaN(amount)) {
+        return res.status(400).json({ message: 'Bad Request!' });
+      }
+
       /**
        *
        * [신규 예산 항목 생성]
@@ -53,7 +58,7 @@ module.exports = {
       const newBudget = await budget_item.create({
         project_id: projectId,
         title,
-        amount
+        amount: String(amount)
       });
 
       // 새로 생성한 예산 항목의 아이디를 반환한다.

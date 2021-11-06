@@ -16,6 +16,9 @@ import userInfoSlice, { UserInfoProps } from 'store/userInfo-slice';
 import projectState, { projectStateProps } from 'store/projectState-slice';
 import hashtagSlice, { projectHashtagProps } from 'store/hashtag-slice';
 import getProjectSlice from 'store/project-slice';
+import DetailPageSlice, { DetailTabs } from 'store/detailedPageBt-slice';
+import headerSearchSlice, { headerSearch } from 'store/headerSearch-slice';
+
 
 // persistConfig는 새로운 persist를 선언한다.
 // key: reducer의 어느 지점에서부터 데이터를 저장할 것인지
@@ -37,6 +40,8 @@ const rootReducer = combineReducers({
   projectSt: projectState,
   hashtag: hashtagSlice,
   project: getProjectSlice
+  detailPage: DetailPageSlice,
+  searchContent: headerSearchSlice
 });
 
 // persistReducer는 persisConfig가 추가된 reducer을 반환한다.
@@ -51,6 +56,7 @@ const store = configureStore({
       }
     })
 });
+
 export interface RootState {
   login: authentification;
   modal: modal;
@@ -61,6 +67,8 @@ export interface RootState {
   projectSt: projectStateProps;
   hashtag: projectHashtagProps;
   project: any;
+  detailPage: DetailTabs;
+  searchContent: headerSearch;
 }
 // persistStore는 새로고침, 종료해도 지속될 store생성
 let persistor = persistStore(store);

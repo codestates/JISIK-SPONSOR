@@ -14,7 +14,7 @@ module.exports = {
         req.query;
 
       // 카테고리 : 기본 값은 없다.
-      if (categoryName === '전체') category = null;
+      if (categoryName === '전체') categoryName = null;
 
       // 상태 : 기본 값은 없다.
       if (

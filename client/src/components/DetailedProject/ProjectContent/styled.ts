@@ -8,7 +8,7 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 60px 30px;
+  padding: 50px 30px;
 `;
 
 export const ProjectHeader = styled.div`
@@ -73,13 +73,14 @@ export const BudgetDetail = styled.div`
 export const Timeline = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
   color: #343a40;
 
-  & > div {
-    width: 210px;
+  > div {
+    width: 500px;
     display: flex;
     justify-content: space-between;
   }
