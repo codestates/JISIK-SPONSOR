@@ -5,16 +5,15 @@ import { Link } from 'react-router-dom';
 import { Section, Wrap, TitleWrap } from './styled';
 import Postcards from '../../ProjectsCards/Postcards/Postcards';
 import { Data, Row } from './type';
+import { REACT_APP_API_URL } from '../../../config';
 
 const InProgressSection = () => {
   const [inProgressProjects, setInProgressProjects] = useState<Array<Row>>([]);
 
   const getInProgressProjects = async () => {
     try {
-      const response = await axios.get<Data>(
-        'http://localhost:4000/projects?sort=asc&limit=6',
-        { withCredentials: true }
-      );
+      const url = REACT_APP_API_URL + '/projects?sort=asc&limit=6';
+      const response = await axios.get<Data>(url, { withCredentials: true });
       setInProgressProjects(response.data.projects.rows);
     } catch (err) {
       console.error(err);

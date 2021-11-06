@@ -19,7 +19,6 @@ import getProjectSlice from 'store/project-slice';
 import DetailPageSlice, { DetailTabs } from 'store/detailedPageBt-slice';
 import headerSearchSlice, { headerSearch } from 'store/headerSearch-slice';
 
-
 // persistConfig는 새로운 persist를 선언한다.
 // key: reducer의 어느 지점에서부터 데이터를 저장할 것인지
 // storage: 웹의 localstorage를 뜻한다.
@@ -39,7 +38,7 @@ const rootReducer = combineReducers({
   userInfo: userInfoSlice,
   projectSt: projectState,
   hashtag: hashtagSlice,
-  project: getProjectSlice
+  project: getProjectSlice,
   detailPage: DetailPageSlice,
   searchContent: headerSearchSlice
 });

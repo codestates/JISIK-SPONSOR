@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Postcards from '../../ProjectsCards/Postcards/Postcards';
 import { Section, Wrap, TitleWrap } from './styled';
 import { Data, Row } from '../../ProjectsCards/type';
+import { REACT_APP_API_URL } from '../../../config';
 
 const AchievedSection = () => {
   // 변수 선언
@@ -12,11 +13,9 @@ const AchievedSection = () => {
 
   const getAchievedProjects = async () => {
     try {
+      const url = REACT_APP_API_URL + '/projects?status=achieved&limit=3';
       // get 요청
-      const response = await axios.get<Data>(
-        'http://localhost:4000/projects?status=achieved&limit=3',
-        { withCredentials: true }
-      );
+      const response = await axios.get<Data>(url, { withCredentials: true });
       // 변수에 업데이트
       setAchievedProjects(response.data.projects.rows);
     } catch (err) {

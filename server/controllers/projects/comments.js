@@ -1,8 +1,51 @@
 const { user, project, comment } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
+const adminAuthen = require('../../middlewares/authorized/adminAuthen');
+const { Op } = require('sequelize');
 
 module.exports = {
-  get: async (req, res) => {
+  getAll: async (req, res) => {
+    try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
+      // 로그인 인증 검사
+      const userInfo = await userAuthen(req, res);
+
+      // 관리자가 아니고 들어온 쿼리가 없다면 author을 초기화 시킨다.
+      let { author } = req.query;
+      if (!author && userInfo.role_id !== 1) author = userInfo.id;
+
+      // 댓글을 조회할 권한이 없는경우 다음을 리턴한다.
+      if (userInfo.id !== Number(author) && userInfo.role_id !== 1) {
+        return res.status(403).json({ message: 'Not authorized!' });
+      }
+
+      // 모든 댓글을 조회한다.
+      const comments = await comment.findAll({
+        where: {
+          [Op.and]: [author ? { user_id: Number(author) } : null]
+        },
+        attributes: ['id', 'project_id', 'content', 'created_at', 'updated_at'],
+        include: [
+          {
+            model: user, // users 테이블 조인
+            attributes: ['nickname', 'profile_url']
+          }
+        ]
+      });
+
+      // 모든 댓글을 반환한다.
+      res.status(200).json({ comments });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Server error' });
+    }
+  },
+  getSingle: async (req, res) => {
     try {
       /**
        *
