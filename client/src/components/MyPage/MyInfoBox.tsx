@@ -1,8 +1,13 @@
 import { RootState } from 'index';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-
+import { REACT_APP_API_URL } from 'config';
+import { UserInfoProps } from 'store/userInfo-slice';
+import { getUserInfo } from 'store/userInfo-slice';
+import { useState, useEffect } from 'react';
 import { MyInfoWrapper, MyInfoTabs, Cards, TabBtn } from './styled';
+import { PostcardsWrap, Ul } from '../ProjectsCards/Postcards/styled';
+import { Row, Data } from './type';
+import Postcards from '../ProjectsCards/Postcards/Postcards';
 
 import {
   myProject,
@@ -10,14 +15,60 @@ import {
   favorites,
   myComments
 } from 'store/mypage-slice';
+import axios from 'axios';
 
 const MyInfoBox = () => {
-  const myPageTab = useSelector((state: RootState) => state.myPage);
-  const dispatch = useDispatch();
+  const [projects, setProjects] = useState<Row[]>([]);
 
+  const myPageTab = useSelector((state: RootState) => state.myPage);
+  const userInfo = useSelector((state: RootState) => state.userInfo);
+
+  const dispatch = useDispatch();
+  const config = { withCredentials: true };
+
+  //최초 렌더링 시 로그인한 유저의 정보를 받아오고, 나의 프로젝트탭이 보여지게 세팅
   useEffect(() => {
     dispatch(myProject());
+    fetchUserInfo();
+    getMyProject();
+    getMycomment();
   }, []);
+
+  //나의 프로젝트를 받아오는 함수
+  const getMyProject = async () => {
+    try {
+      const url = `${REACT_APP_API_URL}/projects?author=${id}`;
+      const response = await axios.get<Data>(url, config);
+      setProjects(response.data.projects.rows);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //나의 댓글을 불러오는 함수
+  const getMycomment = async () => {
+    try {
+      const url = `${REACT_APP_API_URL}/projects/comments?author=${id}`;
+      const response = await axios.get<Data>(url, config);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 로그인한 유저의 정보를 받아오는 함수
+  const fetchUserInfo = async () => {
+    try {
+      const url = `${REACT_APP_API_URL}/users/me`;
+      const config = { withCredentials: true };
+      const response = await axios.get<UserInfoProps>(url, config);
+      dispatch(getUserInfo(response.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const { id } = userInfo.userInfo;
 
   return (
     <MyInfoWrapper>
@@ -48,11 +99,11 @@ const MyInfoBox = () => {
         </TabBtn>
       </MyInfoTabs>
       {myPageTab.myProject && (
-        <Cards>
-          <div>Card 1</div>
-          <div>Card 2</div>
-          <div>Card 3</div>
-        </Cards>
+        <PostcardsWrap>
+          <Ul>
+            <Postcards projects={projects} />
+          </Ul>
+        </PostcardsWrap>
       )}
       {myPageTab.backedProject && (
         <Cards>
