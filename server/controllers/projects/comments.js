@@ -35,7 +35,8 @@ module.exports = {
             model: user, // users 테이블 조인
             attributes: ['nickname', 'profile_url']
           }
-        ]
+        ],
+        order: [['id', 'DESC']]
       });
 
       // 모든 댓글을 반환한다.
@@ -74,7 +75,8 @@ module.exports = {
             model: user, // users 테이블 조인
             attributes: ['nickname', 'profile_url']
           }
-        ]
+        ],
+        order: [['id', 'DESC']]
       });
 
       // 모든 댓글을 반환한다.

@@ -35,7 +35,7 @@ const Board = () => {
     author: '',
     categoryName: locationCategoryState,
     offset: '1',
-    limit: projectLimit,
+    limit: projectLimit, // 21 토탈 : 15
     order: '',
     sort: '',
     search: searchText
@@ -58,27 +58,26 @@ const Board = () => {
   // GET + 쿼리 AJAX (optionQuerys 변화 있을 시 실행)
   const getQueryProjects = async () => {
     try {
+      // 객체를 문자열로 변환
       const keys: any[] = Object.keys(optionQuerys);
       const values: any[] = Object.values(optionQuerys);
-
       const str = keys.reduce((acc: string, cur: string, idx: number) => {
         if (idx !== keys.length - 1) return acc + cur + '=' + values[idx] + '&';
         return acc + cur + '=' + values[idx];
       }, '');
 
+      // AJAX 한다.
       const url = REACT_APP_API_URL + '/projects?' + str;
-      // console.log(url);
-
       const response = await axios.get<Data>(url, {
         withCredentials: true
       });
-      // console.log(response.data.projects);
 
+      // 상태 초기화 (프로젝트의 데이터와 토탈)
       setAllProjects(response.data.projects.rows);
       setProjectTotal(response.data.projects.count);
 
+      // 스크롤 이벤트
       if (btnClick) {
-        // console.dir(document.body);
         scrollFn(document.body.clientHeight - 1200);
         setBtnClick(false);
       }
@@ -129,15 +128,18 @@ const Board = () => {
 
   // 프로젝트 더 불러오기
   const moreGetProjects = () => {
-    setOptionQuerys({
-      ...optionQuerys,
-      limit: projectLimit + 1
-    });
+    // 그런데 요청한 것이 토달보다 크면 안된다. 크면 => 리렌더링 X 경고문 O
     if (projectLimit < projectTotal) {
+      // 초기화 : 상태를 맞춰주는 것이다.
       setProjectLimit(projectLimit + 3);
+      // 쿼리문 변화 => 리렌더링
+      setOptionQuerys({
+        ...optionQuerys,
+        limit: projectLimit + 3
+      });
+      // 스크롤 이벤트
       setBtnClick(true);
     } else {
-      // console.log('불러올 프로젝트가 더이상 없습니다.');
       setBtnMessage('불러올 프로젝트가 더이상 없습니다.');
     }
   };
