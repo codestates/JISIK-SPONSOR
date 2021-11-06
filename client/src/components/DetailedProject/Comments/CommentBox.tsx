@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CommentContent,
   CommentLists,
@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import DotIcon from '../../../images/icons/dots.png';
 import Person1 from '../../../images/people1.png';
-
 import axios from 'axios';
 
 interface CommentProps {
@@ -24,9 +23,8 @@ interface CommentProps {
   content: string;
   setComment: (data: Comment[]) => void;
   setProject: (data: any) => void;
+  getComments: () => void;
   project: any;
-  modifyContent: string;
-  setModifyContent: (data: string) => void;
 }
 
 const CommentBox = ({
@@ -36,20 +34,23 @@ const CommentBox = ({
   content,
   setComment,
   setProject,
-  project,
-  modifyContent,
-  setModifyContent
+  getComments,
+  project
 }: CommentProps) => {
   const [dotButton, setDotButton] = useState<boolean>(false);
   const [showBox, setShowBox] = useState<boolean>(false);
+  const [newContent, setnewContent] = useState<string>('');
 
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
-  const url = `${REACT_APP_API_URL}/projects/${projectId}/comments`;
   const config = {
     withCredentials: true
   };
+
+  useEffect(() => {
+    setnewContent(content);
+  }, []);
 
   const handleDotButton = () => {
     setDotButton(!dotButton);
@@ -61,23 +62,16 @@ const CommentBox = ({
     setDotButton(false);
   };
 
-  // 특정 프로젝트의 모든 댓글을 불러오는 함수
-  const getComments = async () => {
-    try {
-      const response = await axios.get<CommentType>(url, config);
-      const commentArr = response.data.comments;
-      console.log(commentArr);
-      setComment(commentArr);
-    } catch (err) {
-      console.log(err);
-    }
+  // 댓글 수정 입력을 받아와 저장하는 함수
+  const editCommentInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const editComment = e.target.value;
+    setnewContent(editComment);
   };
 
   // 해당 댓글을 수정하는 요청을 보내는 함수
   const modifyCommentReq = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const body = { content: modifyContent };
+    const body = { content: newContent };
     const commentId = e.currentTarget.id;
-    console.log(commentId);
     const url = `${REACT_APP_API_URL}/projects/${projectId}/comments/${commentId}`;
 
     try {
@@ -117,13 +111,6 @@ const CommentBox = ({
     }
   };
 
-  // 댓글 수정 입력을 받아와 저장하는 함수
-  const editCommentInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    const editComment = e.target.value;
-    setModifyContent(editComment);
-  };
-
   return (
     <CommentLists key={id}>
       <div>
@@ -161,7 +148,7 @@ const CommentBox = ({
             <ModiInput
               type="text"
               onChange={(e) => editCommentInput(e)}
-              value={modifyContent}
+              value={newContent}
             />
           </ModiBox>
           <ModiButtonGroup>

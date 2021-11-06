@@ -12,7 +12,6 @@ import CommentBox from './CommentBox';
 const Comments = ({ project, setProject }: any) => {
   const [comment, setComment] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState<string>('');
-  const [modifyContent, setModifyContent] = useState<string>('');
 
   const dispatch = useDispatch();
 
@@ -34,7 +33,6 @@ const Comments = ({ project, setProject }: any) => {
     try {
       const response = await axios.get<CommentType>(url, config);
       const commentArr = response.data.comments;
-      console.log(commentArr);
       setComment(commentArr);
     } catch (err) {
       console.log(err);
@@ -66,7 +64,6 @@ const Comments = ({ project, setProject }: any) => {
           setComment(newlyCreatedComments.data.comments);
         }
       }
-      setModifyContent(newComment);
       setNewComment('');
     } catch (err) {
       console.log(err);
@@ -111,8 +108,7 @@ const Comments = ({ project, setProject }: any) => {
             setComment={setComment}
             setProject={setProject}
             project={project}
-            modifyContent={modifyContent}
-            setModifyContent={setModifyContent}
+            getComments={getComments}
           />
         );
       })}
