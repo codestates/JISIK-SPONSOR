@@ -35,6 +35,7 @@ export const Category = styled.div`
   > button {
     border: none;
     background: none;
+    cursor: pointer;
   }
 
   > button > img {

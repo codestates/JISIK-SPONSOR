@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+// import { PostcardsWrap, Ul } from '../ProjectsCards/Postcards/styled';
 
 interface MypageTab {
   myProject?: boolean;
@@ -85,11 +86,6 @@ export const MyInfoWrapper = styled.div`
 export const MyInfoTabs = styled.div`
   display: flex;
   gap: 15px;
-
-  @media screen and (max-width: 893px) {
-    flex-wrap: wrap;
-    /* position: sticky; */
-  }
 `;
 
 const selectedTab = css`

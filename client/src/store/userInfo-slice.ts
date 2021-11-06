@@ -28,8 +28,7 @@ const userInformation = createSlice({
       state: UserInfoProps,
       { payload }: PayloadAction<UserInfoProps>
     ) => {
-      console.log('payload', payload);
-      state = payload;
+      state.userInfo = payload.userInfo;
     }
   }
 });

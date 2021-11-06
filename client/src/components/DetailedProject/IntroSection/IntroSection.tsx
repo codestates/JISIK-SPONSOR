@@ -12,6 +12,7 @@ import {
 } from './styled';
 import { StyledButton } from 'components/Button';
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import CategoryIcon1 from '../../../images/icons/category-icon-1.png';
@@ -28,16 +29,10 @@ import Wormhole from '../../../images/wormhole.jpg';
 // import Gauge from '../../../images/gauge.png';
 import { Data, FavState, Tags, Tag } from '../type';
 import { Line } from 'rc-progress';
-
-// interface Test {
-//   percent: string;
-//   strokeWidth: string;
-//   strokeColor: string;
-// }
+import { RootState } from 'index';
 
 const IntroSection = () => {
   const [favorite, setFavorite] = useState<boolean>(false);
-  // const [path, setPath] = useState<string>('');
   const [projectId, setProjectId] = useState<number>(1);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -48,12 +43,12 @@ const IntroSection = () => {
   const [tags, setTags] = useState<Tag[]>([]);
   const [dDay, setdDay] = useState<number>(0);
 
-  // console.log(path, tags);
-
   const history = useHistory();
   const WishesUrl = `${REACT_APP_API_URL}/projects/${projectId}/wishes`;
   const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
   const config = { withCredentials: true };
+
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
   const percentage = Number((pledged / goal).toFixed(2)) * 100;
 
@@ -175,7 +170,7 @@ const IntroSection = () => {
           {categoryId === 8 && <img src={CategoryIcon8} alt="category-icon" />}
           <span>{category}</span>
         </div>
-        {favorite ? (
+        {isLogin && favorite ? (
           <button onClick={FavoriteHandler}>
             <img src={YellowStar} alt="yellow-star" />
           </button>
