@@ -1,11 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Container,
   ProjectBody,
   FocusMemo,
   TextareaCss,
   SaveButton,
-  EditButton,
   ErrorMessage
 } from '../commonStyled';
 import {
@@ -23,6 +22,8 @@ import axios from 'axios';
 import { REACT_APP_API_URL } from 'config';
 import { RootState } from 'index';
 import { useSelector } from 'react-redux';
+import TeamItems from './TeamItems';
+import TeamAddItems from './TeamAddItems';
 interface TeamMemoProps {
   memberMemo: boolean;
   teamMemo: boolean;
@@ -31,7 +32,7 @@ interface TeamMemoProps {
 }
 
 interface TeamContentProps {
-  content: string;
+  name: string;
   bio: string;
 }
 interface TeamTextProps {
@@ -40,11 +41,25 @@ interface TeamTextProps {
   researchWord: string;
 }
 
+// interface TeamMemberProps {
+//   id: number;
+//   name: string;
+//   bio: string;
+// }
+
+interface projectTeamProps {
+  id: number;
+}
 function TeamInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
+  const { projects } = useSelector((state: RootState) => state.project);
   const teamId = useSelector((state: RootState) => state.projectSt.teamId);
-  const [memberList, setMemberList] = useState<number[]>([0]);
+  const [memberList, setMemberList] = useState<TeamContentProps[]>([]);
+  const [memberId, setMemberId] = useState<number[]>([]);
+  const [bringList, setBringList] = useState<any>(
+    projects.project_team_members
+  );
   const [imgSrc, setImgSrc] = useState<string>('');
   const [showMemo, setShowMemo] = useState<TeamMemoProps>({
     memberMemo: false,
@@ -53,7 +68,7 @@ function TeamInfo() {
     teamNameMemo: false
   });
   const [teamContent, setTeamContent] = useState<TeamContentProps>({
-    content: '',
+    name: '',
     bio: ''
   });
   const [teamText, setTeamText] = useState<TeamTextProps>({
@@ -64,6 +79,13 @@ function TeamInfo() {
 
   const [isVaild, setIsVaild] = useState(false);
 
+  useEffect(() => {
+    setTeamText({
+      teamName: projects.project_teams[0].team_name || '',
+      teamIntro: projects.project_teams[0].team_description || '',
+      researchWord: projects.researcher_word || ''
+    });
+  }, []);
   const handleInput =
     (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setTeamContent({
@@ -85,90 +107,65 @@ function TeamInfo() {
       });
     };
   const addMemberList = async () => {
-    const { content, bio } = teamContent;
-    if (!content || !bio) {
+    const { name, bio } = teamContent;
+    if (!name || !bio) {
       setIsVaild(true);
       return;
     }
-    setMemberList([...memberList, memberList[memberList.length - 1] + 1]);
-    handleDisable();
-    console.log(projectId, teamId);
-    const response = await axios.post(
+
+    setMemberList([
+      ...memberList,
+      {
+        name: name,
+        bio: bio
+      }
+    ]);
+
+    const response = await axios.post<projectTeamProps>(
       `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/members`,
       {
-        name: content,
+        name: name,
         bio: bio
       },
       {
         withCredentials: true
       }
     );
-    console.log('팀원생성', response);
+    setMemberId([...memberId, response.data.id]);
     setTeamContent({
-      content: '',
+      name: '',
       bio: ''
     });
     setIsVaild(false);
   };
 
-  const removeTeamList = (idx: number) => {
-    if (memberList.length === 1) return;
-    const filter = memberList.filter((list) => list !== idx);
-    console.log(filter);
-    setMemberList(filter);
-  };
+  const removeTeamList = async (idx: number) => {
+    const copyList = memberList.slice();
+    const copyId = memberId.slice();
+    copyList.splice(idx, 1);
+    copyId.splice(idx, 1);
+    setMemberList(copyList);
+    setMemberId(copyId);
+    let removeId = memberId[idx];
 
-  const handleDisable = (idx?: number) => {
-    // 버튼이 '완료'일때 누르면 input창을 다시 disable상태로 변경
-
-    if (idx || idx === 0) {
-      ulElement.current?.children[idx].children[0].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      ulElement.current?.children[idx].children[1].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      return;
-    }
-
-    // 항목을 추가 했을 때 추가한걸 제외한 나머지 input을 disable로 변경
-    let length = ulElement.current?.children.length;
-    if (!length) return;
-    for (let i = 0; i < length; i++) {
-      ulElement.current?.children[i].children[0].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      ulElement.current?.children[i].children[1].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-    }
-  };
-
-  const editButton = (idx: number, e: React.MouseEvent<HTMLButtonElement>) => {
-    // textContent === '수정'이라면 disable해제 후 textContent를 '완료'로 변경
-    if (e.currentTarget.textContent === '수정') {
-      let length = ulElement.current?.children.length;
-      if (!length) return;
-      for (let i = 0; i < length; i++) {
-        let content = ulElement.current?.children[i].children[0].children[1];
-        let amount = ulElement.current?.children[i].children[1].children[1];
-        if (!content || !amount) return;
-        if (Number(content.getAttribute('id')) === idx) {
-          content.removeAttribute('disabled');
-          amount.removeAttribute('disabled');
-          e.currentTarget.textContent = '완료';
-          return;
-        }
+    await axios.delete<projectTeamProps>(
+      `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/members/${removeId}`,
+      {
+        withCredentials: true
       }
-    } else {
-      // textContent === '완료'라면 textContent를 '수정'로 변경 하고 disable할함수실행
-      e.currentTarget.textContent = '수정';
-      handleDisable(idx);
-    }
+    );
+  };
+
+  const removeBringList = async (idx: number) => {
+    const filter = memberList.filter((list: any) => list.id !== idx);
+    setBringList(filter);
+
+    await axios.delete<projectTeamProps>(
+      `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/members/${idx}`,
+      {
+        withCredentials: true
+      }
+    );
   };
 
   const handleCoverIma = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,23 +179,19 @@ function TeamInfo() {
 
       const formData = new FormData();
       formData.append('image', imageFile);
-      console.log('@@', formData.get('image'));
-      axios
-        .post(
-          `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/profile`,
-          formData,
-          {
-            withCredentials: true
-          }
-        )
-        .then((res) => console.log(res));
+      axios.post(
+        `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/profile`,
+        formData,
+        {
+          withCredentials: true
+        }
+      );
     }
   };
 
   const handleSaveContent = async () => {
     const { teamName, teamIntro, researchWord } = teamText;
-    console.log(researchWord);
-    const response = await axios.patch(
+    await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}`,
       {
         teamName: teamName,
@@ -208,7 +201,15 @@ function TeamInfo() {
         withCredentials: true
       }
     );
-    console.log('프로젝트저장', response);
+    await axios.patch(
+      `${REACT_APP_API_URL}/projects/${projectId}`,
+      {
+        researcherWord: researchWord
+      },
+      {
+        withCredentials: true
+      }
+    );
   };
   return (
     <Container>
@@ -223,30 +224,49 @@ function TeamInfo() {
         >
           <h3>프로젝트 팀원 소개</h3>
           <AddTeamMember ref={ulElement}>
-            {memberList.map((el) => (
-              <li key={el}>
-                <div>
-                  <label>이름</label>
-                  <input
-                    type="text"
-                    id={String(el)}
-                    onChange={handleInput('content')}
-                    placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
-                  />
-                </div>
-                <div>
-                  <label>간단 소개</label>
-                  <input
-                    type="text"
-                    id={String(el)}
-                    onChange={handleInput('bio')}
-                    placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
-                  />
-                </div>
-                <EditButton onClick={(e) => editButton(el, e)}>수정</EditButton>
-                <EditButton onClick={() => removeTeamList(el)}>삭제</EditButton>
-              </li>
+            {/* 작성했었던 내용불러오기 */}
+            {bringList.map((item: any) => (
+              <TeamItems
+                key={item.id}
+                id={item.id}
+                item={item}
+                handleInput={handleInput}
+                removeBringList={removeBringList}
+              />
             ))}
+
+            {/* 팀원 지금추가한거 불러오기 */}
+            {memberList.map((list: any, idx) => (
+              <TeamAddItems
+                key={idx}
+                handleInput={handleInput}
+                removeTeamList={removeTeamList}
+                list={list}
+                idx={idx}
+              />
+            ))}
+            {/* 입력input */}
+
+            <li>
+              <div>
+                <label>이름</label>
+                <input
+                  type="text"
+                  onChange={handleInput('name')}
+                  placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
+                  value={teamContent.name}
+                />
+              </div>
+              <div>
+                <label>간단 소개</label>
+                <input
+                  type="text"
+                  onChange={handleInput('bio')}
+                  placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
+                  value={teamContent.bio}
+                />
+              </div>
+            </li>
           </AddTeamMember>
           {isVaild && (
             <ErrorMessage>
@@ -267,7 +287,11 @@ function TeamInfo() {
           onBlur={() => setShowMemo({ ...showMemo, teamNameMemo: false })}
         >
           <h3>프로젝트 팀명</h3>
-          <input type="text" onChange={handleTextArea('teamName')} />
+          <input
+            type="text"
+            onChange={handleTextArea('teamName')}
+            value={teamText.teamName}
+          />
           <FocusMemo>프로젝트를 진행하는 팀의 이름을 작명해주세요.</FocusMemo>
         </ProjectTeamName>
 
@@ -277,7 +301,10 @@ function TeamInfo() {
           onBlur={() => setShowMemo({ ...showMemo, teamMemo: false })}
         >
           <h3>프로젝트 팀 소개</h3>
-          <TextareaCss onChange={handleTextArea('teamIntro')} />
+          <TextareaCss
+            onChange={handleTextArea('teamIntro')}
+            value={teamText.teamIntro}
+          />
           <FocusMemo>
             프로젝트를 진행하는 팀 또는 개인을 알려주세요. 이전 프로젝트, 기타
             활동 내용 등을 공개해보세요.
@@ -310,7 +337,10 @@ function TeamInfo() {
           onBlur={() => setShowMemo({ ...showMemo, sentenceMemo: false })}
         >
           <h3>연구자의 한 마디</h3>
-          <TextareaCss onChange={handleTextArea('researchWord')} />
+          <TextareaCss
+            onChange={handleTextArea('researchWord')}
+            value={teamText.researchWord}
+          />
           <FocusMemo>
             후원자들에게 어필 할 수 있는 강력한 한 마디를 작성해주세요.
           </FocusMemo>

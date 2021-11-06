@@ -9,7 +9,6 @@ import {
   FocusMemo,
   TextareaCss,
   SaveButton,
-  EditButton,
   ErrorMessage
 } from '../commonStyled';
 import {
@@ -22,7 +21,8 @@ import {
   AddTimeLineButton,
   TimeLineListContainer
 } from './styled';
-
+import DetailAddItems from './DetailAddItems';
+import DetailItems from './DetailItems';
 interface DetailMemoProps {
   motiveMemo: boolean;
   progressMemo: boolean;
@@ -43,10 +43,25 @@ interface DetailContentProps {
   options: string;
   timeLineDes: string;
 }
+
+interface TimelineListProps {
+  id: number;
+  title: string;
+  goal_date: string;
+}
+
+interface projectDetailProps {
+  id: number;
+}
 function DetailsInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
-  const [timelineList, setTimeLineList] = useState<number[]>([0]);
+  const { projects } = useSelector((state: RootState) => state.project);
+  const [timelineList, setTimeLineList] = useState<TimeLineContentProps[]>([]);
+  const [timeLineId, setTimeLineId] = useState<number[]>([]);
+  const [bringList, setBringList] = useState<TimelineListProps[]>(
+    projects.project_milestones
+  );
   const [showMemo, setShowMemo] = useState<DetailMemoProps>({
     motiveMemo: false,
     progressMemo: false,
@@ -59,7 +74,6 @@ function DetailsInfo() {
     content: '',
     date: ''
   });
-
   const [detailContent, setDetailContent] = useState<DetailContentProps>({
     motive: '',
     progress: '',
@@ -78,10 +92,13 @@ function DetailsInfo() {
     }
     setTimeLineList([
       ...timelineList,
-      timelineList[timelineList.length - 1] + 1
+      {
+        content: content,
+        date: date
+      }
     ]);
-    handleDisable();
-    const response = await axios.post(
+
+    const response = await axios.post<projectDetailProps>(
       `${REACT_APP_API_URL}/projects/${projectId}/milestones`,
       {
         title: content,
@@ -91,7 +108,7 @@ function DetailsInfo() {
         withCredentials: true
       }
     );
-    console.log(response);
+    setTimeLineId([...timeLineId, response.data.id]);
     setTimeLineContent({
       content: '',
       date: ''
@@ -99,10 +116,34 @@ function DetailsInfo() {
     setIsVaild(false);
   };
 
-  const removeTimelineList = (idx: number) => {
-    if (timelineList.length === 1) return;
-    const filter = timelineList.filter((list) => list !== idx);
-    setTimeLineList(filter);
+  const removeTimelineList = async (idx: number) => {
+    const copyList = timelineList.slice();
+    const copyId = timeLineId.slice();
+    copyList.splice(idx, 1);
+    copyId.splice(idx, 1);
+    setTimeLineList(copyList);
+    setTimeLineId(copyId);
+    let removeId = timeLineId[idx];
+    await axios.delete<projectDetailProps>(
+      `${REACT_APP_API_URL}/projects/${projectId}/milestones/${removeId}`,
+      {
+        withCredentials: true
+      }
+    );
+  };
+
+  const removeBringTimeLine = async (idx: number) => {
+    const filter = bringList.filter(
+      (list: TimelineListProps) => list.id !== idx
+    );
+    setBringList(filter);
+
+    await axios.delete<projectDetailProps>(
+      `${REACT_APP_API_URL}/projects/${projectId}/milestones/${idx}`,
+      {
+        withCredentials: true
+      }
+    );
   };
 
   const handleInput =
@@ -121,62 +162,9 @@ function DetailsInfo() {
       });
     };
 
-  const editButton = (idx: number, e: React.MouseEvent<HTMLButtonElement>) => {
-    // textContent === '수정'이라면 disable해제 후 textContent를 '완료'로 변경
-    if (e.currentTarget.textContent === '수정') {
-      let length = ulElement.current?.children.length;
-      if (!length) return;
-      for (let i = 0; i < length; i++) {
-        let content = ulElement.current?.children[i].children[0].children[1];
-        let date = ulElement.current?.children[i].children[1].children[1];
-        if (!content || !date) return;
-        if (Number(content.getAttribute('id')) === idx) {
-          content.removeAttribute('disabled');
-          date.removeAttribute('disabled');
-          e.currentTarget.textContent = '완료';
-          return;
-        }
-      }
-    } else {
-      // textContent === '완료'라면 textContent를 '수정'로 변경 하고 disable할함수실행
-      e.currentTarget.textContent = '수정';
-      handleDisable(idx);
-    }
-  };
-
-  const handleDisable = (idx?: number) => {
-    // 버튼이 '완료'일때 누르면 input창을 다시 disable상태로 변경
-    if (idx || idx === 0) {
-      ulElement.current?.children[idx].children[0].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      ulElement.current?.children[idx].children[1].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      return;
-    }
-
-    // 항목을 추가 했을 때 추가한걸 제외한 나머지 input을 disable로 변경
-    let length = ulElement.current?.children.length;
-
-    if (!length) return;
-    for (let i = 0; i < length - 1; i++) {
-      ulElement.current?.children[i].children[0].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-      ulElement.current?.children[i].children[1].children[1].setAttribute(
-        'disabled',
-        ''
-      );
-    }
-  };
-
   const handleSaveContent = async () => {
     const { motive, progress, goal, options, timeLineDes } = detailContent;
-    const response = await axios.patch(
+    await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {
         project_background: motive,
@@ -189,7 +177,6 @@ function DetailsInfo() {
         withCredentials: true
       }
     );
-    console.log('프로젝트저장', response);
   };
 
   return (
@@ -252,27 +239,49 @@ function DetailsInfo() {
         >
           <h3>프로젝트 타임라인</h3>
           <TimeLineListContainer ref={ulElement}>
-            {timelineList.map((el) => (
-              <li key={el}>
-                <div>
-                  <label>일정 내용</label>
-                  <input
-                    type="text"
-                    id={String(el)}
-                    onChange={handleInput('content')}
-                    placeholder="일정 항목 추가를 누르셔야 작성하신 항목이 반영됩니다"
-                  />
-                </div>
-                <div>
-                  <span>목표 날짜</span>
-                  <input type="date" onChange={handleInput('date')} />
-                </div>
-                <EditButton onClick={(e) => editButton(el, e)}>수정</EditButton>
-                <EditButton onClick={() => removeTimelineList(el)}>
-                  삭제
-                </EditButton>
-              </li>
+            {/* 작성했었던 내용불러오기 */}
+            {bringList.map((item: TimelineListProps) => (
+              <DetailItems
+                key={item.id}
+                id={item.id}
+                item={item}
+                handleInput={handleInput}
+                removeBringTimeLine={removeBringTimeLine}
+              />
             ))}
+            {/* 일정 항목 지금 추가한거 불러오기 */}
+            {timelineList.map((list: TimeLineContentProps, idx) => (
+              <DetailAddItems
+                key={idx}
+                handleInput={handleInput}
+                list={list}
+                idx={idx}
+                removeTimelineList={removeTimelineList}
+              />
+            ))}
+
+            {/* 입력 input */}
+
+            <li>
+              <div>
+                <label>일정 내용</label>
+                <input
+                  type="text"
+                  onChange={handleInput('content')}
+                  placeholder="일정 항목 추가를 누르셔야 작성하신 항목이 반영됩니다"
+                  value={timelineContent.content}
+                />
+              </div>
+              <div>
+                <span>목표 날짜</span>
+                <input
+                  type="date"
+                  onChange={handleInput('date')}
+                  value={timelineContent.date}
+                />
+              </div>
+            </li>
+
             <FocusMemo>
               프로젝트가 어떻게 진행할지 일정 계획을 간단하게 작성해주세요.
             </FocusMemo>

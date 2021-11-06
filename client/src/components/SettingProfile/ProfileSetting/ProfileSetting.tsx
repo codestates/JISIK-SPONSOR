@@ -7,8 +7,41 @@ import {
 } from './styled';
 import { ProjectBody, Container } from 'components/StartProject/commonStyled';
 import coverImg from 'images/icons/cover-image.png';
-
+import { useState } from 'react';
+import { REACT_APP_API_URL } from 'config';
+import axios from 'axios';
 function ProfileSetting() {
+  const [profileContent, setProfileContent] = useState({
+    name: '',
+    bio: ''
+  });
+  const { name, bio } = profileContent;
+  const handleInput =
+    (key: string) =>
+    (
+      e:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
+      setProfileContent({
+        ...profileContent,
+        [key]: e?.target.value
+      });
+    };
+
+  const changeNickname = async () => {
+    const response = await axios.patch(`${REACT_APP_API_URL}/users/me`, {
+      name
+    });
+    console.log('닉네임변경', response);
+  };
+
+  const handleBio = async () => {
+    const response = await axios.patch(`${REACT_APP_API_URL}/users/me`, {
+      bio
+    });
+    console.log('자기소개', response);
+  };
   return (
     <Container>
       <ProjectBody>
@@ -17,8 +50,8 @@ function ProfileSetting() {
 
         <SettingNickName>
           <h3>닉네임</h3>
-          <input />
-          <ChangeButton>변경</ChangeButton>
+          <input onChange={handleInput('name')} />
+          <ChangeButton onClick={changeNickname}>변경</ChangeButton>
         </SettingNickName>
 
         <SettingImg>
@@ -29,12 +62,12 @@ function ProfileSetting() {
             <span>JPG, PNG, GIF - 50MB 파일 제한</span>
           </label>
           <input type="file" id="TeamImg" />
-          <ChangeButton>변경</ChangeButton>
+          <ChangeButton onClick={handleBio}>변경</ChangeButton>
         </SettingImg>
 
         <SettingSelfIntroduction>
           <h3>자기소개</h3>
-          <textarea />
+          <textarea onChange={handleInput('bio')} />
           <ChangeButton>변경</ChangeButton>
         </SettingSelfIntroduction>
       </ProjectBody>

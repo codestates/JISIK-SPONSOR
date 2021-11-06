@@ -3,7 +3,8 @@ import { ModalBody, SignupButton, ErrMsg } from './styled';
 import { showLoginModal, showSignupModal } from '../../store/modal-slice';
 import { useDispatch } from 'react-redux';
 import CheckBox from './CheckBox';
-
+import axios from 'axios';
+import { REACT_APP_API_URL } from 'config';
 interface SignupInfo {
   name: string;
   email: string;
@@ -151,6 +152,18 @@ const SignupInput = () => {
 
     if (isExist() && isAllValid(signupInfo)) {
       try {
+        const response = await axios.post(
+          `${REACT_APP_API_URL}/signup`,
+          {
+            name,
+            email,
+            password
+          },
+          {
+            withCredentials: true
+          }
+        );
+        console.log('회원가입', response);
         resetInfo();
         dispatch(showLoginModal(true));
         dispatch(showSignupModal(false));
