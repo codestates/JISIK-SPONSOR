@@ -5,6 +5,7 @@ export const MobileNavBar = styled.div`
   background-color: #f3f0ff;
   position: sticky;
   bottom: 0;
+  z-index: 10;
 
   > div {
     display: flex;
@@ -43,6 +44,7 @@ export const Menubox = styled.div`
   position: sticky;
   bottom: 0;
   transition: all 0.5s;
+  z-index: 9;
 
   img {
     height: 15%;
