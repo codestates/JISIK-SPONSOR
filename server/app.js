@@ -11,8 +11,8 @@ const { changeProjectStatus } = require('./middlewares/schedule/setScheduler');
 // 작업 예약: 프로젝트 상태 변경 (매일 0시 0분)
 const scheduleData = {
   dayOfWeek: [0, 1, 2, 3, 4, 5, 6],
-  hour: 7,
-  minute: 54
+  hour: 0,
+  minute: 0
 };
 changeProjectStatus(scheduleData);
 
