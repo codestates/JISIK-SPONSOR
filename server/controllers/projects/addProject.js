@@ -31,9 +31,10 @@ module.exports = {
         .replace(/\s+/g, '-'); // 공백을 하이픈으로 변환
 
       // 새로운 프로젝트를 생성한다.
+      const total = await project.count();
       const newProject = await project.create({
         title,
-        path: path + '-' + userInfo.name + '-' + userInfo.id,
+        path: path + '-' + userInfo.name + '-' + (total + 1),
         user_id: userInfo.id
       });
 
