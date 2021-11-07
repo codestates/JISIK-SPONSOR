@@ -12,7 +12,7 @@ const SponsorSection = () => {
         <Section>
             <Wrap>
                 <ButtonWrap>
-                    <ShowButton to="/board">프로젝트 후원하기</ShowButton>
+                    <ShowButton to="/detailed-project">프로젝트 후원하기</ShowButton>
                 </ButtonWrap>
             </Wrap>
         </Section>

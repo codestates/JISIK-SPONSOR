@@ -170,7 +170,6 @@ br {
     }
   }
 }
-
 `;
 
 export default GlobalStyles;

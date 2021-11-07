@@ -5,6 +5,7 @@ import {
   BannerSection,
   QuestionSection,
   ImageWrap,
+  SecondImageWrap,
   TextBoxWrap,
   StartProjectSection
 } from './styled';
@@ -71,9 +72,9 @@ const About = () => {
                 간단하고 빠르게 자신의 프로젝트를 올릴 수 있어요.
               </p>
             </TextBoxWrap>
-            <ImageWrap>
+            <SecondImageWrap>
               <img src={question2} />
-            </ImageWrap>
+            </SecondImageWrap>
           </QuestionSection>
         </Wrap>
       </Section>
@@ -105,7 +106,7 @@ const About = () => {
               프로젝트를 만나보세요!
             </h2>
             <div>
-              <Link to="/">프로젝트 시작하기</Link>
+              <Link to="/start-project">프로젝트 시작하기</Link>
               <span></span>
             </div>
           </StartProjectSection>
