@@ -67,9 +67,7 @@ const IntroSection = () => {
       const url = window.location.pathname.slice(18);
       const response = await axios.get<Data>(
         `${REACT_APP_API_URL}/projects/single?slug=${url}`,
-        {
-          withCredentials: true
-        }
+        { withCredentials: true }
       );
 
       const {

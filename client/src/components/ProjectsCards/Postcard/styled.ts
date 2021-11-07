@@ -93,8 +93,14 @@ export const TopInfo = styled.div<CategoryProp>`
   }
   & > p {
     font-size: 12.8px;
+    line-height: 18px;
+    height: 38px;
     color: #868e96;
-    line-height: 140%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 `;
 

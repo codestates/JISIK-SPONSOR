@@ -49,3 +49,21 @@ export interface Projects {
 export interface Data {
   projects: Projects;
 }
+
+export interface User {
+  nickname: string;
+  profile_url?: any;
+}
+
+export interface Comment {
+  id: number;
+  project_id: number;
+  content: string;
+  created_at: Date;
+  updated_at: Date;
+  user: User;
+}
+
+export interface CommentProps {
+  comments: Comment[];
+}
