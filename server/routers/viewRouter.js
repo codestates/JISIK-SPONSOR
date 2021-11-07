@@ -27,6 +27,10 @@ router.get('/orders', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/orders.html'));
 });
 
+router.get('/cancelPay', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/cancelPay.html'));
+});
+
 const project = {
   id: 1,
   title: '산호가 더 높은 온도에 적응할 수 있을까?',

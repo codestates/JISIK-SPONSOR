@@ -16,10 +16,12 @@ router.get('/confirm/email', auth.confirm.email);
 // Payments API: User Order
 router.get('/orders/:userId', orders.orders.get);
 router.post('/orders', orders.orders.post);
+router.patch('/orders', orders.orders.stop);
 
 // Payments API: Import
 router.post('/iamport-webhook', orders.payments.complete);
 router.post('/payments/complete', orders.payments.complete);
 router.get('/payments/complete/mobile/', orders.payments.complete);
+router.post('/payments/cancel', orders.payments.cancel);
 
 module.exports = router;
