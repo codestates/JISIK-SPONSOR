@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-// import { PostcardsWrap, Ul } from '../ProjectsCards/Postcards/styled';
+import { AddButton } from 'components/StartProject/commonStyled';
 
 interface MypageTab {
   myProject?: boolean;
@@ -86,6 +86,18 @@ export const MyInfoWrapper = styled.div`
 export const MyInfoTabs = styled.div`
   display: flex;
   gap: 15px;
+
+  @media screen and (max-width: 1200px) {
+    /* flex-direction: column; */
+    justify-content: center;
+  }
+`;
+
+export const MyInfoDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: violet;
 `;
 
 const selectedTab = css`
@@ -130,4 +142,34 @@ export const Cards = styled.div`
   @media screen and (max-width: 1031px) {
     flex-wrap: wrap;
   }
+`;
+
+export const CommentContainer = styled.div`
+  /* background-color: palevioletred; */
+
+  div:first-child {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 10px;
+  }
+
+  div:last-child {
+    display: flex;
+    gap: 15px;
+  }
+
+  span {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #8e8d8d;
+    margin-bottom: 20px;
+  }
+`;
+
+export const SeeMore = styled(AddButton)`
+  width: 140px;
+  font-size: 20px;
 `;

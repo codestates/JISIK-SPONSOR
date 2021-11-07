@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   CommentContent,
   CommentLists,
@@ -41,6 +41,8 @@ const CommentBox = ({
   const [showBox, setShowBox] = useState<boolean>(false);
   const [newContent, setnewContent] = useState<string>('');
 
+  console.log(dotButton);
+
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
@@ -48,11 +50,28 @@ const CommentBox = ({
     withCredentials: true
   };
 
+  const modiBox = useRef(null);
+
+  const handleCloseModiBox = (e: any) => {
+    // console.log(e.target);
+    // console.log(modiBox.current);
+    if (dotButton && e.target !== modiBox.current) setDotButton(false);
+  };
+
   useEffect(() => {
+    window.addEventListener('click', (e) => handleCloseModiBox(e));
+    // return () => {
+    //   window.removeEventListener('click', (e) => handleCloseModiBox(e));
+    // };
+  });
+
+  useEffect(() => {
+    console.log(modiBox.current);
     setnewContent(content);
   }, []);
 
   const handleDotButton = () => {
+    console.log(modiBox.current);
     setDotButton(!dotButton);
   };
 
@@ -125,7 +144,7 @@ const CommentBox = ({
         )}
       </div>
       {dotButton && (
-        <CommentModiBox>
+        <CommentModiBox ref={modiBox}>
           <button onClick={() => showModifyBoxHandler(true)}>수정</button>
           <button id={String(id)} onClick={(e) => deleteCommentHandler(e)}>
             삭제

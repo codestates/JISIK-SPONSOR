@@ -13,4 +13,9 @@ export const MypageWrapper = styled.div`
   max-width: 1260px;
   margin: 0 auto;
   padding: 60px 30px;
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;

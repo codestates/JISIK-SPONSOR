@@ -28,6 +28,7 @@ const DetailedProject = () => {
 
   //최초 렌더링 시 특정 프로젝트의 데이터를 불러오는 함수 실행
   useEffect(() => {
+    window.scrollTo(0, 0);
     getProjects();
   }, []);
 
