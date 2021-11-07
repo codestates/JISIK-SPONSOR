@@ -33,19 +33,21 @@ module.exports = {
 
       const { name, nickname, bio, mobile, password } = req.body;
 
-      // 나를 제외한 회원 중에서 찾는다.
-      const findUserInfo = await user.findOne({
-        where: {
-          nickname,
-          [Op.not]: [{ id: userInfo.id }]
-        }
-      });
-
-      // 이미 존재하는 닉네임이면 요청을 거절한다.
-      if (findUserInfo) {
-        return res.status(409).json({
-          message: 'This nickname information cannot be registered'
+      if (nickname) {
+        // 나를 제외한 회원 중에서 찾는다.
+        const findUserInfo = await user.findOne({
+          where: {
+            nickname,
+            [Op.not]: [{ id: userInfo.id }]
+          }
         });
+
+        // 이미 존재하는 닉네임이면 요청을 거절한다.
+        if (findUserInfo) {
+          return res.status(409).json({
+            message: 'This nickname information cannot be registered'
+          });
+        }
       }
 
       /**
