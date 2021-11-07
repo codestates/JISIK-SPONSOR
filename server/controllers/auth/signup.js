@@ -114,7 +114,7 @@ module.exports = {
       const emailContent = emailVerify(email, name, url);
       emailSend(emailContent);
 
-      return res.status(200).send('ok');
+      return res.status(200).json({ message: '인증코드가 재전송 되었습니다.' });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: 'Server error!' });
