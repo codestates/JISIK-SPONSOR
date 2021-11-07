@@ -49,7 +49,7 @@ const Postcard = ({ project }: Props) => {
                 <img
                   src={
                     project.author.profile_url
-                      ? REACT_APP_API_URL + project.author.profile_url
+                      ? `https://jisiksponsor.com${project.author.profile_url}`
                       : usericon
                   }
                 />

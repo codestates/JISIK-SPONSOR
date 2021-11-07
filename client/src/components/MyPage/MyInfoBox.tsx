@@ -7,12 +7,10 @@ import { useState, useEffect } from 'react';
 import {
   MyInfoWrapper,
   MyInfoTabs,
-  Cards,
   TabBtn,
   SeeMore,
   MyInfoDetail
 } from './styled';
-import { PostcardsWrap, Ul } from '../ProjectsCards/Postcards/styled';
 import { Row, Data, CommentProps, Comment } from './type';
 import Postcards from '../ProjectsCards/Postcards/Postcards';
 import MyComments from './MyComments';
@@ -27,6 +25,8 @@ import axios from 'axios';
 
 const MyInfoBox = () => {
   const [projects, setProjects] = useState<Row[]>([]);
+  const [backedProjects, setBackedProjects] = useState<Row[]>([]);
+  const [favoredProjects, setFavoredProjects] = useState<Row[]>([]);
   const [comments, setComments] = useState<Comment[]>([]);
   // const [commentLimit, setCommentLimit] = useState<number>(5);
   // const [optionQuerys, setOptionQuerys] = useState({
@@ -40,14 +40,14 @@ const MyInfoBox = () => {
   const dispatch = useDispatch();
   const config = { withCredentials: true };
 
-  console.log(comments);
-
   //최초 렌더링 시 로그인한 유저의 정보를 받아오고, 나의 프로젝트탭이 보여지게 세팅
   useEffect(() => {
     dispatch(myProject());
     fetchUserInfo();
     getMyProject();
     getMycomment();
+    getFavoredProject();
+    getBackedProject();
   }, []);
 
   //나의 프로젝트를 받아오는 함수
@@ -61,14 +61,25 @@ const MyInfoBox = () => {
     }
   };
 
-  // const getBackedProject = async () => {
-  //   try {
-  //     const url = `${REACT_APP_API_URL}/projects?author=${id}`;
-  //     const response = await axios.get<Data>(url, config);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const getBackedProject = async () => {
+    try {
+      const url = `${REACT_APP_API_URL}/projects/user/sponsors`;
+      const response = await axios.get<Data>(url, config);
+      setBackedProjects(response.data.projects.rows);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getFavoredProject = async () => {
+    try {
+      const url = `${REACT_APP_API_URL}/projects/user/wishes`;
+      const response = await axios.get<Data>(url, config);
+      setFavoredProjects(response.data.projects.rows);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   //나의 댓글을 불러오는 함수
   const getMycomment = async () => {
@@ -124,24 +135,9 @@ const MyInfoBox = () => {
         </TabBtn>
       </MyInfoTabs>
       <MyInfoDetail>
-        {myPageTab.myProject && (
-          <PostcardsWrap>
-            <Ul>
-              <Postcards projects={projects} />
-            </Ul>
-          </PostcardsWrap>
-        )}
-        {myPageTab.backedProject && (
-          <Cards>
-            <div>Card 1</div>
-          </Cards>
-        )}
-        {myPageTab.favorites && (
-          <Cards>
-            <div>Card 1</div>
-            <div>Card 2</div>
-          </Cards>
-        )}
+        {myPageTab.myProject && <Postcards projects={projects} />}
+        {myPageTab.backedProject && <Postcards projects={backedProjects} />}
+        {myPageTab.favorites && <Postcards projects={favoredProjects} />}
         {myPageTab.myComments &&
           comments.map((comment) => {
             return (
