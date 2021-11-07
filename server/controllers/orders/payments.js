@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const { project, order, project_sponsor } = require('../../models');
-const { successSpon } = require('../../middlewares/email/email-content');
+const { sponsorSuccess } = require('../../middlewares/email/email-content');
 const emailSend = require('../../middlewares/email/email-send');
 
 module.exports = {
@@ -111,7 +111,7 @@ module.exports = {
       const url = process.env.CLIENT_ORIGIN + '/' + projectInfo.path;
 
       // 이메일 전송
-      const emailContent = successSpon(
+      const emailContent = sponsorSuccess(
         updateOrder.buyer_email,
         updateOrder.buyer_name,
         url,

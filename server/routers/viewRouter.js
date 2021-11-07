@@ -39,13 +39,13 @@ const project = {
 router.get('/pug', (req, res) => {
   const fileURL = path.join(
     __dirname,
-    '../templates/emails/spon-project-start.pug'
+    '../templates/emails/project-funding-canceled.pug'
   );
   const options = {
-    title: '프로젝트 펀딩이 시작되었습니다.',
+    title: '프로젝트가 취소되었습니다.',
     name: '김코딩',
     project,
-    siteURL: process.env.CLIENT_ORIGIN
+    resourceURL: process.env.RESOURCE_URL
   };
 
   const compiledFunction = pug.compileFile(fileURL);

@@ -6,6 +6,15 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const router = require('./routers');
+const { changeProjectStatus } = require('./middlewares/schedule/setScheduler');
+
+// 작업 예약: 프로젝트 상태 변경 (매일 0시 0분)
+const scheduleData = {
+  dayOfWeek: [0, 1, 2, 3, 4, 5, 6],
+  hour: 0,
+  minute: 0
+};
+changeProjectStatus(scheduleData);
 
 // Template engine setting
 app.set('views', path.join(__dirname, 'templates'));

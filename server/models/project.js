@@ -45,10 +45,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER
       },
       start_date: {
-        type: DataTypes.DATE
+        type: 'TIMESTAMP'
       },
       end_date: {
-        type: DataTypes.DATE
+        type: 'TIMESTAMP'
       },
       status: {
         allowNull: false,
