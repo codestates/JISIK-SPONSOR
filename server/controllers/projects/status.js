@@ -56,70 +56,100 @@ module.exports = {
       let message;
       let emailContent;
 
-      switch (status) {
-        // [제출하기]
-        case 'submit':
-          // 작성중인 상태가 아니면 다음을 리턴한다.
-          if (projectInfo.status !== 'draft') {
-            return res.status(403).json({
-              message: 'This project status is not "draft" !'
-            });
-          }
-          // 프로젝트 상태를 변경한다.
-          await project.update(
-            { status: 'submitted' },
-            { where: { id: projectId } }
-          );
-          message = 'submitted';
-          emailContent = projectSubmit(
-            userInfo.email,
-            userInfo.name,
-            projectInfo
-          );
+      if (status === 'submit') {
+        // 이미 제출한 상태면 다음을 리턴한다.
+        if (projectInfo.status === 'submitted') {
+          return res.status(403).json({
+            message: 'You have already submitted it!'
+          });
+        }
+        // 작성중인 상태가 아니면 다음을 리턴한다.
+        if (projectInfo.status !== 'draft') {
+          return res.status(403).json({
+            message: 'This project status is not "draft" !'
+          });
+        }
+        // 프로젝트 상태를 변경한다.
+        await project.update(
+          { status: 'submitted' },
+          { where: { id: projectId } }
+        );
+        // 이메일 전송
+        emailContent = projectSubmit(
+          userInfo.email,
+          userInfo.name,
+          projectInfo
+        );
+        message = 'submitted';
+      }
+      if (status === 'approve') {
+        // 관리자가 아닌 경우 다음을 리턴한다.
+        if (userInfo.role_id !== 1) {
+          return res.status(403).json({ message: 'Not authorized!' });
+        }
+        // 이미 승인된 상태면 다음을 리턴한다.
+        if (projectInfo.status === 'approved') {
+          return res.status(403).json({
+            message: 'You have already approved it!'
+          });
+        }
+        // 제출된 상태가 아니면 다음을 리턴한다.
+        if (projectInfo.status !== 'submitted') {
+          return res.status(403).json({
+            message: 'This project status is not "submitted" !'
+          });
+        }
+        // 프로젝트 상태를 변경한다.
+        const toDate = new Date();
+        const startDate = new Date(
+          toDate.getFullYear(),
+          toDate.getMonth(),
+          toDate.getDate() + 1,
+          0
+        );
+        const endDate = new Date(
+          toDate.getFullYear(),
+          toDate.getMonth(),
+          startDate.getDate() + 1 + projectInfo.term,
+          0
+        );
 
-        // [승인하기]
-        case 'approve':
-          // 관리자가 아닌 경우 다음을 리턴한다.
-          if (userInfo.role_id !== 1) {
-            return res.status(403).json({ message: 'Not authorized!' });
-          }
-          // 제출된 상태가 아니면 다음을 리턴한다.
-          if (projectInfo.status !== 'submitted') {
-            return res.status(403).json({
-              message: 'This project status is not "submitted" !'
-            });
-          }
-          // 프로젝트 상태를 변경한다.
-          await project.update(
-            { status: 'approved' },
-            { where: { id: projectId } }
-          );
-          message = 'approved';
-          emailContent = projectApprove(
-            userInfo.email,
-            userInfo.name,
-            projectInfo
-          );
-
-        // [거부하기]
-        case 'reject':
-          // 관리자가 아닌 경우 다음을 리턴한다.
-          if (userInfo.role_id !== 1) {
-            return res.status(403).json({ message: 'Not authorized!' });
-          }
-          // 제출된 상태가 아니면 다음을 리턴한다.
-          if (projectInfo.status !== 'submitted') {
-            return res.status(403).json({
-              message: 'This project status is not "submitted" !'
-            });
-          }
-          // 상태 변경 안함
-          message = 'draft';
-          emailContent = projectReject(
-            userInfo.email,
-            userInfo.name,
-            projectInfo
-          );
+        await project.update(
+          {
+            status: 'approved',
+            start_date: startDate,
+            end_date: endDate
+          },
+          { where: { id: projectId } }
+        );
+        // 이메일 전송
+        emailContent = projectApprove(
+          userInfo.email,
+          userInfo.name,
+          projectInfo
+        );
+        message = 'approved';
+      }
+      if (status === 'reject') {
+        // 관리자가 아닌 경우 다음을 리턴한다.
+        if (userInfo.role_id !== 1) {
+          return res.status(403).json({ message: 'Not authorized!' });
+        }
+        // 제출된 상태가 아니면 다음을 리턴한다.
+        if (projectInfo.status !== 'submitted') {
+          return res.status(403).json({
+            message: 'This project status is not "submitted" !'
+          });
+        }
+        // 프로젝트 상태를 다식 '작성중'으로 변경한다.
+        await project.update({ status: 'draft' }, { where: { id: projectId } });
+        // 이메일 전송
+        emailContent = projectReject(
+          userInfo.email,
+          userInfo.name,
+          projectInfo
+        );
+        message = 'draft';
       }
 
       // 이메일 전송
