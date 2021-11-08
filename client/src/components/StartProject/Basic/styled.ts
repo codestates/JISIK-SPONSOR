@@ -182,6 +182,11 @@ export const ProjectSimpleInfo = styled(SubTitleCss)<FoucsProps>`
 
 // 프로젝트 커버이미지
 export const ProjectCoverIma = styled(ProjectCoverImage)`
+  > label {
+    width: 300px;
+    height: 174px;
+    padding: 0;
+  }
   @media screen and (max-width: 600px) {
     > label {
       width: 100%;
@@ -191,8 +196,8 @@ export const ProjectCoverIma = styled(ProjectCoverImage)`
 
 export const ProjectSelectIma = styled(ProjectCoverImage)`
   > label {
-    width: 570px;
-    height: 170px;
+    width: 300px;
+    height: 174px;
     padding: 0;
     > img {
       width: 100%;

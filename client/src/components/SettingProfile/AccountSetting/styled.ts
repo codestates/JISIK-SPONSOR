@@ -19,6 +19,12 @@ export const SettingChangePW = styled(SubTitleCss)`
     > input:first-child {
       margin-top: 10px;
     }
+
+    > p {
+      margin-top: 5px;
+      font-size: 12px;
+      color: #dd584a;
+    }
   }
 `;
 

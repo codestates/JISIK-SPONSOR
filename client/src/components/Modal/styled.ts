@@ -8,6 +8,7 @@ export const ModalBackup = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
 `;
+
 export const ModalContainer = styled.div`
   width: 485px;
   background: #fff;
@@ -17,9 +18,50 @@ export const ModalContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 999;
+  z-index: 997;
 `;
 
+export const PersonalInfoBack = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+`;
+
+export const PersonalInfo = styled.div`
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background: yellow;
+`;
+
+export const ConditionInfoBack = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+`;
+
+export const ConditionInfo = styled.div`
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background: red;
+`;
 export const ModalHead = styled.div`
   display: flex;
   flex-direction: column;
@@ -187,6 +229,9 @@ export const CheckBoxConainter = styled.div`
     font-size: 12.8px;
     line-height: 1.45em;
     font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
     color: ${({ theme }) => theme.colors.violetWord};
   }
 `;

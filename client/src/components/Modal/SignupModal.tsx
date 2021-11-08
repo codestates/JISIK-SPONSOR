@@ -1,9 +1,25 @@
-import { ModalContainer, ModalBackup, ModalHead } from './styled';
+import {
+  ModalContainer,
+  ModalBackup,
+  ModalHead,
+  PersonalInfo,
+  PersonalInfoBack,
+  ConditionInfo,
+  ConditionInfoBack
+} from './styled';
 import SignupInput from './SignupInput';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { showLoginModal, showSignupModal } from '../../store/modal-slice';
+import { offPersonalModal, offConditionModal } from 'store/modal-slice';
+import { RootState } from 'index';
 
 function SignupModal() {
+  const personalModal = useSelector(
+    (state: RootState) => state.modal.personalBox
+  );
+  const conditionModal = useSelector(
+    (state: RootState) => state.modal.conditionBox
+  );
   const dispatch = useDispatch();
   const changeSignupModal = (): void => {
     dispatch(showSignupModal(false));
@@ -23,9 +39,20 @@ function SignupModal() {
             <button onClick={changeSignupModal}>로그인 하기</button>
           </p>
         </ModalHead>
-
         <SignupInput />
       </ModalContainer>
+      {personalModal && (
+        <>
+          <PersonalInfoBack onClick={() => dispatch(offPersonalModal())} />
+          <PersonalInfo />
+        </>
+      )}
+      {conditionModal && (
+        <>
+          <ConditionInfoBack onClick={() => dispatch(offConditionModal())} />
+          <ConditionInfo />
+        </>
+      )}
     </>
   );
 }

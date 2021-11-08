@@ -21,6 +21,7 @@ const SignupInput = () => {
     password: '',
     confirmPassword: ''
   });
+  const [checkState, setCheckState] = useState<boolean>(false);
   const [nameErr, setNameErr] = useState<string>('hidden');
   const [emailErr, setEmailErr] = useState<string>('hidden');
   const [passwordErr, setPasswordErr] = useState<string>('hidden');
@@ -152,6 +153,10 @@ const SignupInput = () => {
 
     if (isExist() && isAllValid(signupInfo)) {
       try {
+        if (!checkState) {
+          alert('약관동의 클릭해주세용');
+          return;
+        }
         const response = await axios.post(
           `${REACT_APP_API_URL}/signup`,
           {
@@ -222,7 +227,7 @@ const SignupInput = () => {
         >
           <span>비밀번호가 일치하지 않습니다.</span>
         </ErrMsg>
-        <CheckBox />
+        <CheckBox setCheckState={setCheckState} />
         <SignupButton onClick={handleSignup}>회원가입</SignupButton>
       </form>
     </ModalBody>

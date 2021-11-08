@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { REACT_APP_API_URL } from 'config';
 import { RootState } from 'index';
 import { useSelector } from 'react-redux';
@@ -40,7 +40,7 @@ interface DetailContentProps {
   motive: string;
   progress: string;
   goal: string;
-  options: string;
+  options?: string;
   timeLineDes: string;
 }
 
@@ -84,6 +84,20 @@ function DetailsInfo() {
 
   const [isVaild, setIsVaild] = useState<boolean>(false);
 
+  useEffect(() => {
+    const {
+      project_background,
+      project_goals,
+      project_progress,
+      milestone_description
+    } = projects;
+    setDetailContent({
+      motive: project_background || '',
+      progress: project_progress || '',
+      goal: project_goals || '',
+      timeLineDes: milestone_description || ''
+    });
+  }, []);
   const addTimeLineList = async () => {
     const { content, date } = timelineContent;
     if (!content || !date) {
@@ -163,20 +177,21 @@ function DetailsInfo() {
     };
 
   const handleSaveContent = async () => {
-    const { motive, progress, goal, options, timeLineDes } = detailContent;
-    await axios.patch(
+    const { motive, progress, goal, timeLineDes } = detailContent;
+    const response = await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {
-        project_background: motive,
-        project_progress: progress,
-        project_goals: goal,
-        project_description: options,
-        milestone_description: timeLineDes
+        background: motive,
+        progress: progress,
+        goals: goal,
+        // project_description: options,
+        milestoneDescription: timeLineDes
       },
       {
         withCredentials: true
       }
     );
+    console.log(response);
   };
 
   return (
@@ -191,7 +206,10 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, motiveMemo: false })}
         >
           <h3>프로젝트 배경</h3>
-          <TextareaCss onChange={handleTextArea('motive')} />
+          <TextareaCss
+            onChange={handleTextArea('motive')}
+            value={detailContent.motive}
+          />
           <FocusMemo>이 프로젝트르 진행하게 된 계기를 작성해주세요.</FocusMemo>
         </ProjectMotive>
 
@@ -201,7 +219,10 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, progressMemo: false })}
         >
           <h3>프로젝트 진행 상황</h3>
-          <TextareaCss onChange={handleTextArea('progress')} />
+          <TextareaCss
+            onChange={handleTextArea('progress')}
+            value={detailContent.progress}
+          />
           <FocusMemo>
             현재 프로젝트의 진행상황이 어디까지 진행되었는지 후원자들에게
             알려주세요.
@@ -214,7 +235,10 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, goalMemo: false })}
         >
           <h3>프로젝트 목표</h3>
-          <TextareaCss onChange={handleTextArea('goal')} />
+          <TextareaCss
+            onChange={handleTextArea('goal')}
+            value={detailContent.goal}
+          />
           <FocusMemo>
             이 프로젝트가 하고자하는 것, 목표를 작성해주세요.
           </FocusMemo>
@@ -303,7 +327,10 @@ function DetailsInfo() {
           onBlur={() => setShowMemo({ ...showMemo, detailMemo: false })}
         >
           <h3>프로젝트 타임라인 설명</h3>
-          <TextareaCss onChange={handleTextArea('timeLineDes')} />
+          <TextareaCss
+            onChange={handleTextArea('timeLineDes')}
+            value={detailContent.timeLineDes}
+          />
           <FocusMemo>
             후원자가 일정을 보면서, 어떤 작업이 진행될 수 있을지 알 수 있도록
             작성해주세요.
