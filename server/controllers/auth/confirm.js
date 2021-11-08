@@ -17,7 +17,6 @@ module.exports = {
       }
 
       // 인증코드의 유효기간 확인: 3분
-      const currentTime = Date().now();
       const signupDate = new Date(findUser.updated_at);
       const validTime = new Date(
         signupDate.getFullYear(),
@@ -28,9 +27,9 @@ module.exports = {
         signupDate.getSeconds()
       );
 
-      if (validTime.getTime() < currentTime) {
+      if (validTime.getTime() < new Date().getTime()) {
         return res.status(410).json({
-          currentTime: currentTime.toString(),
+          currentTime: new Date(),
           signupDate,
           validTime,
           message: '인증 시간이 만료되었습니다.'
