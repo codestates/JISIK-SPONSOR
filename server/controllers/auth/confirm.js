@@ -17,7 +17,7 @@ module.exports = {
       }
 
       // 인증코드의 유효기간 확인: 3분
-      const currentTime = new Date();
+      const currentTime = new Date().now();
       const signupDate = new Date(findUser.updated_at);
       const validTime = new Date(
         signupDate.getFullYear(),
@@ -29,14 +29,12 @@ module.exports = {
       );
 
       if (validTime.getTime() < currentTime.getTime()) {
-        return res
-          .status(410)
-          .json({
-            currentTime,
-            signupDate,
-            validTime,
-            message: '인증 시간이 만료되었습니다.'
-          });
+        return res.status(410).json({
+          currentTime,
+          signupDate,
+          validTime,
+          message: '인증 시간이 만료되었습니다.'
+        });
       }
 
       // 회원 정보를 업데이트 한다. (이메일 인증 확인)
