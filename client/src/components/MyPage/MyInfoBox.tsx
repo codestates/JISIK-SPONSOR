@@ -61,6 +61,7 @@ const MyInfoBox = () => {
     }
   };
 
+  //내가 후원한 프로젝트를 받아오는 함수
   const getBackedProject = async () => {
     try {
       const url = `${REACT_APP_API_URL}/projects/user/sponsors`;
@@ -71,6 +72,7 @@ const MyInfoBox = () => {
     }
   };
 
+  //내가 즐겨찾기 추가한 프로젝트를 받아오는 함수
   const getFavoredProject = async () => {
     try {
       const url = `${REACT_APP_API_URL}/projects/user/wishes`;
@@ -84,8 +86,9 @@ const MyInfoBox = () => {
   //나의 댓글을 불러오는 함수
   const getMycomment = async () => {
     try {
-      const url = `${REACT_APP_API_URL}/projects/comments?author=${id}`;
+      const url = `${REACT_APP_API_URL}/projects/comments`;
       const response = await axios.get<CommentProps>(url, config);
+      console.log(response.data.comments);
       setComments(response.data.comments);
     } catch (err) {
       console.log(err);

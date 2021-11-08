@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { showLoginModal, showSignupModal } from 'store/modal-slice';
 import {
@@ -13,15 +13,25 @@ import {
 import Logo from 'images/logo-img.png';
 import Search from 'images/icons/search-icon.png';
 import XIcon from 'images/icons/search-x-icon.png';
+import BellIcon from 'images/icons/bell-icon.png';
+import UserIcon from 'images/icons/user-icon.png';
 import { searchContent } from '../../store/headerSearch-slice';
+import { RootState } from 'index';
 
-const Header = () => {
+interface showProps {
+  showBox: boolean;
+  setShowBox: (data: boolean) => void;
+}
+
+const Header = ({ showBox, setShowBox }: showProps) => {
   // const history: any = useHistory();
   const dispatch = useDispatch();
-  const history: any = useHistory();
+  const history = useHistory();
 
   const [search, setSearch] = useState<string>('');
   const [searchHeader, setSearchHeader] = useState<boolean>(false);
+
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
   const searchHandle = (e: any) => {
     setSearch(e.target.value);
@@ -38,6 +48,10 @@ const Header = () => {
 
   const searchBtnClick = () => {
     setSearchHeader(!searchHeader);
+  };
+
+  const showMenuBox = () => {
+    setShowBox(!showBox);
   };
 
   return (
@@ -59,12 +73,21 @@ const Header = () => {
         </Link>
         <NavbarR>
           <img src={Search} alt="search-icon" onClick={searchBtnClick} />
-          <NavButton onClick={() => dispatch(showLoginModal(true))}>
-            로그인
-          </NavButton>
-          <NavButton onClick={() => dispatch(showSignupModal(true))}>
-            회원가입
-          </NavButton>
+          {isLogin ? (
+            <>
+              <img src={BellIcon} alt="notification-icon" />
+              <img src={UserIcon} alt="mypage-icon" onClick={showMenuBox} />
+            </>
+          ) : (
+            <>
+              <NavButton onClick={() => dispatch(showLoginModal(true))}>
+                로그인
+              </NavButton>
+              <NavButton onClick={() => dispatch(showSignupModal(true))}>
+                회원가입
+              </NavButton>
+            </>
+          )}
         </NavbarR>
       </NavContainer>
       <SearchBoxWrap searchHeader={searchHeader}>
