@@ -52,7 +52,12 @@ export interface Data {
 
 export interface User {
   nickname: string;
-  profile_url?: any;
+  profile_url: string;
+}
+
+export interface Project {
+  title: string;
+  path: string;
 }
 
 export interface Comment {
@@ -62,6 +67,7 @@ export interface Comment {
   created_at: Date;
   updated_at: Date;
   user: User;
+  project: Project;
 }
 
 export interface CommentProps {

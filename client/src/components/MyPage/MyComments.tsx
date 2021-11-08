@@ -11,7 +11,6 @@ interface CommentProps {
 
 const MyComments = ({ content, date, projectId }: CommentProps) => {
   const [projectTitle, setProjectTitle] = useState('');
-  console.log(content, date, projectId);
   const config = { withCredentials: true };
 
   useEffect(() => {

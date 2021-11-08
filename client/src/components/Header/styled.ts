@@ -110,6 +110,36 @@ export const NavbarR = styled.div`
   }
 `;
 
+export const MenuBox = styled.div`
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 15px 10px;
+  border-radius: 5px;
+  width: 130px;
+  position: absolute;
+  top: 55px;
+  right: 30px;
+
+  button {
+    background: inherit;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #404040;
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: ${({ theme }) => theme.colors.violet};
+  }
+`;
+
 export const NavButton = styled.button`
   display: flex;
   justify-content: center;
