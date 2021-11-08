@@ -9,10 +9,12 @@ import Setting from 'pages/SettingPage/Setting';
 import Start from 'pages/StartPage/Start';
 import StartProject from 'pages/StartProjectPage/StartProject';
 import { Route, Switch } from 'react-router';
+// import Payments from 'components/DetailedProject/IntroSection/Payments';
 
 const Body = () => {
   return (
     <main>
+      {/* <Payments />; */}
       <Switch>
         <Route path="/" exact>
           <Main />

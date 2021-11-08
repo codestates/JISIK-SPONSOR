@@ -9,12 +9,11 @@ const MyProfileBox = () => {
       <MyprofileBoxMini>
         <img src={Baksa} alt="baksa image" />
         <span>나박사</span>
-        <p>
-          안녕하세요. <br />
-          나박사입니다.
-        </p>
-        <button>프로필 설정</button>
-        <button>로그아웃</button>
+        <p>안녕하세요. 나박사입니다.</p>
+        <div>
+          <button>프로필 설정</button>
+          <button>로그아웃</button>
+        </div>
       </MyprofileBoxMini>
     </MyprofileBox>
   );

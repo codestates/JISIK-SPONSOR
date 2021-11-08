@@ -10,10 +10,7 @@ import HeartIcon from '../../../images/project-heart.png';
 
 const Sponsors = () => {
   const [sponsors, setSponsors] = useState<Row[]>([]);
-  const [nickname, setNickname] = useState<string>('');
-
-  console.log(nickname);
-  // console.log(sponsors);
+  const [count, setCount] = useState<number>(0);
 
   const projectId = useSelector((state: RootState) => state.projectSt.id);
 
@@ -24,8 +21,8 @@ const Sponsors = () => {
     try {
       const response = await axios.get<RootObject>(url, config);
 
+      setCount(response.data.sponsors.count);
       setSponsors(response.data.sponsors.rows);
-      setNickname(response.data.sponsors.rows[0].user.nickname);
     } catch (err) {
       console.log(err);
     }
@@ -42,7 +39,7 @@ const Sponsors = () => {
           <img src={HeartIcon} alt="" />
           <span>지식스폰서</span>
         </div>
-        <span>12명 후원</span>
+        <span>{count}명 후원</span>
       </SponsorTitle>
       <SponsorsList>
         {sponsors.map((sponsor) => {
@@ -55,16 +52,6 @@ const Sponsors = () => {
             </li>
           );
         })}
-
-        {/* <li>
-          <img src={User} alt="" />
-        </li>
-        <li>
-          <img src={User} alt="" />
-        </li>
-        <li>
-          <img src={User} alt="" />
-        </li> */}
       </SponsorsList>
     </SponsorsWrapper>
   );
