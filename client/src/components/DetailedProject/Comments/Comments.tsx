@@ -26,12 +26,13 @@ const Comments = ({ project, setProject }: any) => {
 
   useEffect(() => {
     setShowBoxArr(Array(comment.length).fill(false));
+    console.log('comment rerendering');
   }, [comment]);
 
   // 최초 렌더링 시 모든 댓글을 불러오는 함수 한번 실행
   useEffect(() => {
     getComments();
-  }, []);
+  }, [projectId]);
 
   // 특정 프로젝트의 모든 댓글을 불러오는 함수
   const getComments = async () => {
@@ -39,6 +40,7 @@ const Comments = ({ project, setProject }: any) => {
       const response = await axios.get<CommentType>(url, config);
       const commentArr = response.data.comments;
       setComment(commentArr);
+      console.log('rendering');
     } catch (err) {
       console.log(err);
     }
@@ -87,14 +89,14 @@ const Comments = ({ project, setProject }: any) => {
       if (idx === current) return true;
       else return false;
     });
+    console.log(current);
 
-    console.log(newShowBoxArr);
     setShowBoxArr(newShowBoxArr);
-    // setShowBoxArr
-    // setShowBoxArr({})
+    console.log(newShowBoxArr);
   };
 
   const showBoxClear = () => {
+    console.log('clear!');
     setShowBoxArr(Array(comment.length).fill(false));
   };
 
