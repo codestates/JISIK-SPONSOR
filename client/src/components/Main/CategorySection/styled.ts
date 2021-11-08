@@ -14,7 +14,6 @@ export const Wrap = styled.div`
 `;
 
 export const ImageWrap = styled.div`
-  z-index: 2;
   position: absolute;
   bottom: 0;
   width: 35%;
@@ -32,7 +31,6 @@ export const ImageWrap = styled.div`
 `;
 
 export const LinkWrap = styled.div`
-  z-index: 1;
   position: relative;
   top: 0;
   width: 100%;

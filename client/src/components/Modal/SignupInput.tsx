@@ -154,7 +154,7 @@ const SignupInput = () => {
     if (isExist() && isAllValid(signupInfo)) {
       try {
         if (!checkState) {
-          alert('약관동의 클릭해주세용');
+          alert('모두 동의해주셔야 회원가입 진행이 가능합니다.');
           return;
         }
         const response = await axios.post(
@@ -172,7 +172,7 @@ const SignupInput = () => {
         resetInfo();
         dispatch(showLoginModal(true));
         dispatch(showSignupModal(false));
-        alert('하쿠나마타타! 환영합니다🎉');
+        alert('지식스폰서에 오신걸 환영합니다🎉');
       } catch (err) {
         console.log(err);
         alert('회원가입에 실패하였습니다. 다시 시도해주세요🎯');

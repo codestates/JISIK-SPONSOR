@@ -12,7 +12,7 @@ function CheckBox({ setCheckState }: any) {
   const dispatch = useDispatch();
 
   const dataLists: CheckListProps[] = [
-    { id: 0, htmlFor: 'personalInfo', text: '개인정보취급방침에 동의' },
+    { id: 0, htmlFor: 'personalInfo', text: '개인정보처리방침에 동의' },
     { id: 1, htmlFor: 'usingAgree', text: '이용약관에 동의' }
   ];
   const [checkedList, setCheckedLists] = useState<CheckListProps[]>([]);
