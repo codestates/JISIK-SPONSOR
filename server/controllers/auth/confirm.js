@@ -29,6 +29,7 @@ module.exports = {
 
       if (validTime.getTime() < new Date().getTime()) {
         return res.status(410).json({
+          findUser,
           currentTime: new Date(),
           signupDate,
           validTime,
