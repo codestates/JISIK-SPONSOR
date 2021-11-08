@@ -5,15 +5,21 @@ import {
   SettingChangePW,
   ChangeButton,
   SettingWithdrawal,
-  WithdrawalButton
+  WithdrawalButton,
+  UserEmail,
+  PhoneNumber,
+  NumberAddButton
 } from './styled';
 import { ProjectBody, Container } from 'components/StartProject/commonStyled';
+import { useSelector } from 'react-redux';
+import { RootState } from 'index';
 
 interface changePwProps {
   password: string;
   checkPassword: string;
 }
 function AccountSetting() {
+  const { email } = useSelector((state: RootState) => state.userInfo.userInfo);
   const [changePW, setChangePW] = useState<changePwProps>({
     password: '',
     checkPassword: ''
@@ -51,6 +57,10 @@ function AccountSetting() {
         <h2>계정 설정</h2>
         <p>회원정보를 수정합니다.</p>
 
+        <UserEmail>
+          <h3>아이디</h3>
+          <input type="email" value={email} disabled />
+        </UserEmail>
         <SettingChangePW>
           <h3>비밀번호 변경</h3>
           <form
@@ -74,6 +84,14 @@ function AccountSetting() {
             </ChangeButton>
           </form>
         </SettingChangePW>
+
+        <PhoneNumber>
+          <h3>연락처</h3>
+          <form>
+            <input type="text" />
+            <NumberAddButton>추가</NumberAddButton>
+          </form>
+        </PhoneNumber>
 
         <SettingWithdrawal>
           <h3>회원탈퇴</h3>

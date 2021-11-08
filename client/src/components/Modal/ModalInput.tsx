@@ -6,13 +6,10 @@ import axios from 'axios';
 import { REACT_APP_API_URL } from 'config';
 import { UserInfoData } from './type';
 import { showLoginModal } from 'store/modal-slice';
-// import { getUserInfo } from 'store/userInfo-slice';
-import { RootState } from 'index';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from 'store/login-slice';
+import { getUserInfo } from 'store/userInfo-slice';
 const ModalInput = () => {
-  const test = useSelector((state: RootState) => state.userInfo);
-  console.log('test', test);
   const dispatch = useDispatch();
   const [enteredEmail, setEnteredEmail] = useState<string>('');
   const [enteredPassword, setEnteredPassword] = useState<string>('');
@@ -66,7 +63,7 @@ const ModalInput = () => {
       );
       dispatch(showLoginModal(false));
       dispatch(login());
-      console.log(response);
+      dispatch(getUserInfo(response.data));
     } catch (err) {
       console.log(err);
     }
