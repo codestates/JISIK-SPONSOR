@@ -32,14 +32,49 @@ export const PersonalInfoBack = styled.div`
 `;
 
 export const PersonalInfo = styled.div`
-  width: 500px;
-  height: 500px;
   position: fixed;
+  padding: 20px;
+  width: 515px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  background: yellow;
+  border-radius: 10px;
+  background-color: #ffff;
+
+  > span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  > h1 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.45em;
+    color: #495057;
+  }
+
+  > div {
+    width: 450px;
+    height: 300px;
+    border: none;
+    margin-top: 30px;
+    overflow-x: hidden;
+
+    & > h2,
+    & > h3 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.45em;
+      color: #495057;
+    }
+
+    & > p {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const ConditionInfoBack = styled.div`
@@ -53,14 +88,38 @@ export const ConditionInfoBack = styled.div`
 `;
 
 export const ConditionInfo = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 515px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffff;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  background: red;
+
+  > span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  > h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.45em;
+    color: #495057;
+  }
+
+  > textarea {
+    resize: none;
+    width: 450px;
+    height: 300px;
+    border: none;
+    margin-top: 30px;
+    overflow-x: hidden;
+  }
 `;
 export const ModalHead = styled.div`
   display: flex;
