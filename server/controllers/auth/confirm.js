@@ -43,10 +43,10 @@ module.exports = {
       // );
 
       return res.json({
-        currentTime,
+        currentTime: new Date(),
         signupDate,
         validTime,
-        boolearn: validTime.getTime() < currentTime.getTime()
+        boolearn: validTime.getTime() < new Date().getTime()
       });
 
       /**
