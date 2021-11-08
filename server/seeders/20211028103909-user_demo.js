@@ -15,7 +15,8 @@ module.exports = {
         nickname: '관리자',
         role_id: 1,
         signup_method: '일반',
-        email_verified: true
+        email_verified: true,
+        profile_url: '/uploads/users/profile/1/1636303118149-people1.png'
       },
       {
         name: '관리자 데모',
@@ -24,7 +25,8 @@ module.exports = {
         nickname: '관리자 데모',
         role_id: 2,
         signup_method: '일반',
-        email_verified: true
+        email_verified: true,
+        profile_url: '/uploads/users/profile/2/1636303211320-people2.png'
       },
       {
         name: '김코딩',
@@ -33,7 +35,8 @@ module.exports = {
         nickname: '코난',
         role_id: 3,
         signup_method: '일반',
-        email_verified: true
+        email_verified: true,
+        profile_url: '/uploads/users/profile/3/1636303251904-people3.png'
       },
       {
         name: '박해커',
@@ -42,7 +45,8 @@ module.exports = {
         nickname: '해커',
         role_id: 3,
         signup_method: '일반',
-        email_verified: true
+        email_verified: true,
+        profile_url: '/uploads/users/profile/4/1636303289604-baksa.png'
       }
     ]);
   },

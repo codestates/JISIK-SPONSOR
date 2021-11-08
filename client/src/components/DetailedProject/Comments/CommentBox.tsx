@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CommentContent,
   CommentLists,
@@ -24,7 +24,11 @@ interface CommentProps {
   setComment: (data: Comment[]) => void;
   setProject: (data: any) => void;
   getComments: () => void;
+  setCommentHandler: (e: any) => void;
   project: any;
+  identity: number;
+  showBoxBool: boolean;
+  showBoxClear: () => void;
 }
 
 const CommentBox = ({
@@ -35,50 +39,42 @@ const CommentBox = ({
   setComment,
   setProject,
   getComments,
-  project
+  project,
+  setCommentHandler,
+  identity,
+  showBoxBool,
+  showBoxClear
 }: CommentProps) => {
-  const [dotButton, setDotButton] = useState<boolean>(false);
   const [showBox, setShowBox] = useState<boolean>(false);
   const [newContent, setnewContent] = useState<string>('');
-
-  console.log(dotButton);
-
+  const [showBoxToggle, setShowBoxToggle] = useState<boolean>(false);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
+
+  useEffect(() => {
+    setShowBoxToggle(showBoxBool);
+  }, [showBoxBool]);
+
+  useEffect(() => {
+    setnewContent(content);
+  }, [content]);
 
   const config = {
     withCredentials: true
   };
 
-  const modiBox = useRef(null);
-
-  const handleCloseModiBox = (e: any) => {
-    // console.log(e.target);
+  const handleDotButton = (e: any) => {
     // console.log(modiBox.current);
-    if (dotButton && e.target !== modiBox.current) setDotButton(false);
-  };
 
-  useEffect(() => {
-    window.addEventListener('click', (e) => handleCloseModiBox(e));
-    // return () => {
-    //   window.removeEventListener('click', (e) => handleCloseModiBox(e));
-    // };
-  });
-
-  useEffect(() => {
-    console.log(modiBox.current);
-    setnewContent(content);
-  }, []);
-
-  const handleDotButton = () => {
-    console.log(modiBox.current);
-    setDotButton(!dotButton);
+    //   setShowBoxToggle(false);
+    // } else {
+    setCommentHandler(e);
   };
 
   // 수정 & 삭제박스를 보이게하는 함수
   const showModifyBoxHandler = (boolean: boolean) => {
     setShowBox(boolean);
-    setDotButton(false);
+    setShowBoxToggle(!showBoxToggle);
   };
 
   // 댓글 수정 입력을 받아와 저장하는 함수
@@ -131,20 +127,20 @@ const CommentBox = ({
   };
 
   return (
-    <CommentLists key={id}>
+    <CommentLists key={id} id={String(identity)}>
       <div>
         <div>
           <img src={Person1} alt="" />
           <span>{author}</span>
         </div>
         {isLogin && (
-          <button onClick={() => handleDotButton()}>
+          <button onClick={(e) => handleDotButton(e)}>
             <img src={DotIcon} alt="dot-icon" />
           </button>
         )}
       </div>
-      {dotButton && (
-        <CommentModiBox ref={modiBox}>
+      {showBoxToggle && (
+        <CommentModiBox>
           <button onClick={() => showModifyBoxHandler(true)}>수정</button>
           <button id={String(id)} onClick={(e) => deleteCommentHandler(e)}>
             삭제
@@ -174,7 +170,12 @@ const CommentBox = ({
             <ModiButton id={String(id)} onClick={(e) => modifyCommentReq(e)}>
               수정
             </ModiButton>
-            <ModiButton onClick={() => showModifyBoxHandler(false)}>
+            <ModiButton
+              onClick={() => {
+                showBoxClear();
+                setShowBox(false);
+              }}
+            >
               취소
             </ModiButton>
           </ModiButtonGroup>

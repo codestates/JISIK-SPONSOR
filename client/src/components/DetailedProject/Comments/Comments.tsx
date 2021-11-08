@@ -12,6 +12,7 @@ import CommentBox from './CommentBox';
 const Comments = ({ project, setProject }: any) => {
   const [comment, setComment] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState<string>('');
+  const [showBoxArr, setShowBoxArr] = useState<boolean[]>([]); // test
 
   const dispatch = useDispatch();
 
@@ -22,6 +23,10 @@ const Comments = ({ project, setProject }: any) => {
   const config = {
     withCredentials: true
   };
+
+  useEffect(() => {
+    setShowBoxArr(Array(comment.length).fill(false));
+  }, [comment]);
 
   // 최초 렌더링 시 모든 댓글을 불러오는 함수 한번 실행
   useEffect(() => {
@@ -75,6 +80,24 @@ const Comments = ({ project, setProject }: any) => {
     setNewComment(e.currentTarget.value);
   };
 
+  const setCommentHandler = (e: any) => {
+    const current = Number(e.target.parentNode.parentNode.parentNode.id);
+
+    const newShowBoxArr = showBoxArr.map((el, idx) => {
+      if (idx === current) return true;
+      else return false;
+    });
+
+    console.log(newShowBoxArr);
+    setShowBoxArr(newShowBoxArr);
+    // setShowBoxArr
+    // setShowBoxArr({})
+  };
+
+  const showBoxClear = () => {
+    setShowBoxArr(Array(comment.length).fill(false));
+  };
+
   return (
     <CommentWrapper>
       <WriteContent>
@@ -97,18 +120,22 @@ const Comments = ({ project, setProject }: any) => {
           </Button>
         </div>
       </WriteContent>
-      {comment.map((item) => {
+      {comment.map((item, index) => {
         return (
           <CommentBox
             key={item.id}
+            identity={index}
             id={item.id}
             author={item.user.nickname}
             date={item.created_at}
             content={item.content}
             setComment={setComment}
+            showBoxBool={showBoxArr[index]}
             setProject={setProject}
             project={project}
             getComments={getComments}
+            setCommentHandler={setCommentHandler}
+            showBoxClear={showBoxClear}
           />
         );
       })}

@@ -39,7 +39,7 @@ export const SponsorTitle = styled.div`
   }
 `;
 
-export const SponsorsList = styled.div`
+export const SponsorsList = styled.ul`
   display: flex;
   gap: 10px;
 
