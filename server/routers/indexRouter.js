@@ -8,7 +8,7 @@ router.get('/', (req, res) => res.send('Jisik Sponsor!'));
 router.get('/auth', auth.auth.get);
 router.post('/login', auth.login.post);
 router.post('/logout', auth.logout.post);
-router.post('/signup', auth.signup.post);
+router.post('/signup', auth.signup.post, auth.signup.patch);
 
 // Email verified
 router.get('/confirm/email', auth.confirm.email);

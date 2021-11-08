@@ -9,7 +9,28 @@ module.exports = {
 
       // 쿼리로 들어온 key를 가진 회원이 존재하지 않는 경우는 다음을 리턴한다.
       const findUser = await user.findOne({ where: { key_for_verify: key } });
-      if (!findUser) return res.status(404).send('Not Found!');
+      if (!findUser) return res.status(404).json({ message: 'Not Found!' });
+
+      // 이미 인증된 경우
+      if (findUser.email_verified === true) {
+        return res.status(400).json({ message: '이미 인증되었습니다.' });
+      }
+
+      // 인증코드의 유효기간 확인: 3분
+      const currentTime = new Date();
+      const signupDate = new Date(findUser.updated_at);
+      const validTime = new Date(
+        signupDate.getFullYear(),
+        signupDate.getMonth(),
+        signupDate.getDate(),
+        signupDate.getHours(),
+        signupDate.getMinutes() + 3, // 3분 추가
+        signupDate.getSeconds()
+      );
+
+      if (validTime.getTime() < currentTime.getTime()) {
+        return res.status(410).json({ message: '인증 시간이 만료되었습니다.' });
+      }
 
       // 회원 정보를 업데이트 한다. (이메일 인증 확인)
       await user.update(
