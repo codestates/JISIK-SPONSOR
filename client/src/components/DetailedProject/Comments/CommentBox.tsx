@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   CommentContent,
   CommentLists,
@@ -51,6 +51,8 @@ const CommentBox = ({
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
+  const menuBox = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     setShowBoxToggle(showBoxBool);
   }, [showBoxBool]);
@@ -64,17 +66,16 @@ const CommentBox = ({
   };
 
   const handleDotButton = (e: any) => {
-    // console.log(modiBox.current);
-
-    //   setShowBoxToggle(false);
-    // } else {
     setCommentHandler(e);
+
+    if (showBoxBool) {
+      showBoxClear();
+    }
   };
 
   // 수정 & 삭제박스를 보이게하는 함수
   const showModifyBoxHandler = (boolean: boolean) => {
     setShowBox(boolean);
-    setShowBoxToggle(!showBoxToggle);
   };
 
   // 댓글 수정 입력을 받아와 저장하는 함수
@@ -126,6 +127,19 @@ const CommentBox = ({
     }
   };
 
+  const handleOutsideClick = (e: any) => {
+    if (e.target !== menuBox.current && e.target.className !== 'dotIcon') {
+      showBoxClear();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleOutsideClick);
+    return () => {
+      window.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <CommentLists key={id} id={String(identity)}>
       <div>
@@ -134,13 +148,18 @@ const CommentBox = ({
           <span>{author}</span>
         </div>
         {isLogin && (
-          <button onClick={(e) => handleDotButton(e)}>
-            <img src={DotIcon} alt="dot-icon" />
+          <button>
+            <img
+              src={DotIcon}
+              alt="dot-icon"
+              onClick={(e) => handleDotButton(e)}
+              className="dotIcon"
+            />
           </button>
         )}
       </div>
       {showBoxToggle && (
-        <CommentModiBox>
+        <CommentModiBox ref={menuBox}>
           <button onClick={() => showModifyBoxHandler(true)}>수정</button>
           <button id={String(id)} onClick={(e) => deleteCommentHandler(e)}>
             삭제

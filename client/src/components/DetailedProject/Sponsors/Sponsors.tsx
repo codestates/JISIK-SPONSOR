@@ -13,7 +13,7 @@ const Sponsors = () => {
   const [nickname, setNickname] = useState<string>('');
 
   console.log(nickname);
-  console.log(sponsors);
+  // console.log(sponsors);
 
   const projectId = useSelector((state: RootState) => state.projectSt.id);
 
