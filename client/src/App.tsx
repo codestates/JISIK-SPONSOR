@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { useState, useRef } from 'react';
 import { MenuBox } from '../src/components/Header/styled';
-
+import { Link } from 'react-router-dom';
 import GlobalStyles from 'styles/GlobalStyles';
 import Header from 'components/Header/Header';
 import Body from 'components/Body/Body';
@@ -62,7 +62,10 @@ function App() {
         <Header showBox={showBox} setShowBox={setShowBox} />
         {showBox && (
           <MenuBox ref={menuBoxRef}>
-            <button>마이페이지</button>
+            <Link to="/mypage">
+              <button>마이페이지</button>
+            </Link>
+
             <button onClick={handleLogout}>로그아웃</button>
           </MenuBox>
         )}

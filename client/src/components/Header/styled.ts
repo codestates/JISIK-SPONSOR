@@ -116,6 +116,7 @@ export const MenuBox = styled.div`
   flex-direction: column;
   gap: 5px;
   justify-content: center;
+  align-items: center;
   background-color: #fff;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   padding: 15px 10px;

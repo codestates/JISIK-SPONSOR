@@ -11,9 +11,15 @@ interface MypageTab {
 
 //MyProfileBox
 export const MyprofileBox = styled.div`
-  width: 300px;
-  background-color: yellowgreen;
+  width: 100%;
+  /* background-color: yellowgreen; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+
+  @media screen and (max-width: 1200px) {
+    max-width: 800px;
+    margin-bottom: 30px;
+  }
 `;
 
 export const MyprofileBoxMini = styled.div`
@@ -25,7 +31,7 @@ export const MyprofileBoxMini = styled.div`
   width: 100%;
   max-width: 144px;
   margin: 0 auto;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 
   img {
     height: 100px;
@@ -49,7 +55,12 @@ export const MyprofileBoxMini = styled.div`
     margin-bottom: 47px;
   }
 
-  button {
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div > button:first-child {
     width: 93px;
     height: 30px;
     border-radius: 3px;
@@ -62,7 +73,7 @@ export const MyprofileBoxMini = styled.div`
     cursor: pointer;
   }
 
-  button:last-of-type {
+  div > button:last-of-type {
     width: 93px;
     height: 30px;
     border-radius: 3px;
@@ -72,6 +83,25 @@ export const MyprofileBoxMini = styled.div`
     font-weight: 700;
     line-height: 1.4;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 1200px) {
+    max-width: 800px;
+    margin-bottom: 30px;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    span {
+      font-size: 27px;
+    }
+
+    p {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -97,7 +127,7 @@ export const MyInfoDetail = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  background-color: violet;
+  /* background-color: violet; */
 `;
 
 const selectedTab = css`
@@ -146,6 +176,9 @@ export const Cards = styled.div`
 
 export const CommentContainer = styled.div`
   /* background-color: palevioletred; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   div:first-child {
     font-size: 20px;
@@ -167,9 +200,18 @@ export const CommentContainer = styled.div`
     color: #8e8d8d;
     margin-bottom: 20px;
   }
+
+  @media screen and (max-width: 1200px) {
+    align-items: center;
+  }
 `;
 
 export const SeeMore = styled(AddButton)`
   width: 140px;
   font-size: 20px;
+
+  @media screen and (max-width: 1200px) {
+    margin: 0 auto;
+    margin-top: 20px;
+  }
 `;

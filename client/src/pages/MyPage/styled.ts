@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
-  background-color: beige;
+  /* background-color: beige; */
   width: 100vw;
   padding: 60px 0;
 `;
@@ -9,7 +9,7 @@ export const MypageContainer = styled.div`
 export const MypageWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background-color: pink;
+  /* background-color: pink; */
   width: 100%;
   max-width: 1260px;
   margin: 0 auto;
@@ -26,5 +26,9 @@ export const MypageWrapper = styled.div`
   @media screen and (max-width: 1200px) {
     flex-direction: column;
     align-items: center;
+
+    > div:first-child {
+      width: 60%;
+    }
   }
 `;
