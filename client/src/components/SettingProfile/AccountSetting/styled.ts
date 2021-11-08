@@ -1,6 +1,17 @@
 import styled from 'styled-components';
 import { SubTitleCss, AddButton } from 'components/StartProject/commonStyled';
 
+// 아이디
+export const UserEmail = styled(SubTitleCss)`
+  > input {
+    width: 250px;
+    height: 40px;
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    padding: 12px 0 12px 15px;
+    margin-top: 5px;
+  }
+`;
 // 비밀번호 변경
 export const SettingChangePW = styled(SubTitleCss)`
   > form {
@@ -28,6 +39,18 @@ export const SettingChangePW = styled(SubTitleCss)`
   }
 `;
 
+// 전화번호
+export const PhoneNumber = styled(SubTitleCss)`
+  > form > input {
+    width: 250px;
+    height: 40px;
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    padding: 12px 0 12px 15px;
+    margin-top: 5px;
+    margin-right: 15px;
+  }
+`;
 export const SettingWithdrawal = styled(SubTitleCss)`
   button {
     background: ${({ theme }) => theme.colors.suppotWord};
@@ -36,6 +59,12 @@ export const SettingWithdrawal = styled(SubTitleCss)`
 
 export const ChangeButton = styled(AddButton)`
   width: 90px;
+  margin-top: 10px;
+`;
+
+export const NumberAddButton = styled(AddButton)`
+  width: 90px;
+  height: 40px;
   margin-top: 10px;
 `;
 export const WithdrawalButton = styled(AddButton)`

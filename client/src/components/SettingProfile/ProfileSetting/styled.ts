@@ -15,6 +15,10 @@ export const SettingNickName = styled(SubTitleCss)`
     margin-top: 10px;
     margin-right: 15px;
   }
+  > p {
+    font-size: 12px;
+    color: #dd584a;
+  }
 `;
 
 // 버튼 css   orange상속요망

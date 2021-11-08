@@ -76,7 +76,12 @@ const Header = ({ showBox, setShowBox }: showProps) => {
           {isLogin ? (
             <>
               <img src={BellIcon} alt="notification-icon" />
-              <img src={UserIcon} alt="mypage-icon" onClick={showMenuBox} />
+              <img
+                src={UserIcon}
+                alt="mypage-icon"
+                onClick={showMenuBox}
+                className="userIcon"
+              />
             </>
           ) : (
             <>
