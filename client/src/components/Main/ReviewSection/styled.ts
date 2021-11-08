@@ -31,6 +31,13 @@ export const ReviewWrap = styled.div`
 export const Ul = styled.ul`
   display: flex;
   justify-content: space-between;
+
+  @media all and (max-width: 567px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 `;
 
 export const Li = styled.li`

@@ -5,20 +5,19 @@ import {
   BannerSection,
   QuestionSection,
   ImageWrap,
+  SecondImageWrap,
   TextBoxWrap,
   StartProjectSection
 } from './styled';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import question1 from '../../images/question1.png';
 import question2 from '../../images/question2.png';
 import question3 from '../../images/question3.png';
+// import bluestar from '../../images/start-blue.png';
+// import yellowline from '../../images/YellowLine.png';
+// import yellowcircle from '../../images/yellowcircle.png';
 
 const About = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div>
       <Section background="image">
@@ -73,9 +72,9 @@ const About = () => {
                 간단하고 빠르게 자신의 프로젝트를 올릴 수 있어요.
               </p>
             </TextBoxWrap>
-            <ImageWrap>
+            <SecondImageWrap>
               <img src={question2} />
-            </ImageWrap>
+            </SecondImageWrap>
           </QuestionSection>
         </Wrap>
       </Section>
@@ -107,7 +106,7 @@ const About = () => {
               프로젝트를 만나보세요!
             </h2>
             <div>
-              <Link to="/">프로젝트 시작하기</Link>
+              <Link to="/start-project">프로젝트 시작하기</Link>
               <span></span>
             </div>
           </StartProjectSection>

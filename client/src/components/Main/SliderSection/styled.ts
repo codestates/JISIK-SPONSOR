@@ -93,6 +93,30 @@ export const SlideCentent1 = styled.div`
     line-height: 160%;
     margin-bottom: 30px;
   }
+
+  @media all and (max-width: 567px) {
+    background-image: url(${mainSliderImg1});
+    background-repeat: no-repeat;
+    background-size: auto 40%;
+    background-position: 50% 74%;
+    width: 100%;
+    & span {
+      text-align: center;
+    }
+    & h2 {
+      text-align: center;
+      font-size: 20px;
+    }
+    & h1 {
+      text-align: center;
+      font-size: 31.25px;
+      margin-bottom: 10px;
+    }
+    & p {
+      text-align: center;
+      font-size: 12.8px;
+    }
+  }
 `;
 
 export const SlideCentent2 = styled.div`
@@ -150,5 +174,17 @@ export const SlideBtnWrap = styled.div`
     border: 3px solid #343a40;
     background-color: #343a40;
     transition: 0.3s;
+  }
+
+  @media all and (max-width: 567px) {
+    width: 100%;
+    disiplay: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 7px;
+    & a {
+      font-size: 12.8px;
+      margin-top: 150px;
+    }
   }
 `;
