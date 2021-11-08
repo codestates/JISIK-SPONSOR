@@ -131,5 +131,85 @@ module.exports = {
       console.error(err);
       res.status(400).json({ message: 'Client Error' });
     }
+  },
+  cancel: async (req, res) => {
+    try {
+      const { imp_uid: uid, reason, cancel_request_amount } = req.body;
+
+      // 1. 액세스 토큰(access token) 발급 받기
+      const getToken = await axios({
+        url: 'https://api.iamport.kr/users/getToken',
+        method: 'POST',
+        // headers: { 'Content-Type': 'application/json' },
+        data: {
+          imp_key: process.env.IMP_KEY, // REST API 키
+          imp_secret: process.env.IMP_SECRET // REST API Secret
+        }
+      });
+
+      // 인증 토큰 추출하기
+      const { access_token } = getToken.data.response;
+
+      // 2. imp_uid로 아임포트 서버에서 결제 정보 조회
+      const getPaymentData = await axios({
+        url: `https://api.iamport.kr/payments/${uid}`, // imp_uid 전달
+        method: 'GET',
+        headers: { Authorization: access_token } // 인증 토큰 Authorization header에 추가
+      });
+
+      // 조회한 결제정보로부터 imp_uid, amount(결제금액), cancel_amount(환불된 총 금액) 추출
+      const { imp_uid, amount, cancel_amount } = getPaymentData.data.response;
+
+      console.log(
+        '결제금액:',
+        amount,
+        '환불금액:',
+        cancel_amount,
+        '환불요청금액:',
+        cancel_request_amount
+      );
+
+      // 환불 가능 금액(= 결제금액 - 환불 된 총 금액) 계산
+      const cancelableAmount = amount - cancel_amount;
+
+      // 이미 전액 환불된 경우
+      if (cancelableAmount <= 0) {
+        return res.status(400).json({ message: '이미 전액환불된 주문입니다.' });
+      }
+
+      // 부분 환불 불가능
+      if (amount !== cancel_request_amount) {
+        return res.status(400).json({ message: '부분 환불이 불가능합니다.' });
+      }
+
+      // 3. 환불 요청
+      const getCancelData = await axios({
+        url: 'https://api.iamport.kr/payments/cancel',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: access_token // 아임포트 서버로부터 발급받은 엑세스 토큰
+        },
+        data: {
+          reason, // 가맹점 클라이언트로부터 받은 환불사유
+          imp_uid, // imp_uid를 환불 `unique key`로 입력
+          amount: cancel_request_amount, // 가맹점 클라이언트로부터 받은 환불금액
+          checksum: cancelableAmount // [권장] 환불 가능 금액 입력
+        }
+      });
+
+      // 환불 불가능한 경우 다음을 리턴한다.
+      const { response } = getCancelData.data;
+      if (!response) {
+        return res.status(400).json({ message: getCancelData.data.message });
+      }
+
+      // 4. 환불 결과 동기화 (주문 데이터베이스 변경 로직 구현 필요)
+      return res.status(200).json({ message: 'ok' });
+    } catch (err) {
+      // 환불 로직 작성 필요
+      console.error(err);
+      res.status(400).json({ message: 'Client Error' });
+    }
   }
 };

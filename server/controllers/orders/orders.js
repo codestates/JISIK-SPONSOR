@@ -65,10 +65,10 @@ module.exports = {
       if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
 
       // 현재 프로젝트가 "진행중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== 'in progress') {
-        return res
-          .status(403)
-          .json({ message: 'This project status is not "in progress" !' });
+      if (projectInfo.status !== 'inprogress') {
+        return res.status(403).json({
+          message: 'This project status is not "in progress" !'
+        });
       }
 
       /**
@@ -97,6 +97,50 @@ module.exports = {
 
       // 생성된 주문 번호를 리턴한다.
       res.status(201).json({ order: newOrder });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  },
+  stop: async (req, res) => {
+    try {
+      /**
+       *
+       * [유효성 검사]
+       *
+       */
+
+      // 로그인 인증 검사
+      const userInfo = await userAuthen(req, res);
+
+      // 요청이 잘못된 경우는 다음을 리턴한다.
+      const { imp_uid, merchant_uid } = req.body;
+      if (!imp_uid || !merchant_uid) {
+        return res.status(400).json({ message: 'Bad Request!' });
+      }
+
+      // 주문이 존재하지 않는 경우 다음을 리턴한다.
+      const orderInfo = await order.findOne({ where: { merchant_uid } });
+      if (!orderInfo) return res.status(404).json({ message: 'Not Found!' });
+
+      // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
+      if (userInfo.id !== orderInfo.user_id && userInfo.role_id !== 1) {
+        return res.status(403).json({ message: 'Not authorized!!!' });
+      }
+
+      /**
+       *
+       * [주문 취소]
+       *
+       */
+
+      await orderInfo.update(
+        { imp_uid, status: 'stop' },
+        { where: { merchant_uid } }
+      );
+
+      // 변경된 주문 내역을 리턴한다.
+      res.status(200).json({ orderInfo });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: 'Server Error' });
