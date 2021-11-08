@@ -16,7 +16,7 @@ module.exports = {
       const userInfo = await userAuthen(req, res);
 
       // 관리자가 아니고 들어온 쿼리가 없다면 author을 초기화 시킨다.
-      let { author } = req.query;
+      let { author, limit } = req.query;
       if (!author && userInfo.role_id !== 1) author = userInfo.id;
 
       // 댓글을 조회할 권한이 없는경우 다음을 리턴한다.
@@ -40,7 +40,8 @@ module.exports = {
             attributes: ['title', 'path']
           }
         ],
-        order: [['id', 'DESC']]
+        order: [['id', 'DESC']],
+        limit: Number(limit)
       });
 
       // 모든 댓글을 반환한다.
