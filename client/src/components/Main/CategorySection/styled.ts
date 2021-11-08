@@ -1,4 +1,5 @@
 /*eslint-disable*/
+import { findByLabelText } from '@testing-library/dom';
 import styled from 'styled-components';
 
 export const Section = styled.section`
@@ -11,6 +12,11 @@ export const Wrap = styled.div`
   max-width: 960px;
   margin: 0 auto;
   padding: 25px 0;
+
+  @media all and (max-width: 576px) {
+    width: 100%;
+    padding: 5px;
+  }
 `;
 
 export const ImageWrap = styled.div`
@@ -23,10 +29,16 @@ export const ImageWrap = styled.div`
     max-width: 100%;
   }
 
-  @media screen and (max-width: 718px) {
+  @media all and (max-width: 576px) {
     width: 100%;
-    text-align: left;
+    text-align: center;
     margin-bottom: 70px;
+
+    & img {
+      width: 50%;
+      padding: 0 60px;
+      margin-bottom: 25px;
+    }
   }
 `;
 
@@ -35,6 +47,13 @@ export const LinkWrap = styled.div`
   top: 0;
   width: 100%;
   padding: 0 30px 0 35%;
+
+  @media all and (max-width: 576px) {
+    width: 102%;
+    padding: 80px 0 0 0;
+    margin-top: 30px;
+    text-align: center;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -71,5 +90,13 @@ export const Li = styled.li`
   &:hover span {
     font-weight: 600;
     transition: all 0.3s;
+  }
+
+  @media all and (max-width: 374px) {
+    margin: 5px 5px 5px 0;
+
+    & span {
+      font-size: 12.8px;
+    }
   }
 `;

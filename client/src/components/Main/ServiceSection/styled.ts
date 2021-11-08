@@ -43,16 +43,32 @@ export const Title = styled.h2`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  @media all and (max-width: 567px) {
+    width: 100%;
+    font-size: 15.5px;
+  }
 `;
 
 export const CardWrap = styled.div`
   display: flex;
   gap: 30px;
   justify-content: center;
+
+  @media all and (max-width: 819px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media all and (max-width: 567px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const Card = styled(Link)`
-  background-color: slategray;
+  background-color: #fff;
   max-width: 367px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;

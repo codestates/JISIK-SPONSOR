@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  background-color: pink;
   padding: 30px 0;
 `;
 
@@ -13,11 +12,15 @@ export const Wrap = styled.div`
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;
-  background-color: green;
+
+  @media all and (max-width: 959px) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const AllCategoryWrap = styled.div`
-  background-color: tomato;
   flex: 1 1 auto;
   & img {
     width: 30px;
@@ -34,7 +37,6 @@ export const AllCategoryWrap = styled.div`
 `;
 
 export const SubCategoryWrap = styled.div`
-  background-color: skyblue;
   flex: 1 1 auto;
   width: auto;
 `;
@@ -75,11 +77,22 @@ export const Li = styled.li`
     font-weight: 600;
     transition: all 0.3s;
   }
+
+  @media all and (max-width: 606px) {
+    & span {
+      font-size: 16px;
+    }
+  }
+
+  @media all and (max-width: 567px) {
+    & span {
+      font-size: 15px;
+    }
+  }
 `;
 
 export const FilterWrap = styled.div`
   flex: 1 1 auto;
   text-align: right;
-  background-color: orange;
   width: auto;
 `;
