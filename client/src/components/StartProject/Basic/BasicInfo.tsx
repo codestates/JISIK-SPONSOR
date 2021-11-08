@@ -31,7 +31,7 @@ import {
   removeHashTagId,
   resetHashTagId
 } from 'store/hashtag-slice';
-import { BasicObject, projectHashTagProps, HashtagProps } from './type';
+import { projectHashTagProps, HashtagProps } from './type';
 
 interface BasicMemoProps {
   titleMemo: boolean;
@@ -44,11 +44,20 @@ interface BasicInfoProps {
   simpleInpo: string;
 }
 
+interface termProps {
+  value: string;
+  label: string;
+}
+
+interface imageProms {
+  thumbnail_url: string;
+}
 function BasicInfo() {
   const dispatch = useDispatch();
   const HashTagArr = useSelector((state: RootState) => state.hashtag.hashTag);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const { projects } = useSelector((state: RootState) => state.project);
+  console.log('projects', projects);
   const [tagInput, setTagInput] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [showMemo, setShowMemo] = useState<BasicMemoProps>({
@@ -62,34 +71,16 @@ function BasicInfo() {
     simpleInpo: ''
   });
   const [periodValue, setPeriodValue] = useState<number>(0);
-  // const [defaultTerm, setDefaultTerm] = useState<termProps>();
-
-  // console.log('defaultTerm', defaultTerm);
+  const [defaultTerm, setDefaultTerm] = useState<termProps>();
   const [categoryValue, setCategoryValue] = useState<string>('');
-  const [imgSrc, setImgSrc] = useState<string>('');
+  const [imgSrc, setImgSrc] = useState<string>(projects.thumbnail_url || '');
 
   useEffect(() => {
     // (기본정보) 제목,카테고리,기간,한줄소개 get;
-    axios
-      .get<BasicObject>(`${REACT_APP_API_URL}/projects/${projectId}`, {
-        withCredentials: true
-      })
-      .then((res) => {
-        console.log(res);
-        setCategoryValue(res.data.projects.category.name);
-        const option = options.filter(
-          (option) => Number(option.value) === projects.term
-        );
-        console.log(option);
-        // setDefaultTerm({
-        //   value: '7',
-        //   label: '7일'
-        // });
-        setBasicInpo({
-          title: projects.title,
-          simpleInpo: projects.description
-        });
-      });
+
+    if (projects.category !== null && projects.category !== undefined) {
+      setCategoryValue(projects.category.name);
+    }
 
     //(기본정보) 해시태그 get
 
@@ -107,6 +98,17 @@ function BasicInfo() {
         setHashtag(arr);
       });
   }, []);
+
+  useEffect(() => {
+    setBasicInpo({
+      title: projects.title,
+      simpleInpo: projects.description
+    });
+    const option = options.filter(
+      (option) => Number(option.value) === projects.term
+    );
+    setDefaultTerm(option[0]);
+  }, [projects]);
 
   const options = [
     { value: '7', label: '7일' },
@@ -171,6 +173,7 @@ function BasicInfo() {
     };
 
   const handlePeriod = (option: any) => {
+    setDefaultTerm(option);
     setPeriodValue(Number(option.value));
   };
 
@@ -204,14 +207,14 @@ function BasicInfo() {
       formData.append('image', imageFile);
       console.log('@@', formData.get('image'));
       axios
-        .post(
+        .post<imageProms>(
           `${REACT_APP_API_URL}/projects/${projectId}/thumbnail`,
           formData,
           {
             withCredentials: true
           }
         )
-        .then((res) => console.log(res));
+        .then((res) => setImgSrc(res.data.thumbnail_url));
     }
   };
 
@@ -287,8 +290,8 @@ function BasicInfo() {
             classNamePrefix="Select"
             options={options}
             placeholder="날짜 선택"
-            // defaultValue={defaultTerm}
             onChange={(option) => handlePeriod(option)}
+            value={defaultTerm || ''}
           />
           <FocusMemo>대부분 30일을 선택합니다.</FocusMemo>
         </ProjectFundingPeriod>
@@ -310,7 +313,7 @@ function BasicInfo() {
           <ProjectSelectIma>
             <h3>표지 이미지</h3>
             <label htmlFor="coverImage">
-              <img src={imgSrc} />
+              <img src={`https://jisiksponsor.com${imgSrc}`} />
             </label>
             <input type="file" id="coverImage" onChange={handleCoverIma} />
           </ProjectSelectIma>

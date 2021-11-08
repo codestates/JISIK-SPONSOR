@@ -19,14 +19,16 @@ function Category({ setCategoryValue }: ParentsProps) {
         withCredentials: true
       })
       .then((res) => {
-        const {
-          category: { name }
-        } = res.data.projects;
-        let select = document.querySelector(`#${name}`);
-        select?.setAttribute('checked', '');
-        setCheck(true);
-        setCheckName(name);
-        setCategoryValue(name);
+        if (res.data.projects.category !== null) {
+          const {
+            category: { name }
+          } = res.data.projects;
+          let select = document.querySelector(`#${name}`);
+          select?.setAttribute('checked', '');
+          setCheck(true);
+          setCheckName(name);
+          setCategoryValue(name);
+        }
       });
   }, []);
   const checkOnlyOne = (e: React.MouseEvent<HTMLInputElement>) => {

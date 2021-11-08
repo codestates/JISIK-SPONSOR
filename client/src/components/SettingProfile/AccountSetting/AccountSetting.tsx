@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { REACT_APP_API_URL } from 'config';
+import axios from 'axios';
 import {
   SettingChangePW,
   ChangeButton,
@@ -6,7 +8,43 @@ import {
   WithdrawalButton
 } from './styled';
 import { ProjectBody, Container } from 'components/StartProject/commonStyled';
+
+interface changePwProps {
+  password: string;
+  checkPassword: string;
+}
 function AccountSetting() {
+  const [changePW, setChangePW] = useState<changePwProps>({
+    password: '',
+    checkPassword: ''
+  });
+  const [isVaild, setIsVaild] = useState<boolean>(false);
+  const handleInput =
+    (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setIsVaild(false);
+      setChangePW({
+        ...changePW,
+        [key]: e.target.value
+      });
+    };
+  const handleClick = async () => {
+    const { password, checkPassword } = changePW;
+    if (password !== checkPassword) {
+      setIsVaild(true);
+      return;
+    }
+    const response = await axios.patch(
+      `${REACT_APP_API_URL}/users/me/`,
+      {
+        password
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log(response);
+  };
+
   return (
     <Container>
       <ProjectBody>
@@ -15,11 +53,26 @@ function AccountSetting() {
 
         <SettingChangePW>
           <h3>비밀번호 변경</h3>
-          <form>
-            <input type="text" placeholder="새로운 비밀번호" />
-            <input type="text" placeholder="새로운 비밀번호 확인" />
+          <form
+            onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+              e.preventDefault()
+            }
+          >
+            <input
+              type="text"
+              onChange={handleInput('password')}
+              placeholder="새로운 비밀번호"
+            />
+            <input
+              type="text"
+              onChange={handleInput('checkPassword')}
+              placeholder="새로운 비밀번호 확인"
+            />
+            {isVaild && <p>비밀번호가 일치하지 않습니다.</p>}
+            <ChangeButton type="submit" onClick={handleClick}>
+              변경
+            </ChangeButton>
           </form>
-          <ChangeButton>변경</ChangeButton>
         </SettingChangePW>
 
         <SettingWithdrawal>

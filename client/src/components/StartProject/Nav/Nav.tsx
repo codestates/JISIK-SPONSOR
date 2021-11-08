@@ -4,11 +4,11 @@ import { basic, budget, details, team } from 'store/startPageBt-slice';
 import { useEffect } from 'react';
 import { RootState } from 'index';
 import { useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 function Nav() {
   const page = useSelector((state: RootState) => state.page);
   const dispatch = useDispatch();
-
+  const { projects } = useSelector((state: RootState) => state.project);
   useEffect(() => {
     dispatch(basic());
   }, []);
@@ -29,7 +29,9 @@ function Nav() {
         </NavButton>
       </NavButtonGroup>
       <ResultButton>
-        <NavButton>미리보기</NavButton>
+        <Link to={'/detailed-project/' + projects.path}>
+          <NavButton>미리보기</NavButton>
+        </Link>
         <NavButton>제출하기</NavButton>
       </ResultButton>
     </ProjectNav>

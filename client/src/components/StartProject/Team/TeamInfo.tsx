@@ -50,6 +50,10 @@ interface TeamTextProps {
 interface projectTeamProps {
   id: number;
 }
+
+interface imageProps {
+  profile_url: string;
+}
 function TeamInfo() {
   const ulElement = useRef<HTMLUListElement>(null);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
@@ -60,7 +64,7 @@ function TeamInfo() {
   const [bringList, setBringList] = useState<any>(
     projects.project_team_members
   );
-  const [imgSrc, setImgSrc] = useState<string>('');
+  const [imgSrc, setImgSrc] = useState<string>(projects.thumbnail_url || '');
   const [showMemo, setShowMemo] = useState<TeamMemoProps>({
     memberMemo: false,
     teamMemo: false,
@@ -179,13 +183,15 @@ function TeamInfo() {
 
       const formData = new FormData();
       formData.append('image', imageFile);
-      axios.post(
-        `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/profile`,
-        formData,
-        {
-          withCredentials: true
-        }
-      );
+      axios
+        .post<imageProps>(
+          `${REACT_APP_API_URL}/projects/${projectId}/teams/${teamId}/profile`,
+          formData,
+          {
+            withCredentials: true
+          }
+        )
+        .then((res) => setImgSrc(res.data.profile_url));
     }
   };
 
@@ -315,7 +321,7 @@ function TeamInfo() {
           <ProjectSelectIma>
             <h3>팀 또는 개인 대표 이미지</h3>
             <label htmlFor="TeamImg">
-              <img src={imgSrc} />
+              <img src={`https://jisiksponsor.com${imgSrc}`} />
             </label>
             <input type="file" id="TeamImg" onChange={handleCoverIma} />
           </ProjectSelectIma>

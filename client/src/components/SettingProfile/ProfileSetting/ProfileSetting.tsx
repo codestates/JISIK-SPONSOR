@@ -30,16 +30,28 @@ function ProfileSetting() {
     };
 
   const changeNickname = async () => {
-    const response = await axios.patch(`${REACT_APP_API_URL}/users/me`, {
-      name
-    });
+    const response = await axios.patch(
+      `${REACT_APP_API_URL}/users/me`,
+      {
+        nickname: name
+      },
+      {
+        withCredentials: true
+      }
+    );
     console.log('닉네임변경', response);
   };
 
   const handleBio = async () => {
-    const response = await axios.patch(`${REACT_APP_API_URL}/users/me`, {
-      bio
-    });
+    const response = await axios.patch(
+      `${REACT_APP_API_URL}/users/me`,
+      {
+        bio
+      },
+      {
+        withCredentials: true
+      }
+    );
     console.log('자기소개', response);
   };
   return (
@@ -62,13 +74,13 @@ function ProfileSetting() {
             <span>JPG, PNG, GIF - 50MB 파일 제한</span>
           </label>
           <input type="file" id="TeamImg" />
-          <ChangeButton onClick={handleBio}>변경</ChangeButton>
+          <ChangeButton>변경</ChangeButton>
         </SettingImg>
 
         <SettingSelfIntroduction>
           <h3>자기소개</h3>
           <textarea onChange={handleInput('bio')} />
-          <ChangeButton>변경</ChangeButton>
+          <ChangeButton onClick={handleBio}>변경</ChangeButton>
         </SettingSelfIntroduction>
       </ProjectBody>
     </Container>

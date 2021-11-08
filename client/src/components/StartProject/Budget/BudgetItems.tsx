@@ -20,7 +20,7 @@ function BudgetItems({ handleInput, item, removeBringList }: any) {
           type="number"
           id={item.id}
           onChange={handleInput('amount')}
-          value={item.amount}
+          value={Math.floor(item.amount)}
           disabled
         />
       </div>
