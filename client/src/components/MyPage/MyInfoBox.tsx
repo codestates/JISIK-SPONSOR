@@ -24,21 +24,23 @@ import {
 import axios from 'axios';
 
 const MyInfoBox = () => {
+  const myPageTab = useSelector((state: RootState) => state.myPage);
+  const userInfo = useSelector((state: RootState) => state.userInfo);
+  const { id } = userInfo.userInfo;
+  const dispatch = useDispatch();
+  const config = { withCredentials: true };
+
   const [projects, setProjects] = useState<Row[]>([]);
   const [backedProjects, setBackedProjects] = useState<Row[]>([]);
   const [favoredProjects, setFavoredProjects] = useState<Row[]>([]);
   const [comments, setComments] = useState<Comment[]>([]);
-  // const [commentLimit, setCommentLimit] = useState<number>(5);
-  // const [optionQuerys, setOptionQuerys] = useState({
-  //   author: '',
-  //   limit: commentLimit
-  // });
+  const [commentLimit, setCommentLimit] = useState<number>(5);
+  const [optionQuerys, setOptionQuerys] = useState({
+    author: id,
+    limit: commentLimit
+  });
 
-  const myPageTab = useSelector((state: RootState) => state.myPage);
-  const userInfo = useSelector((state: RootState) => state.userInfo);
-
-  const dispatch = useDispatch();
-  const config = { withCredentials: true };
+  console.log(setCommentLimit, setOptionQuerys);
 
   //최초 렌더링 시 로그인한 유저의 정보를 받아오고, 나의 프로젝트탭이 보여지게 세팅
   useEffect(() => {
@@ -49,6 +51,11 @@ const MyInfoBox = () => {
     getFavoredProject();
     getBackedProject();
   }, []);
+
+  useEffect(() => {
+    getMycomment();
+    console.log('fff');
+  }, [commentLimit]);
 
   //나의 프로젝트를 받아오는 함수
   const getMyProject = async () => {
@@ -86,13 +93,19 @@ const MyInfoBox = () => {
   //나의 댓글을 불러오는 함수
   const getMycomment = async () => {
     try {
-      const url = `${REACT_APP_API_URL}/projects/comments`;
+      const url = `${REACT_APP_API_URL}/projects/comments?author=${optionQuerys.author}&limit=${optionQuerys.limit}`;
       const response = await axios.get<CommentProps>(url, config);
+      console.log(optionQuerys);
       console.log(response.data.comments);
       setComments(response.data.comments);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const seeMoreCom = () => {
+    setCommentLimit(commentLimit + 5);
+    setOptionQuerys({ ...optionQuerys, limit: commentLimit + 5 });
   };
 
   // 로그인한 유저의 정보를 받아오는 함수
@@ -106,8 +119,6 @@ const MyInfoBox = () => {
       console.log(err);
     }
   };
-
-  const { id } = userInfo.userInfo;
 
   return (
     <MyInfoWrapper>
@@ -152,7 +163,7 @@ const MyInfoBox = () => {
               />
             );
           })}
-        {myPageTab.myComments && <SeeMore>더보기</SeeMore>}
+        {myPageTab.myComments && <SeeMore onClick={seeMoreCom}>더보기</SeeMore>}
       </MyInfoDetail>
     </MyInfoWrapper>
   );
