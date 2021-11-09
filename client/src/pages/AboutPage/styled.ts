@@ -64,7 +64,7 @@ export const QuestionSection = styled.div<QuestionSectionProps>`
   & div:nth-child(2) {
     width: 45%;
     padding: ${(props) =>
-    props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
+      props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
   }
   @media all and (max-width: 567px) {
     width: 100%;
@@ -72,7 +72,7 @@ export const QuestionSection = styled.div<QuestionSectionProps>`
     display: flex;
     flex-direction: column;
     gap: 15px;
-    
+
     & div:nth-child(1) {
       width: 85%;
     }
@@ -90,7 +90,9 @@ export const ImageWrap = styled.div`
   }
 `;
 
-{/* 이미지가 센터가 아니라 좌측으로 혼자 따로 놀아서 SecondImageWrap 만듬  */ }
+{
+  /* 이미지가 센터가 아니라 좌측으로 혼자 따로 놀아서 SecondImageWrap 만듬  */
+}
 export const SecondImageWrap = styled.div`
   & > img {
     width: 100%;

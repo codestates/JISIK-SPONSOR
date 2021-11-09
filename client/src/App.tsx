@@ -27,9 +27,14 @@ const theme = {
 function App() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const menuBoxRef = useRef(null);
   const [showBox, setShowBox] = useState<boolean>(false);
 
-  const menuBoxRef = useRef(null);
+  document.addEventListener('click', (e: any) => {
+    if (e.target !== menuBoxRef.current && e.target.className !== 'userIcon') {
+      setShowBox(false);
+    }
+  });
 
   const handleLogout = async () => {
     try {
@@ -50,30 +55,28 @@ function App() {
     }
   };
 
-  document.addEventListener('click', (e: any) => {
-    if (e.target !== menuBoxRef.current && e.target.className !== 'userIcon') {
-      setShowBox(false);
-    }
-  });
+  const showMenuBox = () => {
+    setShowBox(!showBox);
+    console.log('ok', showBox);
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
-        <Header showBox={showBox} setShowBox={setShowBox} />
+        <Header showMenuBox={showMenuBox} />
+        <Body />
+        <Footer />
+        <Modal />
         {showBox && (
           <MenuBox ref={menuBoxRef}>
             <Link to="/mypage">
               <button>마이페이지</button>
             </Link>
-
             <button onClick={handleLogout}>로그아웃</button>
           </MenuBox>
         )}
-        <Body />
-        <Footer />
-        <Modal />
-        <MobileNav />
+        <MobileNav showMenuBox={showMenuBox} />
       </>
     </ThemeProvider>
   );
