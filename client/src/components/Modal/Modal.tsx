@@ -3,9 +3,10 @@ import { RootState } from 'index';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import ConflitSignup from './ConflitSignup';
+import MiniModal from './MiniModal';
 
 const Modal = () => {
-  const { loginModal, signupModal, conflitModal } = useSelector(
+  const { loginModal, signupModal, conflitModal, miniModal } = useSelector(
     (state: RootState) => state.modal
   );
 
@@ -14,6 +15,7 @@ const Modal = () => {
       {loginModal && <LoginModal />}
       {signupModal && <SignupModal />}
       {conflitModal && <ConflitSignup />}
+      {miniModal && <MiniModal />}
     </>
   );
 };

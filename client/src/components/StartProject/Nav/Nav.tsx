@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { showMiniMoal, insertText } from 'store/modal-slice';
 function Nav() {
   const page = useSelector((state: RootState) => state.page);
   const dispatch = useDispatch();
@@ -31,6 +32,13 @@ function Nav() {
     );
     console.log('response', response);
     history.push('/');
+    dispatch(showMiniMoal(true));
+    dispatch(
+      insertText(
+        `프로젝트가 성공적으로 제출되었습니다.
+        검토 후 승인을 받으면 펀딩을 진행하실 수 있습니다.`
+      )
+    );
   };
   return (
     <ProjectNav>

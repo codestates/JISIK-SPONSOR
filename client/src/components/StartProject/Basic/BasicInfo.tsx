@@ -32,7 +32,7 @@ import {
   resetHashTagId
 } from 'store/hashtag-slice';
 import { projectHashTagProps, HashtagProps } from './type';
-
+import { showMiniMoal, insertText } from 'store/modal-slice';
 interface BasicMemoProps {
   titleMemo: boolean;
   periodMemo: boolean;
@@ -193,6 +193,8 @@ function BasicInfo() {
         withCredentials: true
       }
     );
+    dispatch(showMiniMoal(true));
+    dispatch(insertText('저장되었습니다.'));
     console.log('프로젝트저장', response);
   };
   const handleCoverIma = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -15,7 +15,7 @@ import { logout } from 'store/login-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'index';
 import { useHistory } from 'react-router';
-
+import { showMiniMoal, insertText } from 'store/modal-slice';
 interface changePwProps {
   password: string;
   checkPassword: string;
@@ -79,18 +79,28 @@ function AccountSetting() {
     return;
   };
   const handleClick = async () => {
-    const { password } = changePW;
-    const response = await axios.patch(
-      `${REACT_APP_API_URL}/users/me/`,
-      {
-        password
-      },
-      {
-        withCredentials: true
-      }
-    );
-    console.log(response);
-    alert('비밀번호가 정상적으로 변경되었습니다.');
+    const { password, checkPassword } = changePW;
+    if (password !== '' && checkPassword !== '' && !isVaild && !pwVaild) {
+      const response = await axios.patch(
+        `${REACT_APP_API_URL}/users/me/`,
+        {
+          password
+        },
+        {
+          withCredentials: true
+        }
+      );
+      console.log(response);
+      dispatch(showMiniMoal(true));
+      dispatch(insertText('비밀번호가 성공적으로 변경되었습니다.'));
+      setChangePW({
+        password: '',
+        checkPassword: ''
+      });
+    } else {
+      dispatch(showMiniMoal(true));
+      dispatch(insertText('변경하실 비밀번호를 입력해주세요.'));
+    }
   };
 
   const handleWithDrawal = async () => {
@@ -99,7 +109,12 @@ function AccountSetting() {
     });
     dispatch(logout());
     history.push('/');
-    alert('회원탈퇴 되었습니다. 그동안 지식스폰서를 이용해주셔서 감사합니다.');
+    dispatch(showMiniMoal(true));
+    dispatch(
+      insertText(
+        '회원탈퇴 되었습니다. 그동안 지식스폰서를 이용해주셔서 감사합니다.'
+      )
+    );
   };
 
   const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,7 +150,8 @@ function AccountSetting() {
         }
       );
       console.log(response);
-      alert('성공적으로 추가되었습니다.');
+      dispatch(showMiniMoal(true));
+      dispatch(insertText('휴대폰번호가 성공적으로 등록되었습니다.'));
     } else {
       setNumberVaild(true);
     }
@@ -160,6 +176,7 @@ function AccountSetting() {
             <input
               type="text"
               onChange={handleInput('password')}
+              value={changePW.password}
               placeholder="새로운 비밀번호"
             />
             {pwVaild && (
@@ -168,6 +185,7 @@ function AccountSetting() {
             <input
               type="text"
               onChange={handleInput('checkPassword')}
+              value={changePW.checkPassword}
               placeholder="새로운 비밀번호 확인"
             />
             {isVaild && <p>비밀번호가 일치하지 않습니다.</p>}
@@ -186,7 +204,7 @@ function AccountSetting() {
             }
           >
             <input type="text" onChange={handleNumberInput} />
-            <NumberAddButton onClick={addPhoneNumber}>추가</NumberAddButton>
+            <NumberAddButton onClick={addPhoneNumber}>등록</NumberAddButton>
           </form>
           {numberVaild && <p>올바른 형식이 아닙니다.</p>}
         </PhoneNumber>

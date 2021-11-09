@@ -107,6 +107,13 @@ export const AddTeamMember = styled.ul`
 
 export const AddTeamMemberButton = styled(AddButton)`
   margin-top: 20px;
+  border: 3px solid ${({ theme }) => theme.colors.orange};
+  transition: 0.3s;
+
+  &:hover {
+    background: #fff;
+    color: 3px solid ${({ theme }) => theme.colors.orange};
+  }
 `;
 
 // 프로젝트 팀 소개

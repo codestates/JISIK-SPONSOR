@@ -50,6 +50,14 @@ export const Section2 = styled.section`
       margin-top: 20px;
       cursor: pointer;
       text-align: center;
+      transition: 0.3s;
+    }
+
+    > button:hover {
+      color: ${({ theme }) => theme.colors.violet};
+      border: 3px solid ${({ theme }) => theme.colors.violet};
+      background-color: #fff;
+      transition: 0.3s;
     }
   }
 `;
