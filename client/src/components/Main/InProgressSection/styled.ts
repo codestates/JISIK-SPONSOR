@@ -36,10 +36,10 @@ export const TitleWrap = styled.div`
     transition: 0.3s;
   }
   & > a:hover {
-    color: #343a40;
+    color: #fff;
     font-weight: 600;
-    border: 2px solid #343a40;
-    background-color: #fff;
+    border: 3px solid #343a40;
+    background-color: #343a40;
     transition: 0.3s;
   }
 `;

@@ -1,13 +1,13 @@
 /*eslint-disable*/
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { notUsed } from '../../store/headerSearch-slice';
-import { useHistory } from 'react-router-dom';
 import CategorySection from '../../components/Board/CategorySection/CategorySection';
 import SearchSection from '../../components/Board/SearchSection/SearchSection';
 import PostcardSection from '../../components/Board/PostcardSection/PostcardSection';
 import MoreBtnSection from '../../components/Board/MoreBtnSection/MoreBtnSection';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { notUsed } from '../../store/headerSearch-slice';
+import { useHistory } from 'react-router-dom';
 import { Data, Row } from '../../components/ProjectsCards/type';
 import { REACT_APP_API_URL } from '../../config';
 
@@ -180,12 +180,6 @@ const Board = () => {
         categoryQueryFn={categoryQueryFn}
         filterQueryFn={filterQueryFn}
       />
-      <h2 style={{ fontSize: '40px' }}>
-        카테고리: {optionQuerys.categoryName}
-      </h2>
-      <h2 style={{ fontSize: '40px' }}>필터: {optionQuerys.order}</h2>
-      <h2 style={{ fontSize: '40px' }}>검색: {optionQuerys.search}</h2>
-      <h2 style={{ fontSize: '40px' }}>카드 개수 {projectLimit}</h2>
       <SearchSection seachQueryFn={seachQueryFn} />
       <PostcardSection projects={allProjects} />
       <MoreBtnSection

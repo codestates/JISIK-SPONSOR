@@ -46,6 +46,9 @@ const Body = () => {
         <Route path="/start">
           <Start />
         </Route>
+        <Route path="/404">
+          <Error />
+        </Route>
       </Switch>
     </main>
   );

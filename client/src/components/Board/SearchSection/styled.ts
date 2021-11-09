@@ -27,4 +27,12 @@ export const Wrap = styled.div`
     border: 1px solid #7950f2;
     padding: 0 15px;
   }
+
+  & > button:hover {
+    color: #343a40;
+    font-weight: 600;
+    border: 2px solid #343a40;
+    background-color: #fff;
+    transition: 0.3s;
+  }
 `;

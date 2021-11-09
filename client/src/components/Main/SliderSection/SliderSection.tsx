@@ -1,4 +1,5 @@
 /*eslint-disable*/
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Section,
@@ -7,14 +8,25 @@ import {
   Slide,
   SlideCentent1,
   SlideCentent2,
-  SlideBtnWrap
+  SlideBtnWrap,
+  SliderButtonWrapper,
+  SliderButton
 } from './styled';
 
 const SliderSection = () => {
+  const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0)
+
+  const moveToPrevSlide = () => {
+    setSelectedSlideIndex(0)
+  }
+  const moveToNextSlide = () => {
+    setSelectedSlideIndex(1)
+  }
+
   return (
     <Section>
       <Wrap>
-        <SliderWrap>
+        <SliderWrap className={`selected-slide-index-${selectedSlideIndex}`}>
           <Slide>
             <SlideCentent1>
               <span>Welcome</span>
@@ -51,12 +63,16 @@ const SliderSection = () => {
                 든든한 스폰서가 되어주세요!
               </h2>
               <SlideBtnWrap>
-                <Link to="/">프로젝트 시작하기</Link>
-                <Link to="/">모든 프로젝트 보기</Link>
+                <Link to="/start-project">프로젝트 시작하기</Link>
+                <Link to="/board">모든 프로젝트 보기</Link>
               </SlideBtnWrap>
             </SlideCentent2>
           </Slide>
         </SliderWrap>
+        <SliderButtonWrapper>
+          <SliderButton onClick={moveToPrevSlide} className={`is-selected-${selectedSlideIndex === 0}`} />
+          <SliderButton onClick={moveToNextSlide} className={`is-selected-${selectedSlideIndex === 1}`} />
+        </SliderButtonWrapper>
       </Wrap>
     </Section>
   );
