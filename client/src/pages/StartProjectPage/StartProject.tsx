@@ -6,8 +6,8 @@ import DetailsInfo from 'components/StartProject/Detail/DetailsInfo';
 import { RootState } from 'index';
 import TeamInfo from 'components/StartProject/Team/TeamInfo';
 import { useEffect } from 'react';
-import { REACT_APP_API_URL } from 'config';
 import { BasicObject } from 'components/StartProject/Basic/type';
+import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import { getProjectState } from 'store/project-slice';
 import { getTeamId } from 'store/projectState-slice';
@@ -25,7 +25,9 @@ const StartProject = () => {
       })
       .then((res) => {
         dispatch(getProjectState(res.data.projects));
-        dispatch(getTeamId(res.data.projects.project_teams[0].id));
+        if (res.data.projects.project_teams.length !== 0) {
+          dispatch(getTeamId(res.data.projects.project_teams[0].id));
+        }
       });
   }, [basic, budget, details, team]);
   return (

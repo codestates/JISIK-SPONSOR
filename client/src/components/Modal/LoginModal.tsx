@@ -16,6 +16,7 @@ function LoginModal() {
       <ModalBackup onClick={closeModalHandler} />
       <ModalContainer>
         <ModalHead>
+          <span onClick={() => dispatch(showLoginModal(false))}>&times;</span>
           <h2>로그인</h2>
           <p>
             회원이 아니신가요?{' '}

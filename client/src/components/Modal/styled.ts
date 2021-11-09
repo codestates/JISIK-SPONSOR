@@ -19,6 +19,12 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 997;
+  /* height: 500px; */
+
+  @media screen and (max-width: 650px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const PersonalInfoBack = styled.div`
@@ -127,6 +133,12 @@ export const ModalHead = styled.div`
   align-items: center;
   /* background: yellow; */
 
+  > span {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
   > h2 {
     color: ${({ theme }) => theme.colors.violetWord};
     font-weight: 700;
@@ -150,7 +162,37 @@ export const ModalHead = styled.div`
     }
   }
 `;
+export const ConflitContainer = styled(ModalContainer)`
+  width: auto;
+  padding: 50px auto;
+  @media screen and (max-width: 650px) {
+    width: 100%;
+    height: 100%;
+  }
+`;
+export const ModalWraaper = styled(ModalHead)`
+  > h2 {
+    font-size: 25px;
+  }
 
+  > p {
+    font-size: 20px;
+  }
+
+  > button {
+    background: ${({ theme }) => theme.colors.violet};
+    border: 3px solid ${({ theme }) => theme.colors.violet};
+    width: 20%;
+    padding: 10px 0;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.45em;
+    font-weight: 500;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+`;
 export const ModalBody = styled.div`
   margin-top: 25px;
 
