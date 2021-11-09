@@ -29,7 +29,6 @@ module.exports = {
         where: {
           [Op.and]: [author ? { user_id: Number(author) } : null]
         },
-        attributes: ['id', 'project_id', 'content', 'created_at', 'updated_at'],
         include: [
           {
             model: user, // users 테이블 조인
@@ -74,7 +73,6 @@ module.exports = {
       // 모든 댓글을 조회한다.
       const comments = await comment.findAll({
         where: { project_id: projectId },
-        attributes: ['id', 'project_id', 'content', 'created_at', 'updated_at'],
         include: [
           {
             model: user, // users 테이블 조인
@@ -195,7 +193,6 @@ module.exports = {
       // 업데이트한 댓글 정보를 조회한다.
       const newCommentInfo = await comment.findOne({
         where: { id: commentId },
-        attributes: ['id', 'project_id', 'content', 'created_at', 'updated_at'],
         include: [
           {
             model: user, // users 테이블 조인

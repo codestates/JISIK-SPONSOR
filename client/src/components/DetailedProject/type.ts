@@ -167,6 +167,7 @@ export interface Commentor {
 
 export interface Comment {
   id: number;
+  user_id: number;
   project_id: number;
   content: string;
   created_at: Date;

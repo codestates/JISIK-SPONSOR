@@ -27,7 +27,10 @@ const DetailedProject = () => {
   const [sponsorIds, setSponsorIds] = useState<number[]>([]);
   const [teamMember, setTeamMember] = useState<ProjectTeamMember[]>([]);
   const [isUserSponsor, setIsUserSponsor] = useState<boolean>(false);
-  const [achieved, setAchieved] = useState<string>('');
+  const [status, setStatus] = useState<string>('');
+  const [author, setAuthor] = useState<any>({});
+
+  // console.log(author);
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
   const userInfo = useSelector((state: RootState) => state.userInfo);
@@ -40,9 +43,11 @@ const DetailedProject = () => {
   //최초 렌더링 시 특정 프로젝트의 데이터를 불러오는 함수 실행
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchUserInfo();
+    if (isLogin) {
+      fetchUserInfo();
+    }
     getProjects();
-  }, []);
+  }, [id]);
 
   // 지식스폰서 명단에 유저가 포함되어있는지 여부를 확인
   useEffect(() => {
@@ -63,8 +68,9 @@ const DetailedProject = () => {
       );
       const { projects } = response.data;
       const { id, status } = response.data.projects;
+      setAuthor(projects.author);
       setProject(projects);
-      setAchieved(status);
+      setStatus(status);
       setTeams(projects.project_teams);
       setTeamMember(projects.project_team_members);
       dispatch(getProjectId(id));
@@ -88,17 +94,18 @@ const DetailedProject = () => {
 
   return (
     <ProjectContainer>
-      {(!isLogin || (isLogin && !isUserSponsor)) &&
-        achieved === 'inprogress' && <IntroNotYet />}
-      {achieved === 'achieved' && <IntroFinished />}
-      {isLogin && isUserSponsor && achieved === 'inprogress' && (
-        <IntroAlready />
+      {(!isLogin || (isLogin && !isUserSponsor)) && status === 'inprogress' && (
+        <IntroNotYet />
       )}
+      {status === 'achieved' && <IntroFinished />}
+      {isLogin && isUserSponsor && status === 'inprogress' && <IntroAlready />}
       <TabButton />
       {detailTab.overview && (
         <>
           <ProjectContent project={project} />
-          {teams && <Profile teams={teams} teamMember={teamMember} />}
+          {teams && (
+            <Profile teams={teams} teamMember={teamMember} author={author} />
+          )}
           <Comments project={project} setProject={setProject} />
           <Sponsors setSponsorIds={setSponsorIds} sponsorIds={sponsorIds} />
           <GoTopButton href="#">
