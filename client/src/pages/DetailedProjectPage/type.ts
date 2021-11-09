@@ -2,10 +2,10 @@ export interface Category {
   name: string;
 }
 
-export interface User {
+export interface Author {
   name: string;
   nickname: string;
-  bio: string;
+  bio?: any;
   profile_url: string;
 }
 
@@ -13,7 +13,13 @@ export interface ProjectTeam {
   id: number;
   team_name: string;
   team_description: string;
-  profile_url: string;
+  profile_url?: any;
+}
+
+export interface ProjectMilestone {
+  id: number;
+  title: string;
+  goal_date: Date;
 }
 
 export interface ProjectTeamMember {
@@ -25,30 +31,25 @@ export interface ProjectTeamMember {
 export interface BudgetItem {
   id: number;
   title: string;
-  amount: number;
-}
-
-export interface ProjectMilestone {
-  id: number;
-  title: string;
-  goal_date: Date;
+  amount: string;
 }
 
 export interface Project {
   id: number;
   title: string;
   path: string;
-  description: string;
-  thumbnail_url: string;
+  user_id: number;
   category_id: number;
+  description: string;
+  thumbnail_url?: any;
   term: number;
-  start_date: string;
-  end_date: string;
+  start_date: Date;
+  end_date: Date;
   status: string;
   goal: string;
   pledged: string;
   remainder: string;
-  investors: number;
+  sponsors: number;
   comments: number;
   wishes: number;
   views: number;
@@ -61,11 +62,11 @@ export interface Project {
   created_at: Date;
   updated_at: Date;
   category: Category;
-  user: User;
+  author: Author;
   project_teams: ProjectTeam[];
+  project_milestones: ProjectMilestone[];
   project_team_members: ProjectTeamMember[];
   budget_items: BudgetItem[];
-  project_milestones: ProjectMilestone[];
 }
 
 export interface Data {
