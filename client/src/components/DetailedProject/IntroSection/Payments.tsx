@@ -3,7 +3,12 @@ import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import { StyledButton } from 'components/Button';
 
-const Payment = () => {
+interface PaymentProps {
+  enteredFund: string;
+  enteredPhoneNum: string;
+}
+
+const Payment = ({ enteredFund, enteredPhoneNum }: PaymentProps) => {
   const { IMP }: any = window;
   IMP.init('imp00267362');
 
@@ -12,8 +17,8 @@ const Payment = () => {
       const order = {
         projectId: 3,
         projectTitle: '심해연구',
-        amount: 100,
-        buyerTel: '010-0000-0000'
+        amount: Number(enteredFund),
+        buyerTel: enteredPhoneNum
       };
 
       const url = `${REACT_APP_API_URL}/orders`;
