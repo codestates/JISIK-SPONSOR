@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SettingNickName,
   ChangeButton,
@@ -6,22 +6,48 @@ import {
   SettingSelfIntroduction
 } from './styled';
 import { ProjectBody, Container } from 'components/StartProject/commonStyled';
-import coverImg from 'images/icons/cover-image.png';
+// import coverImg from 'images/icons/cover-image.png';
 import { useState } from 'react';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'index';
+import userImg from 'images/icons/user-icon.png';
+import { getUserInfo } from 'store/userInfo-slice';
+import { UserInfoData } from 'components/Modal/type';
 interface profileProps {
   name: string;
   bio: string;
 }
+
+interface imageProps {
+  profile_url: string;
+}
 function ProfileSetting() {
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
   const [profileContent, setProfileContent] = useState<profileProps>({
     name: '',
     bio: ''
   });
   const { name, bio } = profileContent;
   const [isNameVaild, setIsNameVild] = useState<boolean>(false);
+  const [imgSrc, setImgSrc] = useState<string | undefined>(
+    userInfo.profile_url || ''
+  );
+
+  useEffect(() => {
+    axios
+      .get<UserInfoData>(`${REACT_APP_API_URL}/users/me`, {
+        withCredentials: true
+      })
+      .then((res) => {
+        dispatch(getUserInfo(res.data));
+      });
+  }, []);
+  useEffect(() => {
+    setImgSrc(userInfo.profile_url);
+  }, [userInfo]);
   const handleInput =
     (key: string) =>
     (
@@ -76,6 +102,30 @@ function ProfileSetting() {
     alert('자기소개가 정상적으로 변경되었습니다.');
     console.log('자기소개', response);
   };
+
+  const handleProfileIma = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const imageFile = e.target.files[0];
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(imageFile);
+      fileReader.onload = (e: any) => {
+        setImgSrc(e.target.result);
+      };
+
+      const formData = new FormData();
+      formData.append('image', imageFile);
+
+      const response = await axios.post<imageProps>(
+        `${REACT_APP_API_URL}/users/profile`,
+        formData,
+        {
+          withCredentials: true
+        }
+      );
+      setImgSrc(response.data.profile_url);
+      console.log('response', response);
+    }
+  };
   return (
     <Container>
       <ProjectBody>
@@ -95,16 +145,25 @@ function ProfileSetting() {
           <ChangeButton onClick={handleBio}>변경</ChangeButton>
         </SettingSelfIntroduction>
 
-        <SettingImg>
-          <h3>프로필 이미지</h3>
-          <label htmlFor="TeamImg">
-            <img src={coverImg} />
-            <span>사진을 추가하려면 클릭하세요.</span>
-            <span>JPG, PNG, GIF - 50MB 파일 제한</span>
-          </label>
-          <input type="file" id="TeamImg" />
-          <ChangeButton>변경</ChangeButton>
-        </SettingImg>
+        {imgSrc ? (
+          <SettingImg>
+            <h3>프로필 이미지</h3>
+            <p>이미지를 클릭하여 변경하세요.</p>
+            <label htmlFor="TeamImg">
+              <img src={`https://jisiksponsor.com${imgSrc}`} />
+            </label>
+            <input type="file" id="TeamImg" onChange={handleProfileIma} />
+          </SettingImg>
+        ) : (
+          <SettingImg>
+            <h3>프로필 이미지</h3>
+            <p>이미지를 클릭하여 변경하세요.</p>
+            <label htmlFor="TeamImg">
+              <img src={userImg} />
+            </label>
+            <input type="file" id="TeamImg" onChange={handleProfileIma} />
+          </SettingImg>
+        )}
       </ProjectBody>
     </Container>
   );

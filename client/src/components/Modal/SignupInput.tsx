@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ModalBody, SignupButton, ErrMsg } from './styled';
-import { showLoginModal, showSignupModal } from '../../store/modal-slice';
+import { showConfiltModal, showSignupModal } from '../../store/modal-slice';
 import { useDispatch } from 'react-redux';
 import CheckBox from './CheckBox';
 import axios from 'axios';
@@ -170,9 +170,8 @@ const SignupInput = () => {
         );
         console.log('회원가입', response);
         resetInfo();
-        dispatch(showLoginModal(true));
+        dispatch(showConfiltModal(true));
         dispatch(showSignupModal(false));
-        alert('지식스폰서에 오신걸 환영합니다🎉');
       } catch (err) {
         console.log(err);
         alert('회원가입에 실패하였습니다. 다시 시도해주세요🎯');

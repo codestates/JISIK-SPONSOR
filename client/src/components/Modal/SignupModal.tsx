@@ -33,6 +33,7 @@ function SignupModal() {
       <ModalBackup onClick={closeModalHandler} />
       <ModalContainer>
         <ModalHead>
+          <span onClick={() => dispatch(showSignupModal(false))}>&times;</span>
           <h2>회원가입</h2>
           <p>
             이미 회원이신가요?{' '}

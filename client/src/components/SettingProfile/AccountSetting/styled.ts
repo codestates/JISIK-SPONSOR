@@ -50,6 +50,12 @@ export const PhoneNumber = styled(SubTitleCss)`
     margin-top: 5px;
     margin-right: 15px;
   }
+
+  > p:last-child {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #dd584a;
+  }
 `;
 export const SettingWithdrawal = styled(SubTitleCss)`
   button {

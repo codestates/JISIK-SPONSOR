@@ -30,7 +30,19 @@ export const ChangeButton = styled(AddButton)`
 // 프로필 이미지 수정
 export const SettingImg = styled(ProjectCoverImage)`
   > label {
-    width: 300px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+
+  > label > img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+
+  > p {
+    margin-top: 5px;
   }
 `;
 

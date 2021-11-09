@@ -5,11 +5,13 @@ export interface modal {
   signupModal: boolean;
   personalBox: boolean;
   conditionBox: boolean;
+  conflitModal: boolean;
 }
 
 const initialState: modal = {
   loginModal: false,
   signupModal: false,
+  conflitModal: false,
   personalBox: false,
   conditionBox: false
 };
@@ -23,6 +25,9 @@ const modalBox = createSlice({
     },
     showSignupModal: (state: modal, { payload }: PayloadAction<boolean>) => {
       state.signupModal = payload;
+    },
+    showConfiltModal: (state: modal, { payload }: PayloadAction<boolean>) => {
+      state.conflitModal = payload;
     },
     onPersonalModal: (state: modal) => {
       state.personalBox = true;
@@ -45,7 +50,8 @@ export const {
   onPersonalModal,
   offPersonalModal,
   onConditionModal,
-  offConditionModal
+  offConditionModal,
+  showConfiltModal
 } = modalBox.actions;
 
 export default modalBox.reducer;

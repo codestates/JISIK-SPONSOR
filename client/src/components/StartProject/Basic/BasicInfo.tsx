@@ -49,7 +49,7 @@ interface termProps {
   label: string;
 }
 
-interface imageProms {
+interface imageProps {
   thumbnail_url: string;
 }
 function BasicInfo() {
@@ -100,6 +100,7 @@ function BasicInfo() {
   }, []);
 
   useEffect(() => {
+    if (!projects.thumbnail_url) setImgSrc('');
     setBasicInpo({
       title: projects.title,
       simpleInpo: projects.description
@@ -205,9 +206,8 @@ function BasicInfo() {
 
       const formData = new FormData();
       formData.append('image', imageFile);
-      console.log('@@', formData.get('image'));
       axios
-        .post<imageProms>(
+        .post<imageProps>(
           `${REACT_APP_API_URL}/projects/${projectId}/thumbnail`,
           formData,
           {
