@@ -25,9 +25,10 @@ import { RootState } from 'index';
 
 interface showProps {
   showMenuBox: () => void;
+  showNoticeMenuBox: () => void;
 }
 
-const MobileNav = ({ showMenuBox }: showProps) => {
+const MobileNav = ({ showMenuBox, showNoticeMenuBox }: showProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -110,7 +111,12 @@ const MobileNav = ({ showMenuBox }: showProps) => {
                     />
                   </button>
                   <button>
-                    <img src={BellIcon} alt="search-icon" />
+                    <img
+                      src={BellIcon}
+                      alt="notification-icon"
+                      className="noticeIcon"
+                      onClick={showNoticeMenuBox}
+                    />
                   </button>
                   <button>
                     <img
@@ -155,7 +161,7 @@ const MobileNav = ({ showMenuBox }: showProps) => {
           <label>
             <input
               value={search}
-              placeholder="검색어를 입려하세요."
+              placeholder="검색어를 입력하세요."
               onChange={(e) => searchHandle(e)}
               onKeyPress={(e) => moveBoardPageFn(e)}
             />

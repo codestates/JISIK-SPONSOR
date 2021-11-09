@@ -78,7 +78,6 @@ const Board = () => {
 
       // 스크롤 이벤트
       if (btnClick) {
-        scrollFn(document.body.clientHeight - 1200);
         setBtnClick(false);
       }
     } catch (err) {
@@ -140,13 +139,8 @@ const Board = () => {
       // 스크롤 이벤트
       setBtnClick(true);
     } else {
-      setBtnMessage('불러올 프로젝트가 더이상 없습니다.');
+      setBtnMessage('더이상 불러올 수 없습니다.');
     }
-  };
-
-  // 윈도우 높이 조정
-  const scrollFn = (top: number) => {
-    window.scrollTo({ top });
   };
 
   // 초기 한 번만 리렌더링
@@ -176,11 +170,11 @@ const Board = () => {
 
   return (
     <div>
-      <CategorySection
-        categoryQueryFn={categoryQueryFn}
+      <CategorySection categoryQueryFn={categoryQueryFn} />
+      <SearchSection
+        seachQueryFn={seachQueryFn}
         filterQueryFn={filterQueryFn}
       />
-      <SearchSection seachQueryFn={seachQueryFn} />
       <PostcardSection projects={allProjects} />
       <MoreBtnSection
         moreGetProjects={moreGetProjects}

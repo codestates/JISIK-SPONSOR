@@ -2,25 +2,27 @@
 import Postcard from '../Postcard/Postcard';
 import { PostcardsWrap, Ul } from './styled';
 import { Row } from '../type';
-import { useState } from 'react';
+import Message from '../../Message/Message';
 
 interface Props {
   projects: Row[];
 }
 
 const Postcards = ({ projects }: Props) => {
-  const message: string = '존재하지 않습니다.';
-
   return (
-    <PostcardsWrap>
-      <Ul>
-        {projects.length
-          ? projects.map((project: Row) => {
+    <>
+      {projects.length ? (
+        <PostcardsWrap>
+          <Ul>
+            {projects.map((project: Row) => {
               return <Postcard key={project.id} project={project} />;
-            })
-          : message}
-      </Ul>
-    </PostcardsWrap>
+            })}
+          </Ul>
+        </PostcardsWrap>
+      ) : (
+        <Message message={'컨텐츠가 비었습니다.'} />
+      )}
+    </>
   );
 };
 

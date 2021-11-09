@@ -14,14 +14,14 @@ import {
 } from './styled';
 
 const SliderSection = () => {
-  const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0)
+  const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
 
   const moveToPrevSlide = () => {
-    setSelectedSlideIndex(0)
-  }
+    setSelectedSlideIndex(0);
+  };
   const moveToNextSlide = () => {
-    setSelectedSlideIndex(1)
-  }
+    setSelectedSlideIndex(1);
+  };
 
   return (
     <Section>
@@ -48,7 +48,7 @@ const SliderSection = () => {
                 지식스폰서에 오신 여러분 환영합니다.
               </p>
               <SlideBtnWrap>
-                <Link to="/start-project">프로젝트 시작하기</Link>
+                <Link to="/start">프로젝트 시작하기</Link>
                 <Link to="/board">모든 프로젝트 보기</Link>
               </SlideBtnWrap>
             </SlideCentent1>
@@ -70,8 +70,14 @@ const SliderSection = () => {
           </Slide>
         </SliderWrap>
         <SliderButtonWrapper>
-          <SliderButton onClick={moveToPrevSlide} className={`is-selected-${selectedSlideIndex === 0}`} />
-          <SliderButton onClick={moveToNextSlide} className={`is-selected-${selectedSlideIndex === 1}`} />
+          <SliderButton
+            onClick={moveToPrevSlide}
+            className={`is-selected-${selectedSlideIndex === 0}`}
+          />
+          <SliderButton
+            onClick={moveToNextSlide}
+            className={`is-selected-${selectedSlideIndex === 1}`}
+          />
         </SliderButtonWrapper>
       </Wrap>
     </Section>

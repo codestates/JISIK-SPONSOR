@@ -5,6 +5,7 @@ interface SearchHeaderProp {
 }
 
 export const MobileNavWrap = styled.div`
+  z-index: 4;
   position: fixed;
   width: 100%;
   bottom: 0;

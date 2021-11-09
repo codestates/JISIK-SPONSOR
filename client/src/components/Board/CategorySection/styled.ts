@@ -3,25 +3,26 @@ import styled from 'styled-components';
 
 export const Section = styled.section`
   padding: 30px 0;
+  background: #f1f3f5;
+  @media all and (max-width: 620px) {
+    padding: 15px 0;
+  }
 `;
 
 export const Wrap = styled.div`
   display: flex;
-  gap: 30px;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;
-
-  @media all and (max-width: 959px) {
-    display: flex;
+  @media all and (max-width: 620px) {
     flex-direction: column;
-    gap: 10px;
+    padding: 0 7.5px;
   }
 `;
 
 export const AllCategoryWrap = styled.div`
-  flex: 1 1 auto;
+  width: 30%;
   & img {
     width: 30px;
     height: 30px;
@@ -34,16 +35,20 @@ export const AllCategoryWrap = styled.div`
     font-weight: 500;
     color: #495057;
   }
+  @media all and (max-width: 620px) {
+    width: 100%;
+  }
 `;
 
 export const SubCategoryWrap = styled.div`
-  flex: 1 1 auto;
-  width: auto;
+  width: 70%;
+  @media all and (max-width: 620px) {
+    width: 100%;
+  }
 `;
 
 export const Ul = styled.ul`
   width: 100%;
-  max-width: 580px;
 `;
 
 export const Li = styled.li`
@@ -77,27 +82,13 @@ export const Li = styled.li`
     font-weight: 600;
     transition: all 0.3s;
   }
-
-  @media all and (max-width: 606px) {
-    & span {
-      font-size: 16px;
-    }
+  @media all and (max-width: 620px) {
+    margin: 7.5px 15px;
   }
-
-  @media all and (max-width: 567px) {
+  @media all and (max-width: 380px) {
+    margin: 7.5px;
     & span {
-      font-size: 15px;
+      font-size: 12.8px;
     }
-  }
-`;
-
-export const FilterWrap = styled.div`
-  flex: 1 1 auto;
-  text-align: right;
-  width: auto;
-
-  & select {
-    border: 1px solid #7950f2;
-    border-radius: 5px;
   }
 `;

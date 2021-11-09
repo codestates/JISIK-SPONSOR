@@ -6,7 +6,10 @@ import yellowhighlight from '../../../images/yellowhighlight.png';
 export const Section = styled.section`
   width: 100%;
   padding: 60px 0;
-  background-color: #f1f3f5;
+  background: #f1f3f5;
+  @media all and (max-width: 620px) {
+    padding: 30px 0;
+  }
 `;
 
 export const Wrap = styled.div`
@@ -14,6 +17,9 @@ export const Wrap = styled.div`
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -43,10 +49,10 @@ export const Title = styled.h2`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
-  @media all and (max-width: 567px) {
-    width: 100%;
-    font-size: 15.5px;
+  @media all and (max-width: 620px) {
+    font-size: 16px;
+    margin-bottom: 20px;
+    word-break: keep-all;
   }
 `;
 
@@ -54,41 +60,38 @@ export const CardWrap = styled.div`
   display: flex;
   gap: 30px;
   justify-content: center;
-
-  @media all and (max-width: 819px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  @media all and (max-width: 567px) {
-    display: flex;
-    flex-direction: column;
+  @media all and (max-width: 620px) {
+    flex-wrap: wrap;
   }
 `;
 
 export const Card = styled(Link)`
-  background-color: #fff;
+  width: 50%;
   max-width: 367px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
   overflow: hidden;
   transition: all 0.3s;
   &:nth-child(1) > div:nth-child(1) {
-    background-color: #b197fc;
+    background: #b197fc;
   }
   &:nth-child(2) > div:nth-child(1) {
-    background-color: #cddadf;
+    background: #cddadf;
   }
   &:hover {
     transform: matrix(1.02, 0, 0, 1.02, 0, 0);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s;
   }
+  @media all and (max-width: 620px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const ImageWrap = styled.div`
-  width: 367px;
+  width: 100%;
   text-align: center;
   & > img {
     width: auto;
@@ -98,7 +101,7 @@ export const ImageWrap = styled.div`
 
 export const InfoWrap = styled.div`
   padding: 35px 25px 25px;
-  background-color: white;
+  background: #fff;
   & > h3 {
     font-size: 16px;
     color: #343a40;

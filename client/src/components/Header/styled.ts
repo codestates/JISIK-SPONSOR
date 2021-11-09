@@ -5,6 +5,7 @@ interface SearchHeaderProp {
 }
 
 export const HeaderTag = styled.header`
+  z-index: 5;
   position: relative;
   overflow: hidden;
   background: #fff;
@@ -23,13 +24,13 @@ export const NavContainer = styled.div<SearchHeaderProp>`
   transform: ${(props) =>
     props.searchHeader ? 'translateX(-100%)' : 'translateX(0%)'};
   & > div {
-    flex: 1 0 auto;
+    flex: 1 1 40%;
   }
   & > a {
     display: block;
     width: auto;
     height: 100%;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     text-align: center;
   }
   & > a > img {
@@ -70,6 +71,9 @@ export const NavbarL = styled.div`
     font-size: 16px;
     gap: 10px;
   }
+  @media all and (max-width: 1000px) {
+    font-size: 12.8px;
+  }
 `;
 
 export const NavbarR = styled.div`
@@ -93,6 +97,7 @@ export const NavbarR = styled.div`
 `;
 
 export const MenuBox = styled.div`
+  z-index: 5;
   position: absolute;
   top: 40px;
   right: 55px;
@@ -116,10 +121,43 @@ export const MenuBox = styled.div`
     right: 50px;
   }
   @media all and (max-width: 960px) {
-    z-index: 2;
+    z-index: 5;
     position: fixed;
     top: auto;
     right: 125px;
+    bottom: 35px;
+  }
+`;
+
+export const NoticeMenuBox = styled.div`
+  z-index: 5;
+  position: absolute;
+  top: 40px;
+  right: 110px;
+  padding: 15px 10px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+  button {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    color: #404040;
+    cursor: pointer;
+    background: inherit;
+  }
+  button:hover {
+    color: ${({ theme }) => theme.colors.violet};
+  }
+  @media all and (max-width: 1200px) {
+    right: 95px;
+  }
+  @media all and (max-width: 960px) {
+    z-index: 5;
+    position: fixed;
+    top: auto;
+    right: 80px;
     bottom: 35px;
   }
 `;
