@@ -1,5 +1,5 @@
 const config = {
-  REACT_APP_API_URL: 'http://localhost:4000'
+  REACT_APP_API_URL: 'https://api.jisiksponsor.com'
 };
 
 export const { REACT_APP_API_URL } = config;

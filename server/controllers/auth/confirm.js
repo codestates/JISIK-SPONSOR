@@ -27,14 +27,15 @@ module.exports = {
         signupDate.getSeconds()
       );
 
-      if (validTime.getTime() < new Date().getTime()) {
-        return res.status(410).json({
-          currentTime: new Date(),
-          signupDate,
-          validTime,
-          message: '인증 시간이 만료되었습니다.'
-        });
-      }
+      // if (validTime.getTime() < new Date().getTime()) {
+      //   return res.status(410).json({
+      //     findUser,
+      //     currentTime: new Date(),
+      //     signupDate,
+      //     validTime,
+      //     message: '인증 시간이 만료되었습니다.'
+      //   });
+      // }
 
       // 회원 정보를 업데이트 한다. (이메일 인증 확인)
       await user.update(
