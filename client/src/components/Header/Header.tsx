@@ -19,12 +19,10 @@ import { searchContent } from '../../store/headerSearch-slice';
 import { RootState } from 'index';
 
 interface showProps {
-  showBox: boolean;
-  setShowBox: (data: boolean) => void;
+  showMenuBox: () => void;
 }
 
-const Header = ({ showBox, setShowBox }: showProps) => {
-  // const history: any = useHistory();
+const Header = ({ showMenuBox }: showProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -48,10 +46,6 @@ const Header = ({ showBox, setShowBox }: showProps) => {
 
   const searchBtnClick = () => {
     setSearchHeader(!searchHeader);
-  };
-
-  const showMenuBox = () => {
-    setShowBox(!showBox);
   };
 
   return (

@@ -6,23 +6,35 @@ interface SearchHeaderProp {
 
 export const HeaderTag = styled.header`
   position: relative;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const NavContainer = styled.div<SearchHeaderProp>`
   display: flex;
   position: relative;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0 30px;
   width: 100%;
   height: 70px;
   transition: all 0.3s;
   transform: ${(props) =>
     props.searchHeader ? 'translateX(-100%)' : 'translateX(0%)'};
-  & img {
-    width: 272px;
+  & > div {
+    flex: 1 0 auto;
+  }
+  & > a {
+    display: block;
+    width: auto;
+    height: 100%;
+    flex: 1 0 auto;
+    text-align: center;
+  }
+  & > a > img {
+    width: auto;
+    height: 100%;
     cursor: pointer;
     transition: all 0.3s;
   }
@@ -33,75 +45,45 @@ export const NavContainer = styled.div<SearchHeaderProp>`
   & a:hover {
     color: #7950f2;
   }
-
-  @media screen and (max-width: 1031px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    img {
-      width: 250px;
-    }
-  }
-
-  @media screen and (max-width: 940px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    img {
-      width: 230px;
-    }
-  }
-
-  @media screen and (max-width: 718px) {
-    background-color: #f7f7f7;
-    display: flex;
+  @media all and (max-width: 960px) {
+    padding: 0 15px;
+    height: 60px;
     justify-content: center;
-
-    img {
-      width: 200px;
-    }
-
     div {
       display: none;
     }
+  }
+  @media all and (max-width: 580px) {
+    height: 50px;
   }
 `;
 
 export const NavbarL = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   gap: 20px;
-  height: 29px;
-  color: #495057;
+  align-items: center;
+  justify-content: left;
   font-size: 20px;
   font-weight: 700;
-
-  @media screen and (max-width: 1031px) {
-    font-size: 17px;
+  color: #495057;
+  @media all and (max-width: 1200px) {
+    font-size: 16px;
     gap: 10px;
-  }
-
-  @media screen and (max-width: 940px) {
-    font-size: 14px;
-    gap: 7px;
   }
 `;
 
 export const NavbarR = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   gap: 10px;
-
   img {
     width: 32px;
     height: 32px;
     margin-right: 10px;
     cursor: pointer;
   }
-
-  @media screen and (max-width: 1031px) {
+  @media all and (max-width: 1200px) {
     img {
       width: 30px;
       height: 30px;
@@ -111,63 +93,58 @@ export const NavbarR = styled.div`
 `;
 
 export const MenuBox = styled.div`
-  /* background-color: pink; */
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
-  padding: 15px 10px;
-  border-radius: 5px;
-  width: 130px;
   position: absolute;
-  top: 55px;
-  right: 30px;
-
+  top: 40px;
+  right: 55px;
+  padding: 15px 10px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
   button {
-    background: inherit;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
     border: none;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.4;
     color: #404040;
     cursor: pointer;
+    background: inherit;
   }
-
   button:hover {
     color: ${({ theme }) => theme.colors.violet};
+  }
+  @media all and (max-width: 1200px) {
+    right: 50px;
+  }
+  @media all and (max-width: 960px) {
+    z-index: 2;
+    position: fixed;
+    top: auto;
+    right: 125px;
+    bottom: 35px;
   }
 `;
 
 export const NavButton = styled.button`
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 42px;
-  padding: 10px 25px;
-  border-radius: 5px;
-  border: 2px solid #7950f2;
-  color: #7950f2;
-  background-color: transparent;
-  line-height: 1.4;
+  justify-content: center;
+  padding: 8px 20px;
+  cursor: pointer;
   font-size: 20px;
   font-weight: 700;
-  cursor: pointer;
+  line-height: 1.4;
+  color: #7950f2;
+  background: #fff;
+  border-radius: 5px;
+  border: 3px solid #7950f2;
+  transition: all 0.3s;
   &:hover {
     color: #fff;
+    transition: all 0.3s;
     background-color: #7950f2;
   }
-
-  @media screen and (max-width: 1031px) {
-    padding: 5px 12px;
-    font-size: 15px;
-  }
-
-  @media screen and (max-width: 940px) {
-    padding: 3px 6px;
-    font-size: 12px;
+  @media all and (max-width: 1200px) {
+    font-size: 16px;
   }
 `;
 
@@ -181,7 +158,7 @@ export const SearchBoxWrap = styled.div<SearchHeaderProp>`
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 15px 30px;
+  padding: 0 30px;
   text-align: right;
   transition: all 0.3s;
   transform: ${(props) =>
@@ -201,7 +178,7 @@ export const SearchBoxWrap = styled.div<SearchHeaderProp>`
     position: relative;
     display: block;
     width: 250px;
-    height: 100%;
+    height: 48px;
     font-size: 16px;
     color: #343a40;
     border-radius: 5px;
@@ -221,7 +198,7 @@ export const SearchBoxWrap = styled.div<SearchHeaderProp>`
     font-size: 16px;
     color: #fff;
     font-weight: 400;
-    line-height: 38px;
+    line-height: 48px;
     text-align: center;
     background: #868e96;
     cursor: pointer;

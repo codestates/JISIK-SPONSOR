@@ -9,15 +9,17 @@ import {
   TextBoxWrap,
   StartProjectSection
 } from './styled';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import question1 from '../../images/question1.png';
 import question2 from '../../images/question2.png';
 import question3 from '../../images/question3.png';
-// import bluestar from '../../images/start-blue.png';
-// import yellowline from '../../images/YellowLine.png';
-// import yellowcircle from '../../images/yellowcircle.png';
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Section background="image">
