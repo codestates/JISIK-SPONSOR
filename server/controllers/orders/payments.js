@@ -89,6 +89,20 @@ module.exports = {
         where: { imp_uid: paymentData.imp_uid }
       });
 
+      // 프로젝트 조회
+      const projectInfo = await project.findOne({
+        where: { id: updateOrder.project_id }
+      });
+
+      // 프로젝트 업데이트
+      await project.update(
+        {
+          pledged: projectInfo.pledged + updateOrder.amount,
+          remainder: projectInfo.remainder - updateOrder.amount
+        },
+        { where: { id: projectInfo.id } }
+      );
+
       // 후원 레코드 생성
       const newSponsor = await project_sponsor.create({
         user_id: updateOrder.user_id,
