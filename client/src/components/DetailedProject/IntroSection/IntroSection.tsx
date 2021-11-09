@@ -10,7 +10,6 @@ import {
   HashTag,
   HashTagContainer
 } from './styled';
-import { StyledButton } from 'components/Button';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
@@ -26,6 +25,7 @@ import CategoryIcon8 from '../../../images/icons/category-icon-8.png';
 import YellowStar from '../../../images/star-yellow.png';
 import WhiteStar from '../../../images/star-white.png';
 import Wormhole from '../../../images/wormhole.jpg';
+import Payment from './Payments';
 // import Gauge from '../../../images/gauge.png';
 import { Data, FavState, Tags, Tag } from '../type';
 import { Line } from 'rc-progress';
@@ -216,7 +216,7 @@ const IntroSection = () => {
               <input type="number" placeholder="'-'를 제외하고 입력해주세요." />
             </div>
           </FundInput>
-          <StyledButton>후원하기</StyledButton>
+          <Payment />
         </SubContent>
       </MainContent>
       <HashTagContainer>
