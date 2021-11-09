@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import { StyledButton } from 'components/Button';
+import styled, { css } from 'styled-components';
+
+interface DisplayProps {
+  noDisplay: any;
+}
 
 export const ProjectContainer = styled.div`
   /* background-color: beige; */
@@ -96,6 +101,8 @@ export const MainContent = styled.div`
 
 export const SubContent = styled.div`
   /* background-color: yellowgreen; */
+  width: 100%;
+  max-width: 270px;
 
   & > p:first-child {
     font-size: 32px;
@@ -111,12 +118,6 @@ export const SubContent = styled.div`
     color: #343a40;
     line-height: 1.4;
     margin-bottom: 20px;
-  }
-
-  img {
-    width: 270px;
-    height: 15px;
-    margin-bottom: 10px;
   }
 
   @media screen and (max-width: 900px) {
@@ -216,6 +217,28 @@ export const FundInput = styled.div`
   }
 `;
 
+export const NoticeContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const DisplayNone = css`
+  display: none;
+`;
+
+export const Notice = styled.p<DisplayProps>`
+  display: flex;
+  justify-content: flex-start;
+  width: 250px;
+  font-size: 12.8px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #dd584a;
+  ${(props) => {
+    return props.noDisplay && DisplayNone;
+  }}
+`;
+
 export const HashTagContainer = styled.div`
   display: flex;
   gap: 15px;
@@ -232,4 +255,106 @@ export const HashTag = styled.button`
   line-height: 1.4;
   border-radius: 3px;
   cursor: pointer;
+`;
+
+export const SubContentFinished = styled.div`
+  /* background-color: yellowgreen; */
+
+  & > p:nth-child(odd) {
+    font-size: 32px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+
+  & > p:nth-child(even) {
+    font-size: 16px;
+    font-weight: 700;
+    color: #343a40;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  div {
+    width: 250px;
+    font-size: 12.8px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #dd584a;
+  }
+
+  @media screen and (max-width: 900px) {
+    margin-bottom: 30px;
+    img {
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 718px) {
+    margin-bottom: 30px;
+
+    img {
+      width: 70%;
+    }
+  }
+`;
+
+export const FinishedButton = styled(StyledButton)`
+  background: none;
+  border: 2px solid #868e96;
+  color: #868e96;
+  margin-bottom: 15px;
+`;
+
+export const AlreadyButton = styled(FinishedButton)`
+  background: #0dbd7e;
+  border: none;
+  color: #fff;
+  margin-bottom: 15px;
+`;
+
+export const SubContentAlready = styled.div`
+  /* background-color: yellowgreen; */
+  width: 100%;
+  max-width: 270px;
+
+  & > p:first-child {
+    font-size: 32px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+
+  & > p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #343a40;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  div {
+    width: 250px;
+    font-size: 12.8px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #dd584a;
+  }
+
+  @media screen and (max-width: 900px) {
+    margin-bottom: 30px;
+    img {
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 718px) {
+    margin-bottom: 30px;
+
+    img {
+      width: 70%;
+    }
+  }
 `;

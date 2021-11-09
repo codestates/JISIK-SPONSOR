@@ -8,7 +8,12 @@ import { RootObject, Row } from './type';
 
 import HeartIcon from '../../../images/project-heart.png';
 
-const Sponsors = () => {
+interface SponsorsProps {
+  setSponsorIds: any;
+  sponsorIds: any;
+}
+
+const Sponsors = ({ setSponsorIds, sponsorIds }: SponsorsProps) => {
   const [sponsors, setSponsors] = useState<Row[]>([]);
   const [count, setCount] = useState<number>(0);
 
@@ -16,6 +21,9 @@ const Sponsors = () => {
 
   const url = `${REACT_APP_API_URL}/projects/${projectId}/sponsors`;
   const config = { withCredentials: true };
+  const sponsorUserId = sponsors.map((el) => el.user_id);
+
+  console.log(sponsorUserId);
 
   const getSponsors = async () => {
     try {
@@ -28,9 +36,11 @@ const Sponsors = () => {
     }
   };
 
-  useEffect(() => {
-    getSponsors();
-  }, []);
+  // useEffect(() => {
+  //   getSponsors();
+
+  //   setSponsorIds(sponsorUserId);
+  // }, []);
 
   return (
     <SponsorsWrapper>
