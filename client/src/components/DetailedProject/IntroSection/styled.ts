@@ -78,7 +78,7 @@ export const MainContent = styled.div`
   img {
     width: 600px;
     height: 320px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
   }
 
@@ -241,20 +241,30 @@ export const Notice = styled.p<DisplayProps>`
 
 export const HashTagContainer = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 7px;
   /* margin-bottom: 50px; */
 `;
 
 export const HashTag = styled.button`
-  width: 85px;
-  height: 30px;
-  background-color: ${(props) => (props.color ? 'white' : '#7950f2')};
-  color: #fff;
-  font-size: 15px;
+  width: 100%;
+  height: 23px;
+  color: #495057;
+  border: none;
+  background: transparent;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
   border-radius: 3px;
   cursor: pointer;
+  margin-bottom: 30px;
+
+  span {
+    color: #5f3dc4;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-right: 2px;
+  }
 `;
 
 export const SubContentFinished = styled.div`

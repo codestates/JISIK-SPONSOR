@@ -12,7 +12,10 @@ const IntroTag = ({ tags, noDisplay }: IntroTagProps) => {
     <NoticeContainer>
       <HashTagContainer>
         {tags.map((tag) => (
-          <HashTag key={tag.id}>{tag.name}</HashTag>
+          <HashTag key={tag.id}>
+            <span>#</span>
+            {tag.name}
+          </HashTag>
         ))}
       </HashTagContainer>
       <Notice noDisplay={noDisplay}>

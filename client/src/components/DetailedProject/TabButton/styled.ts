@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   /* background-color: pink; */
   display: flex;
   gap: 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const selectedTab = css`
@@ -33,4 +34,16 @@ export const Tab = styled.button<DetailTabs>`
   ${(props) => {
     return (props.overview || props.labnote) && selectedTab;
   }}
+
+  &:hover {
+    color: #7950f2;
+    border-color: #7950f2;
+  }
+`;
+
+export const TabMoveButton = styled(Tab)`
+  border: 3px solid #868e96;
+  border-radius: 5px;
+  padding: 8px 10px;
+  /* font-weight: 700; */
 `;

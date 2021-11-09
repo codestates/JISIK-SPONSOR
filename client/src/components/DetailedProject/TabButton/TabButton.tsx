@@ -21,6 +21,7 @@ const TabButton = () => {
       <Tab labnote={detailTab.labnote} onClick={() => dispatch(labnote())}>
         랩 노트
       </Tab>
+
       <Link to="/start-project">
         <Tab>프로젝트 수정</Tab>
       </Link>

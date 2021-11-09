@@ -26,12 +26,12 @@ const DetailedProject = () => {
   const [teams, setTeams] = useState<ProjectTeam[]>([]);
   const [sponsorIds, setSponsorIds] = useState<number[]>([]);
   const [teamMember, setTeamMember] = useState<ProjectTeamMember[]>([]);
+  const [isUserSponsor, setIsUserSponsor] = useState<boolean>(false);
+  const [achieved, setAchieved] = useState<string>('');
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
   const userInfo = useSelector((state: RootState) => state.userInfo);
   const { id } = userInfo.userInfo;
-  console.log(id);
-  console.log(sponsorIds);
 
   const detailTab = useSelector((state: RootState) => state.detailPage);
   const history = useHistory();
@@ -44,9 +44,12 @@ const DetailedProject = () => {
     getProjects();
   }, []);
 
-  // useEffect(() => {
-  //   console.log('@@@', sponsorIds);
-  // }, [sponsorIds]);
+  // 지식스폰서 명단에 유저가 포함되어있는지 여부를 확인
+  useEffect(() => {
+    if (id && sponsorIds.includes(id)) {
+      setIsUserSponsor(true);
+    }
+  }, [id, sponsorIds]);
 
   // 특정 프로젝트에 데이터를 불러오는 함수
   const getProjects = async () => {
@@ -59,8 +62,9 @@ const DetailedProject = () => {
         }
       );
       const { projects } = response.data;
-      const { id } = response.data.projects;
+      const { id, status } = response.data.projects;
       setProject(projects);
+      setAchieved(status);
       setTeams(projects.project_teams);
       setTeamMember(projects.project_team_members);
       dispatch(getProjectId(id));
@@ -84,9 +88,12 @@ const DetailedProject = () => {
 
   return (
     <ProjectContainer>
-      {!isLogin && <IntroNotYet />}
-      <IntroFinished />
-      <IntroAlready />
+      {(!isLogin || (isLogin && !isUserSponsor)) &&
+        achieved === 'inprogress' && <IntroNotYet />}
+      {achieved === 'achieved' && <IntroFinished />}
+      {isLogin && isUserSponsor && achieved === 'inprogress' && (
+        <IntroAlready />
+      )}
       <TabButton />
       {detailTab.overview && (
         <>

@@ -71,8 +71,6 @@ const IntroNotYet = () => {
 
       const { name } = category;
 
-      console.log(response);
-
       // 디데이 계산
       let today = new Date();
       let endDate = new Date(end_date);

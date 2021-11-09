@@ -4,7 +4,7 @@ import { SponsorsWrapper, SponsorTitle, SponsorsList } from './styled';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-import { RootObject, Row } from './type';
+import { RootObject } from './type';
 
 import HeartIcon from '../../../images/project-heart.png';
 
@@ -13,17 +13,15 @@ interface SponsorsProps {
   sponsorIds: any;
 }
 
-const Sponsors = ({ setSponsorIds, sponsorIds }: SponsorsProps) => {
-  const [sponsors, setSponsors] = useState<Row[]>([]);
+const Sponsors = ({ setSponsorIds }: SponsorsProps) => {
+  const [sponsors, setSponsors] = useState<any>([]);
   const [count, setCount] = useState<number>(0);
+  const [sponsorUserId, setSponsorUserId] = useState([]);
 
   const projectId = useSelector((state: RootState) => state.projectSt.id);
 
   const url = `${REACT_APP_API_URL}/projects/${projectId}/sponsors`;
   const config = { withCredentials: true };
-  const sponsorUserId = sponsors.map((el) => el.user_id);
-
-  console.log(sponsorUserId);
 
   const getSponsors = async () => {
     try {
@@ -36,11 +34,17 @@ const Sponsors = ({ setSponsorIds, sponsorIds }: SponsorsProps) => {
     }
   };
 
-  // useEffect(() => {
-  //   getSponsors();
+  useEffect(() => {
+    setSponsorIds(sponsorUserId);
+  }, [sponsorUserId]);
 
-  //   setSponsorIds(sponsorUserId);
-  // }, []);
+  useEffect(() => {
+    setSponsorUserId(sponsors.map((el: any) => el.user_id));
+  }, [sponsors]);
+
+  useEffect(() => {
+    getSponsors();
+  }, []);
 
   return (
     <SponsorsWrapper>
@@ -52,7 +56,7 @@ const Sponsors = ({ setSponsorIds, sponsorIds }: SponsorsProps) => {
         <span>{count}명 후원</span>
       </SponsorTitle>
       <SponsorsList>
-        {sponsors.map((sponsor) => {
+        {sponsors.map((sponsor: any) => {
           return (
             <li key={sponsor.id}>
               <img

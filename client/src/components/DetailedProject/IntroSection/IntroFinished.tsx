@@ -56,9 +56,6 @@ const IntroFinished = () => {
         response.data.projects;
 
       const { name } = category;
-
-      console.log(response);
-
       setTitle(title);
       setDescription(description);
       setProjectId(id);
@@ -111,7 +108,7 @@ const IntroFinished = () => {
           <p>{goalWithCommas} 달성금액</p>
           <p>{percentage}%</p>
           <p>달성 성공!</p>
-          <FinishedButton>프로젝트 수정하기</FinishedButton>
+          <FinishedButton>프로젝트 후원완료</FinishedButton>
           <div>
             * 본 프로젝트 후원하기 기능은 개발자 모드로써 &nbsp;&nbsp;결제하신
             금액은 다음날 환불처리 됩니다.
