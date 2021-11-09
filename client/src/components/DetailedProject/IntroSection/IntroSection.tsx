@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Category,
   MainContent,
@@ -10,7 +10,6 @@ import {
   HashTag,
   HashTagContainer
 } from './styled';
-import { StyledButton } from 'components/Button';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
@@ -26,7 +25,7 @@ import CategoryIcon8 from '../../../images/icons/category-icon-8.png';
 import YellowStar from '../../../images/star-yellow.png';
 import WhiteStar from '../../../images/star-white.png';
 import Wormhole from '../../../images/wormhole.jpg';
-// import Gauge from '../../../images/gauge.png';
+import Payment from './Payments';
 import { Data, FavState, Tags, Tag } from '../type';
 import { Line } from 'rc-progress';
 import { RootState } from 'index';
@@ -42,6 +41,8 @@ const IntroSection = () => {
   const [pledged, setPledged] = useState<number>(0);
   const [tags, setTags] = useState<Tag[]>([]);
   const [dDay, setdDay] = useState<number>(0);
+  const [enteredFund, setEnteredFund] = useState<string>('');
+  const [enteredPhoneNum, setEnteredPhoneNum] = useState<string>('');
 
   const history = useHistory();
   const WishesUrl = `${REACT_APP_API_URL}/projects/${projectId}/wishes`;
@@ -154,6 +155,21 @@ const IntroSection = () => {
     getTags();
   }, []);
 
+  const handleFundInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEnteredFund(e.currentTarget.value);
+  };
+
+  const handlePhoneNumInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const phoneNum = e.currentTarget.value;
+
+    const firstThree = phoneNum.slice(0, 3);
+    const nextFour = phoneNum.slice(3, 7);
+    const lastFour = phoneNum.slice(7);
+    const revisedPhone = `${firstThree}-${nextFour}-${lastFour}`;
+
+    setEnteredPhoneNum(revisedPhone);
+  };
+
   return (
     <ProjectWrapper>
       <Category>
@@ -209,14 +225,25 @@ const IntroSection = () => {
           <FundInput>
             <div>
               <span>후원금액</span>
-              <input type="number" placeholder="후원금액을 입력해주세요." />
+              <input
+                type="number"
+                placeholder="후원금액을 입력해주세요."
+                onChange={handleFundInput}
+              />
             </div>
             <div>
               <span>전화번호</span>
-              <input type="number" placeholder="'-'를 제외하고 입력해주세요." />
+              <input
+                type="number"
+                placeholder="'-'를 제외하고 입력해주세요."
+                onChange={handlePhoneNumInput}
+              />
             </div>
           </FundInput>
-          <StyledButton>후원하기</StyledButton>
+          <Payment
+            enteredFund={enteredFund}
+            enteredPhoneNum={enteredPhoneNum}
+          />
         </SubContent>
       </MainContent>
       <HashTagContainer>

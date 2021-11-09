@@ -49,6 +49,7 @@ function App() {
       console.log(error);
     }
   };
+
   document.addEventListener('click', (e: any) => {
     if (e.target !== menuBoxRef.current && e.target.className !== 'userIcon') {
       setShowBox(false);

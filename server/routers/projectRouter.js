@@ -90,6 +90,8 @@ router
 router.get('/:projectId/sponsors', projects.sponsors.get);
 
 // Project Status API
-router.patch('/:projectId/status', projects.status.post);
+
+router.patch('/:projectId/status', projects.status.patch);
+
 
 module.exports = router;

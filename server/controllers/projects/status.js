@@ -8,7 +8,7 @@ const {
 const emailSend = require('../../middlewares/email/email-send');
 
 module.exports = {
-  post: async (req, res) => {
+  patch: async (req, res) => {
     try {
       /**
        *
