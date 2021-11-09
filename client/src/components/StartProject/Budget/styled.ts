@@ -123,6 +123,13 @@ export const TotalAmount = styled.div`
 export const BudgetListAdd = styled(AddButton)`
   width: 163px;
   margin-top: 20px;
+  border: 3px solid ${({ theme }) => theme.colors.orange};
+  transition: 0.3s;
+
+  &:hover {
+    background: #fff;
+    color: ${({ theme }) => theme.colors.orange};
+  }
 `;
 
 // 예산 사용 계획

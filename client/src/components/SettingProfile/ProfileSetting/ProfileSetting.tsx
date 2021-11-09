@@ -15,6 +15,7 @@ import { RootState } from 'index';
 import userImg from 'images/icons/user-icon.png';
 import { getUserInfo } from 'store/userInfo-slice';
 import { UserInfoData } from 'components/Modal/type';
+import { showMiniMoal, insertText } from 'store/modal-slice';
 interface profileProps {
   name: string;
   bio: string;
@@ -45,6 +46,7 @@ function ProfileSetting() {
         dispatch(getUserInfo(res.data));
       });
   }, []);
+
   useEffect(() => {
     setImgSrc(userInfo.profile_url);
   }, [userInfo]);
@@ -77,7 +79,8 @@ function ProfileSetting() {
         ...profileContent,
         name: ''
       });
-      alert('닉네임이 정상적으로 변경되었습니다.');
+      dispatch(showMiniMoal(true));
+      dispatch(insertText('닉네임이 성공적으로 변경되었습니다.'));
       console.log('닉네임변경', response);
     } catch (err) {
       console.log(err);
@@ -99,7 +102,8 @@ function ProfileSetting() {
       ...profileContent,
       bio: ''
     });
-    alert('자기소개가 정상적으로 변경되었습니다.');
+    dispatch(showMiniMoal(true));
+    dispatch(insertText('자기소개가 성공적으로 변경되었습니다.'));
     console.log('자기소개', response);
   };
 
@@ -123,6 +127,8 @@ function ProfileSetting() {
         }
       );
       setImgSrc(response.data.profile_url);
+      dispatch(showMiniMoal(true));
+      dispatch(insertText('프로필 이미지가 성공적으로 변경되었습니다.'));
       console.log('response', response);
     }
   };

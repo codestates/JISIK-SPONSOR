@@ -18,7 +18,7 @@ export const ModalContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 997;
+  z-index: 900;
   /* height: 500px; */
 
   @media screen and (max-width: 650px) {
@@ -79,6 +79,7 @@ export const PersonalInfo = styled.div`
 
     & > p {
       font-size: 12px;
+      line-height: 1.45em;
     }
   }
 `;
@@ -162,6 +163,7 @@ export const ModalHead = styled.div`
     }
   }
 `;
+
 export const ConflitContainer = styled(ModalContainer)`
   width: auto;
   padding: 50px auto;
@@ -176,7 +178,7 @@ export const ModalWraaper = styled(ModalHead)`
   }
 
   > p {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   > button {
@@ -191,6 +193,31 @@ export const ModalWraaper = styled(ModalHead)`
     font-weight: 500;
     margin-top: 10px;
     cursor: pointer;
+  }
+`;
+
+export const MiniModalContainer = styled(ModalContainer)`
+  top: 12%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  padding: 40px 80px;
+  z-index: 999;
+`;
+
+export const MiniModalBack = styled(ModalBackup)`
+  z-index: 998;
+`;
+export const MiniModalText = styled(ModalWraaper)`
+  > h2 {
+    font-size: 20px;
+  }
+
+  > button {
+    width: auto;
+    height: auto;
+    padding: 0 30px;
+    margin-top: 20px;
   }
 `;
 export const ModalBody = styled.div`

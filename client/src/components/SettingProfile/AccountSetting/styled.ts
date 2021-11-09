@@ -60,6 +60,13 @@ export const PhoneNumber = styled(SubTitleCss)`
 export const SettingWithdrawal = styled(SubTitleCss)`
   button {
     background: ${({ theme }) => theme.colors.suppotWord};
+    border: 3px solid ${({ theme }) => theme.colors.suppotWord};
+    transition: 0.3s;
+
+    &:hover {
+      transition: 0.3s;
+      color: ${({ theme }) => theme.colors.suppotWord};
+    }
   }
 `;
 

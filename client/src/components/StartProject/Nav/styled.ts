@@ -51,6 +51,7 @@ export const NavButton = styled.button<PageProps>`
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: 0.3s;
   ${(props) =>
     (props.basic || props.budget || props.details || props.team) &&
     selectButton}

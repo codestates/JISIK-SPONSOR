@@ -237,6 +237,13 @@ export const DateInput = styled(DatePicker)`
 export const AddTimeLineButton = styled(AddButton)`
   width: 163px;
   margin-top: 20px;
+  border: 3px solid ${({ theme }) => theme.colors.orange};
+  transition: 0.3s;
+
+  &:hover {
+    background: #fff;
+    color: ${({ theme }) => theme.colors.orange};
+  }
 `;
 
 //프로젝트 타임라인 상세설명

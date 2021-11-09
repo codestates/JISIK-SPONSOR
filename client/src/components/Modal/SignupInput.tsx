@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import CheckBox from './CheckBox';
 import axios from 'axios';
 import { REACT_APP_API_URL } from 'config';
+import { showMiniMoal, insertText } from 'store/modal-slice';
 interface SignupInfo {
   name: string;
   email: string;
@@ -83,7 +84,8 @@ const SignupInput = () => {
 
   const checkExist = (value: string, input: string): boolean => {
     if (value === '') {
-      alert(input + ' 입력해주세요!');
+      dispatch(showMiniMoal(true));
+      dispatch(insertText(input + ' 입력해주세요!'));
       return false;
     }
     return true;
@@ -154,7 +156,8 @@ const SignupInput = () => {
     if (isExist() && isAllValid(signupInfo)) {
       try {
         if (!checkState) {
-          alert('모두 동의해주셔야 회원가입 진행이 가능합니다.');
+          dispatch(showMiniMoal(true));
+          dispatch(insertText('모두 동의해주셔야 회원가입 진행이 가능합니다.'));
           return;
         }
         const response = await axios.post(
@@ -174,7 +177,8 @@ const SignupInput = () => {
         dispatch(showSignupModal(false));
       } catch (err) {
         console.log(err);
-        alert('회원가입에 실패하였습니다. 다시 시도해주세요🎯');
+        dispatch(showMiniMoal(true));
+        dispatch(insertText('회원가입에 실패하였습니다. 다시 시도해주세요🎯'));
       }
     }
   };

@@ -84,10 +84,17 @@ export const SaveButton = styled.button`
   line-height: 1.4em;
   color: #fff;
   background: ${({ theme }) => theme.colors.violet};
-  border: 3px solid #7950f2;
+  border: 3px solid ${({ theme }) => theme.colors.violet};
   border-radius: 10px;
   padding: 20px 40px;
   cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    transition: 0.3s;
+    background: #fff;
+    color: ${({ theme }) => theme.colors.violet};
+  }
 `;
 
 export const AddButton = styled.button`
@@ -96,12 +103,18 @@ export const AddButton = styled.button`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   background: ${({ theme }) => theme.colors.orange};
-  border: none;
+  border: 3px solid ${({ theme }) => theme.colors.orange};
   font-size: 16px;
   font-weight: 700;
   line-height: 1.3em;
   color: #fff;
   cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transition: 0.3s;
+    background: #fff;
+    color: ${({ theme }) => theme.colors.orange};
+  }
 `;
 
 export const AddList = styled.div`
