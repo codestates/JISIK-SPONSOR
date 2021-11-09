@@ -35,7 +35,7 @@ module.exports = {
           {
             model: user, // users 테이블 조인
             as: 'author',
-            attributes: ['id', 'name', 'nickname', 'bio', 'profile_url']
+            attributes: ['name', 'nickname', 'bio', 'profile_url']
           },
           {
             model: project_team, // project_teams 테이블 조인
@@ -107,7 +107,7 @@ module.exports = {
           {
             model: user, // users 테이블 조인
             as: 'author',
-            attributes: ['id', 'name', 'nickname', 'bio', 'profile_url']
+            attributes: ['name', 'nickname', 'bio', 'profile_url']
           },
           {
             model: project_team, // project_teams 테이블 조인
@@ -300,7 +300,7 @@ module.exports = {
           {
             model: user, // users 테이블 조인
             as: 'author',
-            attributes: ['id', 'name', 'nickname', 'bio', 'profile_url']
+            attributes: ['name', 'nickname', 'bio', 'profile_url']
           },
           {
             model: project_team, // project_teams 테이블 조인
