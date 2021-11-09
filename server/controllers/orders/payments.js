@@ -94,7 +94,7 @@ module.exports = {
         where: { id: updateOrder.project_id }
       });
 
-      // 프로젝트 업데이트
+      // // 프로젝트 업데이트
       await project.update(
         {
           pledged: projectInfo.pledged + updateOrder.amount,
@@ -116,11 +116,6 @@ module.exports = {
        * [후원 내역 이메일 전송]
        *
        */
-
-      // 프로젝트 URL 조회
-      const projectInfo = await project.findOne({
-        where: { id: updateOrder.project_id }
-      });
 
       const url = process.env.CLIENT_ORIGIN + '/' + projectInfo.path;
 
