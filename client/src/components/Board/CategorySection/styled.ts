@@ -95,4 +95,9 @@ export const FilterWrap = styled.div`
   flex: 1 1 auto;
   text-align: right;
   width: auto;
+
+  & select {
+    border: 1px solid #7950f2;
+    border-radius: 5px;
+  }
 `;

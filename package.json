@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "iamport-typings": "^1.2.0"
+  },
+  "dependencies": {
+    "react-simple-image-slider": "^2.3.0"
+  }
+}

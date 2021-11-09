@@ -22,9 +22,11 @@ export const Wrap = styled.div`
 export const SliderWrap = styled.ul`
   position: relative;
   overflow: hidden;
+
   & > li:nth-child(1) {
     position: relative;
   }
+
   & > li:nth-child(2) {
     display: flex;
     align-items: flex-end;
@@ -34,18 +36,21 @@ export const SliderWrap = styled.ul`
     height: 100%;
     transform: translateX(100%);
   }
-  /* &:hover > li:nth-child(1) {
-    transform: translateX(-100%);
+
+  &.selected-slide-index-1{
+    li:nth-child(1){
+      transform: translateX(-100%);
+    }
+    li:nth-child(2){
+      transform: translateX(0);
+    }
   }
-  &:hover > li:nth-child(2) {
-    transform: translateX(0);
-  } */
 `;
 
 export const Slide = styled.li`
   width: 100%;
   transition: all 0.5s;
-  /* background-color: skyblue; */
+  // background-color: skyblue;
 `;
 
 export const SlideCentent1 = styled.div`
@@ -92,6 +97,28 @@ export const SlideCentent1 = styled.div`
     color: #868e96;
     line-height: 160%;
     margin-bottom: 30px;
+  }
+
+  @media all and (max-width: 940px) {
+    background-image: url(${mainSliderImg1});
+    background-repeat: no-repeat;
+    background-size: auto 60%;
+    background-position: 80% 90%;
+    width: 100%;
+    & span {
+      font-size: 22px;
+    }
+    & h1 > span {
+      font-size: 55px;
+    }
+
+    & h2 {
+      font-size: 35px;
+    }
+
+    & p {
+      font-size: 15px;
+    }
   }
 
   @media all and (max-width: 567px) {
@@ -145,6 +172,90 @@ export const SlideCentent2 = styled.div`
     line-height: 130%;
     margin-bottom: 60px;
   }
+
+  @media all and (max-width: 940px) {
+    background-image: url(${mainSliderImg2});
+    background-repeat: no-repeat;
+    background-size: auto 60%;
+    background-position: 0 100%;
+    width: 100%;
+    & span {
+      font-size: 22px;
+    }
+    & h2 {
+      font-size: 35px;
+    }
+  }
+
+  @media all and (max-width: 808px) {
+    background-image: url(${mainSliderImg2});
+    background-repeat: no-repeat;
+    background-size: auto 60%;
+    background-position: 5% 100%;
+    width: 100%;
+
+    & h3 {
+      font-size: 25px;
+    }
+  }
+
+  @media all and (max-width: 750px) {
+    background-image: url(${mainSliderImg2});
+    background-repeat: no-repeat;
+    background-size: auto 60%;
+    background-position: 0 100%;
+    width: 100%;
+    & span {
+      font-size: 20px;
+    }
+    & h2 {
+      font-size: 30px;
+    }
+
+    & h3 {
+      font-size: 20px;
+    }
+  }
+
+  @media all and (max-width: 651px) {
+    background-image: url(${mainSliderImg2});
+    background-repeat: no-repeat;
+    background-size: auto 55%;
+    background-position: 0 100%;
+    width: 100%;
+
+    & span {
+      font-size: 18px;
+    }
+
+    & h2 {
+      font-size: 25px;
+    }
+
+    & h3 {
+      font-size: 15px;
+    }
+  }
+
+  @media all and (max-width: 567px) {
+    background-image: url(${mainSliderImg2});
+    background-repeat: no-repeat;
+    background-size: auto 40%;
+    background-position: 50% 74%;
+    width: 100%;
+    padding: 0 0 0 0;
+    & span {
+      text-align: center;
+    }
+
+    & h3 {
+      text-align: center;
+    }
+
+    & h2 {
+      text-align: center;
+    }
+  }
 `;
 
 export const SlideBtnWrap = styled.div`
@@ -176,6 +287,33 @@ export const SlideBtnWrap = styled.div`
     transition: 0.3s;
   }
 
+  @media all and (max-width: 940px) {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    & a {
+      font-size: 18px;
+    }
+  }
+
+  @media all and (max-width: 808px) {
+    width: 100%;
+    disiplay: flex;
+    flex-direction: row;
+    & a {
+      font-size: 12px;
+    }
+  }
+
+  @media all and (max-width: 628px) {
+    width: 100%;
+    disiplay: flex;
+    flex-direction: row;
+    & a {
+      font-size: 10px;
+    }
+  }
+
   @media all and (max-width: 567px) {
     width: 100%;
     disiplay: flex;
@@ -187,4 +325,37 @@ export const SlideBtnWrap = styled.div`
       margin-top: 150px;
     }
   }
+`;
+
+export const SliderButtonWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+`;
+
+export const SliderButton = styled.button`
+    display: inline-block;
+    padding: 8px 8px;
+    border-radius: 10px;
+    transition: 0.3s;
+    margin-right: 5px;
+    margin-left: 5px;
+
+    color: #343a40;
+    border: 1px solid #343a40;
+    background-color: #fff;
+
+    &:hover{
+      color: #fff;
+      border: 1px solid #343a40;
+      background-color: #bebebe;
+      transition: 0.3s;
+    }
+
+    &.is-selected-true{
+      color: #fff;
+      border: 1px solid #7950f2;
+      background-color: #7950f2;
+    }
 `;
