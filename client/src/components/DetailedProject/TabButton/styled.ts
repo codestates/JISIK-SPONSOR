@@ -39,6 +39,10 @@ export const Tab = styled.button<DetailTabs>`
     color: #7950f2;
     border-color: #7950f2;
   }
+
+  @media screen and (max-width: 718px) {
+    font-size: 20px;
+  }
 `;
 
 export const TabMoveButton = styled(Tab)`

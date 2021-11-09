@@ -87,10 +87,8 @@ const Comments = ({ project, setProject }: any) => {
       if (idx === current) return true;
       else return false;
     });
-    console.log(current);
 
     setShowBoxArr(newShowBoxArr);
-    console.log(newShowBoxArr);
   };
 
   const showBoxClear = () => {
@@ -125,6 +123,7 @@ const Comments = ({ project, setProject }: any) => {
             key={item.id}
             identity={index}
             id={item.id}
+            userId={item.user_id}
             author={item.user.nickname}
             date={item.created_at}
             content={item.content}

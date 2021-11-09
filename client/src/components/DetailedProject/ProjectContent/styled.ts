@@ -79,9 +79,12 @@ export const Timeline = styled.div`
   line-height: 1.4;
   color: #343a40;
 
-  > div {
-    width: 500px;
+  /* > div {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+  } */
+  > div > span {
+    margin-right: 40px;
   }
 `;

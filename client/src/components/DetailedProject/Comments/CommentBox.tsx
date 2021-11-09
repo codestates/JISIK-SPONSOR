@@ -11,6 +11,7 @@ import {
 import { RootState } from 'index';
 import { CommentType, Comment } from '../type';
 import { useSelector } from 'react-redux';
+
 import { REACT_APP_API_URL } from 'config';
 import DotIcon from '../../../images/icons/dots.png';
 import Person1 from '../../../images/people1.png';
@@ -18,6 +19,7 @@ import axios from 'axios';
 
 interface CommentProps {
   id: number;
+  userId: number;
   author: string;
   date: Date;
   content: string;
@@ -33,6 +35,7 @@ interface CommentProps {
 
 const CommentBox = ({
   id,
+  userId,
   author,
   date,
   content,
@@ -52,6 +55,11 @@ const CommentBox = ({
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
   const menuBox = useRef<HTMLInputElement>(null);
+
+  const userInfo = useSelector((state: RootState) => state.userInfo);
+  const { id: userInfoId } = userInfo.userInfo;
+
+  const { user_id: projectUserId } = project;
 
   useEffect(() => {
     setShowBoxToggle(showBoxBool);
@@ -147,16 +155,19 @@ const CommentBox = ({
           <img src={Person1} alt="" />
           <span>{author}</span>
         </div>
-        {isLogin && (
-          <button>
-            <img
-              src={DotIcon}
-              alt="dot-icon"
-              onClick={(e) => handleDotButton(e)}
-              className="dotIcon"
-            />
-          </button>
-        )}
+        {isLogin &&
+          (userInfoId === userId ||
+            userInfoId === projectUserId ||
+            userInfoId === 1) && (
+            <button>
+              <img
+                src={DotIcon}
+                alt="dot-icon"
+                onClick={(e) => handleDotButton(e)}
+                className="dotIcon"
+              />
+            </button>
+          )}
       </div>
       {showBoxToggle && (
         <CommentModiBox ref={menuBox}>
