@@ -40,8 +40,6 @@ const MyInfoBox = () => {
     limit: commentLimit
   });
 
-  console.log(setCommentLimit, setOptionQuerys);
-
   //최초 렌더링 시 로그인한 유저의 정보를 받아오고, 나의 프로젝트탭이 보여지게 세팅
   useEffect(() => {
     dispatch(myProject());
@@ -54,7 +52,6 @@ const MyInfoBox = () => {
 
   useEffect(() => {
     getMycomment();
-    console.log('fff');
   }, [commentLimit]);
 
   //나의 프로젝트를 받아오는 함수
@@ -95,8 +92,6 @@ const MyInfoBox = () => {
     try {
       const url = `${REACT_APP_API_URL}/projects/comments?author=${optionQuerys.author}&limit=${optionQuerys.limit}`;
       const response = await axios.get<CommentProps>(url, config);
-      console.log(optionQuerys);
-      console.log(response.data.comments);
       setComments(response.data.comments);
     } catch (err) {
       console.log(err);
