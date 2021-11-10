@@ -29,16 +29,36 @@ const IntroNotYet = () => {
   const [dDay, setdDay] = useState<number>(0);
   const [enteredFund, setEnteredFund] = useState<string>('');
   const [enteredPhoneNum, setEnteredPhoneNum] = useState<string>('');
+  const [enteredFundTouched, setEnteredFundTouched] = useState<boolean>(false);
+  const [enteredNumTouched, setEnteredNumTouched] = useState<boolean>(false);
+  const [phoneNumChecked, setPhoneNumChecked] = useState<boolean>(false);
   const [categoryId, setCategoryId] = useState<number>(0);
   const [category, setCategory] = useState<string>('');
+  // const [isFormVaild, setIsFormValid] = useState<boolean>(false);
 
   const history = useHistory();
   const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
   const config = { withCredentials: true };
 
+  console.log(enteredPhoneNum);
+  console.log(enteredFund);
+
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
   const percentage = Number((pledged / goal).toFixed(2)) * 100;
+
+  const enteredFundIsValid = enteredFund.trim() !== '';
+  const fundIsEmpty = !enteredFundIsValid && enteredFundTouched;
+  const enteredNumIsValid = enteredPhoneNum.trim() !== '';
+  const phoneNumIsEmpty = !enteredNumIsValid && enteredNumTouched;
+  const phoneNumInvalid = !phoneNumChecked && enteredNumTouched;
+
+  // useEffect(() => {
+  //   if (enteredFundIsValid && enteredNumIsValid) {
+  //     setIsFormValid(true);
+  //   }
+  //   setIsFormValid(false);
+  // }, [enteredFundIsValid, enteredNumIsValid]);
 
   //금액 숫자에 3단위로 콤마를 추가해주는 함수
   const numWithCommas = (num: number): string => {
@@ -117,6 +137,7 @@ const IntroNotYet = () => {
 
   const handlePhoneNumInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const phoneNum = e.currentTarget.value;
+    // const phoneNumForCheck = Number(phoneNum);
 
     const firstThree = phoneNum.slice(0, 3);
     const nextFour = phoneNum.slice(3, 7);
@@ -124,6 +145,27 @@ const IntroNotYet = () => {
     const revisedPhone = `${firstThree}-${nextFour}-${lastFour}`;
 
     setEnteredPhoneNum(revisedPhone);
+    const phoneNumChecked = phoneNumChecking(revisedPhone);
+    setPhoneNumChecked(phoneNumChecked);
+  };
+
+  const phoneNumChecking = (phoneNum: string): boolean => {
+    const regExp =
+      /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+    let str = phoneNum;
+
+    if (regExp.test(str)) {
+      return true;
+    }
+    return false;
+  };
+
+  const fundBlurHandler = () => {
+    setEnteredFundTouched(true);
+  };
+
+  const numBlurHandler = () => {
+    setEnteredNumTouched(true);
   };
 
   return (
@@ -169,6 +211,7 @@ const IntroNotYet = () => {
                 type="number"
                 placeholder="후원금액을 입력해주세요."
                 onChange={handleFundInput}
+                onBlur={fundBlurHandler}
               />
             </div>
             <div>
@@ -177,8 +220,15 @@ const IntroNotYet = () => {
                 type="number"
                 placeholder="'-'를 제외하고 입력해주세요."
                 onChange={handlePhoneNumInput}
+                onBlur={numBlurHandler}
               />
             </div>
+            {fundIsEmpty && <p>후원 금액을 입력해주세요.</p>}
+            {(phoneNumInvalid || phoneNumIsEmpty) && (
+              <p>
+                전화번호를 입력하지 않았거나 유효하지 않은 전화번호 형식입니다.
+              </p>
+            )}
           </FundInput>
           <PaymentButton
             enteredFund={enteredFund}
