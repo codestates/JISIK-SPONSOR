@@ -7,6 +7,7 @@ export interface modal {
   conditionBox: boolean;
   conflitModal: boolean;
   miniModal: boolean;
+  withDrawalModal: boolean;
   modalText: string;
 }
 
@@ -17,6 +18,7 @@ const initialState: modal = {
   personalBox: false,
   conditionBox: false,
   miniModal: false,
+  withDrawalModal: false,
   modalText: ''
 };
 
@@ -36,6 +38,13 @@ const modalBox = createSlice({
     showMiniMoal: (state: modal, { payload }: PayloadAction<boolean>) => {
       state.miniModal = payload;
     },
+    showWithDrawalModal: (
+      state: modal,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.withDrawalModal = payload;
+    },
+
     insertText: (state: modal, { payload }: PayloadAction<string>) => {
       state.modalText = payload;
     },
@@ -64,7 +73,8 @@ export const {
   offConditionModal,
   showConfiltModal,
   showMiniMoal,
-  insertText
+  insertText,
+  showWithDrawalModal
 } = modalBox.actions;
 
 export default modalBox.reducer;

@@ -218,15 +218,12 @@ function DetailsInfo() {
           onFocus={() => setShowMemo({ ...showMemo, progressMemo: true })}
           onBlur={() => setShowMemo({ ...showMemo, progressMemo: false })}
         >
-          <h3>프로젝트 진행 상황</h3>
+          <h3>연구의 중요성</h3>
           <TextareaCss
             onChange={handleTextArea('progress')}
             value={detailContent.progress}
           />
-          <FocusMemo>
-            현재 프로젝트의 진행상황이 어디까지 진행되었는지 후원자들에게
-            알려주세요.
-          </FocusMemo>
+          <FocusMemo>프로젝트의 중요성을 후원자들에게 알려주세요.</FocusMemo>
         </ProjectProgress>
 
         <ProjectGoal
