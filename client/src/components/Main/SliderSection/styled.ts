@@ -2,9 +2,9 @@
 import styled from 'styled-components';
 import mainSliderImg1 from '../../../images/mainSliderImg1.png';
 import mainSliderImg2 from '../../../images/mainSliderImg2.png';
+import back from '../../../images/back-icon.png';
+import forward from '../../../images/forward-icon.png';
 // import dot from '../../../images/jisik-dot.png';
-// import back from '../../../images/back-icon.png';
-// import forward from '../../../images/forward-icon.png';
 
 export const Section = styled.section`
   padding: 60px 0;
@@ -15,7 +15,7 @@ export const Wrap = styled.div`
   position: relative;
   width: 100%;
   max-width: 960px;
-  margin: 0 auto;
+  margin: auto;
   padding: 0 30px;
 `;
 
@@ -150,8 +150,8 @@ export const SlideCentent2 = styled.div`
   padding-left: 40%;
   background-image: url(${mainSliderImg2});
   background-repeat: no-repeat;
-  background-size: 45% auto;
-  background-position: 0 100%;
+  background-size: 55% auto;
+  background-position: 0 90%;
   & > span {
     display: block;
     font-size: 25px;
@@ -170,7 +170,7 @@ export const SlideCentent2 = styled.div`
     color: #212529;
     font-weight: 500;
     line-height: 130%;
-    margin-bottom: 60px;
+    margin-bottom: 100px;
   }
 
   @media all and (max-width: 940px) {
@@ -241,7 +241,7 @@ export const SlideCentent2 = styled.div`
     background-image: url(${mainSliderImg2});
     background-repeat: no-repeat;
     background-size: auto 40%;
-    background-position: 50% 74%;
+    background-position: 50% 65%;
     width: 100%;
     padding: 0 0 0 0;
     & span {
@@ -298,7 +298,7 @@ export const SlideBtnWrap = styled.div`
 
   @media all and (max-width: 808px) {
     width: 100%;
-    disiplay: flex;
+    display: flex;
     flex-direction: row;
     & a {
       font-size: 12px;
@@ -307,7 +307,7 @@ export const SlideBtnWrap = styled.div`
 
   @media all and (max-width: 628px) {
     width: 100%;
-    disiplay: flex;
+    display: flex;
     flex-direction: row;
     & a {
       font-size: 10px;
@@ -316,7 +316,7 @@ export const SlideBtnWrap = styled.div`
 
   @media all and (max-width: 567px) {
     width: 100%;
-    disiplay: flex;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 7px;
@@ -343,19 +343,72 @@ export const SliderButton = styled.button`
     margin-left: 5px;
 
     color: #343a40;
-    border: 1px solid #343a40;
-    background-color: #fff;
+    border: 0px solid #343a40;
+    background-color: #ced4da;
 
     &:hover{
       color: #fff;
-      border: 1px solid #343a40;
+      border: 0px solid #343a40;
       background-color: #bebebe;
       transition: 0.3s;
     }
 
     &.is-selected-true{
       color: #fff;
-      border: 1px solid #7950f2;
+      border: 0px solid #7950f2;
       background-color: #7950f2;
     }
+`;
+
+export const InequalWrap = styled.div`
+  display: flex;
+`;
+
+export const BackIcon = styled.div`
+  display: inline-block;
+  position: absolute;
+  background-image: url(${back});
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin: 0 auto;
+  margin-left: -15%;
+  margin-top: -29%;
+
+  padding: 30px;
+
+  @media all and (max-width: 1150px) {
+    margin-left: -8%;
+    margin-top: -29%;
+  }
+  @media all and (max-width: 1024px) {
+    margin-left: -5%;
+    margin-top: -29%;
+  }
+  @media all and (max-width: 960px) {
+    display: none;
+  }
+`;
+
+export const FowardIcon = styled.div`
+  display: inline-block;
+  position: absolute;
+  background-image: url(${forward});
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin-left: 100%;
+  margin-top: -29%;
+  
+  padding: 30px;
+
+  @media all and (max-width: 1150px) {
+    margin-left: 98%;
+    margin-top: -29%;
+  }
+  @media all and (max-width: 1024px) {
+    margin-left: 92%;
+    margin-top: -29%;
+  }
+  @media all and (max-width: 960px) {
+    display: none;
+  }
 `;

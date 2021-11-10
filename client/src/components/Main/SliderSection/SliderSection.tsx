@@ -1,10 +1,13 @@
 /*eslint-disable*/
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Section,
   Wrap,
   SliderWrap,
+  InequalWrap,
+  BackIcon,
+  FowardIcon,
   Slide,
   SlideCentent1,
   SlideCentent2,
@@ -16,6 +19,15 @@ import {
 const SliderSection = () => {
   const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
 
+  useEffect(() => {
+    const switchSelectedSlideIndex = setTimeout(() => {
+      if (selectedSlideIndex === 0) setSelectedSlideIndex(1)
+      else setSelectedSlideIndex(0)
+    }, 3000)
+
+    return () => clearTimeout(switchSelectedSlideIndex)
+  }, [selectedSlideIndex])
+
   const moveToPrevSlide = () => {
     setSelectedSlideIndex(0);
   };
@@ -25,6 +37,8 @@ const SliderSection = () => {
 
   return (
     <Section>
+      <InequalWrap>
+      </InequalWrap>
       <Wrap>
         <SliderWrap className={`selected-slide-index-${selectedSlideIndex}`}>
           <Slide>
@@ -79,6 +93,8 @@ const SliderSection = () => {
             className={`is-selected-${selectedSlideIndex === 1}`}
           />
         </SliderButtonWrapper>
+        <BackIcon onClick={moveToPrevSlide}></BackIcon>
+        <FowardIcon onClick={moveToNextSlide}></FowardIcon>
       </Wrap>
     </Section>
   );
