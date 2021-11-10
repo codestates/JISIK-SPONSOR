@@ -1,9 +1,8 @@
 /*eslint-disable*/
-import { findByLabelText } from '@testing-library/dom';
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  background-color: #f1f3f5;
+  background: #f1f3f5;
 `;
 
 export const Wrap = styled.div`
@@ -12,10 +11,8 @@ export const Wrap = styled.div`
   max-width: 960px;
   margin: 0 auto;
   padding: 25px 0;
-
-  @media all and (max-width: 576px) {
-    width: 100%;
-    padding: 5px;
+  @media all and (max-width: 620px) {
+    padding: 15px;
   }
 `;
 
@@ -28,17 +25,14 @@ export const ImageWrap = styled.div`
   & img {
     max-width: 100%;
   }
-
-  @media all and (max-width: 576px) {
+  @media all and (max-width: 620px) {
+    position: relative;
     width: 100%;
+    padding: 0 0 15px 0;
     text-align: center;
-    margin-bottom: 70px;
-
-    & img {
-      width: 50%;
-      padding: 0 60px;
-      margin-bottom: 25px;
-    }
+  }
+  @media all and (max-width: 380px) {
+    display: none;
   }
 `;
 
@@ -47,11 +41,9 @@ export const LinkWrap = styled.div`
   top: 0;
   width: 100%;
   padding: 0 30px 0 35%;
-
-  @media all and (max-width: 576px) {
-    width: 102%;
-    padding: 80px 0 0 0;
-    margin-top: 30px;
+  @media all and (max-width: 620px) {
+    width: 100%;
+    padding: 0;
     text-align: center;
   }
 `;
@@ -59,6 +51,9 @@ export const LinkWrap = styled.div`
 export const Ul = styled.ul`
   width: 100%;
   max-width: 580px;
+  @media all and (max-width: 620px) {
+    max-width: 100%;
+  }
 `;
 
 export const Li = styled.li`
@@ -91,10 +86,11 @@ export const Li = styled.li`
     font-weight: 600;
     transition: all 0.3s;
   }
-
-  @media all and (max-width: 374px) {
-    margin: 5px 5px 5px 0;
-
+  @media all and (max-width: 620px) {
+    margin: 7.5px 15px;
+  }
+  @media all and (max-width: 380px) {
+    margin: 7.5px;
     & span {
       font-size: 12.8px;
     }

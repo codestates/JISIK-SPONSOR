@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import { Section, Wrap, ButtonWrap, ShowButton } from './styled';
+import { Section, Wrap, ButtonWrap, BtnMessage, ShowButton } from './styled';
 
 export interface Props {
   moreGetProjects: () => void;
@@ -11,11 +11,13 @@ const MoreBtnSection = ({ moreGetProjects, btnMessage }: Props) => {
     <Section>
       <Wrap>
         <ButtonWrap>
-          <div>
-            <span>{btnMessage && btnMessage}</span>
-          </div>
+          {btnMessage ? (
+            <BtnMessage>
+              <span>{btnMessage && btnMessage}</span>
+            </BtnMessage>
+          ) : null}
           <ShowButton to="/board" onClick={() => moreGetProjects()}>
-            프로젝트 후원하기
+            프로젝트 더보기
           </ShowButton>
         </ButtonWrap>
       </Wrap>

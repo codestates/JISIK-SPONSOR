@@ -4,6 +4,9 @@ import styled from 'styled-components';
 export const Section = styled.section`
   padding: 60px 0;
   background-color: #fff;
+  @media all and (max-width: 620px) {
+    padding: 30px 0;
+  }
 `;
 
 export const Wrap = styled.div`
@@ -28,6 +31,7 @@ export const TitleWrap = styled.div`
     display: inline-block;
     font-size: 12.8px;
     color: #fff;
+    font-weight: 600;
     line-height: 140%;
     padding: 10px 20px;
     border-radius: 3px;
@@ -37,7 +41,6 @@ export const TitleWrap = styled.div`
   }
   & > a:hover {
     color: #343a40;
-    font-weight: 600;
     border: 2px solid #343a40;
     background-color: #fff;
     transition: 0.3s;

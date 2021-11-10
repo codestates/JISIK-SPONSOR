@@ -15,17 +15,16 @@ export const Ul = styled.ul`
   & > li {
     width: calc(33.333333% - 20px);
   }
-
   @media screen and (max-width: 1200px) {
     & > li {
       width: calc(50% - 15px);
     }
   }
 
-  @media screen and (max-width: 718px) {
+  @media screen and (max-width: 720px) {
+    gap: 15px;
     & > li {
       margin: 0 auto;
-      max-width: 360px;
       width: 100%;
     }
   }

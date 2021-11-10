@@ -20,9 +20,10 @@ import { RootState } from 'index';
 
 interface showProps {
   showMenuBox: () => void;
+  showNoticeMenuBox: () => void;
 }
 
-const Header = ({ showMenuBox }: showProps) => {
+const Header = ({ showMenuBox, showNoticeMenuBox }: showProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -69,7 +70,12 @@ const Header = ({ showMenuBox }: showProps) => {
           <img src={Search} alt="search-icon" onClick={searchBtnClick} />
           {isLogin ? (
             <>
-              <img src={BellIcon} alt="notification-icon" />
+              <img
+                src={BellIcon}
+                alt="notification-icon"
+                onClick={showNoticeMenuBox}
+                className="noticeIcon"
+              />
               <img
                 src={UserIcon}
                 alt="mypage-icon"
@@ -94,7 +100,7 @@ const Header = ({ showMenuBox }: showProps) => {
         <label>
           <input
             value={search}
-            placeholder="검색어를 입려하세요."
+            placeholder="검색어를 입력하세요."
             onChange={(e) => searchHandle(e)}
             onKeyPress={(e) => moveBoardPageFn(e)}
           />

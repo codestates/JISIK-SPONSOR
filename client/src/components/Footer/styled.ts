@@ -4,6 +4,12 @@ export const FooterContainer = styled.footer`
   width: 100vw;
   background-color: #343a40;
   padding: 80px 0;
+  @media all and (max-width: 960px) {
+    margin-bottom: 62px;
+  }
+  @media all and (max-width: 620px) {
+    padding: 60px 0;
+  }
 `;
 
 export const FooterWrapper = styled.div`
@@ -12,18 +18,22 @@ export const FooterWrapper = styled.div`
   padding: 0 30px;
   margin: 0 auto;
   text-align: center;
-
   img {
-    width: 272px;
+    width: auto;
     height: 40px;
+  }
+  @media all and (max-width: 620px) {
+    padding: 0 30px;
+    img {
+      height: 30px;
+    }
   }
 `;
 
 export const TeamBox = styled.div`
   width: 100%;
   margin-top: 50px;
-  border-top: 1px solid rgba(248, 249, 250, 0.3);
-
+  border-top: 1px solid rgba(248, 249, 250, 0.1);
   img {
     width: 40px;
     height: 40px;
@@ -33,14 +43,11 @@ export const TeamBox = styled.div`
 export const MemberBox = styled.div`
   display: flex;
   justify-content: center;
-  gap: 10px;
   width: 100%;
   margin: 50px 0;
-
-  @media screen and (max-width: 718px) {
-    display: flex;
+  gap: 30px;
+  @media screen and (max-width: 1200px) {
     flex-direction: column;
-    /* width: 100%; */
   }
 `;
 
@@ -48,7 +55,6 @@ export const MemberProfile = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   gap: 10px;
 `;
 
@@ -58,16 +64,13 @@ export const MemberInfo = styled.div`
   align-items: flex-start;
   justify-content: center;
   color: #ced4da;
-
   & > span {
-    margin-top: 3px;
+    margin-top: 5px;
     font-family: 'Lato';
   }
-
   & p span {
     font-size: 16px;
   }
-
   & p span:last-child {
     font-size: 12.8px;
     font-family: 'Lato';
@@ -83,7 +86,6 @@ export const Social = styled.div`
   align-items: center;
   margin-bottom: 15px;
   gap: 20px;
-
   img {
     width: 32px;
     height: 32px;
@@ -97,4 +99,7 @@ export const Copyright = styled.p`
   line-height: 1.4;
   font-weight: 300;
   color: #adb5bd;
+  @media all and (max-width: 480px) {
+    font-size: 16px;
+  }
 `;

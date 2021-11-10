@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import Jisik from '../../images/logo-gray.png';
 import User from '../../images/user.png';
 import Youtube from '../../images/youtube.png';
@@ -19,7 +19,9 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterWrapper>
-        <img src={Jisik} alt="logo-image-footer" />
+        <Link to="/">
+          <img src={Jisik} alt="logo-image-footer" />
+        </Link>
         <TeamBox>
           <MemberBox>
             <MemberProfile>
@@ -67,7 +69,7 @@ const Footer = () => {
                   <span>박하나</span>
                   <span>Back end</span>
                 </p>
-                <span>email@gmail.com</span>
+                <span>devparkhana@gmail.com</span>
               </MemberInfo>
             </MemberProfile>
           </MemberBox>
@@ -95,7 +97,7 @@ const Footer = () => {
             </a>
           </Social>
           <Copyright>
-            Copyright ⓒ 2021 Hakuna Matata <br />
+            Copyright ⓒ 2021 JISIK SPONSOR <br />
             &emsp;&emsp;The HADA Project Team
           </Copyright>
         </TeamBox>

@@ -18,6 +18,9 @@ export const Section = styled.section<SectionProps>`
     props.background === 'image' && `url(${cloud})`};
   background-repeat: ${(props) => props.background === 'image' && 'none'};
   background-size: ${(props) => props.background === 'image' && 'cover'};
+  @media all and (max-width: 620px) {
+    padding: 40px 0;
+  }
 `;
 
 export const Wrap = styled.div`
@@ -25,13 +28,14 @@ export const Wrap = styled.div`
   max-width: 960px;
   padding: 0 30px;
   margin: 0 auto;
-  &:nth-child(4) {
-    background: pink;
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
   }
 `;
 
 export const BannerSection = styled.div`
   text-align: center;
+  word-break: keep-all;
   & > h1 {
     font-size: 31.25px;
     color: #212529;
@@ -47,6 +51,14 @@ export const BannerSection = styled.div`
   & > p > strong {
     color: #7950f2;
     font-weight: 600;
+  }
+  @media all and (max-width: 620px) {
+    & > h1 {
+      font-size: 25px;
+    }
+    & > p {
+      font-size: 20px;
+    }
   }
 `;
 
@@ -66,15 +78,18 @@ export const QuestionSection = styled.div<QuestionSectionProps>`
     padding: ${(props) =>
       props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
   }
-  @media all and (max-width: 567px) {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
+  @media all and (max-width: 620px) {
+    display: block;
     & div:nth-child(1) {
-      width: 85%;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    & div:nth-child(2) {
+      width: 100%;
+      max-width: 300px;
+      padding: 0;
+      margin: 0 auto;
     }
   }
 `;
@@ -83,28 +98,16 @@ export const ImageWrap = styled.div`
   & > img {
     width: 100%;
   }
-  @media all and (max-width: 567px) {
-    & img {
-      width: 100%;
-    }
-  }
 `;
 
-{
-  /* 이미지가 센터가 아니라 좌측으로 혼자 따로 놀아서 SecondImageWrap 만듬  */
-}
 export const SecondImageWrap = styled.div`
   & > img {
     width: 100%;
   }
-  @media all and (max-width: 567px) {
-    & img {
-      width: 100%;
-    }
-  }
 `;
 
 export const TextBoxWrap = styled.div`
+  word-break: keep-all;
   & > h2 {
     font-size: 25px;
     color: #343a40;
@@ -116,6 +119,11 @@ export const TextBoxWrap = styled.div`
     font-size: 16px;
     color: #495057;
     line-height: 160%;
+  }
+  @media all and (max-width: 620px) {
+    & > h2 {
+      font-size: 20px;
+    }
   }
 `;
 
@@ -161,10 +169,13 @@ export const StartProjectSection = styled.div`
   & div:hover a {
     transform: translateY(5px);
   }
-
-  @media all and (max-width: 567px) {
+  @media all and (max-width: 620px) {
     & h2 {
+      font-size: 16px;
+    }
+    & > div > a {
       font-size: 20px;
+      padding: 20px 30px;
     }
   }
 `;

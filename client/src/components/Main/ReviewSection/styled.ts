@@ -5,6 +5,9 @@ export const Section = styled.section`
   width: 100%;
   padding: 60px 0;
   background-color: #f1f3f5;
+  @media all and (max-width: 620px) {
+    padding: 30px 0;
+  }
 `;
 
 export const Wrap = styled.div`
@@ -12,6 +15,9 @@ export const Wrap = styled.div`
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -22,6 +28,10 @@ export const Title = styled.h2`
   text-align: center;
   line-height: 140%;
   margin-bottom: 30px;
+  @media all and (max-width: 620px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const ReviewWrap = styled.div`
@@ -30,19 +40,18 @@ export const ReviewWrap = styled.div`
 
 export const Ul = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-
-  @media all and (max-width: 567px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  @media all and (max-width: 720px) {
+    justify-content: center;
+    gap: 30px;
   }
 `;
 
 export const Li = styled.li`
   display: inline-block;
-  width: 220px;
+  width: 100%;
+  max-width: 220px;
   text-align: center;
   & > div {
     margin-bottom: 15px;
@@ -68,10 +77,15 @@ export const Li = styled.li`
     font-size: 12.8px;
     color: #495057;
     line-height: 140%;
+    word-break: keep-all;
   }
   &:hover > div > img {
     transform: matrix(1.02, 0, 0, 1.02, 0, 0);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s;
+  }
+  @media all and (max-width: 720px) {
+    width: 100%;
+    max-width: 100%;
   }
 `;

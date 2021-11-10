@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 export const Section = styled.section`
   padding: 60px 0;
-  background-color: #fff;
+  background: #fff;
+  @media all and (max-width: 620px) {
+    padding: 30px 0;
+  }
 `;
 
 export const Wrap = styled.div`
@@ -29,6 +32,7 @@ export const TitleWrap = styled.div`
     font-size: 12.8px;
     color: #fff;
     line-height: 140%;
+    font-weight: 600;
     padding: 10px 20px;
     border-radius: 3px;
     border: 2px solid #7950f2;
@@ -36,10 +40,9 @@ export const TitleWrap = styled.div`
     transition: 0.3s;
   }
   & > a:hover {
-    color: #fff;
-    font-weight: 600;
-    border: 3px solid #343a40;
-    background-color: #343a40;
+    color: #343a40;
+    border: 2px solid #343a40;
+    background-color: #fff;
     transition: 0.3s;
   }
 `;

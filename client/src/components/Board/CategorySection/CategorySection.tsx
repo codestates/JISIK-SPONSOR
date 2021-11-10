@@ -5,8 +5,7 @@ import {
   AllCategoryWrap,
   SubCategoryWrap,
   Ul,
-  Li,
-  FilterWrap
+  Li
 } from './styled';
 import allcategory from '../../../images/allcategory.png';
 import humanities from '../../../images/humanities.png';
@@ -20,10 +19,9 @@ import combination from '../../../images/combination.png';
 
 export interface Props {
   categoryQueryFn: (catrogy: string) => void;
-  filterQueryFn: (e: any) => void;
 }
 
-const CategorySection = ({ categoryQueryFn, filterQueryFn }: Props) => {
+const CategorySection = ({ categoryQueryFn }: Props) => {
   return (
     <Section>
       <Wrap>
@@ -89,18 +87,6 @@ const CategorySection = ({ categoryQueryFn, filterQueryFn }: Props) => {
             </Li>
           </Ul>
         </SubCategoryWrap>
-        <FilterWrap>
-          <select onChange={(e) => filterQueryFn(e)}>
-            <option value="">최신순</option>
-            <option value="views">조회순</option>
-            <option value="wishes">인기순</option>
-            <option value="comments">댓글순</option>
-            <option value="pledged">최다후원금순</option>
-            <option value="sponsors">최다후원임순</option>
-            <option value="remainder">성공임박순</option>
-            <option value="end_date">마감임박순</option>
-          </select>
-        </FilterWrap>
       </Wrap>
     </Section>
   );
