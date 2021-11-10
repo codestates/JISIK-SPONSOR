@@ -29,5 +29,8 @@ export NODEMAILER_PASS=$(aws ssm get-parameters --region ap-northeast-2 --names 
 export IMP_KEY=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_IMP_KEY --query Parameters[0].Value | sed 's/"//g')
 export IMP_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_IMP_SECRET --query Parameters[0].Value | sed 's/"//g')
 
+export GOOGLE_CLIENT_ID=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_GOOGLE_CLIENT_ID --query Parameters[0].Value | sed 's/"//g')
+export GOOGLE_CLIENT_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_GOOGLE_CLIENT_SECRET --query Parameters[0].Value | sed 's/"//g')
+
 cd bin
 authbind --deep pm2 start www.js

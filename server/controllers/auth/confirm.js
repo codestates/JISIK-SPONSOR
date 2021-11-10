@@ -17,6 +17,7 @@ module.exports = {
       }
 
       // 인증코드의 유효기간 확인: 3분
+      const currentTime = new Date().getTime();
       const signupDate = new Date(findUser.updated_at);
       const validTime = new Date(
         signupDate.getFullYear(),
@@ -27,30 +28,20 @@ module.exports = {
         signupDate.getSeconds()
       );
 
-      // if (validTime.getTime() < new Date().getTime()) {
-      //   return res.status(410).json({
-      //     findUser,
-      //     currentTime: new Date(),
-      //     signupDate,
-      //     validTime,
-      //     message: '인증 시간이 만료되었습니다.'
-      //   });
-      // }
+      if (validTime.getTime() < new Date().getTime()) {
+        return res.status().json({
+          currentTime: new Date(currentTime).toLocaleString(),
+          signupDate: new Date(signupDate).toLocaleString(),
+          validTime: new Date(validTime).toLocaleString(),
+          message: '인증 시간이 만료되었습니다.'
+        });
+      }
 
       // 회원 정보를 업데이트 한다. (이메일 인증 확인)
-      // await user.update(
-      //   { email_verified: true },
-      //   { where: { key_for_verify: key } }
-      // );
-
-      const currentTime = new Date().getTime() + 9 * 60 * 60 * 1000;
-
-      return res.json({
-        currentTime: new Date(currentTime).toLocaleString(),
-        signupDate: new Date(signupDate).toLocaleString(),
-        validTime: new Date(validTime).toLocaleString(),
-        boolearn: validTime.getTime() < new Date().getTime()
-      });
+      await user.update(
+        { email_verified: true },
+        { where: { key_for_verify: key } }
+      );
 
       /**
        *

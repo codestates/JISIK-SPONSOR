@@ -101,7 +101,7 @@ module.exports = {
 
       // 사용자 정보 업데이트
       await user.update(
-        { password: hash, key_for_verify },
+        { password: hash, key_for_verify, updated_ap: new Date() },
         { where: { id: req.userId } }
       );
 
