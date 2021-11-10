@@ -121,15 +121,12 @@ export const SubContent = styled.div`
   }
 
   @media screen and (max-width: 900px) {
-    margin-bottom: 30px;
-    img {
-      width: 70%;
-    }
+    margin-bottom: 20px;
+    max-width: 600px;
+    width: 100%;
   }
 
   @media screen and (max-width: 718px) {
-    margin-bottom: 30px;
-
     img {
       width: 70%;
     }
@@ -137,7 +134,7 @@ export const SubContent = styled.div`
 `;
 
 export const Funding = styled.div`
-  & > p {
+  > p {
     display: flex;
     justify-content: space-between;
   }
@@ -168,11 +165,7 @@ export const Funding = styled.div`
   }
 
   @media screen and (max-width: 900px) {
-    width: 70%;
-  }
-
-  @media screen and (max-width: 718px) {
-    width: 70%;
+    width: 100%;
   }
 `;
 
@@ -190,7 +183,7 @@ export const FundInput = styled.div`
   }
 
   & > div:last-child {
-    margin-bottom: 35px;
+    margin-bottom: 20px;
   }
 
   & > div input {
@@ -198,6 +191,7 @@ export const FundInput = styled.div`
     width: 200px;
     border: 2px solid #e9ecef;
     border-radius: 2px;
+    margin-bottom: 3px;
   }
 
   & > div input::placeholder {
@@ -220,6 +214,14 @@ export const FundInput = styled.div`
 export const NoticeContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 900px) {
+    justify-content: flex-start;
+  }
+
+  @media screen and (max-width: 525px) {
+    flex-direction: column;
+  }
 `;
 
 export const DisplayNone = css`
@@ -237,6 +239,10 @@ export const Notice = styled.p<DisplayProps>`
   ${(props) => {
     return props.noDisplay && DisplayNone;
   }}
+
+  @media screen and (max-width: 900px) {
+    margin-left: 30px;
+  }
 `;
 
 export const HashTagContainer = styled.div`
@@ -295,15 +301,12 @@ export const SubContentFinished = styled.div`
   }
 
   @media screen and (max-width: 900px) {
-    margin-bottom: 30px;
-    img {
-      width: 70%;
-    }
+    margin-bottom: 20px;
+    max-width: 600px;
+    width: 100%;
   }
 
   @media screen and (max-width: 718px) {
-    margin-bottom: 30px;
-
     img {
       width: 70%;
     }
@@ -327,7 +330,7 @@ export const AlreadyButton = styled(FinishedButton)`
 export const SubContentAlready = styled.div`
   /* background-color: yellowgreen; */
   width: 100%;
-  max-width: 270px;
+  /* max-width: 270px; */
 
   & > p:first-child {
     font-size: 32px;
@@ -354,15 +357,12 @@ export const SubContentAlready = styled.div`
   }
 
   @media screen and (max-width: 900px) {
-    margin-bottom: 30px;
-    img {
-      width: 70%;
-    }
+    margin-bottom: 20px;
+    max-width: 600px;
+    width: 100%;
   }
 
   @media screen and (max-width: 718px) {
-    margin-bottom: 30px;
-
     img {
       width: 70%;
     }

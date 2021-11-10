@@ -15,6 +15,10 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 30px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+  @media screen and (max-width: 718px) {
+    gap: 15px;
+  }
 `;
 
 const selectedTab = css`
@@ -41,7 +45,9 @@ export const Tab = styled.button<DetailTabs>`
   }
 
   @media screen and (max-width: 718px) {
+    margin: 15px 0;
     font-size: 20px;
+    line-height: 1;
   }
 `;
 

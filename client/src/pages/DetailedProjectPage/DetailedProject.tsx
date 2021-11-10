@@ -31,6 +31,7 @@ const DetailedProject = () => {
   const [author, setAuthor] = useState<any>({});
 
   // console.log(author);
+  console.log(status);
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
   const userInfo = useSelector((state: RootState) => state.userInfo);

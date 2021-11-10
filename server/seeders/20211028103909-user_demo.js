@@ -13,6 +13,7 @@ module.exports = {
         email: process.env.ADMIN_USER_EMAIL,
         password: hash,
         nickname: '관리자',
+        bio: '나는 지식스폰서의 관리자로서 세상에 꼭 필요한 연구가 많은 지지를 받을 수 있도록 돕습니다.',
         role_id: 1,
         signup_method: '일반',
         email_verified: true,
