@@ -186,7 +186,7 @@ export const FundInput = styled.div`
     margin-bottom: 20px;
   }
 
-  & > div input {
+  > div input {
     height: 25px;
     width: 200px;
     border: 2px solid #e9ecef;
@@ -194,12 +194,20 @@ export const FundInput = styled.div`
     margin-bottom: 3px;
   }
 
-  & > div input::placeholder {
+  > div input::placeholder {
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
     color: #8d959d;
     -webkit-appearance: none;
+  }
+
+  > p {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #ff0200;
+    margin-bottom: 10px;
   }
 
   & > div input::-webkit-outer-spin-button,
