@@ -25,17 +25,22 @@ export const FaqUlWapper = styled.ul``;
 export const FaqLiWapper = styled.li`
   border: 1px solid #e9ecef;
   margin-top: 10px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 
   &.show {
-    height: 104.25px;
+    color: ${({ theme }) => theme.colors.violetWord};
+    height: 168px;
     transition: 0.3s;
+  }
+  &:last-child.show,
+  &:nth-child(3).show {
+    height: 146px;
   }
 
   &.hide {
-    height: 63.25px;
+    height: 77px;
     transition: 0.3s;
   }
   > div {
@@ -44,8 +49,9 @@ export const FaqLiWapper = styled.li`
     align-items: center;
     cursor: pointer;
     > h3 {
-      font-size: 20px;
+      font-size: 25px;
       font-weight: 500;
+      line-height: 1.4em;
     }
 
     > img {
@@ -58,13 +64,15 @@ export const FaqLiWapper = styled.li`
   > p {
     font-size: 16px;
     font-weight: 400;
-    color: ${({ theme }) => theme.colors.suppotWord};
+    color: #343a40;
     margin-top: 25px;
-
+    width: 74%;
+    line-height: 1.4em;
+    padding-left: 50px;
     &.show {
       display: block;
       animation-name: dropdown;
-      animation-duration: 1s;
+      animation-duration: 0.8s;
     }
 
     &.hide {
@@ -73,11 +81,12 @@ export const FaqLiWapper = styled.li`
   }
 
   @keyframes dropdown {
-    from {
+    0% {
       opacity: 0;
       transform: translateY(-3px);
     }
-    to {
+
+    100% {
       opacity: 1;
     }
   }
