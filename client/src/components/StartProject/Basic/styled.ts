@@ -197,7 +197,9 @@ export const ProjectCoverIma = styled(ProjectCoverImage)`
 export const ProjectSelectIma = styled(ProjectCoverImage)`
   > label {
     width: 300px;
-    height: 174px;
+    /* height: 174px; */
+    background: #fff;
+    border: none;
     padding: 0;
     > img {
       width: 100%;

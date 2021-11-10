@@ -97,6 +97,10 @@ export const NavbarR = styled.div`
 `;
 
 export const MenuBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   z-index: 5;
   position: absolute;
   top: 40px;

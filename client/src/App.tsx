@@ -13,6 +13,7 @@ import { REACT_APP_API_URL } from 'config';
 import { logout } from 'store/login-slice';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+
 const theme = {
   colors: {
     violet: '#7950F2',
@@ -55,8 +56,9 @@ function App() {
         }
       );
       dispatch(logout());
+      localStorage.removeItem('root');
       setShowBox(false);
-      localStorage.removeItem('abc');
+
       history.push('/');
     } catch (error) {
       console.log(error);
@@ -86,6 +88,9 @@ function App() {
           <MenuBox ref={menuBoxRef}>
             <Link to="/mypage">
               <button>마이페이지</button>
+            </Link>
+            <Link to="/setting">
+              <button>설정</button>
             </Link>
             <button onClick={handleLogout}>로그아웃</button>
           </MenuBox>

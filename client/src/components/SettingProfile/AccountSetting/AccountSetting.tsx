@@ -11,18 +11,19 @@ import {
   NumberAddButton
 } from './styled';
 import { ProjectBody, Container } from 'components/StartProject/commonStyled';
-import { logout } from 'store/login-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'index';
-import { useHistory } from 'react-router';
-import { showMiniMoal, insertText } from 'store/modal-slice';
+import {
+  showMiniMoal,
+  insertText,
+  showWithDrawalModal
+} from 'store/modal-slice';
 interface changePwProps {
   password: string;
   checkPassword: string;
 }
 function AccountSetting() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { email } = useSelector((state: RootState) => state.userInfo.userInfo);
   const [changePW, setChangePW] = useState<changePwProps>({
     password: '',
@@ -104,17 +105,7 @@ function AccountSetting() {
   };
 
   const handleWithDrawal = async () => {
-    await axios.delete(`${REACT_APP_API_URL}/users/me/`, {
-      withCredentials: true
-    });
-    dispatch(logout());
-    history.push('/');
-    dispatch(showMiniMoal(true));
-    dispatch(
-      insertText(
-        '회원탈퇴 되었습니다. 그동안 지식스폰서를 이용해주셔서 감사합니다.'
-      )
-    );
+    dispatch(showWithDrawalModal(true));
   };
 
   const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {

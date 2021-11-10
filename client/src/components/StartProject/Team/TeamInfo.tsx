@@ -64,7 +64,9 @@ function TeamInfo() {
   const [bringList, setBringList] = useState<any>(
     projects.project_team_members
   );
-  const [imgSrc, setImgSrc] = useState<string>(projects.thumbnail_url || '');
+  const [imgSrc, setImgSrc] = useState<string>(
+    projects.project_teams[0].profile_url || ''
+  );
   const [showMemo, setShowMemo] = useState<TeamMemoProps>({
     memberMemo: false,
     teamMemo: false,
@@ -90,6 +92,10 @@ function TeamInfo() {
       researchWord: projects.researcher_word || ''
     });
   }, []);
+
+  useEffect(() => {
+    setImgSrc(projects.project_teams[0].profile_url);
+  }, [projects]);
   const handleInput =
     (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setTeamContent({
@@ -320,6 +326,7 @@ function TeamInfo() {
         {imgSrc ? (
           <ProjectSelectIma>
             <h3>팀 또는 개인 대표 이미지</h3>
+
             <label htmlFor="TeamImg">
               <img src={`https://jisiksponsor.com${imgSrc}`} />
             </label>
@@ -328,10 +335,9 @@ function TeamInfo() {
         ) : (
           <ProjectTeamImg>
             <h3>팀 또는 개인 대표 이미지</h3>
+            <p>사진을 클릭하여 이미지를 추가하세요.</p>
             <label htmlFor="TeamImg">
               <img src={coverImg} />
-              <span>사진을 추가하려면 클릭하세요.</span>
-              <span>JPG, PNG, GIF - 50MB 파일 제한</span>
             </label>
             <input type="file" id="TeamImg" onChange={handleCoverIma} />
           </ProjectTeamImg>

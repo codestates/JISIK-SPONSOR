@@ -179,14 +179,24 @@ export const ProjectTeamName = styled(SubTitleCss)<FoucsProps>`
 // 프로젝트 팀 이미지
 export const ProjectTeamImg = styled(ProjectCoverImage)`
   > label {
-    width: 300px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+
+    > img {
+      width: 50px;
+      height: 50px;
+    }
   }
 `;
 export const ProjectSelectIma = styled(ProjectCoverImage)`
   > label {
-    width: 300px;
-    height: 174px;
+    width: 120px;
+    height: 120px;
     padding: 0;
+    border-radius: 50%;
+    border: none;
+    overflow: hidden;
     > img {
       width: 100%;
       height: 100%;

@@ -77,7 +77,6 @@ export const ChangeButton = styled(AddButton)`
 
 export const NumberAddButton = styled(AddButton)`
   width: 90px;
-  height: 40px;
   margin-top: 10px;
 `;
 export const WithdrawalButton = styled(AddButton)`
