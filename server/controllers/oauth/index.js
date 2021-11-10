@@ -1,3 +1,4 @@
 module.exports = {
-  google: require('./google')
+  google: require('./google'),
+  kakao: require('./kakao')
 };

@@ -12,6 +12,7 @@ router.post('/signup', auth.signup.post, auth.signup.patch);
 
 // OAuth API
 router.post('/oauth/google', oauth.google.post);
+router.post('/oauth/kakao', oauth.kakao.post);
 
 // Email verified
 router.get('/confirm/email', auth.confirm.email);

@@ -19,6 +19,10 @@ router.get('/oauth/google', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/google.html'));
 });
 
+router.get('/oauth/kakao', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/kakao.html'));
+});
+
 router.get('/users', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/users.html'));
 });
