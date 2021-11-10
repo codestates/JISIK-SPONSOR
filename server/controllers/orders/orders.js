@@ -67,7 +67,7 @@ module.exports = {
       // 현재 프로젝트가 "진행중"이 아닌경우 다음을 리턴한다.
       if (projectInfo.status !== 'inprogress') {
         return res.status(403).json({
-          message: 'This project status is not "in progress" !'
+          message: 'This project status is not "inprogress" !'
         });
       }
 
