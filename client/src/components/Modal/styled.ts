@@ -197,7 +197,7 @@ export const ModalWraaper = styled(ModalHead)`
 `;
 
 export const MiniModalContainer = styled(ModalContainer)`
-  top: 12%;
+  top: 16%;
   left: 50%;
   width: auto;
   height: auto;
