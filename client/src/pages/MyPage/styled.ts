@@ -1,26 +1,28 @@
 import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
-  /* background-color: beige; */
   width: 100vw;
-  padding: 60px 0;
+  padding: 80px 0 120px 0;
+  background: #f8f9fa;
+  @media all and (max-width: 620px) {
+    padding: 30px 0;
+  }
 `;
 
 export const MypageWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* background-color: pink; */
   width: 100%;
   max-width: 1260px;
   margin: 0 auto;
-  padding: 60px 30px;
+  padding: 0 30px;
 
   > div:first-child {
-    width: 20%;
+    width: 25%;
   }
 
   > div:last-child {
-    width: 80%;
+    width: 75%;
   }
 
   @media screen and (max-width: 1200px) {
@@ -28,7 +30,14 @@ export const MypageWrapper = styled.div`
     align-items: center;
 
     > div:first-child {
-      width: 60%;
+      width: 100%;
     }
+
+    > div:last-child {
+      width: 100%;
+    }
+  }
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
   }
 `;

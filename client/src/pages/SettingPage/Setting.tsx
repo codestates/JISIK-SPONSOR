@@ -1,4 +1,3 @@
-import React from 'react';
 import SettingNav from 'components/SettingProfile/SettingNav/SettingNav';
 import { RootState } from 'index';
 import { useSelector } from 'react-redux';

@@ -12,12 +12,12 @@ interface MypageTab {
 //MyProfileBox
 export const MyprofileBox = styled.div`
   width: 100%;
-  /* background-color: yellowgreen; */
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  background: #fff;
 
   @media screen and (max-width: 1200px) {
-    max-width: 800px;
+    max-width: 600px;
     margin-bottom: 30px;
   }
 `;
@@ -29,9 +29,7 @@ export const MyprofileBoxMini = styled.div`
   justify-content: center;
   padding: 40px 0;
   width: 100%;
-  max-width: 144px;
   margin: 0 auto;
-  /* background-color: aquamarine; */
 
   img {
     height: 100px;
@@ -52,55 +50,64 @@ export const MyprofileBoxMini = styled.div`
     font-weight: 500;
     line-height: 1.4;
     color: #868e96;
-    margin-bottom: 47px;
+    margin-bottom: 30px;
   }
 
   div {
     display: flex;
+    gap: 15px;
     flex-direction: column;
   }
 
   div > button:first-child {
-    width: 93px;
-    height: 30px;
-    border-radius: 3px;
-    background-color: #ced4da;
+    display: inline-block;
     color: #495057;
-    font-size: 12.8px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     line-height: 1.4;
-    margin-bottom: 15px;
+    padding: 10px 20px;
     cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background: #ced4da;
   }
 
   div > button:last-of-type {
-    width: 93px;
-    height: 30px;
-    border-radius: 3px;
-    background-color: #495057;
+    display: inline-block;
     color: #fff;
-    font-size: 12.8px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     line-height: 1.4;
+    padding: 10px 20px;
     cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background: #495057;
   }
 
   @media screen and (max-width: 1200px) {
     max-width: 800px;
-    margin-bottom: 30px;
+    padding: 30px;
 
     div {
       display: flex;
-      flex-direction: row;
       gap: 20px;
+      flex-direction: row;
     }
 
     span {
-      font-size: 27px;
+      font-size: 25px;
     }
 
     p {
       font-size: 16px;
+    }
+  }
+  @media all and (max-width: 620px) {
+    div > button:first-child,
+    div > button:last-of-type {
+      font-size: 12.8px;
+      padding: 10px 15px;
     }
   }
 `;
@@ -110,38 +117,40 @@ export const MyInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 0 30px;
+  padding-left: 30px;
+  @media all and (max-width: 1200px) {
+    padding: 0;
+  }
 `;
 
 export const MyInfoTabs = styled.div`
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 1200px) {
-    /* flex-direction: column; */
     justify-content: center;
   }
 `;
 
 export const MyInfoDetail = styled.div`
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  /* background-color: violet; */
+  flex-direction: column;
 `;
 
 const selectedTab = css`
-  background-color: #7950f2;
   color: #fff;
+  background: #7950f2;
 `;
 
 export const TabBtn = styled.button<MypageTab>`
-  padding: 12px 24px;
   font-size: 16px;
   line-height: 1.4;
   font-weight: 700;
   color: #343a40;
-  background-color: #fff;
+  padding: 15px 25px;
+  background: #fff;
   border-radius: 5px;
   border-style: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -152,10 +161,13 @@ export const TabBtn = styled.button<MypageTab>`
       props.favorites ||
       props.myComments) &&
     selectedTab}
-
-  @media screen and (max-width: 893px) {
-    padding: 6px 12px;
-    font-size: 15px;
+  @media screen and (max-width: 680px) {
+    word-break: keep-all;
+    width: 45%;
+  }
+  @media screen and (max-width: 380px) {
+    font-size: 12.8px;
+    padding: 15px 20px;
   }
 `;
 
@@ -166,7 +178,6 @@ export const Cards = styled.div`
   & div {
     width: 280px;
     height: 441px;
-    background-color: seagreen;
   }
 
   @media screen and (max-width: 1031px) {
@@ -175,11 +186,9 @@ export const Cards = styled.div`
 `;
 
 export const CommentContainer = styled.div`
-  /* background-color: palevioletred; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   div:first-child {
     font-size: 20px;
     line-height: 1.4;

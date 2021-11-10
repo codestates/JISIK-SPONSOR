@@ -8,7 +8,7 @@ import MyPage from 'pages/MyPage/MyPage';
 import Setting from 'pages/SettingPage/Setting';
 import Start from 'pages/StartPage/Start';
 import StartProject from 'pages/StartProjectPage/StartProject';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 
 const Body = () => {
   return (
@@ -46,6 +46,9 @@ const Body = () => {
         </Route>
         <Route path="/404">
           <Error />
+        </Route>
+        <Route path="/">
+          <Redirect to="/404" />
         </Route>
       </Switch>
     </main>

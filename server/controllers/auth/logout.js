@@ -4,7 +4,7 @@ module.exports = {
   post: async (req, res) => {
     try {
       // 로그인 인증 검사
-      await userAuthen(req, res);
+      // await userAuthen(req, res);
 
       // 쿠키 삭제
       res.cookie('accessToken', null, { maxAge: 0 });

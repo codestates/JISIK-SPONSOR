@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Wrapper, Section1, Section2 } from './styled';
+import { Section, Wrapper, TitleWrap, InputWrap } from './styled';
 import { RootState } from 'index';
 import { useHistory } from 'react-router';
 import { showLoginModal } from 'store/modal-slice';
@@ -30,29 +30,31 @@ function CreateTitle() {
       dispatch(showLoginModal(true));
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <>
+    <Section>
       <Wrapper>
-        <Section1>
+        <TitleWrap>
           <h1>당신의 프로젝트를 알려주세요!</h1>
           <p>프로젝트 제목을 알려서 새로운 실험을 시작하세요.</p>
-        </Section1>
-        <Section2>
-          <div>
-            <input
-              type="text"
-              id="title"
-              placeholder="프로젝트의 제목을 작성해주세요!"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setTitleInput(e.target.value)
-              }
-            />
-
-            <button onClick={handleProject}>계속</button>
-          </div>
-        </Section2>
+        </TitleWrap>
+        <InputWrap>
+          <input
+            type="text"
+            id="title"
+            placeholder="프로젝트의 제목을 작성해주세요!"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTitleInput(e.target.value)
+            }
+          />
+          <button onClick={handleProject}>계속</button>
+        </InputWrap>
       </Wrapper>
-    </>
+    </Section>
   );
 }
 

@@ -47,8 +47,7 @@ export const NavContainer = styled.div<SearchHeaderProp>`
     color: #7950f2;
   }
   @media all and (max-width: 960px) {
-    padding: 0 15px;
-    height: 60px;
+    padding: 10px 15px;
     justify-content: center;
     div {
       display: none;

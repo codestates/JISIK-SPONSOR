@@ -13,6 +13,7 @@ import {
 } from './styled';
 import { Row, Data, CommentProps, Comment } from './type';
 import Postcards from '../ProjectsCards/Postcards/Postcards';
+import Message from '../Message/Message';
 import MyComments from './MyComments';
 
 import {
@@ -148,17 +149,23 @@ const MyInfoBox = () => {
         {myPageTab.backedProject && <Postcards projects={backedProjects} />}
         {myPageTab.favorites && <Postcards projects={favoredProjects} />}
         {myPageTab.myComments &&
-          comments.map((comment) => {
-            return (
-              <MyComments
-                key={comment.id}
-                content={comment.content}
-                date={comment.created_at}
-                projectId={comment.project_id}
-              />
-            );
-          })}
-        {myPageTab.myComments && <SeeMore onClick={seeMoreCom}>더보기</SeeMore>}
+          (comments.length ? (
+            comments.map((comment) => {
+              return (
+                <MyComments
+                  key={comment.id}
+                  content={comment.content}
+                  date={comment.created_at}
+                  projectId={comment.project_id}
+                />
+              );
+            })
+          ) : (
+            <Message message={'작성하신 댓글이 없습니다.'} />
+          ))}
+        {myPageTab.myComments && comments.length ? (
+          <SeeMore onClick={seeMoreCom}>더보기</SeeMore>
+        ) : null}
       </MyInfoDetail>
     </MyInfoWrapper>
   );

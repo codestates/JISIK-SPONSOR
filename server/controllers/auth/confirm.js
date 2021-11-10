@@ -38,17 +38,19 @@ module.exports = {
       // }
 
       // 회원 정보를 업데이트 한다. (이메일 인증 확인)
-      await user.update(
-        { email_verified: true },
-        { where: { key_for_verify: key } }
-      );
+      // await user.update(
+      //   { email_verified: true },
+      //   { where: { key_for_verify: key } }
+      // );
 
-      // return res.json({
-      //   currentTime: new Date(),
-      //   signupDate,
-      //   validTime,
-      //   boolearn: validTime.getTime() < new Date().getTime()
-      // });
+      const currentTime = new Date().getTime() + 9 * 60 * 60 * 1000;
+
+      return res.json({
+        currentTime: new Date(currentTime).toLocaleString(),
+        signupDate: new Date(signupDate).toLocaleString(),
+        validTime: new Date(validTime).toLocaleString(),
+        boolearn: validTime.getTime() < new Date().getTime()
+      });
 
       /**
        *

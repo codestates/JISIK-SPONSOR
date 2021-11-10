@@ -16,11 +16,11 @@ module.exports = {
        */
 
       // 이미 로그인 되어있는 경우는 다음을 리턴한다.
-      const { accessToken } = req.cookies;
-      const accessTokenData = checkAccessToken(accessToken);
-      if (accessTokenData) {
-        return res.status(400).json({ message: 'Already logged in!' });
-      }
+      // const { accessToken } = req.cookies;
+      // const accessTokenData = checkAccessToken(accessToken);
+      // if (accessTokenData) {
+      //   return res.status(400).json({ message: 'Already logged in!' });
+      // }
 
       // 요청이 잘못된 경우는 다음을 리턴한다.
       const { name, email, password } = req.body;
