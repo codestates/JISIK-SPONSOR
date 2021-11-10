@@ -9,6 +9,7 @@ interface FoucsProps {
 export const ProjectTitle = styled.div<FoucsProps>`
   margin-top: 40px;
   position: relative;
+  background: pink;
   > h3 {
     font-size: 16px;
     font-weight: 700;
@@ -17,7 +18,9 @@ export const ProjectTitle = styled.div<FoucsProps>`
   }
 
   > input {
-    width: 560px;
+    width: 100%;
+    max-width: 560px;
+    padding: 10px;
     background: #ffffff;
     border: 2px solid #e9ecef;
     border-radius: 5px;
@@ -71,7 +74,9 @@ export const ProjectCategory = styled.div`
 // 프로젝트 해시태그
 export const ProjectHashTag = styled(SubTitleCss)`
   > input {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
     background: #ffffff;
     border: 2px solid #e9ecef;
     border-radius: 5px;

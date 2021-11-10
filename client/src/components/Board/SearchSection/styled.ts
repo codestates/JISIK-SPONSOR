@@ -60,6 +60,7 @@ export const FilterWrap = styled.div`
     font-size: 16px;
     border-radius: 5px;
     border: 2px solid #868e96;
+    background-color: #fff;
     background-image: linear-gradient(45deg, transparent 50%, #343a40 50%),
       linear-gradient(135deg, #343a40 50%, transparent 50%),
       linear-gradient(to right, #ccc, #ccc);

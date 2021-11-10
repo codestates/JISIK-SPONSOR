@@ -5,6 +5,7 @@ interface PageProps {
   account?: boolean;
   onClick?: () => void;
 }
+
 export const Wrap = styled.div`
   padding: 30px 0;
   background: #e9ecef;
