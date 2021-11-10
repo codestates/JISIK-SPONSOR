@@ -92,7 +92,7 @@ const SignupInput = () => {
   };
 
   const checkName = (name: string): boolean => {
-    let nameExp = /^[가-힣]{3,6}$/;
+    let nameExp = /^[가-힣]{2,6}$/;
     if (name === '') {
       setNameErr('hidden');
       return false;
@@ -194,7 +194,7 @@ const SignupInput = () => {
           onChange={handleInputValue('name')}
         />
         <ErrMsg className={nameErr === 'hidden' ? 'hidden' : 'errMsg'}>
-          <span>닉네임은 한글 세 글자 이상이어야 합니다.</span>
+          <span>닉네임은 한글 두 글자 이상이어야 합니다.</span>
         </ErrMsg>
         <label htmlFor="email">이메일</label>
         <input
