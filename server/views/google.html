@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google</title>
+    <!-- jQuery -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+  </head>
+  <body>
+    <a
+      href="https://accounts.google.com/o/oauth2/v2/auth?client_id=892268396360-ft901k9sd7lso4imkt4p0ba6r512nbpg.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile+openid&redirect_uri=http://localhost:4000/views/oauth/google"
+      >구글 소셜로그인</a
+    >
+    <button onclick="googleFn()">서버 토큰 요청</button>
+    <script>
+      function googleFn() {
+        const url = new URL(window.location.href);
+        const authorizationCode = url.searchParams.get('code');
+        // console.log(authorizationCode);
+        $.ajax({
+          url: '/oauth/google',
+          method: 'POST',
+          dataType: 'JSON',
+          data: { authorizationCode }
+        })
+          .done((data) => {
+            // 요청 성공 시
+            console.log(data);
+            console.log('요청 성공');
+          })
+          .fail(() => {
+            // 요청 실패 시
+            console.log('요청 실패');
+          })
+          .always(() => {
+            console.log('요청 종료');
+          });
+      }
+    </script>
+  </body>
+</html>

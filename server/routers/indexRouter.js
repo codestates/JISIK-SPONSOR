@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { auth, orders } = require('../controllers');
+const { auth, oauth, orders } = require('../controllers');
 
 // Index
 router.get('/', (req, res) => res.send('Jisik Sponsor!'));
@@ -9,6 +9,9 @@ router.get('/auth', auth.auth.get);
 router.post('/login', auth.login.post);
 router.post('/logout', auth.logout.post);
 router.post('/signup', auth.signup.post, auth.signup.patch);
+
+// OAuth API
+router.post('/oauth/google', oauth.google.post);
 
 // Email verified
 router.get('/confirm/email', auth.confirm.email);
