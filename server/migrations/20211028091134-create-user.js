@@ -22,7 +22,6 @@ module.exports = {
         type: Sequelize.STRING(64)
       },
       nickname: {
-        allowNull: false,
         unique: true,
         type: Sequelize.STRING(128)
       },

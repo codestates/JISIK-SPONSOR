@@ -65,7 +65,6 @@ module.exports = {
       const newUser = await user.create({
         name,
         email,
-        nickname: name + Date.now(), // 닉네임 초기화
         password: hash,
         signup_method: '일반',
         key_for_verify
