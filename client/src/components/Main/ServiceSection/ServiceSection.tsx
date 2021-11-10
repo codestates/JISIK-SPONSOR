@@ -39,7 +39,7 @@ const ServiceSection = () => {
               <span>See more</span>
             </InfoWrap>
           </Card>
-          <Card to="/">
+          <Card to="/faq">
             <ImageWrap>
               <img src={faqimg} alt="자주물어보는 질문 이미지" />
             </ImageWrap>
