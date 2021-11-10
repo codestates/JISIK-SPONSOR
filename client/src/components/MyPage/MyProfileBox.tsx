@@ -1,17 +1,17 @@
-import React from 'react';
 import { MyprofileBox, MyprofileBoxMini } from './styled';
 import { logout } from 'store/login-slice';
-// import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-
 import Baksa from '../../images/baksa.png';
+import { RootState } from 'index';
 
 const MyProfileBox = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
 
   const handleLogout = async () => {
     try {
@@ -38,9 +38,19 @@ const MyProfileBox = () => {
   return (
     <MyprofileBox>
       <MyprofileBoxMini>
-        <img src={Baksa} alt="baksa image" />
-        <span>나박사</span>
-        <p>안녕하세요. 나박사입니다.</p>
+        <img
+          src={
+            userInfo.profile_url
+              ? 'https://jisiksponsor.com' + userInfo.profile_url
+              : Baksa
+          }
+          alt="baksa image"
+        />
+        <span>
+          {userInfo.name}
+          <small>({userInfo.nickname})</small>
+        </span>
+        <p>{userInfo.bio}</p>
         <div>
           <button onClick={moveTosettings}>프로필 설정</button>
           <button onClick={handleLogout}>로그아웃</button>

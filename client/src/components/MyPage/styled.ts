@@ -15,6 +15,9 @@ export const MyprofileBox = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  word-break: keep-all;
 
   @media screen and (max-width: 1200px) {
     max-width: 600px;
@@ -27,7 +30,6 @@ export const MyprofileBoxMini = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 0;
   width: 100%;
   margin: 0 auto;
 
@@ -40,17 +42,20 @@ export const MyprofileBoxMini = styled.div`
   span {
     font-size: 25px;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.2;
     color: #212529;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  small {
+    font-size: 16px;
   }
 
   p {
-    font-size: 12.8px;
-    font-weight: 500;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.6;
     color: #868e96;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 
   div {
