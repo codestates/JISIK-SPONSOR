@@ -85,7 +85,7 @@ function App() {
               <button>마이페이지</button>
             </Link>
             <Link to="/setting">
-              <button>내 설정</button>
+              <button>설정</button>
             </Link>
             <button onClick={handleLogout}>로그아웃</button>
           </MenuBox>
