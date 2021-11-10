@@ -32,5 +32,8 @@ export IMP_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK
 export GOOGLE_CLIENT_ID=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_GOOGLE_CLIENT_ID --query Parameters[0].Value | sed 's/"//g')
 export GOOGLE_CLIENT_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_GOOGLE_CLIENT_SECRET --query Parameters[0].Value | sed 's/"//g')
 
+export KAKAO_CLIENT_ID=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_KAKAO_CLIENT_ID --query Parameters[0].Value | sed 's/"//g')
+export KAKAO_CLIENT_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_KAKAO_CLIENT_SECRET --query Parameters[0].Value | sed 's/"//g')
+
 cd bin
 authbind --deep pm2 start www.js
