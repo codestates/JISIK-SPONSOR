@@ -16,7 +16,7 @@ export const ProfileTitle = styled.div`
   font-size: 32px;
   font-weight: 700;
   color: #343a40;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 
   img {
     width: 40px;
@@ -31,7 +31,7 @@ export const ProfileContent = styled.div`
   max-width: 700px;
   gap: 60px;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   /* background-color: pink; */
 
   & > div:first-child {
@@ -40,36 +40,9 @@ export const ProfileContent = styled.div`
     align-items: center;
 
     img {
-      width: 75px;
-      height: 75px;
+      width: 120px;
+      height: 120px;
       margin-right: 15px;
-    }
-
-    & > div {
-      display: flex;
-      flex-direction: column;
-
-      & > span:first-child {
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 1.4;
-        color: #212529;
-      }
-
-      & > span {
-        font-size: 12.8px;
-        line-height: 1.4;
-        font-weight: 500;
-        color: #868e96;
-      }
-
-      & > a {
-        margin-top: 10px;
-        font-size: 12.8px;
-        font-weight: 700;
-        line-height: 1.4;
-        color: #7950f2;
-      }
     }
   }
 
@@ -79,7 +52,7 @@ export const ProfileContent = styled.div`
     line-height: 1.4;
     color: #495057;
 
-    & > span {
+    div {
       font-size: 20px;
       font-weight: 700;
       line-height: 1.4;
@@ -99,19 +72,20 @@ export const ProjectTeamTitle = styled.div`
   font-size: 32px;
   font-weight: 700;
   color: #343a40;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 `;
 
 export const Team = styled.div`
-  display: grid;
+  display: flex;
   width: 100%;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 30px 0;
+  max-width: 700px;
+  gap: 60px;
   align-items: center;
 
   img {
     height: 120px;
-    width: 200px;
+    width: 120px;
+    margin-right: 15px;
   }
 
   span {
@@ -120,7 +94,7 @@ export const Team = styled.div`
     line-height: 1.4;
     color: #343a40;
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   p {
@@ -128,6 +102,7 @@ export const Team = styled.div`
     font-weight: 500;
     line-height: 1.4;
     color: #495057;
+    margin-bottom: 5px;
 
     strong {
       font-weight: 700;
@@ -137,16 +112,12 @@ export const Team = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
   }
 
-  > div:last-child {
-    grid-column: 2/3;
-  }
-
-  @media screen and (max-width: 718px) {
+  /* @media screen and (max-width: 718px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-  }
+  } */
 `;
