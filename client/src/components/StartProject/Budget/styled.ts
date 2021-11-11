@@ -8,6 +8,9 @@ interface FoucsProps {
 // **예산 정보**
 export const ProjectBudgetList = styled(SubTitleCss)`
   position: relative;
+  @media screen and (max-width: 550px) {
+    margin-top: 20px;
+  }
 `;
 
 export const BudgetListContainer = styled.ul`
@@ -64,11 +67,25 @@ export const BudgetListContainer = styled.ul`
           width: 300px;
         }
       }
-      > div:nth-child(2) {
+    }
+    @media screen and (max-width: 620px) {
+      > div:first-child {
         > input:last-child {
-          width: 100px;
+          width: 200px;
         }
       }
+    }
+  }
+  @media all and (max-width: 530px) {
+    > li {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    > li > button,
+    div:nth-child(2) {
+      margin-top: 10px;
     }
   }
 
@@ -89,34 +106,47 @@ export const TotalAmount = styled.div`
   justify-content: center;
   align-items: center;
   padding: 25px 68px;
-  @media screen and (max-width: 1350px) {
-    right: 50px;
-    top: -100px;
-  }
-  @media screen and (max-width: 750px) {
-    padding: 20px 50px;
-  }
 
   > h2 {
     font-size: 31.25px;
     font-weight: 700;
     line-height: 1.4em;
     color: #343a40;
-    @media screen and (max-width: 750px) {
-      font-size: 20px;
-    }
   }
 
   > span {
     display: block;
     margin-top: 10px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.4em;
     color: ${({ theme }) => theme.colors.suppotWord};
-    @media screen and (max-width: 750px) {
+  }
+
+  @media screen and (max-width: 550px) {
+    position: static;
+    width: 184px;
+    margin-bottom: 20px;
+    > h2 {
       font-size: 16px;
     }
+    > span {
+      font-size: 12px;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    padding: 20px 50px;
+
+    > h2 {
+      font-size: 20px;
+    }
+    > span {
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width: 1350px) {
+    right: 50px;
+    top: -100px;
   }
 `;
 

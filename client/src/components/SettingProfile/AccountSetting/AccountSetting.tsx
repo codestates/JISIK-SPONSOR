@@ -8,7 +8,8 @@ import {
   WithdrawalButton,
   UserEmail,
   PhoneNumber,
-  NumberAddButton
+  NumberAddButton,
+  UserName
 } from './styled';
 import { ProjectBody, Container } from 'components/StartProject/commonStyled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +25,9 @@ interface changePwProps {
 }
 function AccountSetting() {
   const dispatch = useDispatch();
-  const { email } = useSelector((state: RootState) => state.userInfo.userInfo);
+  const { email, name } = useSelector(
+    (state: RootState) => state.userInfo.userInfo
+  );
   const [changePW, setChangePW] = useState<changePwProps>({
     password: '',
     checkPassword: ''
@@ -32,7 +35,6 @@ function AccountSetting() {
   const [number, setNumber] = useState<string>('');
   const [pwVaild, setPwVaild] = useState<boolean>(false);
   const [isVaild, setIsVaild] = useState<boolean>(false);
-  console.log('##', pwVaild);
   const [numberVaild, setNumberVaild] = useState<boolean>(false);
 
   const handleInput =
@@ -147,6 +149,7 @@ function AccountSetting() {
       setNumberVaild(true);
     }
   };
+
   return (
     <Container>
       <ProjectBody>
@@ -157,6 +160,10 @@ function AccountSetting() {
           <h3>아이디</h3>
           <input type="email" value={email} disabled />
         </UserEmail>
+        <UserName>
+          <h3>이름</h3>
+          <input type="text" value={name} disabled />
+        </UserName>
         <SettingChangePW>
           <h3>비밀번호 변경</h3>
           <form
@@ -203,7 +210,7 @@ function AccountSetting() {
         <SettingWithdrawal>
           <h3>회원탈퇴</h3>
           <p>
-            회원탈퇴를 하시더라도 작성하신 댓글과 프로젝트는 삭제되지 않습니다.
+            회원탈퇴를 하셔도 기존에 작성한 댓글, 게시글은 삭제되지 않습니다.
           </p>
           <WithdrawalButton onClick={handleWithDrawal}>
             회원탈퇴
