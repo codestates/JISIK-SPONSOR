@@ -11,6 +11,36 @@ export const ProjectWrapper = styled.div`
   padding: 50px 30px;
 `;
 
+export const ResearchWord = styled.div`
+  background: #7e7a89;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 585px;
+    padding: 0 40px;
+  }
+
+  & > div > h2 {
+    font-size: 31.25px;
+    font-weight: 700;
+    line-height: 1.45em;
+    color: #ffffff;
+  }
+
+  & > div > p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6em;
+    color: #ffffff;
+    word-break: keep-all;
+    margin-top: 20px;
+    text-align: center;
+  }
+`;
 export const ProjectHeader = styled.div`
   display: flex;
   flex-direction: column;
