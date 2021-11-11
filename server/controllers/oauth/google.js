@@ -41,7 +41,7 @@ module.exports = {
       const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID; // 웹 애플리케이션의 클라이언트 ID
       const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET; // 웹 애플리케이션의 클라이언트 SECRET
       const endPoint = 'https://oauth2.googleapis.com/token'; // 요청 end point
-      const redirectUri = 'http://localhost:4000/views/oauth/google'; // 요청했던 클라이언트 URI와 일치해야함
+      const redirectUri = process.env.CLIENT_ORIGIN + '/callbackGoogle'; //요청했던 클라이언트 URI와 일치해야함
       const grantType = 'authorization_code'; // 부여 유형
       const url = `${endPoint}?code=${authorizationCode}&client_id=${GOOGLE_CLIENT_ID}&client_secret=${GOOGLE_CLIENT_SECRET}&redirect_uri=${redirectUri}&grant_type=${grantType}`;
 

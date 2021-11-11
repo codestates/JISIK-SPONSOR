@@ -28,6 +28,7 @@ module.exports = {
 
       // 요청이 잘못된 경우는 다음을 리턴한다.
       const { authorizationCode } = req.body;
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@', authorizationCode);
       if (!authorizationCode) {
         return res.status(400).json({ message: 'Bad Request!' });
       }
@@ -40,7 +41,7 @@ module.exports = {
 
       const KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
       const KAKAO_CLIENT_SECRET = process.env.KAKAO_CLIENT_SECRET;
-      const redirectUri = 'http://localhost:4000/views/oauth/kakao';
+      const redirectUri = process.env.CLIENT_ORIGIN + '/callback';
       const grantType = 'authorization_code';
 
       // authorizationCode로 kakao token 을 받아온다.
@@ -110,9 +111,9 @@ module.exports = {
       // 토큰을 발급하고 쿠키에 저장한다.
       const newAccessToken = generateAccessToken(userInfo.dataValues);
       sendAccessToken(res, newAccessToken);
-      return res.status(200).json({ userInfo });
+      return res.status(200).json({ userInfo, data: kakaoUserInfo.data });
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(400).json({ message: 'Client error' });
     }
   }

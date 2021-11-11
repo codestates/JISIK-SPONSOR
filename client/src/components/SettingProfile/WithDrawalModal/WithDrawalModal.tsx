@@ -18,6 +18,7 @@ function WithDrawalModal() {
     });
     dispatch(logout());
     history.push('/');
+    dispatch(showWithDrawalModal(false));
     dispatch(showMiniMoal(true));
     dispatch(
       insertText(
