@@ -1,5 +1,5 @@
-import React from 'react';
 import {
+  Section,
   ProjectHeader,
   ProjectWrapper,
   BudgetDetail,
@@ -18,8 +18,6 @@ interface ProjectProps {
 }
 
 const ProjectContent = ({ project }: ProjectProps) => {
-  // console.log(project);
-
   const {
     project_background,
     project_goals,
@@ -47,7 +45,8 @@ const ProjectContent = ({ project }: ProjectProps) => {
     });
 
   return (
-    <>
+  <>
+    <Section>
       <ProjectWrapper>
         <ProjectHeader>
           <div>
@@ -116,6 +115,7 @@ const ProjectContent = ({ project }: ProjectProps) => {
           </Timeline>
         </ProjectHeader>
       </ProjectWrapper>
+    </Section>
       <ResearchWord>
         <div>
           <h2>연구자의 한 마디</h2>

@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 
+export const Section = styled.section`
+  width: 100%;
+`;
+
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: antiquewhite; */
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 60px 30px;
+  @media all and (max-width: 620px) {
+    padding: 40px 15px;
+  }
 `;
 
 export const ProfileTitle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 32px;
+  font-size: 31.25px;
   font-weight: 700;
   color: #343a40;
   margin-bottom: 25px;
@@ -23,27 +29,29 @@ export const ProfileTitle = styled.div`
     height: 40px;
     margin-right: 15px;
   }
+  span {
+    display: inline-block;
+  }
 `;
 
 export const ProfileContent = styled.div`
   display: flex;
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   gap: 60px;
-  align-items: center;
   margin-bottom: 40px;
-  /* background-color: pink; */
+  word-break: keep-all;
+
+  img {
+    width: 120px;
+    height: 120px;
+    margin-right: 15px;
+  }
 
   & > div:first-child {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
-    img {
-      width: 120px;
-      height: 120px;
-      margin-right: 15px;
-    }
   }
 
   > div:nth-child(2) {
@@ -61,26 +69,38 @@ export const ProfileContent = styled.div`
     }
   }
 
-  @media screen and (max-width: 718px) {
-    width: 100%;
+  @media screen and (max-width: 620px) {
+    flex-direction: column;
+    gap: 15px;
+    img {
+      width: 80px;
+      height: 80px;
+    }
   }
 `;
 
 export const ProjectTeamTitle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 32px;
+  font-size: 31.25px;
   font-weight: 700;
   color: #343a40;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+  }
+  span {
+    display: inline-block;
+  }
 `;
 
 export const Team = styled.div`
   display: flex;
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   gap: 60px;
-  align-items: center;
 
   img {
     height: 120px;
@@ -115,9 +135,12 @@ export const Team = styled.div`
     gap: 20px;
   }
 
-  /* @media screen and (max-width: 718px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-  } */
+  @media screen and (max-width: 620px) {
+    flex-direction: column;
+    gap: 15px;
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
 `;

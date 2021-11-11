@@ -145,13 +145,19 @@ const MobileNav = ({ showMenuBox, showNoticeMenuBox }: showProps) => {
                   )}
                 </MobileNavIcon>
                 <NavbarR>
-                  <img src={Search} alt="search-icon" />
                   <NavButton onClick={() => dispatch(showLoginModal(true))}>
                     로그인
                   </NavButton>
                   <NavButton onClick={() => dispatch(showSignupModal(true))}>
                     회원가입
                   </NavButton>
+                  <button>
+                    <img
+                      src={Search}
+                      alt="search-icon"
+                      onClick={searchBtnClick}
+                    />
+                  </button>
                 </NavbarR>
               </>
             )}

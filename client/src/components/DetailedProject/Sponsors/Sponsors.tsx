@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { RootState } from 'index';
 import { SponsorsWrapper, SponsorTitle, SponsorsList } from './styled';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import { RootObject } from './type';
-
 import HeartIcon from '../../../images/project-heart.png';
+import Sponsor from './Sponsor';
 
 interface SponsorsProps {
   setSponsorIds: any;
@@ -16,6 +16,7 @@ interface SponsorsProps {
 const Sponsors = ({ setSponsorIds }: SponsorsProps) => {
   const [sponsors, setSponsors] = useState<any>([]);
   const [count, setCount] = useState<number>(0);
+  // const [profile, setProfile] = useState<string>('');
   const [sponsorUserId, setSponsorUserId] = useState([]);
 
   const projectId = useSelector((state: RootState) => state.projectSt.id);
@@ -57,14 +58,7 @@ const Sponsors = ({ setSponsorIds }: SponsorsProps) => {
       </SponsorTitle>
       <SponsorsList>
         {sponsors.map((sponsor: any) => {
-          return (
-            <li key={sponsor.id}>
-              <img
-                src={`https://jisiksponsor.com${sponsor.user.profile_url}`}
-                alt={sponsor.user.nickname}
-              />
-            </li>
-          );
+          return <Sponsor key={sponsor.id} sponsor={sponsor} />;
         })}
       </SponsorsList>
     </SponsorsWrapper>

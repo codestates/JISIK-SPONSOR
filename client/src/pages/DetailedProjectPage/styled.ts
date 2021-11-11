@@ -1,22 +1,20 @@
 import styled from 'styled-components';
 
 export const ProjectContainer = styled.div`
-  /* background-color: beige; */
-  width: 100vw;
-  padding: 60px 0;
+  width: 100%;
+`;
 
-  @media screen and (min-width: 718px) {
-    width: 100%;
-  }
+export const Section = styled.section`
+  padding: 60px 0;
+  background-color: beige;
 `;
 
 export const Wrapper = styled.div`
-  background-color: beige;
   width: 100%;
   max-width: 960px;
+  font-size: 40px;
   margin: 0 auto;
   padding: 60px 30px;
-  font-size: 40px;
 `;
 
 export const GoTopButton = styled.a`

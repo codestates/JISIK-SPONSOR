@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {
+  Section,
+  ProjectWrapper,
   MainContent,
   ProjectTitle,
-  ProjectWrapper,
+  LeftWrap,
+  RightWrap,
   SubContent,
   Funding,
-  FundInput
+  FundInput,
+  Notice
 } from './styled';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -34,14 +38,10 @@ const IntroNotYet = () => {
   const [phoneNumChecked, setPhoneNumChecked] = useState<boolean>(false);
   const [categoryId, setCategoryId] = useState<number>(0);
   const [category, setCategory] = useState<string>('');
-  // const [isFormVaild, setIsFormValid] = useState<boolean>(false);
 
   const history = useHistory();
   const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
   const config = { withCredentials: true };
-
-  console.log(enteredPhoneNum);
-  console.log(enteredFund);
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
@@ -52,13 +52,6 @@ const IntroNotYet = () => {
   const enteredNumIsValid = enteredPhoneNum.trim() !== '';
   const phoneNumIsEmpty = !enteredNumIsValid && enteredNumTouched;
   const phoneNumInvalid = !phoneNumChecked && enteredNumTouched;
-
-  // useEffect(() => {
-  //   if (enteredFundIsValid && enteredNumIsValid) {
-  //     setIsFormValid(true);
-  //   }
-  //   setIsFormValid(false);
-  // }, [enteredFundIsValid, enteredNumIsValid]);
 
   //금액 숫자에 3단위로 콤마를 추가해주는 함수
   const numWithCommas = (num: number): string => {
@@ -115,20 +108,19 @@ const IntroNotYet = () => {
   const getTags = async () => {
     try {
       const response = await axios.get<Tags>(TagsUrl, config);
-      // console.log(response);
       const tagGroup = response.data.tags;
-      // console.log(tagGroup);
       setTags(tagGroup);
     } catch (err) {
       console.log(err);
     }
   };
-  // console.log(getTags);
 
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
-    getProjects();
-    getTags();
+    return () => {
+      getProjects();
+      getTags();
+    };
   }, []);
 
   const handleFundInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,7 +129,6 @@ const IntroNotYet = () => {
 
   const handlePhoneNumInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const phoneNum = e.currentTarget.value;
-    // const phoneNumForCheck = Number(phoneNum);
 
     const firstThree = phoneNum.slice(0, 3);
     const nextFour = phoneNum.slice(3, 7);
@@ -169,75 +160,87 @@ const IntroNotYet = () => {
   };
 
   return (
-    <ProjectWrapper>
-      <IntroTitle
-        isLogin={isLogin}
-        projectId={projectId}
-        categoryId={categoryId}
-        category={category}
-      />
-      <ProjectTitle>
-        <h1>{title}</h1>
-        <span>{description}</span>
-      </ProjectTitle>
-      <MainContent>
-        <img src={Wormhole} alt="wormhole" />
-        <SubContent>
-          <p>{pledgedWithCommas}원</p>
-          <p>달성금액</p>
-          {/* <img src={Gauge} alt="" /> */}
-          <Line
-            percent={percentage}
-            strokeWidth={4}
-            trailWidth={4}
-            strokeColor="#0CBD7E"
-          />
-          <Funding>
-            <p>
-              <span>{percentage}%</span>
-              <span>{goalWithCommas}원</span>
-              <span>{dDay}일</span>
-            </p>
-            <p>
-              <span>완료율</span>
-              <span>목표액</span>
-              <span>남은기간</span>
-            </p>
-          </Funding>
-          <FundInput>
-            <div>
-              <span>후원금액</span>
-              <input
-                type="number"
-                placeholder="후원금액을 입력해주세요."
-                onChange={handleFundInput}
-                onBlur={fundBlurHandler}
+    <Section>
+      <ProjectWrapper>
+        <IntroTitle
+          isLogin={isLogin}
+          projectId={projectId}
+          categoryId={categoryId}
+          category={category}
+        />
+        <ProjectTitle>
+          <h1>{title}</h1>
+          <span>{description}</span>
+        </ProjectTitle>
+        <MainContent>
+          <LeftWrap>
+            <img src={Wormhole} alt="wormhole" />
+            <IntroTag tags={tags} />
+          </LeftWrap>
+          <RightWrap>
+            <SubContent>
+              <p>{pledgedWithCommas}원</p>
+              <p>달성금액</p>
+              <Line
+                percent={percentage}
+                strokeWidth={4}
+                trailWidth={4}
+                strokeColor="#0CBD7E"
               />
-            </div>
-            <div>
-              <span>전화번호</span>
-              <input
-                type="number"
-                placeholder="'-'를 제외하고 입력해주세요."
-                onChange={handlePhoneNumInput}
-                onBlur={numBlurHandler}
+              <Funding>
+                <p>
+                  <span>{percentage}%</span>
+                  <span>{goalWithCommas}원</span>
+                  <span>{dDay}일</span>
+                </p>
+                <p>
+                  <span>완료율</span>
+                  <span>목표액</span>
+                  <span>남은기간</span>
+                </p>
+              </Funding>
+              <FundInput>
+                <div>
+                  <span>후원금액</span>
+                  <input
+                    type="number"
+                    placeholder="후원금액을 입력해주세요."
+                    onChange={handleFundInput}
+                    onBlur={fundBlurHandler}
+                  />
+                </div>
+                <div>
+                  <span>전화번호</span>
+                  <input
+                    type="number"
+                    placeholder="'-'를 제외하고 입력해주세요."
+                    onChange={handlePhoneNumInput}
+                    onBlur={numBlurHandler}
+                  />
+                </div>
+                {fundIsEmpty && <p>후원 금액을 입력해주세요.</p>}
+                {(phoneNumInvalid || phoneNumIsEmpty) && (
+                  <p>
+                    전화번호를 입력하지 않았거나 유효하지 않은 전화번호
+                    형식입니다.
+                  </p>
+                )}
+              </FundInput>
+              <PaymentButton
+                projectId={projectId}
+                title={title}
+                enteredFund={enteredFund}
+                enteredPhoneNum={enteredPhoneNum}
               />
-            </div>
-            {fundIsEmpty && <p>후원 금액을 입력해주세요.</p>}
-            {(phoneNumInvalid || phoneNumIsEmpty) && (
-              <p>
-                전화번호를 입력하지 않았거나 유효하지 않은 전화번호 형식입니다.
-              </p>
-            )}
-          </FundInput>
-          <PaymentButton
-            enteredFund={enteredFund}
-            enteredPhoneNum={enteredPhoneNum}
-          />
-        </SubContent>
-      </MainContent>
-      <IntroTag tags={tags} />
-    </ProjectWrapper>
+            </SubContent>
+            <Notice noDisplay={false}>
+              * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
+              다음날 환불처리 됩니다.
+            </Notice>
+          </RightWrap>
+        </MainContent>
+      </ProjectWrapper>
+    </Section>
   );
 };
 

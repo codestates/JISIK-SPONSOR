@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 import { StyledButton } from 'components/Button';
 
+export const Section = styled.section`
+  width: 100%;
+  background: #f8f9fa;
+`;
+
 export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 60px 30px;
+  @media screen and (max-width: 620px) {
+    padding: 40px 15px;
+  }
 `;
 
 export const WriteContent = styled.div`
@@ -58,19 +65,27 @@ export const WriteContent = styled.div`
 `;
 
 export const Button = styled(StyledButton)`
-  width: 174px;
-  height: 60px;
+  width: 100%;
+  max-width: 180px;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 30px;
+  @media all and (max-width: 620px) {
+    font-size: 16px;
+    padding: 15px 20px;
+    max-width: 160px;
+  }
 `;
 
 export const CommentLists = styled.div`
-  /* display: flex;
-  flex-direction: column; */
   margin-bottom: 20px;
   border-bottom: 2px solid #e9ecef;
   position: relative;
+
+  :last-child {
+    border: 0;
+    margin: 0;
+  }
 
   > div:first-child {
     display: flex;

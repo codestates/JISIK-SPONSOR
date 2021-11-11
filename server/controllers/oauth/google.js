@@ -105,6 +105,7 @@ module.exports = {
       sendAccessToken(res, newAccessToken);
       return res.status(200).json({ userInfo });
     } catch (err) {
+      console.error(err);
       return res.status(400).json({ message: err.response.data.error });
     }
   }

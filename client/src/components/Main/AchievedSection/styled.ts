@@ -15,6 +15,9 @@ export const Wrap = styled.div`
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
+  }
 `;
 
 export const TitleWrap = styled.div`
