@@ -57,7 +57,7 @@ const ProjectContent = ({ project }: ProjectProps) => {
       <ProjectHeader>
         <div>
           <img src={ProjectProgress} alt="" />
-          <h2>프로젝트 진행상황</h2>
+          <h2>연구의 중요성</h2>
         </div>
         <p>{project_progress}</p>
       </ProjectHeader>
