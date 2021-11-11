@@ -199,7 +199,7 @@ export const EditButton = styled(AddButton)`
 
   @media screen and (max-width: 850px) {
     font-size: 12.8px;
-    width: 3em;
+    width: 4em;
   }
 `;
 

@@ -12,6 +12,19 @@ export const UserEmail = styled(SubTitleCss)`
     margin-top: 5px;
   }
 `;
+
+// 이름
+export const UserName = styled(SubTitleCss)`
+  > input {
+    width: 250px;
+    height: 40px;
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    padding: 12px 0 12px 15px;
+    margin-top: 5px;
+  }
+`;
+
 // 비밀번호 변경
 export const SettingChangePW = styled(SubTitleCss)`
   > form {

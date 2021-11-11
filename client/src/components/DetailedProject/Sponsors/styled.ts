@@ -3,11 +3,13 @@ import styled from 'styled-components';
 export const SponsorsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: pink; */
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 60px 30px;
+  @media screen and (max-width: 620px) {
+    padding: 40px 15px;
+  }
 `;
 
 export const SponsorTitle = styled.div`

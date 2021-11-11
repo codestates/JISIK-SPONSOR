@@ -60,6 +60,11 @@ module.exports = {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
+      // 최소 금액 보다 적은 경우 다음을 리턴한다.
+      if (Number(amount) < 1000) {
+        return res.status(400).json({ message: 'Bad Request!' });
+      }
+
       // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
       const projectInfo = await project.findOne({ where: { id: projectId } });
       if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
@@ -89,7 +94,7 @@ module.exports = {
         project_id: projectId, // 프로젝트 ID
         merchant_uid: merchantUid, // 주문 번호 (고유)
         name: projectTitle, // 주문 명
-        amount: amount, // 주문 금액
+        amount: Number(amount), // 주문 금액
         buyer_name: userInfo.name, // 주문자 명
         buyer_tel: buyerTel, // 주문자 연락처
         buyer_email: userInfo.email // 주문자 이메일

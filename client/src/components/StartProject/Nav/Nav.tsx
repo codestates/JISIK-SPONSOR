@@ -67,6 +67,7 @@ function Nav() {
           <Link to={'/detailed-project/' + projects.path}>
             <NavButton>미리보기</NavButton>
           </Link>
+
           <NavButton onClick={submitProject}>제출하기</NavButton>
         </ResultButton>
       </ProjectNav>

@@ -161,6 +161,7 @@ export interface Tags {
 }
 
 export interface Commentor {
+  name: string;
   nickname: string;
   profile_url: string;
 }

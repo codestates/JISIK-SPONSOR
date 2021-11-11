@@ -35,7 +35,9 @@ function WithDrawalModal() {
             &times;
           </span>
           <h2>정말 회원탈퇴 하시겠습니까?</h2>
-          <p>회원탈퇴를 누르시면 복구하실 수 없습니다.</p>
+          <p>
+            회원탈퇴를 하셔도 기존에 작성한 댓글, 게시글은 삭제되지 않습니다.
+          </p>
           <ButtonGroup>
             <button onClick={() => dispatch(showWithDrawalModal(false))}>
               취소
