@@ -8,46 +8,57 @@ interface PageProps {
   onClick?: () => void;
 }
 
-const selectButton = css`
-  background: #7950f2;
-  color: #fff;
-`;
-export const ProjectNav = styled.nav`
+export const Wrap = styled.div`
+  padding: 30px 0;
   background: #e9ecef;
-  padding: 30px 270px;
+  @media all and (max-width: 620px) {
+    padding: 15px 0;
+  }
+`;
+
+export const ProjectNav = styled.nav`
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 980px) {
+    gap: 15px;
+    flex-direction: column;
+  }
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
+    gap: 10px;
+  }
+`;
 
-  @media screen and (max-width: 1400px) {
-    padding: 30px 150px;
-  }
-  @media screen and (max-width: 950px) {
-    padding: 30px;
-  }
+const selectButton = css`
+  color: #fff;
+  background: #7950f2;
 `;
 
 export const NavButtonGroup = styled.div`
-  button {
-    &:first-child {
-      margin-right: 15px;
-    }
-    &:nth-child(2) {
-      margin-right: 15px;
-    }
-    &:nth-child(3) {
-      margin-right: 15px;
-    }
+  display: flex;
+  width: 60%;
+  gap: 15px;
+  @media all and (max-width: 980px) {
+    width: 100%;
+  }
+  @media all and (max-width: 620px) {
+    gap: 5px;
   }
 `;
 
 export const NavButton = styled.button<PageProps>`
-  width: 94px;
+  width: 100px;
+  max-width: 100px;
   background: #fff;
   border: 1px solid #ced4da;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.4em;
-  padding: 12px 0 12px 0;
+  padding: 15px 0;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -58,17 +69,22 @@ export const NavButton = styled.button<PageProps>`
 
   @media screen and (max-width:1200px) {
     font-size: 12.8px;
-    width: 70px;
   }
-  @media screen and (max-width: 950px) {
-    width: 60px;
+  @media all and (max-width: 620px) {
+    padding: 10px 0;
   }
 `;
 
 export const ResultButton = styled.div`
-  button {
-    &:first-child {
-      margin-right: 15px;
-    }
+  width: 40%;
+  display: flex;
+  justify-content: right;
+  gap: 15px;
+  @media all and (max-width: 980px) {
+    width: 100%;
+    justify-content: right;
+  }
+  @media all and (max-width: 620px) {
+    gap: 5px;
   }
 `;

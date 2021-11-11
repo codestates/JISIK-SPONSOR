@@ -1,15 +1,14 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { RootState } from 'index';
 import { useSelector } from 'react-redux';
 import { profile, account } from 'store/settingPageBt-silce';
-import { ProjectNav, NavButton, NavButtonGroup } from './styled';
+import { Wrap, ProjectNav, NavButton, NavButtonGroup } from './styled';
 
 function SettingNav() {
   const changePage = useSelector((state: RootState) => state.settingBt);
   const dispatch = useDispatch();
   return (
-    <div>
+    <Wrap>
       <ProjectNav>
         <NavButtonGroup>
           <NavButton
@@ -26,7 +25,7 @@ function SettingNav() {
           </NavButton>
         </NavButtonGroup>
       </ProjectNav>
-    </div>
+    </Wrap>
   );
 }
 

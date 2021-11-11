@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
-const { user } = require('../../models');
+const { user, wish } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
+const { withdrawal } = require('../../middlewares/email/email-content');
+const emailSend = require('../../middlewares/email/email-send');
 
 module.exports = {
   get: async (req, res) => {
@@ -95,11 +97,31 @@ module.exports = {
       // 로그인 인증 검사
       const userInfo = await userAuthen(req, res);
 
-      // 계정을 삭제한다.
-      await user.destroy({ where: { id: userInfo.id } });
+      // 회원이 찜한 목록을 삭제한다.
+      await wish.destroy({ where: { user_id: userInfo.id } });
+
+      // 계정을 비활성화 한다.
+      await user.update(
+        {
+          name: '알수없음',
+          email: userInfo.email + '-withdrawal-' + userInfo.id,
+          nickname: 'user' + userInfo.id,
+          password: null,
+          mobile: null,
+          bio: null,
+          profile_url: null,
+          email_verified: false,
+          key_for_verify: null
+        },
+        { where: { id: userInfo.id } }
+      );
 
       // 쿠키를 삭제한다.
       res.cookie('accessToken', null, { maxAge: 0 });
+
+      // 이메일 전송
+      const emailContent = withdrawal(userInfo.email, userInfo.name);
+      emailSend(emailContent);
 
       // 삭제한 회원 아이디를 리턴한다.
       res.status(200).json({ id: userInfo.id });

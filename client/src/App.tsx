@@ -48,12 +48,9 @@ function App() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        `
-      ${REACT_APP_API_URL}/logout`,
+        `${REACT_APP_API_URL}/logout`,
         {},
-        {
-          withCredentials: true
-        }
+        { withCredentials: true }
       );
       dispatch(logout());
       localStorage.removeItem('root');

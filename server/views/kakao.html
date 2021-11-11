@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kakao</title>
+    <!-- jQuery -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+  </head>
+  <body>
+    <a
+      href="https://kauth.kakao.com/oauth/authorize?client_id=1f5099b7b1d8b1f742215aebd0a67732&redirect_uri=http://localhost:4000/views/oauth/kakao&response_type=code&scope=profile_nickname,profile_image,account_email"
+      >카카오 소셜로그인</a
+    >
+    <button onclick="kakaoFn()">서버 토큰 요청</button>
+    <script>
+      function kakaoFn() {
+        const url = new URL(window.location.href);
+        const authorizationCode = url.searchParams.get('code');
+        console.log(authorizationCode);
+        $.ajax({
+          url: '/oauth/kakao',
+          method: 'POST',
+          dataType: 'JSON',
+          data: { authorizationCode }
+        })
+          .done((data) => {
+            // 요청 성공 시
+            console.log(data);
+            console.log('요청 성공');
+          })
+          .fail(() => {
+            // 요청 실패 시
+            console.log('요청 실패');
+          })
+          .always(() => {
+            console.log('요청 종료');
+          });
+      }
+    </script>
+  </body>
+</html>

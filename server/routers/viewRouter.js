@@ -15,6 +15,14 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/signup.html'));
 });
 
+router.get('/oauth/google', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/google.html'));
+});
+
+router.get('/oauth/kakao', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/kakao.html'));
+});
+
 router.get('/users', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/users.html'));
 });

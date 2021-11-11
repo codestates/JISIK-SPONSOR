@@ -39,6 +39,24 @@ module.exports = {
     };
     return emailContent;
   },
+  withdrawal: (email, name) => {
+    const title = '지식스폰서에 회원탈퇴 되었습니다.';
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/user-withdrawal.pug'
+    );
+
+    const options = { title, name, resourceURL: process.env.RESOURCE_URL };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: email,
+      subject: `${name}님! 지식스폰서에 회원탈퇴 되었습니다.`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
+  },
   sponsorSuccess: (email, name, url, order) => {
     const title = '프로젝트를 후원해주셔서 감사합니다!';
     const fileURL = path.join(

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CommentContainer } from './styled';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';

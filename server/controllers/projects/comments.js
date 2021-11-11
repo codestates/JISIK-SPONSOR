@@ -32,7 +32,7 @@ module.exports = {
         include: [
           {
             model: user, // users 테이블 조인
-            attributes: ['nickname', 'profile_url']
+            attributes: ['name', 'nickname', 'profile_url']
           },
           {
             model: project,
@@ -76,7 +76,7 @@ module.exports = {
         include: [
           {
             model: user, // users 테이블 조인
-            attributes: ['nickname', 'profile_url']
+            attributes: ['name', 'nickname', 'profile_url']
           }
         ],
         order: [['id', 'DESC']]
@@ -196,7 +196,7 @@ module.exports = {
         include: [
           {
             model: user, // users 테이블 조인
-            attributes: ['nickname', 'profile_url']
+            attributes: ['name', 'nickname', 'profile_url']
           }
         ]
       });

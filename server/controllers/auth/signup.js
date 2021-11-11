@@ -16,11 +16,11 @@ module.exports = {
        */
 
       // 이미 로그인 되어있는 경우는 다음을 리턴한다.
-      const { accessToken } = req.cookies;
-      const accessTokenData = checkAccessToken(accessToken);
-      if (accessTokenData) {
-        return res.status(400).json({ message: 'Already logged in!' });
-      }
+      // const { accessToken } = req.cookies;
+      // const accessTokenData = checkAccessToken(accessToken);
+      // if (accessTokenData) {
+      //   return res.status(400).json({ message: 'Already logged in!' });
+      // }
 
       // 요청이 잘못된 경우는 다음을 리턴한다.
       const { name, email, password } = req.body;
@@ -65,7 +65,6 @@ module.exports = {
       const newUser = await user.create({
         name,
         email,
-        nickname: name + Date.now(), // 닉네임 초기화
         password: hash,
         signup_method: '일반',
         key_for_verify
@@ -102,7 +101,7 @@ module.exports = {
 
       // 사용자 정보 업데이트
       await user.update(
-        { password: hash, key_for_verify },
+        { password: hash, key_for_verify, updated_ap: new Date() },
         { where: { id: req.userId } }
       );
 

@@ -29,7 +29,7 @@ router
 router
   .route('/:projectId')
   .get(projects.singleProject.get)
-  .post(projects.singleProject.patch) // HTML 테스트 용
+  // .post(projects.singleProject.patch) // HTML 테스트 용
   .patch(projects.singleProject.patch)
   .delete(projects.singleProject.delete);
 router.post(
@@ -46,14 +46,14 @@ router.post(
   uploadTeamProfile.single('image'),
   projects.teamProfile.upload
 );
-router.post('/:projectId/teams/:teamId', projects.teamInfo.patch); // HTML 테스트용
+// router.post('/:projectId/teams/:teamId', projects.teamInfo.patch); // HTML 테스트용
 router.patch('/:projectId/teams/:teamId', projects.teamInfo.patch);
 
 // Project Team Members API
 router.post('/:projectId/teams/:teamId/members', projects.teamMembers.post);
 router
   .route('/:projectId/teams/:teamId/members/:memberId')
-  .post(projects.teamMembers.patch) // HTML 테스트용
+  // .post(projects.teamMembers.patch) // HTML 테스트용
   .patch(projects.teamMembers.patch)
   .delete(projects.teamMembers.delete);
 
@@ -61,7 +61,7 @@ router
 router.post('/:projectId/budgets', projects.budgets.post);
 router
   .route('/:projectId/budgets/:budgetId')
-  .post(projects.budgets.patch) // HTML 테스트용
+  // .post(projects.budgets.patch) // HTML 테스트용
   .patch(projects.budgets.patch)
   .delete(projects.budgets.delete);
 
@@ -69,7 +69,7 @@ router
 router.post('/:projectId/milestones', projects.milestones.post);
 router
   .route('/:projectId/milestones/:milestoneId')
-  .post(projects.milestones.patch) // HTML 테스트용
+  // .post(projects.milestones.patch) // HTML 테스트용
   .patch(projects.milestones.patch)
   .delete(projects.milestones.delete);
 
@@ -92,6 +92,5 @@ router.get('/:projectId/sponsors', projects.sponsors.get);
 // Project Status API
 
 router.patch('/:projectId/status', projects.status.patch);
-
 
 module.exports = router;

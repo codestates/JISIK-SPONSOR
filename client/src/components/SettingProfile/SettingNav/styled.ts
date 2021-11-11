@@ -6,15 +6,22 @@ interface PageProps {
   onClick?: () => void;
 }
 
+export const Wrap = styled.div`
+  padding: 30px 0;
+  background: #e9ecef;
+`;
+
+export const ProjectNav = styled.nav`
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 30px;
+  justify-content: space-between;
+`;
+
 const selectButton = css`
   background: #7950f2;
   color: #fff;
-`;
-export const ProjectNav = styled.nav`
-  background: #e9ecef;
-  padding: 30px 20%;
-  display: flex;
-  justify-content: space-between;
 `;
 
 export const NavButtonGroup = styled.div`
