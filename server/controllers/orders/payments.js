@@ -23,7 +23,6 @@ module.exports = {
 
       // 인증 토큰 추출하기
       const { access_token } = getToken.data.response;
-      // console.log('access_token', access_token);
 
       // 2. imp_uid로 아임포트 서버에서 결제 정보 조회
       const getPaymentData = await axios({
@@ -34,12 +33,9 @@ module.exports = {
 
       // 조회한 결제 정보
       const paymentData = getPaymentData.data.response;
-      // console.log('paymentData', paymentData);
 
       // 3. DB에서 결제되어야 하는 금액 조회
-      const orderInfo = await order.findOne({
-        merchant_uid: paymentData.merchant_uid
-      });
+      const orderInfo = await order.findOne({ where: { merchant_uid } });
       const amountToBePaid = Number(orderInfo.amount); // 결제 되어야 하는 금액
 
       // 4. 결제 검증하기
@@ -48,6 +44,7 @@ module.exports = {
       if (paymentData.amount !== amountToBePaid) {
         return res.status(200).json({
           status: 'forgery',
+          orderInfo,
           payment: paymentData.amount,
           amountToBePaid: orderInfo.amount,
           message: '위조된 결제시도'
@@ -99,8 +96,8 @@ module.exports = {
       // // 프로젝트 업데이트
       await project.update(
         {
-          pledged: projectInfo.pledged + updateOrder.amount,
-          remainder: projectInfo.remainder - updateOrder.amount
+          pledged: Number(projectInfo.pledged) + Number(updateOrder.amount),
+          remainder: Number(projectInfo.remainder) - Number(updateOrder.amount)
         },
         { where: { id: projectInfo.id } }
       );
