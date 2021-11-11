@@ -48,20 +48,19 @@ export const ProjectHeader = styled.div`
 
   & > p {
     font-size: 20px;
-    width: 689px;
+    max-width: 680px;
     line-height: 1.4;
     font-weight: 500;
     color: #495057;
   }
 
-  & > div > div:last-of-type {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  @media screen and (max-width: 718px) {
-    > p {
-      width: 100%;
+  @media all and (max-width: 620px) {
+    & > div h2 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 20px;
+      font-weight: 400;
     }
   }
 `;
@@ -74,10 +73,10 @@ export const BudgetDetail = styled.div`
   line-height: 1.4;
   color: #343a40;
 
-  & > div {
-    width: 145px;
+  div {
+    line-height: 1.6;
     display: flex;
-    justify-content: space-between;
+    gap: 15px;
   }
 `;
 
@@ -86,16 +85,13 @@ export const Timeline = styled.div`
   flex-direction: column;
   align-items: flex-start;
   font-size: 16px;
-  font-weight: 700;
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.6;
   color: #343a40;
-
-  /* > div {
-    width: 100%;
+  > div {
     display: flex;
-    justify-content: space-between;
-  } */
+    gap: 15px;
+  }
   > div > span {
-    margin-right: 40px;
   }
 `;

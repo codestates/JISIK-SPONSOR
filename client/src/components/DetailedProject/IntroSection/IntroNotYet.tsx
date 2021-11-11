@@ -117,8 +117,10 @@ const IntroNotYet = () => {
 
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
-    getProjects();
-    getTags();
+    return () => {
+      getProjects();
+      getTags();
+    };
   }, []);
 
   const handleFundInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -230,11 +232,11 @@ const IntroNotYet = () => {
                 enteredFund={enteredFund}
                 enteredPhoneNum={enteredPhoneNum}
               />
-              <Notice noDisplay={false}>
-                * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
-                다음날 환불처리 됩니다.
-              </Notice>
             </SubContent>
+            <Notice noDisplay={false}>
+              * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
+              다음날 환불처리 됩니다.
+            </Notice>
           </RightWrap>
         </MainContent>
       </ProjectWrapper>

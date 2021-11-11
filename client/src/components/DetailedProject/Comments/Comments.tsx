@@ -23,7 +23,9 @@ const Comments = ({ project, setProject }: any) => {
   const config = { withCredentials: true };
 
   useEffect(() => {
-    setShowBoxArr(Array(comment.length).fill(false));
+    return () => {
+      setShowBoxArr(Array(comment.length).fill(false));
+    };
   }, [comment]);
 
   // 최초 렌더링 시 모든 댓글을 불러오는 함수 한번 실행

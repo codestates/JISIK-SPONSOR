@@ -7,7 +7,7 @@ import {
   RightWrap,
   ProjectWrapper,
   SubContentFinished,
-  StyledButton,
+  FinishedButton,
   Notice
 } from './styled';
 import { useHistory } from 'react-router';
@@ -77,15 +77,14 @@ const IntroFinished = () => {
   const getTags = async () => {
     try {
       const response = await axios.get<Tags>(TagsUrl, config);
-      console.log(response);
+      // console.log(response);
       const tagGroup = response.data.tags;
-      console.log(tagGroup);
+      // console.log(tagGroup);
       setTags(tagGroup);
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(getTags);
 
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
@@ -117,12 +116,12 @@ const IntroFinished = () => {
               <p>{goalWithCommas} 달성금액</p>
               <p>{percentage}%</p>
               <p>달성 성공!</p>
-              <StyledButton>프로젝트 후원완료</StyledButton>
-              <Notice noDisplay={false}>
-                * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
-                다음날 환불처리 됩니다.
-              </Notice>
+              <FinishedButton>프로젝트 후원완료</FinishedButton>
             </SubContentFinished>
+            <Notice noDisplay={false}>
+              * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
+              다음날 환불처리 됩니다.
+            </Notice>
           </RightWrap>
         </MainContent>
       </ProjectWrapper>

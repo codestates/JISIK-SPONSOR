@@ -24,7 +24,6 @@ const Profile = ({ teams, teamMember, author }: ProjectProps) => {
   useEffect(() => {
     if (author.profile_url) {
       const front = author.profile_url.slice(0, 4);
-      console.log(front);
       if (front === 'http') {
         setProfile(author.profile_url);
       } else {

@@ -12,7 +12,7 @@ export const ProfileWrapper = styled.div`
   margin: 0 auto;
   padding: 60px 30px;
   @media all and (max-width: 620px) {
-    padding: 30px 15px;
+    padding: 40px 15px;
   }
 `;
 
@@ -37,20 +37,21 @@ export const ProfileTitle = styled.div`
 export const ProfileContent = styled.div`
   display: flex;
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   gap: 60px;
   margin-bottom: 40px;
+  word-break: keep-all;
+
+  img {
+    width: 120px;
+    height: 120px;
+    margin-right: 15px;
+  }
 
   & > div:first-child {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
-    img {
-      width: 120px;
-      height: 120px;
-      margin-right: 15px;
-    }
   }
 
   > div:nth-child(2) {
@@ -68,8 +69,13 @@ export const ProfileContent = styled.div`
     }
   }
 
-  @media screen and (max-width: 718px) {
-    width: 100%;
+  @media screen and (max-width: 620px) {
+    flex-direction: column;
+    gap: 15px;
+    img {
+      width: 80px;
+      height: 80px;
+    }
   }
 `;
 
@@ -93,7 +99,7 @@ export const ProjectTeamTitle = styled.div`
 export const Team = styled.div`
   display: flex;
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   gap: 60px;
 
   img {
@@ -129,9 +135,12 @@ export const Team = styled.div`
     gap: 20px;
   }
 
-  /* @media screen and (max-width: 718px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-  } */
+  @media screen and (max-width: 620px) {
+    flex-direction: column;
+    gap: 15px;
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
 `;

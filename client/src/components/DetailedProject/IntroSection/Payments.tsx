@@ -15,10 +15,6 @@ const Payment = ({
   enteredFund,
   enteredPhoneNum
 }: PaymentProps) => {
-  console.log(projectId);
-  console.log(title);
-  console.log(enteredFund);
-  console.log(enteredPhoneNum);
   const { IMP }: any = window;
   IMP.init('imp00267362');
 
@@ -55,27 +51,20 @@ const Payment = ({
 
     const callback = async (res: any) => {
       const { success, error_msg, imp_uid, merchant_uid } = res;
-
       if (success) {
         try {
-          const data = {
-            imp_uid,
-            merchant_uid
-          };
           const url = `${REACT_APP_API_URL}/payments/complete`;
+          const data = { imp_uid, merchant_uid };
           const config = { withCredentials: true };
-          const response = await axios.post(url, data, config);
-          console.log(response);
+          await axios.post(url, data, config);
+          alert('후원해주셔서 감사합니다.');
         } catch (err) {
           console.log(err);
         }
       } else {
         console.log(error_msg);
         try {
-          const url = `${REACT_APP_API_URL}/orders`;
-          const config = { withCredentials: true };
-          const response = await axios.post(url, data, config);
-          console.log(response);
+          console.log('주문 실패');
         } catch (err) {
           console.log('주문 취소 API 요청 실패!');
         }

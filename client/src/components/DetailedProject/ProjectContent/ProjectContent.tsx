@@ -17,8 +17,6 @@ interface ProjectProps {
 }
 
 const ProjectContent = ({ project }: ProjectProps) => {
-  // console.log(project);
-
   const {
     project_background,
     project_goals,

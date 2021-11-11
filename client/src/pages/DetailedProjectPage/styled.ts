@@ -4,13 +4,17 @@ export const ProjectContainer = styled.div`
   width: 100%;
 `;
 
-export const Wrapper = styled.div`
+export const Section = styled.section`
+  padding: 60px 0;
   background-color: beige;
+`;
+
+export const Wrapper = styled.div`
   width: 100%;
   max-width: 960px;
+  font-size: 40px;
   margin: 0 auto;
   padding: 60px 30px;
-  font-size: 40px;
 `;
 
 export const GoTopButton = styled.a`

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import IntroNotYet from '../../components/DetailedProject/IntroSection/IntroNotYet';
 import ProjectContent from 'components/DetailedProject/ProjectContent/ProjectContent';
 import Profile from 'components/DetailedProject/Profile/Profile';
@@ -6,7 +6,7 @@ import Comments from 'components/DetailedProject/Comments/Comments';
 import Sponsors from 'components/DetailedProject/Sponsors/Sponsors';
 import TabButton from 'components/DetailedProject/TabButton/TabButton';
 import TopButton from '../../images/icons/gotop-icon.png';
-import { GoTopButton, ProjectContainer, Wrapper } from './styled';
+import { GoTopButton, ProjectContainer, Section, Wrapper } from './styled';
 import { getProjectId } from 'store/projectState-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserInfoProps } from 'store/userInfo-slice';
@@ -96,7 +96,7 @@ const DetailedProject = () => {
       )}
       {status === 'achieved' && <IntroFinished />}
       {isLogin && isUserSponsor && status === 'inprogress' && <IntroAlready />}
-      <TabButton />
+      <TabButton project={project} />
       {detailTab.overview && (
         <>
           <ProjectContent project={project} />
@@ -111,7 +111,9 @@ const DetailedProject = () => {
         </>
       )}
       {detailTab.labnote && (
-        <Wrapper>추후 랩 노트를 위한 페이지입니다.</Wrapper>
+        <Section>
+          <Wrapper>추후 랩 노트를 위한 페이지입니다.</Wrapper>
+        </Section>
       )}
     </ProjectContainer>
   );
