@@ -60,6 +60,11 @@ module.exports = {
         return res.status(400).json({ message: 'Bad Request!' });
       }
 
+      // 최소 금액 보다 적은 경우 다음을 리턴한다.
+      if (Number(amount) < 1000) {
+        return res.status(400).json({ message: 'Bad Request!' });
+      }
+
       // 프로젝트가 존재하지 않는 경우 다음을 리턴한다.
       const projectInfo = await project.findOne({ where: { id: projectId } });
       if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
