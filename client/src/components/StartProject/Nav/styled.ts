@@ -31,6 +31,9 @@ export const ProjectNav = styled.nav`
     padding: 0 15px;
     gap: 10px;
   }
+  @media all and (max-width: 980px) {
+    flex-direction: column;
+  }
 `;
 
 const selectButton = css`
@@ -40,7 +43,7 @@ const selectButton = css`
 
 export const NavButtonGroup = styled.div`
   display: flex;
-  width: 60%;
+  width: 100%;
   gap: 15px;
   @media all and (max-width: 980px) {
     width: 100%;
@@ -76,15 +79,18 @@ export const NavButton = styled.button<PageProps>`
 `;
 
 export const ResultButton = styled.div`
-  width: 40%;
+  width: auto;
   display: flex;
   justify-content: right;
   gap: 15px;
   @media all and (max-width: 980px) {
-    width: 100%;
-    justify-content: right;
+    /* width: 100%; */
+    justify-content: left;
   }
   @media all and (max-width: 620px) {
     gap: 5px;
+  }
+  @media all and (max-width: 540px) {
+    width: auto;
   }
 `;

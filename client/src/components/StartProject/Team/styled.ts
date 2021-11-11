@@ -100,6 +100,19 @@ export const AddTeamMember = styled.ul`
     }
   }
 
+  @media all and (max-width: 530px) {
+    > li {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    > li > button,
+    div:nth-child(2) {
+      margin-top: 10px;
+    }
+  }
+
   li:first-child {
     margin-top: 0;
   }

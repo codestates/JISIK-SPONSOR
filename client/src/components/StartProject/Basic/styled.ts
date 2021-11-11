@@ -9,7 +9,7 @@ interface FoucsProps {
 export const ProjectTitle = styled.div<FoucsProps>`
   margin-top: 40px;
   position: relative;
-  background: pink;
+
   > h3 {
     font-size: 16px;
     font-weight: 700;
@@ -219,21 +219,10 @@ export const ProjectSelectIma = styled(ProjectCoverImage)`
 `;
 
 export const CategoryContainer = styled.div`
-  > div {
-    &:first-child {
-      margin-top: 20px;
-      label {
-        margin-right: 15px;
-      }
-    }
-    &:last-child {
-      margin-top: 10px;
-      label {
-        margin-right: 15px;
-      }
-    }
+  margin-top: 10px;
+  div {
+    display: inline;
   }
-
   input {
     display: none;
   }
@@ -242,6 +231,7 @@ export const CategoryContainer = styled.div`
     font-weight: 500;
     color: #495057;
     text-align: center;
+    margin-right: 10px;
   }
   input + label {
     cursor: pointer;
@@ -263,5 +253,17 @@ export const CategoryContainer = styled.div`
     background-color: #0dbd7e;
     font-size: 13px;
     text-align: center;
+  }
+
+  @media all and (max-width: 750px) {
+    div:first-child,
+    div:nth-child(3) {
+      display: block;
+    }
+  }
+  @media all and (max-width: 480px) {
+    > div > label {
+      font-size: 12px;
+    }
   }
 `;
