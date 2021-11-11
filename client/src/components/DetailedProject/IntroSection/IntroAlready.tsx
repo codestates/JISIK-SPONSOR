@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   MainContent,
   ProjectTitle,
@@ -12,11 +12,11 @@ import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import Wormhole from '../../../images/wormhole.jpg';
-import { Data, Tags, Tag } from '../type';
+import { Data } from '../type'; //Tags, Tag
 import { Line } from 'rc-progress';
 import { RootState } from 'index';
 import IntroTitle from './IntroTitle';
-import IntroTag from './IntroTag';
+// import IntroTag from './IntroTag';
 
 const IntroAlready = () => {
   const [projectId, setProjectId] = useState<number>(1);
@@ -24,14 +24,14 @@ const IntroAlready = () => {
   const [description, setDescription] = useState<string>('');
   const [goal, setGoal] = useState<number>(0);
   const [pledged, setPledged] = useState<number>(0);
-  const [tags, setTags] = useState<Tag[]>([]);
+  // const [tags, setTags] = useState<Tag[]>([]);
   const [dDay, setdDay] = useState<number>(0);
   const [categoryId, setCategoryId] = useState<number>(0);
   const [category, setCategory] = useState<string>('');
 
   const history = useHistory();
-  const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
-  const config = { withCredentials: true };
+  // const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
+  // const config = { withCredentials: true };
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
@@ -68,7 +68,7 @@ const IntroAlready = () => {
 
       const { name } = category;
 
-      console.log(response);
+      // console.log(response);
 
       // 디데이 계산
       let today = new Date();
@@ -91,21 +91,21 @@ const IntroAlready = () => {
   };
 
   // 특정 프로젝트의 모든 태그를 조회하는 함수
-  const getTags = async () => {
-    try {
-      const response = await axios.get<Tags>(TagsUrl, config);
-      const tagGroup = response.data.tags;
-      setTags(tagGroup);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getTags = async () => {
+  //   try {
+  //     const response = await axios.get<Tags>(TagsUrl, config);
+  //     const tagGroup = response.data.tags;
+  //     // setTags(tagGroup);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   // console.log(getTags);
 
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
     getProjects();
-    getTags();
+    // getTags();
   }, []);
 
   return (
@@ -150,7 +150,7 @@ const IntroAlready = () => {
           </div>
         </SubContentAlready>
       </MainContent>
-      <IntroTag tags={tags} noDisplay={true} />
+      {/* <IntroTag tags={tags} noDisplay={true} /> */}
     </ProjectWrapper>
   );
 };

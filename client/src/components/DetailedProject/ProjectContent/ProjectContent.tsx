@@ -1,5 +1,5 @@
-import React from 'react';
 import {
+  Section,
   ProjectHeader,
   ProjectWrapper,
   BudgetDetail,
@@ -46,71 +46,76 @@ const ProjectContent = ({ project }: ProjectProps) => {
     });
 
   return (
-    <ProjectWrapper>
-      <ProjectHeader>
-        <div>
-          <img src={ProjectBackground} alt="" />
-          <h2>프로젝트 배경</h2>
-        </div>
-        <p>{project_background}</p>
-      </ProjectHeader>
-      <ProjectHeader>
-        <div>
-          <img src={ProjectProgress} alt="" />
-          <h2>프로젝트 진행상황</h2>
-        </div>
-        <p>{project_progress}</p>
-      </ProjectHeader>
-      <ProjectHeader>
-        <div>
-          <img src={ProjectGoal} alt="" />
-          <h2>프로젝트 목표</h2>
-        </div>
-        <p>{project_goals}</p>
-      </ProjectHeader>
-      <ProjectHeader>
-        <div>
-          <img src={ProjectBudget} alt="" />
-          <h2>프로젝트 예산</h2>
-        </div>
-        <p>{budget_synopsis}</p>
-        <BudgetDetail>
-          {updatedBudgetNum &&
-            updatedBudgetNum.map((budget) => {
-              return (
-                <div key={budget.id}>
-                  <span>{budget.title}</span>
-                  <span>₩ {budget.amount}</span>
-                </div>
-              );
-            })}
-        </BudgetDetail>
-      </ProjectHeader>
-      <ProjectHeader>
-        <div>
-          <img src={ProjectTimeline} alt="" />
-          <h2>프로젝트 타임라인</h2>
-        </div>
-        <p>{milestone_description}</p>
-        <Timeline>
-          {project_milestones &&
-            project_milestones.map((milestone) => {
-              return (
-                <div key={milestone.id}>
-                  <span>
-                    {new Date(milestone.goal_date).toLocaleDateString('ko-KR', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </span>
-                  <span>{milestone.title}</span>
-                </div>
-              );
-            })}
-        </Timeline>
-      </ProjectHeader>
-    </ProjectWrapper>
+    <Section>
+      <ProjectWrapper>
+        <ProjectHeader>
+          <div>
+            <img src={ProjectBackground} alt="" />
+            <h2>프로젝트 배경</h2>
+          </div>
+          <p>{project_background}</p>
+        </ProjectHeader>
+        <ProjectHeader>
+          <div>
+            <img src={ProjectProgress} alt="" />
+            <h2>프로젝트 진행상황</h2>
+          </div>
+          <p>{project_progress}</p>
+        </ProjectHeader>
+        <ProjectHeader>
+          <div>
+            <img src={ProjectGoal} alt="" />
+            <h2>프로젝트 목표</h2>
+          </div>
+          <p>{project_goals}</p>
+        </ProjectHeader>
+        <ProjectHeader>
+          <div>
+            <img src={ProjectBudget} alt="" />
+            <h2>프로젝트 예산</h2>
+          </div>
+          <p>{budget_synopsis}</p>
+          <BudgetDetail>
+            {updatedBudgetNum &&
+              updatedBudgetNum.map((budget) => {
+                return (
+                  <div key={budget.id}>
+                    <span>{budget.title}</span>
+                    <span>₩ {budget.amount}</span>
+                  </div>
+                );
+              })}
+          </BudgetDetail>
+        </ProjectHeader>
+        <ProjectHeader>
+          <div>
+            <img src={ProjectTimeline} alt="" />
+            <h2>프로젝트 타임라인</h2>
+          </div>
+          <p>{milestone_description}</p>
+          <Timeline>
+            {project_milestones &&
+              project_milestones.map((milestone) => {
+                return (
+                  <div key={milestone.id}>
+                    <span>
+                      {new Date(milestone.goal_date).toLocaleDateString(
+                        'ko-KR',
+                        {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        }
+                      )}
+                    </span>
+                    <span>{milestone.title}</span>
+                  </div>
+                );
+              })}
+          </Timeline>
+        </ProjectHeader>
+      </ProjectWrapper>
+    </Section>
   );
 };
 

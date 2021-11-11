@@ -9,7 +9,6 @@ import TopButton from '../../images/icons/gotop-icon.png';
 import { GoTopButton, ProjectContainer, Wrapper } from './styled';
 import { getProjectId } from 'store/projectState-slice';
 import { useDispatch, useSelector } from 'react-redux';
-// import { RootState } from 'index';
 import { UserInfoProps } from 'store/userInfo-slice';
 import { getUserInfo } from 'store/userInfo-slice';
 
@@ -29,9 +28,6 @@ const DetailedProject = () => {
   const [isUserSponsor, setIsUserSponsor] = useState<boolean>(false);
   const [status, setStatus] = useState<string>('');
   const [author, setAuthor] = useState<any>({});
-
-  // console.log(author);
-  console.log(status);
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
   const userInfo = useSelector((state: RootState) => state.userInfo);

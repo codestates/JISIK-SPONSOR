@@ -6,15 +6,18 @@ interface DetailTabs {
   onClick?: () => void;
 }
 
+export const Section = styled.section`
+  width: 100%;
+  border-top: 2px solid #e9ecef;
+`;
+
 export const Wrapper = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;
-  /* background-color: pink; */
   display: flex;
   gap: 30px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 
   @media screen and (max-width: 718px) {
     gap: 15px;

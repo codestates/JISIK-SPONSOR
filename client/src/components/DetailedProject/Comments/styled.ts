@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import { StyledButton } from 'components/Button';
 
+export const Section = styled.section`
+  width: 100%;
+  background: #f8f9fa;
+`;
+
 export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;

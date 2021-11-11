@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 
+export const Section = styled.section`
+  width: 100%;
+  background: #f8f9fa;
+`;
+
 export const ProjectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  background-color: #f8f9fa;
+  gap: 40px;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 50px 30px;
+  padding: 60px 30px;
+  @media all and (max-width: 620px) {
+    padding: 40px 15px;
+  }
 `;
 
 export const ProjectHeader = styled.div`
@@ -17,10 +24,14 @@ export const ProjectHeader = styled.div`
   border-bottom: 1px solid #e9ecef;
   padding-bottom: 40px;
   gap: 20px;
-
-  & > div {
+  :last-child {
+    border: 0;
+    padding: 0;
+  }
+  & > div:first-child {
     display: flex;
     gap: 15px;
+    align-items: center;
   }
 
   & > div img {

@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
-  MainContent,
+  Section,
   ProjectTitle,
+  MainContent,
+  LeftWrap,
+  RightWrap,
   ProjectWrapper,
   SubContentFinished,
-  FinishedButton
+  StyledButton,
+  Notice
 } from './styled';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -73,15 +77,15 @@ const IntroFinished = () => {
   const getTags = async () => {
     try {
       const response = await axios.get<Tags>(TagsUrl, config);
-      // console.log(response);
+      console.log(response);
       const tagGroup = response.data.tags;
-      // console.log(tagGroup);
+      console.log(tagGroup);
       setTags(tagGroup);
     } catch (err) {
       console.log(err);
     }
   };
-  // console.log(getTags);
+  console.log(getTags);
 
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
@@ -90,33 +94,39 @@ const IntroFinished = () => {
   }, []);
 
   return (
-    <ProjectWrapper>
-      <IntroTitle
-        isLogin={isLogin}
-        projectId={projectId}
-        categoryId={categoryId}
-        category={category}
-      />
-      <ProjectTitle>
-        <h1>{title}</h1>
-        <span>{description}</span>
-      </ProjectTitle>
-      <MainContent>
-        <img src={Wormhole} alt="wormhole" />
-        <SubContentFinished>
-          <p>{pledgedWithCommas}원</p>
-          <p>{goalWithCommas} 달성금액</p>
-          <p>{percentage}%</p>
-          <p>달성 성공!</p>
-          <FinishedButton>프로젝트 후원완료</FinishedButton>
-          <div>
-            * 본 프로젝트 후원하기 기능은 개발자 모드로써 &nbsp;&nbsp;결제하신
-            금액은 다음날 환불처리 됩니다.
-          </div>
-        </SubContentFinished>
-      </MainContent>
-      <IntroTag tags={tags} noDisplay={true} />
-    </ProjectWrapper>
+    <Section>
+      <ProjectWrapper>
+        <IntroTitle
+          isLogin={isLogin}
+          projectId={projectId}
+          categoryId={categoryId}
+          category={category}
+        />
+        <ProjectTitle>
+          <h1>{title}</h1>
+          <span>{description}</span>
+        </ProjectTitle>
+        <MainContent>
+          <LeftWrap>
+            <img src={Wormhole} alt="wormhole" />
+            <IntroTag tags={tags} />
+          </LeftWrap>
+          <RightWrap>
+            <SubContentFinished>
+              <p>{pledgedWithCommas}원</p>
+              <p>{goalWithCommas} 달성금액</p>
+              <p>{percentage}%</p>
+              <p>달성 성공!</p>
+              <StyledButton>프로젝트 후원완료</StyledButton>
+              <Notice noDisplay={false}>
+                * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
+                다음날 환불처리 됩니다.
+              </Notice>
+            </SubContentFinished>
+          </RightWrap>
+        </MainContent>
+      </ProjectWrapper>
+    </Section>
   );
 };
 

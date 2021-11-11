@@ -48,6 +48,8 @@ module.exports = {
       if (paymentData.amount !== amountToBePaid) {
         return res.status(200).json({
           status: 'forgery',
+          payment: paymentData.amount,
+          amountToBePaid: orderInfo.amount,
           message: '위조된 결제시도'
         });
       }

@@ -1,22 +1,32 @@
-import React from 'react';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-import { StyledButton } from 'components/Button';
+import { StyledButton } from './styled';
 
 interface PaymentProps {
+  projectId: number;
+  title: string;
   enteredFund: string;
   enteredPhoneNum: string;
 }
 
-const Payment = ({ enteredFund, enteredPhoneNum }: PaymentProps) => {
+const Payment = ({
+  projectId,
+  title,
+  enteredFund,
+  enteredPhoneNum
+}: PaymentProps) => {
+  console.log(projectId);
+  console.log(title);
+  console.log(enteredFund);
+  console.log(enteredPhoneNum);
   const { IMP }: any = window;
   IMP.init('imp00267362');
 
   const paymentHandler = async () => {
     try {
       const order = {
-        projectId: 3,
-        projectTitle: '심해연구',
+        projectId,
+        projectTitle: title,
         amount: Number(enteredFund),
         buyerTel: enteredPhoneNum
       };

@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 
+export const Section = styled.section`
+  width: 100%;
+`;
+
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: antiquewhite; */
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 60px 30px;
+  @media all and (max-width: 620px) {
+    padding: 30px 15px;
+  }
 `;
 
 export const ProfileTitle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 32px;
+  font-size: 31.25px;
   font-weight: 700;
   color: #343a40;
   margin-bottom: 25px;
@@ -23,6 +29,9 @@ export const ProfileTitle = styled.div`
     height: 40px;
     margin-right: 15px;
   }
+  span {
+    display: inline-block;
+  }
 `;
 
 export const ProfileContent = styled.div`
@@ -30,9 +39,7 @@ export const ProfileContent = styled.div`
   width: 100%;
   max-width: 700px;
   gap: 60px;
-  align-items: center;
   margin-bottom: 40px;
-  /* background-color: pink; */
 
   & > div:first-child {
     display: flex;
@@ -69,10 +76,18 @@ export const ProfileContent = styled.div`
 export const ProjectTeamTitle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 32px;
+  font-size: 31.25px;
   font-weight: 700;
   color: #343a40;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+  }
+  span {
+    display: inline-block;
+  }
 `;
 
 export const Team = styled.div`
@@ -80,7 +95,6 @@ export const Team = styled.div`
   width: 100%;
   max-width: 700px;
   gap: 60px;
-  align-items: center;
 
   img {
     height: 120px;

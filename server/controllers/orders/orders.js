@@ -94,7 +94,7 @@ module.exports = {
         project_id: projectId, // 프로젝트 ID
         merchant_uid: merchantUid, // 주문 번호 (고유)
         name: projectTitle, // 주문 명
-        amount: amount, // 주문 금액
+        amount: Number(amount), // 주문 금액
         buyer_name: userInfo.name, // 주문자 명
         buyer_tel: buyerTel, // 주문자 연락처
         buyer_email: userInfo.email // 주문자 이메일

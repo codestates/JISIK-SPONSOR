@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 
 export const ProjectContainer = styled.div`
-  /* background-color: beige; */
-  width: 100vw;
-  padding: 60px 0;
-
-  @media screen and (min-width: 718px) {
-    width: 100%;
-  }
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`
