@@ -57,6 +57,8 @@ function Category({ setCategoryValue }: ParentsProps) {
         <label htmlFor="인문학">인문학</label>
         <input type="checkbox" id="사회과학" onClick={(e) => checkOnlyOne(e)} />
         <label htmlFor="사회과학">사회과학</label>
+      </div>
+      <div>
         <input type="checkbox" id="자연과학" onClick={(e) => checkOnlyOne(e)} />
         <label htmlFor="자연과학">자연과학</label>
         <input type="checkbox" id="공학" onClick={(e) => checkOnlyOne(e)} />
@@ -71,6 +73,8 @@ function Category({ setCategoryValue }: ParentsProps) {
           onClick={(e) => checkOnlyOne(e)}
         />
         <label htmlFor="농수해양학">농수해양학</label>
+      </div>
+      <div>
         <input
           type="checkbox"
           id="예술체육학"

@@ -175,6 +175,10 @@ function BudgetInfo() {
         <h2>프로젝트 예산 정보</h2>
         <p>예산에 대한 상세 내용을 작성합니다.</p>
         <ProjectBudgetList>
+          <TotalAmount>
+            <h2>펀딩 총액</h2>
+            <span>{grossAmount}원</span>
+          </TotalAmount>
           <h3>예산 항목</h3>
           <p>
             예산 항목을 열거할 때 가능한 한 투명하도록 하십시오.
@@ -235,10 +239,6 @@ function BudgetInfo() {
             </ErrorMessage>
           )}
           <BudgetListAdd onClick={addBudgetList}>예산 항목 추가</BudgetListAdd>
-          <TotalAmount>
-            <h2>펀딩 총액</h2>
-            <span>{grossAmount}원</span>
-          </TotalAmount>
         </ProjectBudgetList>
 
         <ProjectBudgetPlan

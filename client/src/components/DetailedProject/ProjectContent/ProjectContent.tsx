@@ -3,7 +3,8 @@ import {
   ProjectHeader,
   ProjectWrapper,
   BudgetDetail,
-  Timeline
+  Timeline,
+  ResearchWord
 } from './styled';
 import ProjectBackground from '../../../images/project-background.png';
 import ProjectProgress from '../../../images/project-progress.png';
@@ -44,6 +45,7 @@ const ProjectContent = ({ project }: ProjectProps) => {
     });
 
   return (
+  <>
     <Section>
       <ProjectWrapper>
         <ProjectHeader>
@@ -114,6 +116,19 @@ const ProjectContent = ({ project }: ProjectProps) => {
         </ProjectHeader>
       </ProjectWrapper>
     </Section>
+      <ResearchWord>
+        <div>
+          <h2>연구자의 한 마디</h2>
+
+          <p>
+            “이번 연구는 저에게 있어 이러이러한 의미가 있는 연구로 지난 10여년
+            동안 준비해온 연구의 최종적인 것이라고 할 수 있겠습니다. 저의 연구에
+            많은 관심 부탁드리고 이것으로 인해 많은 사람들에게 도움이 되기를
+            바랍니다.”
+          </p>
+        </div>
+      </ResearchWord>
+    </>
   );
 };
 

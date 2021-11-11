@@ -23,7 +23,7 @@ const SliderSection = () => {
     const switchSelectedSlideIndex = setTimeout(() => {
       if (selectedSlideIndex === 0) setSelectedSlideIndex(1)
       else setSelectedSlideIndex(0)
-    }, 3000)
+    }, 4000)
 
     return () => clearTimeout(switchSelectedSlideIndex)
   }, [selectedSlideIndex])

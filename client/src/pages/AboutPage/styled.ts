@@ -11,7 +11,7 @@ interface QuestionSectionProps {
 }
 
 export const Section = styled.section<SectionProps>`
-  padding: 60px 0;
+  padding: 100px 0;
   background-color: ${(props) =>
     props.background !== 'image' ? props.background : '#f1f3f5'};
   background-image: ${(props) =>
@@ -37,14 +37,14 @@ export const BannerSection = styled.div`
   text-align: center;
   word-break: keep-all;
   & > h1 {
-    font-size: 31.25px;
+    font-size: 35.25px;
     color: #212529;
     font-weight: 500;
     line-height: 140%;
     margin-bottom: 20px;
   }
   & > p {
-    font-size: 25px;
+    font-size: 30px;
     color: #495057;
     line-height: 140%;
   }
@@ -52,12 +52,12 @@ export const BannerSection = styled.div`
     color: #7950f2;
     font-weight: 600;
   }
-  @media all and (max-width: 620px) {
+  @media all and (max-width: 783px) {
     & > h1 {
-      font-size: 25px;
+      font-size: 28px;
     }
     & > p {
-      font-size: 20px;
+      font-size: 23px;
     }
   }
 `;
@@ -76,7 +76,7 @@ export const QuestionSection = styled.div<QuestionSectionProps>`
   & div:nth-child(2) {
     width: 45%;
     padding: ${(props) =>
-      props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
+    props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
   }
   @media all and (max-width: 620px) {
     display: block;
@@ -109,14 +109,14 @@ export const SecondImageWrap = styled.div`
 export const TextBoxWrap = styled.div`
   word-break: keep-all;
   & > h2 {
-    font-size: 25px;
+    font-size: 28px;
     color: #343a40;
     font-weight: 500;
     line-height: 140%;
     margin-bottom: 20px;
   }
   & > p {
-    font-size: 16px;
+    font-size: 18px;
     color: #495057;
     line-height: 160%;
   }
@@ -124,6 +124,45 @@ export const TextBoxWrap = styled.div`
     & > h2 {
       font-size: 20px;
     }
+  }
+`;
+
+export const LinkWrap = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px 0 0 0;
+
+    & > a {
+    position: relative;
+    font-size: 15px;
+    color: #343a40;
+    font-weight: 500;
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 2px solid #343a40;
+  }
+
+  & a:nth-child(1) {
+    border: 1px solid;
+    color: #f8f9fa;
+    background-color: #7950f2;
+    transition: 0.2s;
+    }
+
+  & a:nth-child(2) {
+    transition: 0.2s;
+    }
+
+  & a:hover {
+    transform: translateY(5px);
+  }
+
+  @media all and (max-width: 620px) {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
   }
 `;
 
