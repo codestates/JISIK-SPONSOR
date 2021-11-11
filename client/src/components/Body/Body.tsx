@@ -7,6 +7,8 @@ import Main from 'pages/MainPage/Main';
 import MyPage from 'pages/MyPage/MyPage';
 import Setting from 'pages/SettingPage/Setting';
 import Start from 'pages/StartPage/Start';
+import Callback from 'pages/CallbackPage/Callback';
+import CallbackGoogle from 'pages/CallbackPage/CallbackGoogle';
 import StartProject from 'pages/StartProjectPage/StartProject';
 import { Route, Switch, Redirect } from 'react-router';
 
@@ -46,6 +48,12 @@ const Body = () => {
         </Route>
         <Route path="/404">
           <Error />
+        </Route>
+        <Route path="/callback">
+          <Callback />
+        </Route>
+        <Route path="/callbackGoogle">
+          <CallbackGoogle />
         </Route>
         <Route path="/">
           <Redirect to="/404" />

@@ -33,6 +33,19 @@ const ModalInput = () => {
     }
   }, [enteredEmailIsValid, enteredPwIsValid]);
 
+  const socialLoginHandler = (oauth: string) => {
+    dispatch(showLoginModal(false));
+    if (oauth === 'kakao') {
+      window.location.assign(
+        'https://kauth.kakao.com/oauth/authorize?client_id=1a7400db693d2b03a6c881684b7f7d21&redirect_uri=http://localhost:3000/callback&response_type=code&scope=profile_nickname,profile_image,account_email'
+      );
+    }
+    if (oauth === 'google') {
+      window.location.assign(
+        'https://accounts.google.com/o/oauth2/v2/auth?client_id=841452735866-m2e51kq16b94c6hq6rsh1t320sre4bah.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile+openid&redirect_uri=http://localhost:3000/callbackGoogle'
+      );
+    }
+  };
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -99,11 +112,11 @@ const ModalInput = () => {
         <LoginButton disabled={!formIsValid} onClick={handleLogin}>
           로그인
         </LoginButton>
-        <LoginButton>
+        <LoginButton onClick={() => socialLoginHandler('google')}>
           <img src={google} />
           <span>구글 로그인</span>
         </LoginButton>
-        <LoginButton>
+        <LoginButton onClick={() => socialLoginHandler('kakao')}>
           <img src={kakao} />
           <span>카카오톡 로그인</span>
         </LoginButton>
