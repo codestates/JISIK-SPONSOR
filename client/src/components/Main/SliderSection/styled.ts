@@ -351,6 +351,7 @@ export const SliderButton = styled.button`
       border: 0px solid #343a40;
       background-color: #bebebe;
       transition: 0.3s;
+      cursor: pointer;
     }
 
     &.is-selected-true{
@@ -375,6 +376,7 @@ export const BackIcon = styled.div`
   margin-top: -29%;
 
   padding: 30px;
+  cursor: pointer;
 
   @media all and (max-width: 1150px) {
     margin-left: -8%;
@@ -399,6 +401,7 @@ export const FowardIcon = styled.div`
   margin-top: -29%;
   
   padding: 30px;
+  cursor: pointer;
 
   @media all and (max-width: 1150px) {
     margin-left: 98%;
