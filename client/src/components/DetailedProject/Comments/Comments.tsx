@@ -22,6 +22,7 @@ const Comments = ({ project, setProject }: any) => {
   const url = `${REACT_APP_API_URL}/projects/${projectId}/comments`;
   const config = { withCredentials: true };
 
+  // 댓글의 상태가 바뀔때마다 boolean값을 재설정
   useEffect(() => {
     return () => {
       setShowBoxArr(Array(comment.length).fill(false));
@@ -78,6 +79,7 @@ const Comments = ({ project, setProject }: any) => {
     setNewComment(e.currentTarget.value);
   };
 
+  // 선택한 특정 댓글만 true값으로 바꿔주는 함수
   const setCommentHandler = (e: any) => {
     const current = Number(e.target.parentNode.parentNode.parentNode.id);
 
@@ -89,6 +91,7 @@ const Comments = ({ project, setProject }: any) => {
     setShowBoxArr(newShowBoxArr);
   };
 
+  // 댓글 배열을 초기화 시켜주는 함수
   const showBoxClear = () => {
     setShowBoxArr(Array(comment.length).fill(false));
   };

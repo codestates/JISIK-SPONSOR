@@ -68,7 +68,10 @@ const CommentBox = ({
     withCredentials: true
   };
 
-  const handleDotButton = (e: any) => {
+  //수정상자를 열고 닫는 버튼을 열고닫는 함수
+  const handleDotButton = (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
     setCommentHandler(e);
 
     if (showBoxBool) {
@@ -124,11 +127,19 @@ const CommentBox = ({
     }
   };
 
+  // 메뉴박스 밖을 클릭했을 때 박스를 사라지게 만드는 함수
   const handleOutsideClick = (e: any) => {
     if (e.target !== menuBox.current && e.target.className !== 'dotIcon') {
       showBoxClear();
     }
   };
+
+  useEffect(() => {
+    window.addEventListener('click', handleOutsideClick);
+    return () => {
+      window.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     setShowBoxToggle(showBoxBool);
@@ -145,13 +156,6 @@ const CommentBox = ({
       setProfile(UserIcon);
     }
   }, [profileUrl]);
-
-  useEffect(() => {
-    window.addEventListener('click', handleOutsideClick);
-    return () => {
-      window.removeEventListener('click', handleOutsideClick);
-    };
-  }, []);
 
   return (
     <CommentLists key={id} id={String(identity)}>

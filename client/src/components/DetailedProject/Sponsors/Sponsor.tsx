@@ -7,6 +7,7 @@ interface Props {
 const Sponsor = ({ sponsor }: Props) => {
   const [profile, setProfile] = useState<string>('');
 
+  //소셜 로그인시 http주소값으로 이미지를 불러오는 경우의 수를 추가하는 함수
   useEffect(() => {
     if (sponsor.user) {
       if (sponsor.user.profile_url) {

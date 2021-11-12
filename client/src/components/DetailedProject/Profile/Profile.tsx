@@ -21,6 +21,7 @@ interface ProjectProps {
 const Profile = ({ teams, teamMember, author }: ProjectProps) => {
   const [profile, setProfile] = useState<any>(UserIcon);
 
+  // 소셜로그인을 통해 로그인 한 경우 http로 이미지를 불러올 때 사용하는 함수
   useEffect(() => {
     if (author.profile_url) {
       const front = author.profile_url.slice(0, 4);

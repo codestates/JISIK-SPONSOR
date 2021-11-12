@@ -30,6 +30,7 @@ const IntroTitle = ({
 }: IntroTitleProps) => {
   const [favorite, setFavorite] = useState<boolean>(false);
 
+  // 로그인이 되었있다면, 즐겨찾기 상태값을 불러옴
   useEffect(() => {
     if (isLogin) {
       getFavoriteState();
