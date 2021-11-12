@@ -3,22 +3,66 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('project_tags', [
-      {
-        tag_id: 1,
-        project_id: 1
-      },
-      {
-        tag_id: 2,
-        project_id: 1
-      },
-      {
-        tag_id: 3,
-        project_id: 2
-      },
-      {
-        tag_id: 4,
-        project_id: 2
-      }
+      { tag_id: 1, project_id: 1 },
+      { tag_id: 2, project_id: 1 },
+      { tag_id: 3, project_id: 1 },
+      { tag_id: 4, project_id: 2 },
+      { tag_id: 5, project_id: 2 },
+      { tag_id: 6, project_id: 2 },
+      { tag_id: 7, project_id: 3 },
+      { tag_id: 8, project_id: 3 },
+      { tag_id: 9, project_id: 3 },
+      { tag_id: 10, project_id: 4 },
+      { tag_id: 11, project_id: 4 },
+      { tag_id: 12, project_id: 4 },
+      { tag_id: 13, project_id: 5 },
+      { tag_id: 14, project_id: 5 },
+      { tag_id: 15, project_id: 5 },
+      { tag_id: 16, project_id: 6 },
+      { tag_id: 17, project_id: 6 },
+      { tag_id: 18, project_id: 6 },
+      { tag_id: 19, project_id: 7 },
+      { tag_id: 20, project_id: 7 },
+      { tag_id: 21, project_id: 7 },
+      { tag_id: 22, project_id: 8 },
+      { tag_id: 23, project_id: 8 },
+      { tag_id: 24, project_id: 8 },
+      { tag_id: 25, project_id: 9 },
+      { tag_id: 26, project_id: 9 },
+      { tag_id: 27, project_id: 9 },
+      { tag_id: 28, project_id: 10 },
+      { tag_id: 29, project_id: 10 },
+      { tag_id: 30, project_id: 10 },
+      { tag_id: 31, project_id: 11 },
+      { tag_id: 32, project_id: 11 },
+      { tag_id: 33, project_id: 11 },
+      { tag_id: 34, project_id: 12 },
+      { tag_id: 35, project_id: 12 },
+      { tag_id: 36, project_id: 12 },
+      { tag_id: 37, project_id: 13 },
+      { tag_id: 38, project_id: 13 },
+      { tag_id: 39, project_id: 13 },
+      { tag_id: 40, project_id: 14 },
+      { tag_id: 41, project_id: 14 },
+      { tag_id: 42, project_id: 14 },
+      { tag_id: 43, project_id: 15 },
+      { tag_id: 44, project_id: 15 },
+      { tag_id: 45, project_id: 15 },
+      { tag_id: 46, project_id: 16 },
+      { tag_id: 47, project_id: 16 },
+      { tag_id: 48, project_id: 16 },
+      { tag_id: 49, project_id: 17 },
+      { tag_id: 50, project_id: 17 },
+      { tag_id: 51, project_id: 17 },
+      { tag_id: 52, project_id: 18 },
+      { tag_id: 53, project_id: 18 },
+      { tag_id: 54, project_id: 18 },
+      { tag_id: 55, project_id: 19 },
+      { tag_id: 56, project_id: 19 },
+      { tag_id: 57, project_id: 19 },
+      { tag_id: 58, project_id: 20 },
+      { tag_id: 59, project_id: 20 },
+      { tag_id: 60, project_id: 20 }
     ]);
   },
   down: async (queryInterface, Sequelize) => {

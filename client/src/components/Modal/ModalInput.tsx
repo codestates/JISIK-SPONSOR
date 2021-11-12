@@ -36,13 +36,13 @@ const ModalInput = () => {
   const socialLoginHandler = (oauth: string) => {
     dispatch(showLoginModal(false));
     if (oauth === 'kakao') {
-      const url = REACT_APP_API_URL + '/callback';
+      const url = 'https://jisiksponsor.com/callback';
       window.location.assign(
         `https://kauth.kakao.com/oauth/authorize?client_id=1f5099b7b1d8b1f742215aebd0a67732&redirect_uri=${url}&response_type=code&scope=profile_nickname,profile_image,account_email`
       );
     }
     if (oauth === 'google') {
-      const url = REACT_APP_API_URL + '/callbackGoogle';
+      const url = 'https://jisiksponsor.com/callbackGoogle';
       window.location.assign(
         `https://accounts.google.com/o/oauth2/v2/auth?client_id=892268396360-ft901k9sd7lso4imkt4p0ba6r512nbpg.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile+openid&redirect_uri=${url}`
       );

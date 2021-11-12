@@ -15,7 +15,6 @@ import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-import Wormhole from '../../../images/wormhole.jpg';
 import PaymentButton from './Payments';
 import { Data, Tags, Tag } from '../type';
 import { Line } from 'rc-progress';
@@ -26,6 +25,7 @@ import IntroTag from './IntroTag';
 const IntroNotYet = () => {
   const [projectId, setProjectId] = useState<number>(1);
   const [title, setTitle] = useState<string>('');
+  const [image, setImage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [goal, setGoal] = useState<number>(0);
   const [pledged, setPledged] = useState<number>(0);
@@ -74,6 +74,7 @@ const IntroNotYet = () => {
       const {
         id,
         title,
+        thumbnail_url,
         description,
         category,
         goal,
@@ -91,6 +92,7 @@ const IntroNotYet = () => {
       let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
 
       setTitle(title);
+      setImage(thumbnail_url);
       setDescription(description);
       setProjectId(id);
       setCategory(name);
@@ -117,10 +119,8 @@ const IntroNotYet = () => {
 
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
-    return () => {
-      getProjects();
-      getTags();
-    };
+    getProjects();
+    getTags();
   }, []);
 
   const handleFundInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -174,7 +174,9 @@ const IntroNotYet = () => {
         </ProjectTitle>
         <MainContent>
           <LeftWrap>
-            <img src={Wormhole} alt="wormhole" />
+            <span>
+              <img src={'https://jisiksponsor.com' + image} />
+            </span>
             <IntroTag tags={tags} />
           </LeftWrap>
           <RightWrap>

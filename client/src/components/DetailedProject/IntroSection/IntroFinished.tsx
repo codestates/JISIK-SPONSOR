@@ -14,7 +14,6 @@ import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-import Wormhole from '../../../images/wormhole.jpg';
 import { Data, Tags, Tag } from '../type';
 import { RootState } from 'index';
 import IntroTitle from './IntroTitle';
@@ -23,6 +22,7 @@ import IntroTag from './IntroTag';
 const IntroFinished = () => {
   const [projectId, setProjectId] = useState<number>(1);
   const [title, setTitle] = useState<string>('');
+  const [image, setImage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [goal, setGoal] = useState<number>(0);
   const [pledged, setPledged] = useState<number>(0);
@@ -56,11 +56,20 @@ const IntroFinished = () => {
         { withCredentials: true }
       );
 
-      const { id, title, description, category, goal, category_id, pledged } =
-        response.data.projects;
+      const {
+        id,
+        title,
+        thumbnail_url,
+        description,
+        category,
+        goal,
+        category_id,
+        pledged
+      } = response.data.projects;
 
       const { name } = category;
       setTitle(title);
+      setImage(thumbnail_url);
       setDescription(description);
       setProjectId(id);
       setCategory(name);
@@ -77,9 +86,7 @@ const IntroFinished = () => {
   const getTags = async () => {
     try {
       const response = await axios.get<Tags>(TagsUrl, config);
-      // console.log(response);
       const tagGroup = response.data.tags;
-      // console.log(tagGroup);
       setTags(tagGroup);
     } catch (err) {
       console.log(err);
@@ -107,7 +114,9 @@ const IntroFinished = () => {
         </ProjectTitle>
         <MainContent>
           <LeftWrap>
-            <img src={Wormhole} alt="wormhole" />
+            <span>
+              <img src={'https://jisiksponsor.com' + image} />
+            </span>
             <IntroTag tags={tags} />
           </LeftWrap>
           <RightWrap>
