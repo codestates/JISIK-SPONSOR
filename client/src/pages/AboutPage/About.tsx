@@ -168,7 +168,7 @@ const About = () => {
                 프로젝트를 만나보세요!
               </h2>
               <div>
-                <Link to="/start-project">프로젝트 시작하기</Link>
+                <Link to="/start">프로젝트 시작하기</Link>
                 <span></span>
               </div>
             </StartProjectSection>

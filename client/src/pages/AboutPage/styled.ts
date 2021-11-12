@@ -11,15 +11,23 @@ interface QuestionSectionProps {
 }
 
 export const Section = styled.section<SectionProps>`
-  padding: 100px 0;
+  padding: 213px 0;
   background-color: ${(props) =>
     props.background !== 'image' ? props.background : '#f1f3f5'};
   background-image: ${(props) =>
     props.background === 'image' && `url(${cloud})`};
   background-repeat: ${(props) => props.background === 'image' && 'none'};
   background-size: ${(props) => props.background === 'image' && 'cover'};
-  @media all and (max-width: 620px) {
-    padding: 40px 0;
+
+  @media all and (max-width: 1000px) {
+    padding: 205px 0;
+  }
+
+  @media all and (max-width: 960px) {
+    padding: 120px 0;
+  }
+  @media all and (max-width: 567px) {
+    padding: 100px 0;
   }
 `;
 
@@ -37,14 +45,14 @@ export const BannerSection = styled.div`
   text-align: center;
   word-break: keep-all;
   & > h1 {
-    font-size: 35.25px;
+    font-size: 43px;
     color: #212529;
     font-weight: 500;
     line-height: 140%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
   & > p {
-    font-size: 30px;
+    font-size: 40px;
     color: #495057;
     line-height: 140%;
   }
@@ -52,24 +60,43 @@ export const BannerSection = styled.div`
     color: #7950f2;
     font-weight: 600;
   }
-  @media all and (max-width: 783px) {
+
+  @media all and (max-width: 1000px) {
     & > h1 {
-      font-size: 28px;
+      font-size: 38px;
     }
     & > p {
-      font-size: 23px;
+      font-size: 35px;
+    }
+  }
+
+  @media all and (max-width: 960px) {
+    & > h1 {
+      font-size: 33px;
+    }
+    & > p {
+      font-size: 25px;
+    }
+  }
+
+  @media all and (max-width: 567px) {
+    & > h1 {
+      font-size: 25px;
+    }
+    & > p {
+      font-size: 20px;
     }
   }
 `;
 
 export const QuestionSection = styled.div<QuestionSectionProps>`
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   direction: ${(props) => props.deraction === 'right' && 'rtl'};
   & div:nth-child(1) {
-    width: 55%;
+    width: 62%;
     padding: ${(props) => (props.deraction === 'right' ? '0 0 0 15px' : '0')};
     direction: ${(props) => props.deraction === 'right' && 'initial'};
   }
@@ -109,20 +136,36 @@ export const SecondImageWrap = styled.div`
 export const TextBoxWrap = styled.div`
   word-break: keep-all;
   & > h2 {
-    font-size: 28px;
+    font-size: 33px;
     color: #343a40;
     font-weight: 500;
     line-height: 140%;
     margin-bottom: 20px;
   }
   & > p {
-    font-size: 18px;
+    font-size: 23px;
     color: #495057;
     line-height: 160%;
   }
+
+  @media all and (max-width: 960px) {
+    & > h2 {
+      font-size: 30px;
+    }
+    & > p {
+      font-size: 20px;
+    }
+  }
+
   @media all and (max-width: 620px) {
     & > h2 {
       font-size: 20px;
+    }
+  }
+
+  @media all and (max-width: 567px) {
+    & > p {
+      font-size: 15px;
     }
   }
 `;
@@ -135,7 +178,7 @@ export const LinkWrap = styled.div`
 
     & > a {
     position: relative;
-    font-size: 15px;
+    font-size: 20px;
     color: #343a40;
     font-weight: 500;
     padding: 10px 10px;
@@ -161,18 +204,22 @@ export const LinkWrap = styled.div`
   @media all and (max-width: 620px) {
     display: flex;
     flex-direction: row;
-    gap: 10px;
     justify-content: center;
+    gap: 10px;
+
+    & > a {
+      font-size: 15px;
+    }
   }
 `;
 
 export const StartProjectSection = styled.div`
   text-align: center;
   & > h2 {
-    font-size: 25px;
+    font-size: 40px;
     color: #f8f9fa;
     line-height: 140%;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
   }
   & > div {
     z-index: 1;
@@ -183,7 +230,7 @@ export const StartProjectSection = styled.div`
     z-index: 1;
     position: relative;
     display: inline-block;
-    font-size: 25px;
+    font-size: 40px;
     color: #343a40;
     font-weight: 500;
     padding: 25px 60px;
@@ -208,13 +255,32 @@ export const StartProjectSection = styled.div`
   & div:hover a {
     transform: translateY(5px);
   }
-  @media all and (max-width: 620px) {
+
+  @media all and (max-width: 960px) {
     & h2 {
-      font-size: 16px;
+      font-size: 30px;
     }
     & > div > a {
       font-size: 20px;
-      padding: 20px 30px;
+    }
+  }
+
+  @media all and (max-width: 620px) {
+    & h2 {
+      font-size: 25px;
+    }
+    & > div > a {
+      font-size: 20px;
+    }
+  }
+
+  @media all and (max-width: 567px) {
+    & h2 {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    & > div > a {
+      font-size: 16px;
     }
   }
 `;
