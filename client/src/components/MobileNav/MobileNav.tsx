@@ -43,14 +43,17 @@ const MobileNav = ({ showMenuBox, showNoticeMenuBox }: showProps) => {
     setClickedMenu(!clickedMenu);
   };
 
+  //검색어 인풋값을 받아오는 함수
   const searchHandle = (e: any) => {
     setSearch(e.target.value);
   };
 
+  //검색어 버튼 클릭시 입력창을 불러오는 함수
   const searchBtnClick = () => {
     setSearchHeader(!searchHeader);
   };
 
+  //검색된 입력어로 보드 페이지로 이동하여 검색을 실행하는 함수
   const moveBoardPageFn = (e: any) => {
     if (e.key === 'Enter' || e.target.localName === 'span') {
       dispatch(searchContent(search));

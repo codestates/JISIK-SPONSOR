@@ -47,6 +47,7 @@ const IntroNotYet = () => {
 
   const percentage = Number((pledged / goal).toFixed(2)) * 100;
 
+  // 후원 시 금액 및 전화번호 유효성 검사
   const enteredFundIsValid = enteredFund.trim() !== '';
   const fundIsEmpty = !enteredFundIsValid && enteredFundTouched;
   const enteredNumIsValid = enteredPhoneNum.trim() !== '';
@@ -123,10 +124,12 @@ const IntroNotYet = () => {
     };
   }, []);
 
+  // 후원금액의 인풋을 받아오는 함수
   const handleFundInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredFund(e.currentTarget.value);
   };
 
+  //후원시 전화번호 인풋을 받아오는 함수
   const handlePhoneNumInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const phoneNum = e.currentTarget.value;
 
@@ -140,6 +143,7 @@ const IntroNotYet = () => {
     setPhoneNumChecked(phoneNumChecked);
   };
 
+  // 전화번호 유효성 검사 함수
   const phoneNumChecking = (phoneNum: string): boolean => {
     const regExp =
       /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
@@ -151,10 +155,12 @@ const IntroNotYet = () => {
     return false;
   };
 
+  // 후원금액 인풋창을 건드렸는지 여부 판단
   const fundBlurHandler = () => {
     setEnteredFundTouched(true);
   };
 
+  // 전화번호 인풋창을 건드렸는지 여부 판단
   const numBlurHandler = () => {
     setEnteredNumTouched(true);
   };

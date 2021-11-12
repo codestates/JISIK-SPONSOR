@@ -18,6 +18,7 @@ const Payment = ({
   const { IMP }: any = window;
   IMP.init('imp00267362');
 
+  // 후원 결제 버튼 클릭시, 최초 유저 입력값을 전달하고 데이터를 받아오는 함수
   const paymentHandler = async () => {
     try {
       const order = {
@@ -36,6 +37,7 @@ const Payment = ({
     }
   };
 
+  // 받아온 데이터를 사용하여 최종 결제를 진행
   const requestPay = (data: any) => {
     const param = {
       pg: 'html5_inicis',
@@ -49,6 +51,7 @@ const Payment = ({
       m_redirect_url: '/payments/complete/mobile'
     };
 
+    // requestPay 함수의 두번째 인자로 성공시, 실패 시 경우를 다르게 보여주는 콜백 함수
     const callback = async (res: any) => {
       const { success, error_msg, imp_uid, merchant_uid } = res;
       if (success) {
@@ -71,6 +74,7 @@ const Payment = ({
       }
     };
 
+    // IMP 결제 요청 함수
     IMP.request_pay(param, callback);
   };
 
