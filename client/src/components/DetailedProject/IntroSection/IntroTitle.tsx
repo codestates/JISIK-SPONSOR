@@ -30,6 +30,7 @@ const IntroTitle = ({
 }: IntroTitleProps) => {
   const [favorite, setFavorite] = useState<boolean>(false);
 
+  // 로그인이 되었있다면, 즐겨찾기 상태값을 불러옴
   useEffect(() => {
     if (isLogin) {
       getFavoriteState();
@@ -54,12 +55,10 @@ const IntroTitle = ({
   const FavoriteHandler = async () => {
     try {
       if (!favorite) {
-        const favored = await axios.post(WishesUrl, {}, config);
-        console.log(favored);
+        await axios.post(WishesUrl, {}, config);
         setFavorite(true);
       } else {
-        const unfavored = await axios.delete(WishesUrl, config);
-        console.log(unfavored);
+        await axios.delete(WishesUrl, config);
         setFavorite(false);
       }
     } catch (err) {

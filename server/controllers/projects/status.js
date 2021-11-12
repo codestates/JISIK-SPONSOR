@@ -110,7 +110,7 @@ module.exports = {
         const endDate = new Date(
           toDate.getFullYear(),
           toDate.getMonth(),
-          startDate.getDate() + 1 + projectInfo.term,
+          startDate.getDate() + projectInfo.term,
           0
         );
 

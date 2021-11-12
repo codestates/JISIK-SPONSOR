@@ -34,6 +34,11 @@ module.exports = {
         return res.status(403).json({ message: 'Non-existent account!' });
       }
 
+      // 소셜로그인일 경우
+      if (userInfo.signup_method !== '일반') {
+        return res.status(403).json({ message: 'Non-existent account!' });
+      }
+
       // 등록된 회원이 존재한다면 비밀번호를 확인한다.
       const match = await bcrypt.compare(
         password,

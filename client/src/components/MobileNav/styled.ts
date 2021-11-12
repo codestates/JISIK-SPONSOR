@@ -62,6 +62,10 @@ export const Menubox = styled.div`
     height: 30px;
     margin-bottom: 30px;
   }
+
+  a:hover {
+    color: #7950f2;
+  }
 `;
 
 export const MenuboxOverlay = styled.div`
@@ -95,26 +99,32 @@ export const NavbarR = styled.div`
     border: 0;
     height: 30px;
     cursor: pointer;
-    background: none;
   }
   img {
     height: 30px;
   }
 `;
 
-export const NavButton = styled.button`
+export const NavButton = styled.a`
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  line-height: 1.4;
-  padding: 8px 20px;
+  line-height: 1.2;
+  padding: 10px 20px;
   color: #7950f2;
   background: #fff;
   border-radius: 5px;
   border: 2px solid #7950f2;
-  &:hover {
+  margin-right: -10px;
+  transition: all 0.3s;
+  :hover {
     color: #fff;
-    background-color: #7950f2;
+    background: #7950f2;
+    transition: all 0.3s;
+  }
+  @media all and (max-width: 380px) {
+    font-size: 12.8px;
+    border: 2px solid #7950f2;
   }
 `;
 

@@ -4,11 +4,13 @@ import mainSliderImg1 from '../../../images/mainSliderImg1.png';
 import mainSliderImg2 from '../../../images/mainSliderImg2.png';
 import back from '../../../images/back-icon.png';
 import forward from '../../../images/forward-icon.png';
-// import dot from '../../../images/jisik-dot.png';
 
 export const Section = styled.section`
   padding: 60px 0;
   background-color: #fff;
+  @media all and (max-width: 620px) {
+    padding: 40px 0;
+  }
 `;
 
 export const Wrap = styled.div`
@@ -17,6 +19,9 @@ export const Wrap = styled.div`
   max-width: 960px;
   margin: auto;
   padding: 0 30px;
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
+  }
 `;
 
 export const SliderWrap = styled.ul`
@@ -37,11 +42,11 @@ export const SliderWrap = styled.ul`
     transform: translateX(100%);
   }
 
-  &.selected-slide-index-1{
-    li:nth-child(1){
+  &.selected-slide-index-1 {
+    li:nth-child(1) {
       transform: translateX(-100%);
     }
-    li:nth-child(2){
+    li:nth-child(2) {
       transform: translateX(0);
     }
   }
@@ -50,7 +55,6 @@ export const SliderWrap = styled.ul`
 export const Slide = styled.li`
   width: 100%;
   transition: all 0.5s;
-  // background-color: skyblue;
 `;
 
 export const SlideCentent1 = styled.div`
@@ -121,7 +125,7 @@ export const SlideCentent1 = styled.div`
     }
   }
 
-  @media all and (max-width: 567px) {
+  @media all and (max-width: 620px) {
     background-image: url(${mainSliderImg1});
     background-repeat: no-repeat;
     background-size: auto 40%;
@@ -147,11 +151,12 @@ export const SlideCentent1 = styled.div`
 `;
 
 export const SlideCentent2 = styled.div`
-  padding-left: 40%;
+  padding-left: 45%;
   background-image: url(${mainSliderImg2});
   background-repeat: no-repeat;
   background-size: 55% auto;
   background-position: 0 90%;
+
   & > span {
     display: block;
     font-size: 25px;
@@ -166,6 +171,7 @@ export const SlideCentent2 = styled.div`
     margin-bottom: 25px;
   }
   & > h2 {
+    word-break: keep-all;
     font-size: 39.06px;
     color: #212529;
     font-weight: 500;
@@ -174,86 +180,40 @@ export const SlideCentent2 = styled.div`
   }
 
   @media all and (max-width: 940px) {
-    background-image: url(${mainSliderImg2});
-    background-repeat: no-repeat;
-    background-size: auto 60%;
-    background-position: 0 100%;
-    width: 100%;
-    & span {
-      font-size: 22px;
-    }
-    & h2 {
-      font-size: 35px;
-    }
-  }
-
-  @media all and (max-width: 808px) {
+    padding-left: 35%;
     background-image: url(${mainSliderImg2});
     background-repeat: no-repeat;
     background-size: auto 60%;
     background-position: 5% 100%;
-    width: 100%;
-
     & h3 {
       font-size: 25px;
     }
-  }
-
-  @media all and (max-width: 750px) {
-    background-image: url(${mainSliderImg2});
-    background-repeat: no-repeat;
-    background-size: auto 60%;
-    background-position: 0 100%;
-    width: 100%;
-    & span {
-      font-size: 20px;
-    }
     & h2 {
-      font-size: 30px;
-    }
-
-    & h3 {
-      font-size: 20px;
+      font-size: 31.25px;
     }
   }
 
-  @media all and (max-width: 651px) {
-    background-image: url(${mainSliderImg2});
-    background-repeat: no-repeat;
-    background-size: auto 55%;
-    background-position: 0 100%;
-    width: 100%;
-
-    & span {
-      font-size: 18px;
-    }
-
-    & h2 {
-      font-size: 25px;
-    }
-
-    & h3 {
-      font-size: 15px;
-    }
+  @media all and (max-width: 760px) {
+    padding-left: 20%;
   }
 
-  @media all and (max-width: 567px) {
+  @media all and (max-width: 620px) {
     background-image: url(${mainSliderImg2});
     background-repeat: no-repeat;
     background-size: auto 40%;
     background-position: 50% 65%;
     width: 100%;
-    padding: 0 0 0 0;
+    padding: 0;
+    text-align: center;
     & span {
-      text-align: center;
+      font-size: 20px;
     }
-
-    & h3 {
-      text-align: center;
-    }
-
     & h2 {
-      text-align: center;
+      font-size: 25px;
+    }
+    & h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
     }
   }
 `;
@@ -290,39 +250,31 @@ export const SlideBtnWrap = styled.div`
   @media all and (max-width: 940px) {
     width: 100%;
     display: flex;
+    gap: 15px;
     flex-direction: row;
     & a {
       font-size: 18px;
+      border-radius: 5px;
     }
   }
 
-  @media all and (max-width: 808px) {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    & a {
-      font-size: 12px;
-    }
-  }
-
-  @media all and (max-width: 628px) {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    & a {
-      font-size: 10px;
-    }
-  }
-
-  @media all and (max-width: 567px) {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+  @media all and (max-width: 620px) {
     justify-content: center;
-    gap: 7px;
     & a {
+      word-break: keep-all;
+      text-align: center;
+      line-height: 1.4;
+      font-size: 16px;
+      padding: 15px 25px;
+      margin-top: 80px;
+    }
+  }
+  @media all and (max-width: 480px) {
+    gap: 5px;
+    & a {
+      width: 100%;
       font-size: 12.8px;
-      margin-top: 150px;
+      padding: 15px 18px;
     }
   }
 `;
@@ -335,16 +287,17 @@ export const SliderButtonWrapper = styled.div`
 `;
 
 export const SliderButton = styled.button`
-    display: inline-block;
-    padding: 8px 8px;
-    border-radius: 10px;
-    transition: 0.3s;
-    margin-right: 5px;
-    margin-left: 5px;
+  display: inline-block;
+  padding: 8px 8px;
+  border-radius: 10px;
+  transition: 0.3s;
+  margin-right: 5px;
+  margin-left: 5px;
 
-    color: #343a40;
-    border: 0px solid #343a40;
-    background-color: #ced4da;
+  color: #343a40;
+  border: 0px solid #343a40;
+  background-color: #ced4da;
+
 
     &:hover{
       color: #fff;
@@ -354,11 +307,11 @@ export const SliderButton = styled.button`
       cursor: pointer;
     }
 
-    &.is-selected-true{
-      color: #fff;
-      border: 0px solid #7950f2;
-      background-color: #7950f2;
-    }
+  &.is-selected-true {
+    color: #fff;
+    border: 0px solid #7950f2;
+    background-color: #7950f2;
+  }
 `;
 
 export const InequalWrap = styled.div`
@@ -399,7 +352,7 @@ export const FowardIcon = styled.div`
   background-position: 50% 50%;
   margin-left: 100%;
   margin-top: -29%;
-  
+
   padding: 30px;
   cursor: pointer;
 

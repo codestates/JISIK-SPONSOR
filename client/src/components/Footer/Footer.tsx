@@ -33,7 +33,7 @@ const Footer = () => {
                   <span>나태웅</span>
                   <span>Front end</span>
                 </p>
-                <span>email@gmail.com</span>
+                <span>skqkstjr2@gmail.com</span>
               </MemberInfo>
             </MemberProfile>
             <MemberProfile>
@@ -45,7 +45,7 @@ const Footer = () => {
                   <span>박성진</span>
                   <span>Front end</span>
                 </p>
-                <span>email@gmail.com</span>
+                <span>blackdavil015@gmail.com</span>
               </MemberInfo>
             </MemberProfile>
             <MemberProfile>
@@ -57,7 +57,7 @@ const Footer = () => {
                   <span>조동현</span>
                   <span>Front end</span>
                 </p>
-                <span>email@gmail.com</span>
+                <span>donghyun7148@gmail.com</span>
               </MemberInfo>
             </MemberProfile>
             <MemberProfile>

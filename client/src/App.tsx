@@ -52,11 +52,10 @@ function App() {
         {},
         { withCredentials: true }
       );
+      history.push('/');
       dispatch(logout());
       localStorage.removeItem('root');
       setShowBox(false);
-
-      history.push('/');
     } catch (error) {
       console.log(error);
     }

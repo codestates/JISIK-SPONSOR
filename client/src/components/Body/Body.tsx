@@ -11,8 +11,11 @@ import Callback from 'pages/CallbackPage/Callback';
 import CallbackGoogle from 'pages/CallbackPage/CallbackGoogle';
 import StartProject from 'pages/StartProjectPage/StartProject';
 import { Route, Switch, Redirect } from 'react-router';
+import { useSelector } from 'react-redux';
+import { RootState } from 'index';
 
 const Body = () => {
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
   return (
     <main>
       <Switch>
@@ -35,13 +38,13 @@ const Body = () => {
           <FAQ />
         </Route>
         <Route path="/mypage">
-          <MyPage />
+          {isLogin ? <MyPage /> : <Redirect to="/" />}
         </Route>
         <Route path="/setting">
-          <Setting />
+          {isLogin ? <Setting /> : <Redirect to="/" />}
         </Route>
         <Route path="/start-project">
-          <StartProject />
+          {isLogin ? <StartProject /> : <Redirect to="/" />}
         </Route>
         <Route path="/start">
           <Start />

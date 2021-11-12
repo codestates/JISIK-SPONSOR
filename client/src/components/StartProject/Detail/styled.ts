@@ -139,6 +139,10 @@ export const ProjectTimeLine = styled(SubTitleCss)<FoucsProps>`
       display: none;
     }
   }
+
+  li:first-child {
+    margin-top: 0;
+  }
 `;
 
 export const TimeLineListContainer = styled.ul`

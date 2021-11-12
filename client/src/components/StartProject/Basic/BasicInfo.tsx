@@ -268,14 +268,9 @@ function BasicInfo() {
           <div>
             <ul>
               {hashtag.map((tag, idx) => (
-                <li key={idx} className="tag">
-                  <span className="tag-title">{tag}</span>
-                  <span
-                    className="tag-close-icon"
-                    onClick={() => removeTags(idx)}
-                  >
-                    &times;
-                  </span>
+                <li key={idx}>
+                  <span>{tag}</span>
+                  <span onClick={() => removeTags(idx)}>&times;</span>
                 </li>
               ))}
             </ul>

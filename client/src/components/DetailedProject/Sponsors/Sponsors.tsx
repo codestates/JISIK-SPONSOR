@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { RootState } from 'index';
 import { SponsorsWrapper, SponsorTitle, SponsorsList } from './styled';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import { RootObject } from './type';
-
 import HeartIcon from '../../../images/project-heart.png';
+import Sponsor from './Sponsor';
 
 interface SponsorsProps {
   setSponsorIds: any;
@@ -23,6 +23,7 @@ const Sponsors = ({ setSponsorIds }: SponsorsProps) => {
   const url = `${REACT_APP_API_URL}/projects/${projectId}/sponsors`;
   const config = { withCredentials: true };
 
+  // 모든 스폰서 목록과 수를 불러오는 함수
   const getSponsors = async () => {
     try {
       const response = await axios.get<RootObject>(url, config);
@@ -34,17 +35,20 @@ const Sponsors = ({ setSponsorIds }: SponsorsProps) => {
     }
   };
 
+  //최초 렌더링시 스폰서 목록과 수를 불러옴
+  useEffect(() => {
+    getSponsors();
+  }, []);
+
+  //스폰서ID가 변경되면 setState함수를 재실행
   useEffect(() => {
     setSponsorIds(sponsorUserId);
   }, [sponsorUserId]);
 
+  //스폰서의 정보에서 유저 아이디만 추출해서 setState함수에 할당
   useEffect(() => {
     setSponsorUserId(sponsors.map((el: any) => el.user_id));
   }, [sponsors]);
-
-  useEffect(() => {
-    getSponsors();
-  }, []);
 
   return (
     <SponsorsWrapper>
@@ -57,14 +61,7 @@ const Sponsors = ({ setSponsorIds }: SponsorsProps) => {
       </SponsorTitle>
       <SponsorsList>
         {sponsors.map((sponsor: any) => {
-          return (
-            <li key={sponsor.id}>
-              <img
-                src={`https://jisiksponsor.com${sponsor.user.profile_url}`}
-                alt={sponsor.user.nickname}
-              />
-            </li>
-          );
+          return <Sponsor key={sponsor.id} sponsor={sponsor} />;
         })}
       </SponsorsList>
     </SponsorsWrapper>

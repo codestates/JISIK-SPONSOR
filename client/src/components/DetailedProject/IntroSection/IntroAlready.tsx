@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
-  MainContent,
-  ProjectTitle,
+  Section,
   ProjectWrapper,
+  ProjectTitle,
+  MainContent,
+  LeftWrap,
+  RightWrap,
   Funding,
   AlreadyButton,
-  SubContentAlready
+  SubContentAlready,
+  Notice
 } from './styled';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -34,7 +38,6 @@ const IntroAlready = () => {
   const config = { withCredentials: true };
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
-
   const percentage = Number((pledged / goal).toFixed(2)) * 100;
 
   //금액 숫자에 3단위로 콤마를 추가해주는 함수
@@ -68,13 +71,12 @@ const IntroAlready = () => {
 
       const { name } = category;
 
-      console.log(response);
-
       // 디데이 계산
       let today = new Date();
       let endDate = new Date(end_date);
       let gap = endDate.getTime() - today.getTime();
       let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
+      if (dDay <= 0) dDay = 0;
 
       setTitle(title);
       setDescription(description);
@@ -100,7 +102,6 @@ const IntroAlready = () => {
       console.log(err);
     }
   };
-  // console.log(getTags);
 
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
@@ -109,49 +110,55 @@ const IntroAlready = () => {
   }, []);
 
   return (
-    <ProjectWrapper>
-      <IntroTitle
-        isLogin={isLogin}
-        projectId={projectId}
-        categoryId={categoryId}
-        category={category}
-      />
-      <ProjectTitle>
-        <h1>{title}</h1>
-        <span>{description}</span>
-      </ProjectTitle>
-      <MainContent>
-        <img src={Wormhole} alt="wormhole" />
-        <SubContentAlready>
-          <p>{pledgedWithCommas}원</p>
-          <p>달성금액</p>
-          <Line
-            percent={percentage}
-            strokeWidth={4}
-            trailWidth={4}
-            strokeColor="#0CBD7E"
-          />
-          <Funding>
-            <p>
-              <span>{percentage}%</span>
-              <span>{goalWithCommas}원</span>
-              <span>{dDay}일</span>
-            </p>
-            <p>
-              <span>완료율</span>
-              <span>목표액</span>
-              <span>남은기간</span>
-            </p>
-          </Funding>
-          <AlreadyButton>프로젝트 후원완료</AlreadyButton>
-          <div>
-            * 본 프로젝트 후원하기 기능은 개발자 모드로써 &nbsp;&nbsp;결제하신
-            금액은 다음날 환불처리 됩니다.
-          </div>
-        </SubContentAlready>
-      </MainContent>
-      <IntroTag tags={tags} noDisplay={true} />
-    </ProjectWrapper>
+    <Section>
+      <ProjectWrapper>
+        <IntroTitle
+          isLogin={isLogin}
+          projectId={projectId}
+          categoryId={categoryId}
+          category={category}
+        />
+        <ProjectTitle>
+          <h1>{title}</h1>
+          <span>{description}</span>
+        </ProjectTitle>
+        <MainContent>
+          <LeftWrap>
+            <img src={Wormhole} alt="wormhole" />
+            <IntroTag tags={tags} />
+          </LeftWrap>
+          <RightWrap>
+            <SubContentAlready>
+              <p>{pledgedWithCommas}원</p>
+              <p>달성금액</p>
+              <Line
+                percent={percentage}
+                strokeWidth={4}
+                trailWidth={4}
+                strokeColor="#0CBD7E"
+              />
+              <Funding>
+                <p>
+                  <span>{percentage}%</span>
+                  <span>{goalWithCommas}원</span>
+                  <span>{dDay}일</span>
+                </p>
+                <p>
+                  <span>완료율</span>
+                  <span>목표액</span>
+                  <span>남은기간</span>
+                </p>
+              </Funding>
+              <AlreadyButton>프로젝트 후원완료</AlreadyButton>
+            </SubContentAlready>
+            <Notice noDisplay={false}>
+              * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
+              다음날 환불처리 됩니다.
+            </Notice>
+          </RightWrap>
+        </MainContent>
+      </ProjectWrapper>
+    </Section>
   );
 };
 

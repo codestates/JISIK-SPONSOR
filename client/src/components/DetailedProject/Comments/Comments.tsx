@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { CommentWrapper, WriteContent, Button } from './styled';
-import { useSelector, useDispatch } from 'react-redux';
-import { REACT_APP_API_URL } from 'config';
-import CommentIcon from '../../../images/project-comment.png';
 import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { showLoginModal } from 'store/modal-slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { Section, CommentWrapper, WriteContent, Button } from './styled';
 import { RootState } from 'index';
 import { Comment, CommentType } from '../type';
-import { showLoginModal } from 'store/modal-slice';
+import { REACT_APP_API_URL } from 'config';
+import CommentIcon from '../../../images/project-comment.png';
 import CommentBox from './CommentBox';
 
 const Comments = ({ project, setProject }: any) => {
@@ -20,12 +20,13 @@ const Comments = ({ project, setProject }: any) => {
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
   const url = `${REACT_APP_API_URL}/projects/${projectId}/comments`;
-  const config = {
-    withCredentials: true
-  };
+  const config = { withCredentials: true };
 
+  // 댓글의 상태가 바뀔때마다 boolean값을 재설정
   useEffect(() => {
-    setShowBoxArr(Array(comment.length).fill(false));
+    return () => {
+      setShowBoxArr(Array(comment.length).fill(false));
+    };
   }, [comment]);
 
   // 최초 렌더링 시 모든 댓글을 불러오는 함수 한번 실행
@@ -57,7 +58,6 @@ const Comments = ({ project, setProject }: any) => {
           { content: newComment },
           config
         );
-        console.log(newCommentId);
 
         setProject({ ...project, comments: project.comments + 1 });
 
@@ -65,7 +65,6 @@ const Comments = ({ project, setProject }: any) => {
           const newlyCreatedComments = await axios.get<CommentType>(
             `${REACT_APP_API_URL}/projects/${projectId}/comments`
           );
-          console.log(newlyCreatedComments);
           setComment(newlyCreatedComments.data.comments);
         }
       }
@@ -80,6 +79,7 @@ const Comments = ({ project, setProject }: any) => {
     setNewComment(e.currentTarget.value);
   };
 
+  // 선택한 특정 댓글만 true값으로 바꿔주는 함수
   const setCommentHandler = (e: any) => {
     const current = Number(e.target.parentNode.parentNode.parentNode.id);
 
@@ -91,53 +91,58 @@ const Comments = ({ project, setProject }: any) => {
     setShowBoxArr(newShowBoxArr);
   };
 
+  // 댓글 배열을 초기화 시켜주는 함수
   const showBoxClear = () => {
     setShowBoxArr(Array(comment.length).fill(false));
   };
 
   return (
-    <CommentWrapper>
-      <WriteContent>
-        <div>
-          <img src={CommentIcon} alt="comment-icon" />
-          <span>댓글</span>
-        </div>
-        <div>
-          <textarea
-            placeholder="댓글을 입력하세요."
-            onChange={(e) => {
-              handleInputValue(e);
-            }}
-            value={newComment}
-          ></textarea>
-        </div>
-        <div>
-          <Button type="submit" onClick={addNewComment}>
-            댓글 쓰기
-          </Button>
-        </div>
-      </WriteContent>
-      {comment.map((item, index) => {
-        return (
-          <CommentBox
-            key={item.id}
-            identity={index}
-            id={item.id}
-            userId={item.user_id}
-            author={item.user.nickname}
-            date={item.created_at}
-            content={item.content}
-            setComment={setComment}
-            showBoxBool={showBoxArr[index]}
-            setProject={setProject}
-            project={project}
-            getComments={getComments}
-            setCommentHandler={setCommentHandler}
-            showBoxClear={showBoxClear}
-          />
-        );
-      })}
-    </CommentWrapper>
+    <Section>
+      <CommentWrapper>
+        <WriteContent>
+          <div>
+            <img src={CommentIcon} alt="comment-icon" />
+            <span>댓글</span>
+          </div>
+          <div>
+            <textarea
+              placeholder="댓글을 입력하세요."
+              onChange={(e) => {
+                handleInputValue(e);
+              }}
+              value={newComment}
+            ></textarea>
+          </div>
+          <div>
+            <Button type="submit" onClick={addNewComment}>
+              댓글 쓰기
+            </Button>
+          </div>
+        </WriteContent>
+        {comment.map((item, index) => {
+          return (
+            <CommentBox
+              key={item.id}
+              identity={index}
+              id={item.id}
+              userId={item.user_id}
+              name={item.user.name}
+              profileUrl={item.user.profile_url}
+              author={item.user.nickname}
+              date={item.created_at}
+              content={item.content}
+              setComment={setComment}
+              showBoxBool={showBoxArr[index]}
+              setProject={setProject}
+              project={project}
+              getComments={getComments}
+              setCommentHandler={setCommentHandler}
+              showBoxClear={showBoxClear}
+            />
+          );
+        })}
+      </CommentWrapper>
+    </Section>
   );
 };
 
