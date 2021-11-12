@@ -177,7 +177,7 @@ export const NavButton = styled.button`
   color: #7950f2;
   background: #fff;
   border-radius: 5px;
-  border: 3px solid #7950f2;
+  border: 2px solid #7950f2;
   transition: all 0.3s;
   &:hover {
     color: #fff;
