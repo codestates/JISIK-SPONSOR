@@ -5,7 +5,6 @@ interface SearchHeaderProp {
 }
 
 export const HeaderTag = styled.header`
-  z-index: 5;
   position: relative;
   overflow: hidden;
   background: #fff;

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import { login } from 'store/login-slice';
-
+import { CallbackContainer } from './styled';
 function CallbackGoogle() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -31,7 +31,29 @@ function CallbackGoogle() {
         });
     }
   });
-  return <div>구글 로그인 중</div>;
+  return (
+    <CallbackContainer>
+      <p>
+        세상에 꼭 필요한 연구를 위한
+        <br />
+        크라우드 펀딩 플랫폼
+      </p>
+      <h1>
+        <span>J</span>
+        <span>I</span>
+        <span>S</span>
+        <span>I</span>
+        <span>K</span>
+        <span>S</span>
+        <span>P</span>
+        <span>O</span>
+        <span>N</span>
+        <span>S</span>
+        <span>O</span>
+        <span>R</span>
+      </h1>
+    </CallbackContainer>
+  );
 }
 
 export default CallbackGoogle;
