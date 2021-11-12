@@ -29,7 +29,7 @@ module.exports = {
         references: { model: 'categories', key: 'id' }
       },
       description: {
-        type: Sequelize.STRING(255)
+        type: Sequelize.TEXT
       },
       thumbnail_url: {
         type: Sequelize.STRING(255)

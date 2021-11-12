@@ -13,7 +13,7 @@ import { UserInfoProps } from 'store/userInfo-slice';
 import { getUserInfo } from 'store/userInfo-slice';
 
 import { REACT_APP_API_URL } from 'config';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 import { RootState } from 'index';
 import { Data, ProjectTeam, ProjectTeamMember } from './type';
 import axios from 'axios';
@@ -34,7 +34,7 @@ const DetailedProject = () => {
   const { id } = userInfo.userInfo;
 
   const detailTab = useSelector((state: RootState) => state.detailPage);
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
 
   //최초 렌더링 시 특정 프로젝트의 데이터를 불러오는 함수 실행
@@ -73,7 +73,7 @@ const DetailedProject = () => {
       dispatch(getProjectId(id));
     } catch (err) {
       console.log(err);
-      history.push('/404');
+      // history.push('/404');
     }
   };
 

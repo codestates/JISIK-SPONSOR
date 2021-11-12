@@ -15,7 +15,6 @@ import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-import Wormhole from '../../../images/wormhole.jpg';
 import { Data, Tags, Tag } from '../type';
 import { Line } from 'rc-progress';
 import { RootState } from 'index';
@@ -25,6 +24,7 @@ import IntroTag from './IntroTag';
 const IntroAlready = () => {
   const [projectId, setProjectId] = useState<number>(1);
   const [title, setTitle] = useState<string>('');
+  const [image, setImage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [goal, setGoal] = useState<number>(0);
   const [pledged, setPledged] = useState<number>(0);
@@ -61,6 +61,7 @@ const IntroAlready = () => {
       const {
         id,
         title,
+        thumbnail_url,
         description,
         category,
         goal,
@@ -79,6 +80,7 @@ const IntroAlready = () => {
       if (dDay <= 0) dDay = 0;
 
       setTitle(title);
+      setImage(thumbnail_url);
       setDescription(description);
       setProjectId(id);
       setCategory(name);
@@ -124,7 +126,9 @@ const IntroAlready = () => {
         </ProjectTitle>
         <MainContent>
           <LeftWrap>
-            <img src={Wormhole} alt="wormhole" />
+            <span>
+              <img src={'https://jisiksponsor.com' + image} />
+            </span>
             <IntroTag tags={tags} />
           </LeftWrap>
           <RightWrap>

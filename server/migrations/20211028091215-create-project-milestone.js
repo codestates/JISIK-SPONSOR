@@ -18,8 +18,7 @@ module.exports = {
         type: Sequelize.STRING(255)
       },
       goal_date: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: 'TIMESTAMP'
       },
       created_at: {
         allowNull: false,

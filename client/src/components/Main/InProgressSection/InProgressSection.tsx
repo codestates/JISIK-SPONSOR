@@ -12,7 +12,7 @@ const InProgressSection = () => {
 
   const getInProgressProjects = async () => {
     try {
-      const url = REACT_APP_API_URL + '/projects?sort=asc&limit=6';
+      const url = REACT_APP_API_URL + '/projects?status=inprogress&limit=6';
       const response = await axios.get<Data>(url, { withCredentials: true });
       setInProgressProjects(response.data.projects.rows);
     } catch (err) {

@@ -38,7 +38,7 @@ export const ImageWrap = styled.div<ThumbnailProp>`
   height: 165px;
   background-image: ${(props) =>
     props.thumbnail
-      ? `url(${REACT_APP_API_URL + props.thumbnail})`
+      ? `url(${'https://jisiksponsor.com' + props.thumbnail})`
       : `url(${postcardimg})`};
   background-repeat: no-repeat;
   background-size: cover;

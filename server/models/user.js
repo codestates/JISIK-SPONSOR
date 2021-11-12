@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255)
       },
       bio: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.TEXT
       },
       profile_url: {
         type: DataTypes.STRING(255)

@@ -79,10 +79,16 @@ export const MainContent = styled.div`
 export const LeftWrap = styled.div`
   width: 70%;
   padding-right: 30px;
-  img {
+  > span {
+    display: block;
     width: 100%;
+    max-height: 500px;
+    overflow: hidden;
     margin-bottom: 20px;
     border-radius: 5px;
+  }
+  img {
+    width: 100%;
   }
   @media all and (max-width: 900px) {
     width: 100%;

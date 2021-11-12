@@ -29,7 +29,7 @@ module.exports = {
         type: Sequelize.STRING(255)
       },
       bio: {
-        type: Sequelize.STRING(255)
+        type: Sequelize.TEXT
       },
       profile_url: {
         type: Sequelize.STRING(255)

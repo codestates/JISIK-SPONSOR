@@ -28,8 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255)
       },
       goal_date: {
-        allowNull: false,
-        type: DataTypes.DATE
+        type: 'TIMESTAMP'
       },
       created_at: {
         allowNull: false,
