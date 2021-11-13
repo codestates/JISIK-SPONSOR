@@ -89,6 +89,7 @@ function TeamInfo() {
   const [isVaild, setIsVaild] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setTeamText({
       teamName: projects.project_teams[0].team_name || '',
       teamIntro: projects.project_teams[0].team_description || '',

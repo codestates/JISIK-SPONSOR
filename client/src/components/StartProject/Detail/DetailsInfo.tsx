@@ -21,6 +21,7 @@ import {
   AddTimeLineButton,
   TimeLineListContainer
 } from './styled';
+import { team } from 'store/startPageBt-slice';
 import DetailAddItems from './DetailAddItems';
 import DetailItems from './DetailItems';
 import { showMiniMoal, insertText } from 'store/modal-slice';
@@ -87,6 +88,7 @@ function DetailsInfo() {
   const [isVaild, setIsVaild] = useState<boolean>(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const {
       project_background,
       project_goals,
@@ -193,6 +195,7 @@ function DetailsInfo() {
         withCredentials: true
       }
     );
+    dispatch(team());
     dispatch(showMiniMoal(true));
     dispatch(insertText('저장되었습니다.'));
   };

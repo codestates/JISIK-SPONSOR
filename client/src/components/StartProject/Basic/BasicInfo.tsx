@@ -18,7 +18,7 @@ import {
   CustomSelect,
   ProjectSelectIma
 } from './styled';
-
+import { budget } from 'store/startPageBt-slice';
 import Category from './Category';
 import coverImg from 'images/icons/cover-image.png';
 import { useState } from 'react';
@@ -57,7 +57,8 @@ function BasicInfo() {
   const HashTagArr = useSelector((state: RootState) => state.hashtag.hashTag);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const { projects } = useSelector((state: RootState) => state.project);
-
+  const test = useSelector((state: RootState) => state.page);
+  console.log('test', test);
   const [tagInput, setTagInput] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [showMemo, setShowMemo] = useState<BasicMemoProps>({
@@ -191,6 +192,7 @@ function BasicInfo() {
         withCredentials: true
       }
     );
+    dispatch(budget());
     dispatch(showMiniMoal(true));
     dispatch(insertText('저장되었습니다.'));
   };
