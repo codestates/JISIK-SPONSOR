@@ -21,7 +21,6 @@ function Callback() {
           { withCredentials: true }
         )
         .then((res) => {
-          console.log('res', res);
           dispatch(login());
           history.push('/');
         })

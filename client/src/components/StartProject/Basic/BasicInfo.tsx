@@ -57,8 +57,6 @@ function BasicInfo() {
   const HashTagArr = useSelector((state: RootState) => state.hashtag.hashTag);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const { projects } = useSelector((state: RootState) => state.project);
-  const test = useSelector((state: RootState) => state.page);
-  console.log('test', test);
   const [tagInput, setTagInput] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [showMemo, setShowMemo] = useState<BasicMemoProps>({
