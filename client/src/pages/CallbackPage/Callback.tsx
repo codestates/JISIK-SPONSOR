@@ -20,7 +20,9 @@ function Callback() {
           { authorizationCode },
           { withCredentials: true }
         )
+
         .then(() => {
+
           dispatch(login());
           history.push('/');
         })

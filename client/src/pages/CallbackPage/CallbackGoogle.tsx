@@ -20,7 +20,9 @@ function CallbackGoogle() {
           { authorizationCode },
           { withCredentials: true }
         )
+
         .then(() => {
+
           dispatch(login());
           history.push('/');
         })
