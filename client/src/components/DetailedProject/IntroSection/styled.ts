@@ -104,14 +104,21 @@ export const LeftWrap = styled.div`
   }
   img {
     width: 100%;
+    height: auto;
     min-height: 100%;
   }
   @media all and (max-width: 900px) {
     width: 100%;
     padding: 0;
     margin-bottom: 20px;
+  }
+  @media all and (max-width: 620px) {
+    > span {
+      height: auto;
+      max-height: 300px;
+    }
     img {
-      margin-bottom: 10px;
+      min-height: auto;
     }
   }
 `;
