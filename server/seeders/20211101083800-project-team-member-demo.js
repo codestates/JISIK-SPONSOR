@@ -7,97 +7,97 @@ module.exports = {
         project_id: 2,
         project_team_id: 2,
         name: '박철룡',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 2,
         project_team_id: 2,
         name: '김준성',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 2,
         project_team_id: 2,
         name: '이마리아',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 4,
         project_team_id: 4,
         name: '박진철',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 4,
         project_team_id: 4,
         name: '홍순오',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 5,
         project_team_id: 5,
         name: '하종찬',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 5,
         project_team_id: 5,
         name: '김남철',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 5,
         project_team_id: 5,
         name: '백은산',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 8,
         project_team_id: 8,
         name: '신미영',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 8,
         project_team_id: 8,
         name: '강수종',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 8,
         project_team_id: 8,
         name: '정병철',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 19,
         project_team_id: 19,
         name: '최구종',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 19,
         project_team_id: 19,
         name: '강한나',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 20,
         project_team_id: 20,
         name: '강수아',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 20,
         project_team_id: 20,
         name: '최수종',
-        bio: ''
+        bio: '연구원'
       },
       {
         project_id: 20,
         project_team_id: 20,
         name: '김민철',
-        bio: ''
+        bio: '연구원'
       }
     ]);
   },

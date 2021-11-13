@@ -12,6 +12,7 @@ export const Section = styled.section`
 export const Wrap = styled.div`
   position: relative;
   width: 100%;
+  text-align: center;
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;

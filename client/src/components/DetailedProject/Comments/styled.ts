@@ -140,7 +140,7 @@ export const CommentModiBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background: #fff;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -161,7 +161,6 @@ export const CommentModiBox = styled.div`
 
 export const ModiBox = styled.div`
   display: flex;
-  /* flex-direction: flex-start; */
   justify-content: flex-start;
   margin-left: 60px;
 `;
@@ -189,5 +188,13 @@ export const ModiButton = styled.button`
   border-radius: 3px;
   cursor: pointer;
   border: 1px solid #eee;
-  background-color: #fff;
+  background: #fff;
+`;
+
+export const EmptyBox = styled.div`
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.4;
+  color: #343a40;
+  font-weight: 500;
 `;

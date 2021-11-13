@@ -18,6 +18,11 @@ const StartProject = () => {
     (state: RootState) => state.page
   );
   const projectId = useSelector((state: RootState) => state.projectSt.id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     axios
       .get<BasicObject>(`${REACT_APP_API_URL}/projects/${projectId}`, {
@@ -30,6 +35,7 @@ const StartProject = () => {
         }
       });
   }, [basic, budget, details, team]);
+
   return (
     <>
       <Nav />

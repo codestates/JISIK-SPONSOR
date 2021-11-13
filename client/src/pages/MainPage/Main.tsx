@@ -7,6 +7,8 @@ import ServiceSection from '../../components/Main/ServiceSection/ServiceSection'
 import ReviewSection from '../../components/Main/ReviewSection/ReviewSection';
 import AchievedSection from '../../components/Main/AchievedSection/AchievedSection';
 import StartProjectSection from '../../components/Main/StartProjectSection/StartProjectSection';
+import { GoTopButton } from './styled';
+import TopButton from '../../images/icons/gotop-icon.png';
 
 const Main = () => {
   useEffect(() => {
@@ -21,6 +23,9 @@ const Main = () => {
       <AchievedSection />
       <ReviewSection />
       <StartProjectSection />
+      <GoTopButton href="#">
+        <img src={TopButton} alt="Top-button" />
+      </GoTopButton>
     </div>
   );
 };

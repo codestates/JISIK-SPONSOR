@@ -25,7 +25,8 @@ const ProjectContent = ({ project }: ProjectProps) => {
     budget_items,
     project_milestones,
     budget_synopsis,
-    milestone_description
+    milestone_description,
+    researcher_word
   } = project;
 
   // 금액 숫자에 3단위로 콤마를 추가해주는 함수
@@ -58,7 +59,7 @@ const ProjectContent = ({ project }: ProjectProps) => {
           <ProjectHeader>
             <div>
               <img src={ProjectProgress} alt="" />
-              <h2>프로젝트 진행상황</h2>
+              <h2>연구의 중요성</h2>
             </div>
             <p>{project_progress}</p>
           </ProjectHeader>
@@ -119,13 +120,7 @@ const ProjectContent = ({ project }: ProjectProps) => {
       <ResearchWord>
         <div>
           <h2>연구자의 한 마디</h2>
-
-          <p>
-            “이번 연구는 저에게 있어 이러이러한 의미가 있는 연구로 지난 10여년
-            동안 준비해온 연구의 최종적인 것이라고 할 수 있겠습니다. 저의 연구에
-            많은 관심 부탁드리고 이것으로 인해 많은 사람들에게 도움이 되기를
-            바랍니다.”
-          </p>
+          <p>{researcher_word ? '"' + researcher_word + '"' : '""'}</p>
         </div>
       </ResearchWord>
     </>

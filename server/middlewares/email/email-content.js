@@ -267,5 +267,29 @@ module.exports = {
       html: compiledFunction(options)
     };
     return emailContent;
+  },
+  adminApprovalRequest: (emails, name, project) => {
+    // 모든 관리자에게 한번에 메일 전송
+    const title = `${name}님의 프로젝트 승인 요청이 있습니다.`;
+    const fileURL = path.join(
+      __dirname,
+      '../../templates/emails/admin-approval-request.pug'
+    );
+
+    const options = {
+      title,
+      name,
+      project,
+      resourceURL: process.env.RESOURCE_URL
+    };
+    const compiledFunction = pug.compileFile(fileURL);
+
+    const emailContent = {
+      from: '"지식스폰서" <staff@jisiksponsor.com>',
+      to: emails,
+      subject: `${name}님의 프로젝트 승인 요청이 있습니다.`,
+      html: compiledFunction(options)
+    };
+    return emailContent;
   }
 };

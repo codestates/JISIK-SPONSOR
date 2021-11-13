@@ -11,18 +11,17 @@ import { getProjectId } from 'store/projectState-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserInfoProps } from 'store/userInfo-slice';
 import { getUserInfo } from 'store/userInfo-slice';
-
 import { REACT_APP_API_URL } from 'config';
-// import { useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import { RootState } from 'index';
-import { Data, ProjectTeam, ProjectTeamMember } from './type';
+import { Data, ProjectTeamMember } from './type';
 import axios from 'axios';
 import IntroFinished from 'components/DetailedProject/IntroSection/IntroFinished';
 import IntroAlready from 'components/DetailedProject/IntroSection/IntroAlready';
 
 const DetailedProject = () => {
   const [project, setProject] = useState<any>({});
-  const [teams, setTeams] = useState<ProjectTeam[]>([]);
+  const [teams, setTeams] = useState<any>({});
   const [sponsorIds, setSponsorIds] = useState<number[]>([]);
   const [teamMember, setTeamMember] = useState<ProjectTeamMember[]>([]);
   const [isUserSponsor, setIsUserSponsor] = useState<boolean>(false);
@@ -34,7 +33,7 @@ const DetailedProject = () => {
   const { id } = userInfo.userInfo;
 
   const detailTab = useSelector((state: RootState) => state.detailPage);
-  // const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
 
   //최초 렌더링 시 특정 프로젝트의 데이터를 불러오는 함수 실행
@@ -68,12 +67,12 @@ const DetailedProject = () => {
       setAuthor(projects.author);
       setProject(projects);
       setStatus(status);
-      setTeams(projects.project_teams);
+      setTeams(projects.project_teams[0]);
       setTeamMember(projects.project_team_members);
       dispatch(getProjectId(id));
     } catch (err) {
       console.log(err);
-      // history.push('/404');
+      history.push('/404');
     }
   };
 
@@ -94,6 +93,7 @@ const DetailedProject = () => {
       {(!isLogin || (isLogin && !isUserSponsor)) && status === 'inprogress' && (
         <IntroNotYet />
       )}
+      {status === 'draft' && <IntroNotYet />}
       {status === 'achieved' && <IntroFinished />}
       {isLogin && isUserSponsor && status === 'inprogress' && <IntroAlready />}
       <TabButton project={project} />

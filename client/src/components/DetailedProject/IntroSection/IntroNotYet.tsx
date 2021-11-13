@@ -21,10 +21,12 @@ import { Line } from 'rc-progress';
 import { RootState } from 'index';
 import IntroTitle from './IntroTitle';
 import IntroTag from './IntroTag';
+import Temp from '../../../images/temp.png';
 
 const IntroNotYet = () => {
   const [projectId, setProjectId] = useState<number>(1);
   const [title, setTitle] = useState<string>('');
+  const [status, setStatus] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [goal, setGoal] = useState<number>(0);
@@ -45,7 +47,8 @@ const IntroNotYet = () => {
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
-  const percentage = Number((pledged / goal).toFixed(2)) * 100;
+  let percentage = Number((pledged / goal).toFixed(2)) * 100;
+  if (isNaN(percentage)) percentage = 0;
 
   // 후원 시 금액 및 전화번호 유효성 검사
   const enteredFundIsValid = enteredFund.trim() !== '';
@@ -75,6 +78,7 @@ const IntroNotYet = () => {
       const {
         id,
         title,
+        status,
         thumbnail_url,
         description,
         category,
@@ -91,8 +95,10 @@ const IntroNotYet = () => {
       let endDate = new Date(end_date);
       let gap = endDate.getTime() - today.getTime();
       let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
+      if (dDay <= 0) dDay = 0;
 
       setTitle(title);
+      setStatus(status);
       setImage(thumbnail_url);
       setDescription(description);
       setProjectId(id);
@@ -117,12 +123,6 @@ const IntroNotYet = () => {
       console.log(err);
     }
   };
-
-  // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
-  useEffect(() => {
-    getProjects();
-    getTags();
-  }, []);
 
   // 후원금액의 인풋을 받아오는 함수
   const handleFundInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -165,6 +165,12 @@ const IntroNotYet = () => {
     setEnteredNumTouched(true);
   };
 
+  // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
+  useEffect(() => {
+    getProjects();
+    getTags();
+  }, []);
+
   return (
     <Section>
       <ProjectWrapper>
@@ -181,7 +187,7 @@ const IntroNotYet = () => {
         <MainContent>
           <LeftWrap>
             <span>
-              <img src={'https://jisiksponsor.com' + image} />
+              <img src={image ? 'https://jisiksponsor.com' + image : Temp} />
             </span>
             <IntroTag tags={tags} />
           </LeftWrap>
@@ -207,44 +213,50 @@ const IntroNotYet = () => {
                   <span>남은기간</span>
                 </p>
               </Funding>
-              <FundInput>
-                <div>
-                  <span>후원금액</span>
-                  <input
-                    type="number"
-                    placeholder="후원금액을 입력해주세요."
-                    onChange={handleFundInput}
-                    onBlur={fundBlurHandler}
+              {status !== 'draft' && (
+                <>
+                  <FundInput>
+                    <div>
+                      <span>후원금액</span>
+                      <input
+                        type="number"
+                        placeholder="후원금액을 입력해주세요."
+                        onChange={handleFundInput}
+                        onBlur={fundBlurHandler}
+                      />
+                    </div>
+                    <div>
+                      <span>전화번호</span>
+                      <input
+                        type="number"
+                        placeholder="'-'를 제외하고 입력해주세요."
+                        onChange={handlePhoneNumInput}
+                        onBlur={numBlurHandler}
+                      />
+                    </div>
+                    {fundIsEmpty && <p>후원 금액을 입력해주세요.</p>}
+                    {(phoneNumInvalid || phoneNumIsEmpty) && (
+                      <p>
+                        전화번호를 입력하지 않았거나 유효하지 않은 전화번호
+                        형식입니다.
+                      </p>
+                    )}
+                  </FundInput>
+                  <PaymentButton
+                    projectId={projectId}
+                    title={title}
+                    enteredFund={enteredFund}
+                    enteredPhoneNum={enteredPhoneNum}
                   />
-                </div>
-                <div>
-                  <span>전화번호</span>
-                  <input
-                    type="number"
-                    placeholder="'-'를 제외하고 입력해주세요."
-                    onChange={handlePhoneNumInput}
-                    onBlur={numBlurHandler}
-                  />
-                </div>
-                {fundIsEmpty && <p>후원 금액을 입력해주세요.</p>}
-                {(phoneNumInvalid || phoneNumIsEmpty) && (
-                  <p>
-                    전화번호를 입력하지 않았거나 유효하지 않은 전화번호
-                    형식입니다.
-                  </p>
-                )}
-              </FundInput>
-              <PaymentButton
-                projectId={projectId}
-                title={title}
-                enteredFund={enteredFund}
-                enteredPhoneNum={enteredPhoneNum}
-              />
+                </>
+              )}
             </SubContent>
-            <Notice noDisplay={false}>
-              * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
-              다음날 환불처리 됩니다.
-            </Notice>
+            {status !== 'draft' && (
+              <Notice noDisplay={false}>
+                * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
+                다음날 환불처리 됩니다.
+              </Notice>
+            )}
           </RightWrap>
         </MainContent>
       </ProjectWrapper>

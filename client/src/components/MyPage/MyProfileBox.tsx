@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
-import Baksa from '../../images/baksa.png';
+import User from '../../images/user.png';
 import { RootState } from 'index';
+import { useState, useEffect } from 'react';
 
 const MyProfileBox = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [image, setImage] = useState<any>(User);
   const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
 
   const handleLogout = async () => {
@@ -35,17 +37,21 @@ const MyProfileBox = () => {
     history.push('/setting');
   };
 
+  useEffect(() => {
+    if (userInfo.profile_url) {
+      const http = userInfo.profile_url?.slice(0, 4);
+      if (http === 'http') {
+        setImage(userInfo.profile_url);
+      } else {
+        setImage('https://jisiksponsor.com' + userInfo.profile_url);
+      }
+    }
+  }, []);
+
   return (
     <MyprofileBox>
       <MyprofileBoxMini>
-        <img
-          src={
-            userInfo.profile_url
-              ? 'https://jisiksponsor.com' + userInfo.profile_url
-              : Baksa
-          }
-          alt="baksa image"
-        />
+        <img src={image} />
         <span>
           {userInfo.name}
           <small>({userInfo.nickname})</small>

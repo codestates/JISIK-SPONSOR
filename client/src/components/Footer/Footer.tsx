@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Jisik from '../../images/logo-gray.png';
-import User from '../../images/user.png';
+import GIthubIcon from '../../images/icons/github-icon.png';
 import Youtube from '../../images/youtube.png';
 import Github from '../../images/github.png';
 import Instagram from '../../images/instagram.png';
@@ -26,7 +26,7 @@ const Footer = () => {
           <MemberBox>
             <MemberProfile>
               <a href="https://github.com/LuckyTW">
-                <img src={User} alt="user-image" />
+                <img src={GIthubIcon} alt="user-image" />
               </a>
               <MemberInfo>
                 <p>
@@ -38,7 +38,7 @@ const Footer = () => {
             </MemberProfile>
             <MemberProfile>
               <a href="https://github.com/seongjinpark1">
-                <img src={User} alt="user-image" />
+                <img src={GIthubIcon} alt="user-image" />
               </a>
               <MemberInfo>
                 <p>
@@ -50,7 +50,7 @@ const Footer = () => {
             </MemberProfile>
             <MemberProfile>
               <a href="https://github.com/Built1994">
-                <img src={User} alt="user-image" />
+                <img src={GIthubIcon} alt="user-image" />
               </a>
               <MemberInfo>
                 <p>
@@ -62,7 +62,7 @@ const Footer = () => {
             </MemberProfile>
             <MemberProfile>
               <a href="https://github.com/hanamon">
-                <img src={User} alt="user-image" />
+                <img src={GIthubIcon} alt="user-image" />
               </a>
               <MemberInfo>
                 <p>

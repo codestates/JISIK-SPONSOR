@@ -268,6 +268,14 @@ module.exports = {
         signup_method: '일반',
         email_verified: true,
         profile_url: '/uploads/demo/user-20.png'
+      },
+      {
+        name: '나태웅',
+        email: 'skqkstjr2@gmail.com',
+        password: hash,
+        role_id: 1,
+        signup_method: '일반',
+        email_verified: true
       }
     ]);
   },

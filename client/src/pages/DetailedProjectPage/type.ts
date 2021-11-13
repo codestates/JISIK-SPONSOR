@@ -13,7 +13,7 @@ export interface ProjectTeam {
   id: number;
   team_name: string;
   team_description: string;
-  profile_url?: any;
+  profile_url: string;
 }
 
 export interface ProjectMilestone {

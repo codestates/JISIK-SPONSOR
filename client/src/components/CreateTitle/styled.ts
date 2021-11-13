@@ -73,6 +73,7 @@ export const InputWrap = styled.div`
   input {
     border: none;
     width: 100%;
+    background: none;
     max-width: 1200px;
     font-size: 25px;
     padding: 20px 30px;

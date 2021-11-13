@@ -31,7 +31,8 @@ const Postcard = ({ project }: Props) => {
   const startDate = new Date(project.start_date);
   const endDate = new Date(project.end_date);
   const gap = endDate.getTime() - startDate.getTime();
-  const dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
+  let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
+  if (endDate.getTime() > new Date().getTime()) dDay = 0;
 
   return (
     <Li>
