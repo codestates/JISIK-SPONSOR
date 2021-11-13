@@ -3,7 +3,7 @@ export interface UserInfo {
   name: string;
   email: string;
   mobile: string;
-  nickname: string;
+  nicknamez: string;
   bio: string;
   profile_url: string;
   signup_method: string;

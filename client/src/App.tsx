@@ -94,7 +94,7 @@ function App() {
         {showNoticeBox && (
           <NoticeMenuBox ref={NoticeMenuBoxRef}>
             <Link to="/">
-              <button>준비중입니다!</button>
+              <button>준비중입니다🛠</button>
             </Link>
           </NoticeMenuBox>
         )}

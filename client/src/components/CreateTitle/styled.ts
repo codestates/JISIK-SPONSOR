@@ -78,6 +78,7 @@ export const InputWrap = styled.div`
     padding: 20px 30px;
     border-radius: 5px 5px 0 0;
     border-bottom: 3px solid #343a40;
+    background: none;
   }
   button {
     display: block;

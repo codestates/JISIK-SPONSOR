@@ -57,7 +57,6 @@ function BasicInfo() {
   const HashTagArr = useSelector((state: RootState) => state.hashtag.hashTag);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const { projects } = useSelector((state: RootState) => state.project);
-  console.log('projects', projects);
   const [tagInput, setTagInput] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[]>([]);
   const [showMemo, setShowMemo] = useState<BasicMemoProps>({
@@ -147,8 +146,6 @@ function BasicInfo() {
     }
     const selectRemove = HashTagArr[removeIdx];
 
-    console.log('removeIdx', removeIdx);
-    console.log('selectRemove', selectRemove);
     axios.delete(
       `${REACT_APP_API_URL}/projects/${projectId}/tags/${selectRemove}`,
       {
@@ -180,8 +177,8 @@ function BasicInfo() {
 
   const handleSaveContent = async () => {
     const { title, simpleInpo } = basicInfo;
-    console.log('periodValue', periodValue);
-    const response = await axios.patch(
+
+    await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {
         title: title,
@@ -195,7 +192,6 @@ function BasicInfo() {
     );
     dispatch(showMiniMoal(true));
     dispatch(insertText('저장되었습니다.'));
-    console.log('프로젝트저장', response);
   };
   const handleCoverIma = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {

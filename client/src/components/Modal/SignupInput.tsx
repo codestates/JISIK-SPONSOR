@@ -194,7 +194,7 @@ const SignupInput = () => {
           onChange={handleInputValue('name')}
         />
         <ErrMsg className={nameErr === 'hidden' ? 'hidden' : 'errMsg'}>
-          <span>닉네임은 한글 두 글자 이상이어야 합니다.</span>
+          <span>이름은 최소 한글 두 글자 이상이어야 합니다.</span>
         </ErrMsg>
         <label htmlFor="email">이메일</label>
         <input

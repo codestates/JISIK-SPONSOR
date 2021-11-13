@@ -27,6 +27,7 @@ interface imageProps {
 function ProfileSetting() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
+  console.log(userInfo);
   const [profileContent, setProfileContent] = useState<profileProps>({
     name: '',
     bio: ''
@@ -49,6 +50,10 @@ function ProfileSetting() {
 
   useEffect(() => {
     setImgSrc(userInfo.profile_url);
+    setProfileContent({
+      name: userInfo.nickname || '',
+      bio: userInfo.bio || ''
+    });
   }, [userInfo]);
   const handleInput =
     (key: string) =>
@@ -75,10 +80,8 @@ function ProfileSetting() {
           withCredentials: true
         }
       );
-      setProfileContent({
-        ...profileContent,
-        name: ''
-      });
+      console.log('222', response);
+
       dispatch(showMiniMoal(true));
       dispatch(insertText('닉네임이 성공적으로 변경되었습니다.'));
       console.log('닉네임변경', response);
@@ -98,10 +101,7 @@ function ProfileSetting() {
         withCredentials: true
       }
     );
-    setProfileContent({
-      ...profileContent,
-      bio: ''
-    });
+
     dispatch(showMiniMoal(true));
     dispatch(insertText('자기소개가 성공적으로 변경되었습니다.'));
     console.log('자기소개', response);

@@ -64,17 +64,6 @@ export const FaqLiWapper = styled.li<showProps>`
       cursor: pointer;
     }
   }
-
-  @keyframes dropdown {
-    0% {
-      opacity: 0;
-      transform: translateY(-3px);
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 `;
 
 export const Answer = styled.p<showProps>`
@@ -94,4 +83,15 @@ export const Answer = styled.p<showProps>`
       animation-name: dropdown;
       animation-duration: 0.8s;
     `}
+
+  @keyframes dropdown {
+    0% {
+      opacity: 0;
+      transform: translateY(-3px);
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `;

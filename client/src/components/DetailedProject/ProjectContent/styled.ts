@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import researchBg from 'images/Group.png';
 export const Section = styled.section`
   width: 100%;
   background: #f8f9fa;
@@ -19,7 +19,7 @@ export const ProjectWrapper = styled.div`
 `;
 
 export const ResearchWord = styled.div`
-  background: #7e7a89;
+  background-image: url(${researchBg});
   padding: 60px 0;
   display: flex;
   justify-content: center;

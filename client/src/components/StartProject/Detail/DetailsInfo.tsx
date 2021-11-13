@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import { REACT_APP_API_URL } from 'config';
 import { RootState } from 'index';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
   ProjectBody,
@@ -23,6 +23,7 @@ import {
 } from './styled';
 import DetailAddItems from './DetailAddItems';
 import DetailItems from './DetailItems';
+import { showMiniMoal, insertText } from 'store/modal-slice';
 interface DetailMemoProps {
   motiveMemo: boolean;
   progressMemo: boolean;
@@ -54,6 +55,7 @@ interface projectDetailProps {
   id: number;
 }
 function DetailsInfo() {
+  const dispatch = useDispatch();
   const ulElement = useRef<HTMLUListElement>(null);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const { projects } = useSelector((state: RootState) => state.project);
@@ -178,7 +180,7 @@ function DetailsInfo() {
 
   const handleSaveContent = async () => {
     const { motive, progress, goal, timeLineDes } = detailContent;
-    const response = await axios.patch(
+    await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {
         background: motive,
@@ -191,7 +193,8 @@ function DetailsInfo() {
         withCredentials: true
       }
     );
-    console.log(response);
+    dispatch(showMiniMoal(true));
+    dispatch(insertText('저장되었습니다.'));
   };
 
   return (

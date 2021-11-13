@@ -9,17 +9,12 @@ interface faqProps {
 function FaqItem({ question, answer }: faqProps) {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
   return (
-    <FaqLiWapper
-      showAnswer={showAnswer}
-      className={showAnswer ? 'show' : 'hide'}
-    >
+    <FaqLiWapper showAnswer={showAnswer}>
       <div onClick={() => setShowAnswer(!showAnswer)}>
         <h3>{question}</h3>
         <img src={!showAnswer ? showArrow : hiedArrow} alt="질문온오프" />
       </div>
-      <Answer showAnswer={showAnswer} className={showAnswer ? 'show' : 'hide'}>
-        {answer}
-      </Answer>
+      <Answer showAnswer={showAnswer}>{answer}</Answer>
     </FaqLiWapper>
   );
 }
