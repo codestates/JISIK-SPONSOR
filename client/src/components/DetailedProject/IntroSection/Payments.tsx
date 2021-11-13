@@ -1,6 +1,7 @@
-import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
 import { StyledButton } from './styled';
+import { useHistory } from 'react-router';
+import { REACT_APP_API_URL } from 'config';
 
 interface PaymentProps {
   projectId: number;
@@ -15,6 +16,8 @@ const Payment = ({
   enteredFund,
   enteredPhoneNum
 }: PaymentProps) => {
+  const history = useHistory();
+
   const { IMP }: any = window;
   IMP.init('imp00267362');
 
@@ -48,7 +51,7 @@ const Payment = ({
       buyer_name: data.buyer_name, // (필수)
       buyer_tel: data.buyer_tel, // (필수)
       buyer_email: data.buyer_email, // (권장)
-      m_redirect_url: '/payments/complete/mobile'
+      m_redirect_url: 'https://api.jisiksponsor.com/payments/complete/mobile'
     };
 
     // requestPay 함수의 두번째 인자로 성공시, 실패 시 경우를 다르게 보여주는 콜백 함수
@@ -61,6 +64,7 @@ const Payment = ({
           const config = { withCredentials: true };
           await axios.post(url, data, config);
           alert('후원해주셔서 감사합니다.');
+          history.push('/mypage');
         } catch (err) {
           console.log(err);
         }

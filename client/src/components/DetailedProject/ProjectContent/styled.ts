@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Background from '../../../images/background.jpg';
 
 export const Section = styled.section`
   width: 100%;
@@ -19,32 +20,33 @@ export const ProjectWrapper = styled.div`
 `;
 
 export const ResearchWord = styled.div`
-  background: #7e7a89;
-  padding: 60px 0;
+  background: url(${Background});
   display: flex;
   justify-content: center;
   & > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 585px;
-    padding: 0 40px;
+    width: 100%;
+    padding: 60px 40px;
+    background: rgba(0, 0, 0, 0.3);
   }
 
   & > div > h2 {
     font-size: 31.25px;
-    font-weight: 700;
+    max-width: 585px;
+    font-weight: 600;
     line-height: 1.45em;
     color: #ffffff;
+    margin-bottom: 20px;
   }
 
   & > div > p {
     font-size: 20px;
-    font-weight: 500;
-    line-height: 1.6em;
+    max-width: 500px;
+    line-height: 1.8;
     color: #ffffff;
     word-break: keep-all;
-    margin-top: 20px;
     text-align: center;
   }
 `;
@@ -79,8 +81,7 @@ export const ProjectHeader = styled.div`
   & > p {
     font-size: 20px;
     max-width: 680px;
-    line-height: 1.4;
-    font-weight: 500;
+    line-height: 1.6;
     color: #495057;
   }
 
@@ -89,8 +90,9 @@ export const ProjectHeader = styled.div`
       font-size: 25px;
     }
     p {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 400;
+      line-height: 1.8;
     }
   }
 `;

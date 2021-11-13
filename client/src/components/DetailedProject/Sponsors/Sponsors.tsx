@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { RootState } from 'index';
-import { SponsorsWrapper, SponsorTitle, SponsorsList } from './styled';
+import {
+  SponsorsWrapper,
+  SponsorTitle,
+  SponsorsList,
+  EmptyBox
+} from './styled';
 import { useSelector } from 'react-redux';
 import { REACT_APP_API_URL } from 'config';
 import axios from 'axios';
@@ -59,11 +64,17 @@ const Sponsors = ({ setSponsorIds }: SponsorsProps) => {
         </div>
         <span>{count}명 후원</span>
       </SponsorTitle>
-      <SponsorsList>
-        {sponsors.map((sponsor: any) => {
-          return <Sponsor key={sponsor.id} sponsor={sponsor} />;
-        })}
-      </SponsorsList>
+      {sponsors.length ? (
+        <SponsorsList>
+          {sponsors.map((sponsor: any) => {
+            return <Sponsor key={sponsor.id} sponsor={sponsor} />;
+          })}
+        </SponsorsList>
+      ) : (
+        <EmptyBox>
+          <p>프로젝트의 첫 번 째 후원자가 되어주세요.</p>
+        </EmptyBox>
+      )}
     </SponsorsWrapper>
   );
 };

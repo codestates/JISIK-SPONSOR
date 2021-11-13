@@ -51,6 +51,10 @@ module.exports = {
         order = null;
       }
 
+      if (order === 'remainder' || order === 'end_date') {
+        status = 'inprogress';
+      }
+
       // 페이지네이션 : limit 의 기본 조회 값은 9 이다.
       if (isNaN(limit)) limit = 9;
       else {

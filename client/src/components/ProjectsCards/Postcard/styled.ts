@@ -1,7 +1,6 @@
 /*eslint-disable*/
 import styled from 'styled-components';
-import postcardimg from '../../../images/postcardimg.png';
-import { REACT_APP_API_URL } from '../../../config';
+import temp from '../../../images/temp.png';
 
 interface PercentProp {
   percent: number;
@@ -17,6 +16,7 @@ interface ThumbnailProp {
 
 export const Li = styled.li`
   border-radius: 10px;
+  text-align: left;
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@ export const ImageWrap = styled.div<ThumbnailProp>`
   background-image: ${(props) =>
     props.thumbnail
       ? `url(${'https://jisiksponsor.com' + props.thumbnail})`
-      : `url(${postcardimg})`};
+      : `url(${temp})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
@@ -86,10 +86,16 @@ export const TopInfo = styled.div<CategoryProp>`
   }
   & > h2 {
     font-size: 16px;
+    line-height: 20px;
+    height: 42px;
     color: #212529;
     font-weight: 600;
-    line-height: 140%;
     margin: 10px 0 15px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   & > p {
     font-size: 12.8px;

@@ -7,6 +7,7 @@ export const Section = styled.section`
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 60px;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
@@ -39,7 +40,6 @@ export const ProfileContent = styled.div`
   width: 100%;
   max-width: 600px;
   gap: 60px;
-  margin-bottom: 40px;
   word-break: keep-all;
 
   img {
@@ -67,6 +67,11 @@ export const ProfileContent = styled.div`
       color: #343a40;
       margin-bottom: 10px;
     }
+  }
+
+  h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
   }
 
   @media screen and (max-width: 620px) {
@@ -106,6 +111,11 @@ export const Team = styled.div`
     height: 120px;
     width: 120px;
     margin-right: 15px;
+  }
+
+  h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
   }
 
   span {

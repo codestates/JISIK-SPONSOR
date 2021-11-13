@@ -10,22 +10,18 @@ import { notUsed } from '../../store/headerSearch-slice';
 import { useHistory } from 'react-router-dom';
 import { Data, Row } from '../../components/ProjectsCards/type';
 import { REACT_APP_API_URL } from '../../config';
+import { GoTopButton } from './styled';
+import TopButton from '../../images/icons/gotop-icon.png';
 
 const Board = () => {
   const history: any = useHistory();
   const dispatch = useDispatch();
 
-  const locationCategoryState = history.location.state
-    ? history.location.state.category
-    : '';
-  const locationSearchState = history.location.state
-    ? history.location.state.search
-    : '';
   const searchContent = useSelector(
     (state: any) => state.searchContent.content
   );
 
-  const [searchText, setSearchText] = useState<string>('');
+  const [categoryName, setCategoryName] = useState<string>('전체');
   const [btnMessage, setBtnMessage] = useState<string>(''); // 경고 메세지
   const [projectTotal, setProjectTotal] = useState<number>(0); // 데이터베이스에 있는 프로젝트의 토탈
   const [btnClick, setBtnClick] = useState<boolean>(false); // 더보기 버튼 클릭 여부 => 스크롤과 경고 메세지와 연관
@@ -33,12 +29,12 @@ const Board = () => {
   const [projectLimit, setProjectLimit] = useState<number>(9); // 몇 개의  프로젝트를 가져올 수 있는지
   const [optionQuerys, setOptionQuerys] = useState({
     author: '',
-    categoryName: locationCategoryState,
+    categoryName: categoryName,
     offset: '1',
     limit: projectLimit, // 21 토탈 : 15
     order: '',
     sort: '',
-    search: searchText
+    search: ''
   });
 
   // GET AJAX (초기 한 번 실행 전체 포스트 조회)
@@ -147,7 +143,6 @@ const Board = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     getAllProjects();
-    if (!locationSearchState) dispatch(notUsed());
   }, []);
 
   // optionQuerys 변화 있을 시 리렌더링
@@ -157,30 +152,50 @@ const Board = () => {
 
   // 헤더 서치 변경 있을 시 리렌더링
   useEffect(() => {
-    setSearchText(searchContent);
+    if (history.location.state === undefined) {
+      dispatch(notUsed());
+    } else {
+      if (searchContent) {
+        setOptionQuerys({
+          ...optionQuerys,
+          search: searchContent
+        });
+      }
+    }
   }, [searchContent]);
 
-  // 서치 변경 있을 시 리랜더링
-  useEffect(() => {
-    setOptionQuerys({
-      ...optionQuerys,
-      search: searchText
-    });
-  }, [searchText]);
+  // window.addEventListener('scroll', () => {
+  //   const top = document.documentElement.scrollTop;
+  //   const scroller: any = document.querySelector('#scroller');
+  //   console.log(top);
+  //   console.log(scroller.offsetTop);
+  //   if (top + 300 > scroller.offsetTop) {
+  //     moreGetProjects();
+  //     console.log('ㅐㅐㅐㅐㅐ');
+  //   }
+  //   return;
+  // });
 
   return (
-    <div>
-      <CategorySection categoryQueryFn={categoryQueryFn} />
-      <SearchSection
-        seachQueryFn={seachQueryFn}
-        filterQueryFn={filterQueryFn}
-      />
-      <PostcardSection projects={allProjects} />
-      <MoreBtnSection
-        moreGetProjects={moreGetProjects}
-        btnMessage={btnMessage}
-      />
-    </div>
+    <>
+      <div>
+        <CategorySection categoryQueryFn={categoryQueryFn} />
+        <SearchSection
+          seachQueryFn={seachQueryFn}
+          filterQueryFn={filterQueryFn}
+        />
+        <PostcardSection projects={allProjects} />
+        <MoreBtnSection
+          moreGetProjects={moreGetProjects}
+          btnMessage={btnMessage}
+        />
+      </div>
+      <div id="scroller">
+        <GoTopButton href="#">
+          <img src={TopButton} alt="Top-button" />
+        </GoTopButton>
+      </div>
+    </>
   );
 };
 

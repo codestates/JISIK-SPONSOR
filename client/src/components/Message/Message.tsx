@@ -9,8 +9,10 @@ interface Props {
 const Message = ({ message }: Props) => {
   return (
     <Wrap>
-      <img src={empty} />
-      <p>{message}</p>
+      <div>
+        <img src={empty} />
+        <p>{message}</p>
+      </div>
     </Wrap>
   );
 };
