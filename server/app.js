@@ -27,11 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [
-      'http://localhost:3000',
-      process.env.CLIENT_ORIGIN,
-      process.env.CLIENT_ORIGIN_SUB
-    ],
+    origin: [process.env.CLIENT_ORIGIN, process.env.CLIENT_ORIGIN_SUB],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
   })

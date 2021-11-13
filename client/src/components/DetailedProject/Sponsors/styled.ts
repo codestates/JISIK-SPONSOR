@@ -56,3 +56,11 @@ export const SponsorsList = styled.ul`
     width: 100%;
   }
 `;
+
+export const EmptyBox = styled.div`
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.4;
+  color: #343a40;
+  font-weight: 500;
+`;

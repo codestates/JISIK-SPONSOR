@@ -10,6 +10,7 @@ export const Wrap = styled.div`
   position: relative;
   width: 100%;
   max-width: 960px;
+  text-align: center;
   margin: 0 auto;
   padding: 0 30px;
   @media all and (max-width: 620px) {

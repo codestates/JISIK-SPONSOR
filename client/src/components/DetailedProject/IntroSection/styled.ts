@@ -55,17 +55,20 @@ export const ProjectTitle = styled.div`
     font-weight: 500;
     line-height: 1.4;
     color: #212529;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
   }
   & > span {
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.6;
     color: #495057;
   }
   @media all and (max-width: 620px) {
     & > h1 {
       font-size: 31.25px;
+    }
+    & > span {
+      font-size: 16px;
     }
   }
 `;

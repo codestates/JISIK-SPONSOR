@@ -2,7 +2,13 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { showLoginModal } from 'store/modal-slice';
 import { useSelector, useDispatch } from 'react-redux';
-import { Section, CommentWrapper, WriteContent, Button } from './styled';
+import {
+  Section,
+  CommentWrapper,
+  WriteContent,
+  Button,
+  EmptyBox
+} from './styled';
 import { RootState } from 'index';
 import { Comment, CommentType } from '../type';
 import { REACT_APP_API_URL } from 'config';
@@ -119,28 +125,34 @@ const Comments = ({ project, setProject }: any) => {
             </Button>
           </div>
         </WriteContent>
-        {comment.map((item, index) => {
-          return (
-            <CommentBox
-              key={item.id}
-              identity={index}
-              id={item.id}
-              userId={item.user_id}
-              name={item.user.name}
-              profileUrl={item.user.profile_url}
-              author={item.user.nickname}
-              date={item.created_at}
-              content={item.content}
-              setComment={setComment}
-              showBoxBool={showBoxArr[index]}
-              setProject={setProject}
-              project={project}
-              getComments={getComments}
-              setCommentHandler={setCommentHandler}
-              showBoxClear={showBoxClear}
-            />
-          );
-        })}
+        {comment.length ? (
+          comment.map((item, index) => {
+            return (
+              <CommentBox
+                key={item.id}
+                identity={index}
+                id={item.id}
+                userId={item.user_id}
+                name={item.user.name}
+                profileUrl={item.user.profile_url}
+                author={item.user.nickname}
+                date={item.created_at}
+                content={item.content}
+                setComment={setComment}
+                showBoxBool={showBoxArr[index]}
+                setProject={setProject}
+                project={project}
+                getComments={getComments}
+                setCommentHandler={setCommentHandler}
+                showBoxClear={showBoxClear}
+              />
+            );
+          })
+        ) : (
+          <EmptyBox>
+            <p>프로젝트의 첫 번 째 댓글을 작성해주세요.</p>
+          </EmptyBox>
+        )}
       </CommentWrapper>
     </Section>
   );

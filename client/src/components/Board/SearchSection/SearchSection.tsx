@@ -14,6 +14,12 @@ const SearchSection = ({ seachQueryFn, filterQueryFn }: Props) => {
     setSearch(e.target.value);
   };
 
+  const searchClearHandle = (e: any) => {
+    if (e.key === 'Enter' || e.target.localName === 'button') {
+      setSearch('');
+    }
+  };
+
   return (
     <Section id="ButtonSection">
       <Wrap>
@@ -32,11 +38,21 @@ const SearchSection = ({ seachQueryFn, filterQueryFn }: Props) => {
         <SearchWrap>
           <input
             onChange={(e) => searchHandle(e)}
-            onKeyPress={(e) => seachQueryFn(e, search)}
+            onKeyPress={(e) => {
+              seachQueryFn(e, search);
+              searchClearHandle(e);
+            }}
             value={search}
             placeholder="검색어를 입력하세요."
           />
-          <button onClick={(e) => seachQueryFn(e, search)}>검색</button>
+          <button
+            onClick={(e) => {
+              seachQueryFn(e, search);
+              searchClearHandle(e);
+            }}
+          >
+            검색
+          </button>
         </SearchWrap>
       </Wrap>
     </Section>

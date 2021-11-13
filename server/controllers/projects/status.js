@@ -1,9 +1,10 @@
-const { project } = require('../../models');
+const { project, user } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
 const {
   projectSubmit,
   projectApprove,
-  projectReject
+  projectReject,
+  adminApprovalRequest
 } = require('../../middlewares/email/email-content');
 const emailSend = require('../../middlewares/email/email-send');
 
@@ -74,6 +75,20 @@ module.exports = {
           { status: 'submitted' },
           { where: { id: projectId } }
         );
+
+        // 관리자 이메일 찾기
+        const adminUsers = await user.findAll({ where: { role_id: 1 } });
+        const adminEmails = adminUsers.map((el) => {
+          return el.email;
+        });
+        // 관리자 이메일 전송
+        emailContent = adminApprovalRequest(
+          adminEmails,
+          userInfo.name,
+          projectInfo
+        );
+        emailSend(emailContent);
+
         // 이메일 전송
         emailContent = projectSubmit(
           userInfo.email,

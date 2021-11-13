@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { REACT_APP_API_URL } from 'config';
 import { FavState } from '../type';
 import { Category } from './styled';
@@ -30,20 +30,13 @@ const IntroTitle = ({
 }: IntroTitleProps) => {
   const [favorite, setFavorite] = useState<boolean>(false);
 
-  // 로그인이 되었있다면, 즐겨찾기 상태값을 불러옴
-  useEffect(() => {
-    if (isLogin) {
-      getFavoriteState();
-    }
-  }, []);
-
-  const WishesUrl = `${REACT_APP_API_URL}/projects/${projectId}/wishes`;
-  const config = { withCredentials: true };
-
   // 즐겨찾기의 상태를 불러오는 함수
   const getFavoriteState = async () => {
     try {
-      const response = await axios.get<FavState>(WishesUrl, config);
+      const response = await axios.get<FavState>(
+        `${REACT_APP_API_URL}/projects/${projectId}/wishes`,
+        { withCredentials: true }
+      );
       const state = response.data.state;
       setFavorite(state);
     } catch (err) {
@@ -55,16 +48,28 @@ const IntroTitle = ({
   const FavoriteHandler = async () => {
     try {
       if (!favorite) {
-        await axios.post(WishesUrl, {}, config);
+        await axios.post(
+          `${REACT_APP_API_URL}/projects/${projectId}/wishes`,
+          {},
+          { withCredentials: true }
+        );
         setFavorite(true);
       } else {
-        await axios.delete(WishesUrl, config);
+        await axios.delete(
+          `${REACT_APP_API_URL}/projects/${projectId}/wishes`,
+          { withCredentials: true }
+        );
         setFavorite(false);
       }
     } catch (err) {
       console.log(err);
     }
   };
+
+  // 로그인이 되었있다면, 즐겨찾기 상태값을 불러옴
+  useEffect(() => {
+    if (isLogin) getFavoriteState();
+  }, []);
 
   return (
     <Category>
@@ -79,14 +84,14 @@ const IntroTitle = ({
         {categoryId === 8 && <img src={CategoryIcon8} alt="category-icon" />}
         <span>{category}</span>
       </div>
-      {isLogin && !favorite && (
-        <button onClick={FavoriteHandler}>
-          <img src={WhiteStar} alt="yellow-star" />
-        </button>
-      )}
       {isLogin && favorite && (
         <button onClick={FavoriteHandler}>
           <img src={YellowStar} alt="yellow-star" />
+        </button>
+      )}
+      {isLogin && !favorite && (
+        <button onClick={FavoriteHandler}>
+          <img src={WhiteStar} alt="yellow-star" />
         </button>
       )}
     </Category>

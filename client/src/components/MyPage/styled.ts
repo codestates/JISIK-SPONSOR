@@ -125,6 +125,7 @@ export const MyInfoWrapper = styled.div`
   padding-left: 30px;
   @media all and (max-width: 1200px) {
     padding: 0;
+    text-align: center;
   }
 `;
 

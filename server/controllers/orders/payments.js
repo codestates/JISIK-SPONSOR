@@ -116,7 +116,8 @@ module.exports = {
        *
        */
 
-      const url = process.env.CLIENT_ORIGIN + '/' + projectInfo.path;
+      const url =
+        process.env.CLIENT_ORIGIN + '/detailed-project/' + projectInfo.path;
 
       // 이메일 전송
       const emailContent = sponsorSuccess(

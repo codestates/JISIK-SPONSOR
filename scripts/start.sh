@@ -4,6 +4,7 @@ cd /home/ubuntu/JISIK-SPONSOR/server
 export PORT_NUMVER=$(aws ssm get-parameters --region ap-northeast-2 --names PORT_NUMVER --query Parameters[0].Value | sed 's/"//g')
 export SERVER_ORIGIN=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_SERVER_ORIGIN --query Parameters[0].Value | sed 's/"//g')
 export CLIENT_ORIGIN=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_CLIENT_ORIGIN --query Parameters[0].Value | sed 's/"//g')
+export CLIENT_ORIGIN_SUB=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_CLIENT_ORIGIN_SUB --query Parameters[0].Value | sed 's/"//g')
 export RESOURCE_URL=$(aws ssm get-parameters --region ap-northeast-2 --names JISIK_RESOURCE_URL --query Parameters[0].Value | sed 's/"//g')
 
 export DATABASE_HOST=$(aws ssm get-parameters --region ap-northeast-2 --names DATABASE_HOST --query Parameters[0].Value | sed 's/"//g')
