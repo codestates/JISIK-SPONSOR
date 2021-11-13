@@ -16,6 +16,7 @@ import {
   TotalAmount,
   BudgetListContainer
 } from './styled';
+import { details } from 'store/startPageBt-slice';
 import { REACT_APP_API_URL } from 'config';
 import { RootState } from 'index';
 import BudgetItems from './BudgetItems';
@@ -70,6 +71,7 @@ function BudgetInfo() {
   const [isVaild, setIsVaild] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     let sum = 0;
     bringList.forEach(
       (list: BudgetListProps) => (sum = Number(list.amount) + sum)
@@ -170,6 +172,7 @@ function BudgetInfo() {
         withCredentials: true
       }
     );
+    dispatch(details());
     dispatch(showMiniMoal(true));
     dispatch(insertText('저장되었습니다.'));
   };
