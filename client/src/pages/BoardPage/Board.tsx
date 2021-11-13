@@ -21,7 +21,7 @@ const Board = () => {
     (state: any) => state.searchContent.content
   );
 
-  const [categoryName, setCategoryName] = useState<string>('전체');
+  const [categoryName, setCategoryName] = useState<string>(''); // 경고 메세지
   const [btnMessage, setBtnMessage] = useState<string>(''); // 경고 메세지
   const [projectTotal, setProjectTotal] = useState<number>(0); // 데이터베이스에 있는 프로젝트의 토탈
   const [btnClick, setBtnClick] = useState<boolean>(false); // 더보기 버튼 클릭 여부 => 스크롤과 경고 메세지와 연관
@@ -29,7 +29,7 @@ const Board = () => {
   const [projectLimit, setProjectLimit] = useState<number>(9); // 몇 개의  프로젝트를 가져올 수 있는지
   const [optionQuerys, setOptionQuerys] = useState({
     author: '',
-    categoryName: categoryName,
+    categoryName: '전체',
     offset: '1',
     limit: projectLimit, // 21 토탈 : 15
     order: '',
@@ -164,6 +164,17 @@ const Board = () => {
     }
   }, [searchContent]);
 
+  useEffect(() => {
+    if (history.location.state !== undefined) {
+      if (history.location.state.category) {
+        setOptionQuerys({
+          ...optionQuerys,
+          categoryName: history.location.state.category
+        });
+      }
+    }
+  }, [history.location]);
+
   // window.addEventListener('scroll', () => {
   //   const top = document.documentElement.scrollTop;
   //   const scroller: any = document.querySelector('#scroller');
@@ -171,7 +182,6 @@ const Board = () => {
   //   console.log(scroller.offsetTop);
   //   if (top + 300 > scroller.offsetTop) {
   //     moreGetProjects();
-  //     console.log('ㅐㅐㅐㅐㅐ');
   //   }
   //   return;
   // });

@@ -162,6 +162,11 @@ export const TimeLineListContainer = styled.ul`
         margin-top: 5px;
         height: 40px;
         width: 160px;
+        padding: 10px;
+        color: #495057;
+      }
+      > input:disabled {
+        color: #868e96;
       }
 
       > label {

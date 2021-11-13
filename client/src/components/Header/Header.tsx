@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { showLoginModal, showSignupModal } from 'store/modal-slice';
@@ -27,15 +27,30 @@ const Header = ({ showMenuBox, showNoticeMenuBox }: showProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
+  const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
+
   const [search, setSearch] = useState<string>('');
   const [searchHeader, setSearchHeader] = useState<boolean>(false);
-
-  const isLogin = useSelector((state: RootState) => state.login.isLogin);
+  const [userImg, setUserImg] = useState<string>(UserIcon);
 
   //검색어 인풋값을 받아오는 함수
   const searchHandle = (e: any) => {
     setSearch(e.target.value);
   };
+
+  useEffect(() => {
+    if (isLogin) {
+      if (userInfo.profile_url) {
+        const http = userInfo.profile_url.slice(0, 4);
+        if (http === 'http') {
+          setUserImg(userInfo.profile_url);
+        } else {
+          setUserImg('https://jisiksponsor.com' + userInfo.profile_url);
+        }
+      }
+    }
+  }, [userInfo]);
 
   //검색된 입력어로 보드 페이지로 이동하여 검색을 실행하는 함수
   const moveBoardPageFn = (e: any) => {
@@ -80,7 +95,7 @@ const Header = ({ showMenuBox, showNoticeMenuBox }: showProps) => {
                 className="noticeIcon"
               />
               <img
-                src={UserIcon}
+                src={userImg}
                 alt="mypage-icon"
                 onClick={showMenuBox}
                 className="userIcon"

@@ -8,12 +8,14 @@ import {
 // 닉네임 수정
 export const SettingNickName = styled(SubTitleCss)`
   > input {
-    border: 2px solid #e9ecef;
-    border-radius: 5px;
     width: 250px;
     height: 40px;
+    padding: 10px;
+    color: #495057;
     margin-top: 10px;
     margin-right: 15px;
+    border-radius: 5px;
+    border: 2px solid #e9ecef;
   }
   > p {
     font-size: 12px;
@@ -21,7 +23,7 @@ export const SettingNickName = styled(SubTitleCss)`
   }
 `;
 
-// 버튼 css   orange상속요망
+// 버튼 css orange상속요망
 export const ChangeButton = styled(AddButton)`
   width: 90px;
   margin-top: 10px;
@@ -50,13 +52,15 @@ export const SettingImg = styled(ProjectCoverImage)`
 export const SettingSelfIntroduction = styled(SubTitleCss)`
   > textarea {
     display: block;
-    resize: none;
-    background: #ffffff;
-    border: 2px solid #e9ecef;
-    border-radius: 5px;
-    margin-top: 10px;
     width: 560px;
     height: 100px;
+    padding: 10px;
+    resize: none;
+    color: #495057;
+    background: #fff;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 2px solid #e9ecef;
 
     @media screen and (max-width: 630px) {
       width: 100%;

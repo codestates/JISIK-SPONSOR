@@ -39,14 +39,15 @@ export const NavButtonGroup = styled.div`
 `;
 
 export const NavButton = styled.button<PageProps>`
-  width: 94px;
+  width: 100px;
   background: #fff;
-  border: 1px solid #ced4da;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.4em;
-  padding: 12px 0 12px 0;
+  color: #343a40;
+  padding: 15px 0;
   border-radius: 5px;
+  border: 1px solid #ced4da;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   ${(props) => (props.profiles || props.account) && selectButton}

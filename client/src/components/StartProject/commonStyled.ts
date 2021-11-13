@@ -23,13 +23,15 @@ export const Container = styled.main`
   max-width: 960px;
   margin: 0 auto;
   padding: 0 30px;
+  @media all and (max-width: 620px) {
+    padding: 0 15px;
+  }
 `;
 
 export const ProjectBody = styled.div`
   background: #fff;
   height: 100%;
   padding: 60px 0;
-
   > h2 {
     font-size: 25px;
     font-weight: 700;
@@ -42,6 +44,9 @@ export const ProjectBody = styled.div`
     line-height: 1.45em;
     color: ${({ theme }) => theme.colors.suppotWord};
     margin-top: 10px;
+  }
+  @media all and (max-width: 620px) {
+    padding: 30px 0;
   }
 `;
 
@@ -66,14 +71,18 @@ export const FocusMemo = styled.p`
 
 export const TextareaCss = styled.textarea`
   resize: none;
-  background: #ffffff;
-  border: 2px solid #e9ecef;
-  border-radius: 5px;
+  width: 100%;
+  max-width: 680px;
+  height: 150px;
+  padding: 20px;
+  color: #495057;
+  line-height: 1.8;
   margin-top: 10px;
-  width: 560px;
-  height: 100px;
-  @media screen and (max-width: 600px) {
-    width: 100%;
+  border-radius: 5px;
+  background: #fff;
+  border: 2px solid #e9ecef;
+  @media screen and (max-width: 620px) {
+    padding: 10px;
   }
 `;
 

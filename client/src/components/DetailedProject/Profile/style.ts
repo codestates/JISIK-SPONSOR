@@ -95,6 +95,7 @@ export const ProjectTeamTitle = styled.div`
     width: 40px;
     height: 40px;
     margin-right: 15px;
+    border-radius: 50%;
   }
   span {
     display: inline-block;
@@ -111,6 +112,7 @@ export const Team = styled.div`
     height: 120px;
     width: 120px;
     margin-right: 15px;
+    border-radius: 50%;
   }
 
   h4 {

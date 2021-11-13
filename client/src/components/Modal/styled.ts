@@ -157,9 +157,9 @@ export const ModalHead = styled.div`
       font-weight: 500;
       color: ${({ theme }) => theme.colors.violetWord};
       border: none;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.violetWord};
-      background: none;
       cursor: pointer;
+      background: none;
+      border-bottom: 1px solid ${({ theme }) => theme.colors.violetWord};
     }
   }
 `;
@@ -197,12 +197,18 @@ export const ModalWraaper = styled(ModalHead)`
 `;
 
 export const MiniModalContainer = styled(ModalContainer)`
-  top: 16%;
+  z-index: 999;
+  top: 50%;
   left: 50%;
-  width: auto;
+  width: 90%;
+  max-width: 500px;
   height: auto;
   padding: 40px 80px;
-  z-index: 999;
+  text-align: center;
+  word-break: keep-all;
+  @media all and (max-width: 620px) {
+    padding: 40px;
+  }
 `;
 
 export const MiniModalBack = styled(ModalBackup)`
@@ -210,13 +216,17 @@ export const MiniModalBack = styled(ModalBackup)`
 `;
 export const MiniModalText = styled(ModalWraaper)`
   > h2 {
+    width: 100%;
     font-size: 20px;
+    line-height: 1.4;
   }
 
   > button {
     width: auto;
     height: auto;
-    padding: 0 30px;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 5px 30px;
     margin-top: 20px;
   }
 `;
@@ -233,10 +243,9 @@ export const ModalBody = styled.div`
     color: #212529;
 
     > input {
-      border: 2px solid #e9ecef;
+      height: 40px;
       border-radius: 5px;
-      height: 35px;
-
+      border: 2px solid #e9ecef;
       &.invalid {
         border: 1px solid #dd584a;
         background-color: #fddddd;
@@ -269,19 +278,19 @@ export const ButtonGroup = styled.div`
 `;
 
 export const LoginButton = styled.button`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   width: 100%;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   font-size: 20px;
   font-weight: 700;
-  line-height: 1.4em;
-  padding: 15px 0 15px 0;
+  line-height: 1.4;
   color: #495057;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  cursor: pointer;
+  padding: 15px 0;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
   &:first-child {
     background: ${({ theme }) => theme.colors.violet};
@@ -365,16 +374,16 @@ export const CheckBoxConainter = styled.div`
 `;
 
 export const SignupButton = styled.button`
-  margin-top: 30px;
-  padding: 20px 0 20px 0;
+  cursor: pointer;
   width: 100%;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   font-size: 20px;
   font-weight: 700;
-  line-height: 1.4em;
+  line-height: 1.4;
   color: #fff;
-  background: ${({ theme }) => theme.colors.violet};
+  padding: 20px 0;
+  margin-top: 30px;
+  border-radius: 5px;
   border: 1px solid #7950f2;
-  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.colors.violet};
 `;

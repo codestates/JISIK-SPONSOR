@@ -60,6 +60,8 @@ const CommentBox = ({
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
   const userInfo = useSelector((state: RootState) => state.userInfo);
 
+  console.log(project);
+
   const menuBox = useRef<HTMLInputElement>(null);
   const { id: userInfoId } = userInfo.userInfo;
   const { user_id: projectUserId } = project;
@@ -151,6 +153,10 @@ const CommentBox = ({
 
   useEffect(() => {
     if (profileUrl) {
+      const http = profileUrl.slice(0, 4);
+      if (http === 'http') {
+        setProfile(profileUrl);
+      }
       setProfile('https://jisiksponsor.com' + profileUrl);
     } else {
       setProfile(UserIcon);

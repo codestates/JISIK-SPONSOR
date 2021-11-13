@@ -272,7 +272,7 @@ function TeamInfo() {
                 <input
                   type="text"
                   onChange={handleInput('name')}
-                  placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
+                  placeholder="팀원 이름"
                   value={teamContent.name}
                 />
               </div>
@@ -281,7 +281,7 @@ function TeamInfo() {
                 <input
                   type="text"
                   onChange={handleInput('bio')}
-                  placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
+                  placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다."
                   value={teamContent.bio}
                 />
               </div>

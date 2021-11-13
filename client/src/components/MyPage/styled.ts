@@ -37,6 +37,8 @@ export const MyprofileBoxMini = styled.div`
     height: 100px;
     width: 100px;
     margin-bottom: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
   }
 
   span {
@@ -48,7 +50,9 @@ export const MyprofileBoxMini = styled.div`
   }
 
   small {
+    display: block;
     font-size: 16px;
+    line-height: 1.6;
   }
 
   p {

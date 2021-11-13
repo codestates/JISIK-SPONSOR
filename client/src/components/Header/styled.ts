@@ -76,14 +76,19 @@ export const NavbarL = styled.div`
 
 export const NavbarR = styled.div`
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   align-items: center;
+  text-align: right;
   gap: 10px;
   img {
     width: 32px;
     height: 32px;
     margin-right: 10px;
     cursor: pointer;
+  }
+  img.userIcon {
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+    border-radius: 50%;
   }
   @media all and (max-width: 1200px) {
     img {
