@@ -22,7 +22,6 @@ function CallbackGoogle() {
         )
 
         .then(() => {
-
           dispatch(login());
           history.push('/');
         })

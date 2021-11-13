@@ -100,7 +100,7 @@ export const TopInfo = styled.div<CategoryProp>`
   & > p {
     font-size: 12.8px;
     line-height: 18px;
-    height: 38px;
+    height: 36px;
     color: #868e96;
     text-overflow: ellipsis;
     overflow: hidden;

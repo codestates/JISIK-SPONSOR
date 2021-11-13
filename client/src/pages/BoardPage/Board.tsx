@@ -21,7 +21,6 @@ const Board = () => {
     (state: any) => state.searchContent.content
   );
 
-  const [categoryName, setCategoryName] = useState<string>(''); // 경고 메세지
   const [btnMessage, setBtnMessage] = useState<string>(''); // 경고 메세지
   const [projectTotal, setProjectTotal] = useState<number>(0); // 데이터베이스에 있는 프로젝트의 토탈
   const [btnClick, setBtnClick] = useState<boolean>(false); // 더보기 버튼 클릭 여부 => 스크롤과 경고 메세지와 연관
@@ -109,6 +108,7 @@ const Board = () => {
   // 검색 헨들러
   const seachQueryFn = (e: any, search: string) => {
     if (e.key === 'Enter' || e.target.localName === 'button') {
+      console.log(optionQuerys);
       setBtnMessage(''); // 초기화
       setProjectLimit(9); // 초기화
       setOptionQuerys({
@@ -158,6 +158,7 @@ const Board = () => {
       if (searchContent) {
         setOptionQuerys({
           ...optionQuerys,
+          categoryName: '전체',
           search: searchContent
         });
       }
@@ -166,10 +167,18 @@ const Board = () => {
 
   useEffect(() => {
     if (history.location.state !== undefined) {
-      if (history.location.state.category) {
+      const { search, category } = history.location.state;
+      if (search && category) {
         setOptionQuerys({
           ...optionQuerys,
-          categoryName: history.location.state.category
+          search,
+          categoryName: category
+        });
+      } else if (category) {
+        setOptionQuerys({
+          ...optionQuerys,
+          search: '',
+          categoryName: category
         });
       }
     }

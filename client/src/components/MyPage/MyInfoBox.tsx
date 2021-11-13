@@ -157,6 +157,7 @@ const MyInfoBox = () => {
                   content={comment.content}
                   date={comment.created_at}
                   projectId={comment.project_id}
+                  projectPath={comment.project.path}
                 />
               );
             })

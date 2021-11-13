@@ -10,8 +10,11 @@ export const ModalBackup = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  width: 485px;
+  width: 100%;
+  max-width: 485px;
   background: #fff;
+  max-height: 90%;
+  overflow-y: scroll;
   border-radius: 10px;
   padding: 60px 80px;
   position: fixed;
@@ -19,11 +22,13 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 900;
-  /* height: 500px; */
 
-  @media screen and (max-width: 650px) {
+  @media all and (max-width: 620px) {
     width: 100%;
     height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    padding: 60px 30px;
   }
 `;
 
@@ -53,6 +58,7 @@ export const PersonalInfo = styled.div`
     top: 10px;
     right: 10px;
     cursor: pointer;
+    display: block;
   }
 
   > h1 {
@@ -132,14 +138,20 @@ export const ModalHead = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background: yellow; */
 
   > span {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    padding: 20px;
+    top: 0;
+    right: 0;
+    font-size: 20px;
     cursor: pointer;
   }
+  > span:hover {
+    color: #fff;
+    background: #5f3dc4;
+  }
+
   > h2 {
     color: ${({ theme }) => theme.colors.violetWord};
     font-weight: 700;
@@ -160,6 +172,11 @@ export const ModalHead = styled.div`
       cursor: pointer;
       background: none;
       border-bottom: 1px solid ${({ theme }) => theme.colors.violetWord};
+    }
+  }
+  @media all and (max-width: 620px) {
+    > span {
+      font-size: 30px;
     }
   }
 `;
@@ -277,6 +294,24 @@ export const ButtonGroup = styled.div`
   margin-top: 30px;
 `;
 
+export const DeleteButtonGroup = styled.div`
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  > button {
+    width: auto;
+    height: auto;
+    font-size: 20px;
+    line-height: 1.4;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 30px;
+    border-radius: 5px;
+    background: ${({ theme }) => theme.colors.violet};
+    border: 3px solid ${({ theme }) => theme.colors.violet};
+  }
+`;
+
 export const LoginButton = styled.button`
   position: relative;
   display: flex;
@@ -371,6 +406,9 @@ export const CheckBoxConainter = styled.div`
     cursor: pointer;
     color: ${({ theme }) => theme.colors.violetWord};
   }
+  @media all and (max-width: 620px) {
+    margin: 0;
+  }
 `;
 
 export const SignupButton = styled.button`
@@ -386,4 +424,14 @@ export const SignupButton = styled.button`
   border: 1px solid #7950f2;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background: ${({ theme }) => theme.colors.violet};
+  @media all and (max-width: 620px) {
+    margin-top: 15px;
+  }
+`;
+
+export const DeleteText = styled(MiniModalText)`
+  > p {
+    font-size: 16px;
+    margin-top: 5px;
+  }
 `;

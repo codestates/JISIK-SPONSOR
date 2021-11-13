@@ -6,7 +6,7 @@ const {
   project_team_member,
   budget_item,
   project_milestone,
-  tag_project
+  project_tag
 } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
 
@@ -388,7 +388,7 @@ module.exports = {
       });
 
       // 프로젝트와 연관된 태그 레코드를 삭제한다.
-      await tag_project.destroy({ where: { project_id: projectInfo.id } });
+      await project_tag.destroy({ where: { project_id: projectInfo.id } });
 
       // 프로젝트를 삭제한다.
       await project.destroy({ where: { id: projectInfo.id } });

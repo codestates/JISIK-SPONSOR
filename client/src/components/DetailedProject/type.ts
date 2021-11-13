@@ -100,6 +100,7 @@ export interface Comment {
   created_at: Date;
   updated_at: Date;
   user: Commentor;
+  project: Project;
 }
 
 export interface CommentType {

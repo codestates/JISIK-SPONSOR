@@ -46,6 +46,9 @@ export const FaqLiWapper = styled.li<showProps>`
       color: ${({ theme }) => theme.colors.violetWord};
       transition: 0.3s;
     `};
+  :hover h3 {
+    color: #5f3dc4;
+  }
   > div {
     display: flex;
     justify-content: space-between;
@@ -79,7 +82,7 @@ export const Answer = styled.p<showProps>`
   font-size: 16px;
   font-weight: 400;
   color: #343a40;
-  line-height: 1.4em;
+  line-height: 1.6;
   padding: 20px 35px 20px 20px;
 
   ${(props) =>

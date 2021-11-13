@@ -23,7 +23,6 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
 
-
   const customDirectionUp = keyframes`
   from {
     opacity: 0;
@@ -66,8 +65,7 @@ const About = () => {
           <Fade keyframes={customDirectionUp}>
             <BannerSection>
               <h1>
-                잠재력 있는 연구와
-                <br className="br576" />
+                잠재력 있는 연구와 <br className="br576" />
                 잠재적인 지지자를 연결합니다.
               </h1>
               <p>

@@ -2,7 +2,11 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { showMiniMoal, insertText } from 'store/modal-slice';
+import {
+  showMiniMoal,
+  insertText,
+  showDeleteProjectModal
+} from 'store/modal-slice';
 import { overview, labnote } from 'store/detailedPageBt-slice';
 import { Section, Tab, Wrapper } from './styled';
 import { RootState } from 'index';
@@ -37,6 +41,10 @@ const TabButton = ({ project }: Props) => {
     );
   };
 
+  const deleteProject = async () => {
+    dispatch(showDeleteProjectModal({ modal: true, id: project.id }));
+  };
+
   useEffect(() => {
     dispatch(overview());
   }, []);
@@ -50,12 +58,15 @@ const TabButton = ({ project }: Props) => {
         <Tab labnote={detailTab.labnote} onClick={() => dispatch(labnote())}>
           랩 노트
         </Tab>
-        {isLogin && project.user_id === userInfo.id ? (
+        {isLogin &&
+        project.user_id === userInfo.id &&
+        project.status === 'draft' ? (
           <>
             <Tab>
               <Link to="/start-project">프로젝트 수정</Link>
             </Tab>
             <Tab onClick={submitProject}>프로젝트 제출</Tab>
+            <Tab onClick={deleteProject}>프로젝트 삭제</Tab>
           </>
         ) : null}
       </Wrapper>

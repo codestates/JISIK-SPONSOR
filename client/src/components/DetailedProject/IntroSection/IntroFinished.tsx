@@ -7,7 +7,7 @@ import {
   RightWrap,
   ProjectWrapper,
   SubContentFinished,
-  FinishedButton,
+  GrayButton,
   Notice
 } from './styled';
 import { useHistory } from 'react-router';
@@ -20,7 +20,9 @@ import IntroTitle from './IntroTitle';
 import IntroTag from './IntroTag';
 
 const IntroFinished = () => {
-  const [projectId, setProjectId] = useState<number>(1);
+  const history = useHistory();
+
+  const [projectId, setProjectId] = useState<number | null>(null);
   const [title, setTitle] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -30,12 +32,7 @@ const IntroFinished = () => {
   const [categoryId, setCategoryId] = useState<number>(0);
   const [category, setCategory] = useState<string>('');
 
-  const history = useHistory();
-  const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
-  const config = { withCredentials: true };
-
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
-
   const percentage = Number((pledged / goal).toFixed(2)) * 100;
 
   //금액 숫자에 3단위로 콤마를 추가해주는 함수
@@ -68,10 +65,11 @@ const IntroFinished = () => {
       } = response.data.projects;
 
       const { name } = category;
+
+      setProjectId(id);
       setTitle(title);
       setImage(thumbnail_url);
       setDescription(description);
-      setProjectId(id);
       setCategory(name);
       setGoal(Number(goal));
       setCategoryId(category_id);
@@ -85,7 +83,10 @@ const IntroFinished = () => {
   // 특정 프로젝트의 모든 태그를 조회하는 함수
   const getTags = async () => {
     try {
-      const response = await axios.get<Tags>(TagsUrl, config);
+      const response = await axios.get<Tags>(
+        `${REACT_APP_API_URL}/projects/${projectId}/tags`,
+        { withCredentials: true }
+      );
       const tagGroup = response.data.tags;
       setTags(tagGroup);
     } catch (err) {
@@ -96,18 +97,23 @@ const IntroFinished = () => {
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
     getProjects();
-    getTags();
   }, []);
+
+  useEffect(() => {
+    if (projectId) getTags();
+  }, [projectId]);
 
   return (
     <Section>
       <ProjectWrapper>
-        <IntroTitle
-          isLogin={isLogin}
-          projectId={projectId}
-          categoryId={categoryId}
-          category={category}
-        />
+        {projectId && (
+          <IntroTitle
+            isLogin={isLogin}
+            projectId={projectId}
+            categoryId={categoryId}
+            category={category}
+          />
+        )}
         <ProjectTitle>
           <h1>{title}</h1>
           <span>{description}</span>
@@ -125,7 +131,7 @@ const IntroFinished = () => {
               <p>{goalWithCommas} 달성금액</p>
               <p>{percentage}%</p>
               <p>달성 성공!</p>
-              <FinishedButton>프로젝트 후원완료</FinishedButton>
+              <GrayButton>프로젝트 후원완료</GrayButton>
             </SubContentFinished>
             <Notice noDisplay={false}>
               * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은

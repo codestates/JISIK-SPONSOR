@@ -9,7 +9,8 @@ import {
   SubContent,
   Funding,
   FundInput,
-  Notice
+  Notice,
+  GrayButton
 } from './styled';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
@@ -23,8 +24,12 @@ import IntroTitle from './IntroTitle';
 import IntroTag from './IntroTag';
 import Temp from '../../../images/temp.png';
 
-const IntroNotYet = () => {
-  const [projectId, setProjectId] = useState<number>(1);
+interface Props {
+  setIsUserSponsor: any;
+}
+
+const IntroNotYet = ({ setIsUserSponsor }: Props) => {
+  const [projectId, setProjectId] = useState<number | null>(null);
   const [title, setTitle] = useState<string>('');
   const [status, setStatus] = useState<string>('');
   const [image, setImage] = useState<string>('');
@@ -42,9 +47,6 @@ const IntroNotYet = () => {
   const [category, setCategory] = useState<string>('');
 
   const history = useHistory();
-  const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
-  const config = { withCredentials: true };
-
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
   let percentage = Number((pledged / goal).toFixed(2)) * 100;
@@ -97,11 +99,11 @@ const IntroNotYet = () => {
       let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
       if (dDay <= 0) dDay = 0;
 
+      setProjectId(id);
       setTitle(title);
       setStatus(status);
       setImage(thumbnail_url);
       setDescription(description);
-      setProjectId(id);
       setCategory(name);
       setGoal(Number(goal));
       setCategoryId(category_id);
@@ -116,7 +118,10 @@ const IntroNotYet = () => {
   // 특정 프로젝트의 모든 태그를 조회하는 함수
   const getTags = async () => {
     try {
-      const response = await axios.get<Tags>(TagsUrl, config);
+      const response = await axios.get<Tags>(
+        `${REACT_APP_API_URL}/projects/${projectId}/tags`,
+        { withCredentials: true }
+      );
       const tagGroup = response.data.tags;
       setTags(tagGroup);
     } catch (err) {
@@ -168,18 +173,23 @@ const IntroNotYet = () => {
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
     getProjects();
-    getTags();
   }, []);
+
+  useEffect(() => {
+    if (projectId) getTags();
+  }, [projectId]);
 
   return (
     <Section>
       <ProjectWrapper>
-        <IntroTitle
-          isLogin={isLogin}
-          projectId={projectId}
-          categoryId={categoryId}
-          category={category}
-        />
+        {projectId && (
+          <IntroTitle
+            isLogin={isLogin}
+            projectId={projectId}
+            categoryId={categoryId}
+            category={category}
+          />
+        )}
         <ProjectTitle>
           <h1>{title}</h1>
           <span>{description}</span>
@@ -213,7 +223,7 @@ const IntroNotYet = () => {
                   <span>남은기간</span>
                 </p>
               </Funding>
-              {status !== 'draft' && (
+              {status === 'inprogress' && (
                 <>
                   <FundInput>
                     <div>
@@ -242,21 +252,30 @@ const IntroNotYet = () => {
                       </p>
                     )}
                   </FundInput>
-                  <PaymentButton
-                    projectId={projectId}
-                    title={title}
-                    enteredFund={enteredFund}
-                    enteredPhoneNum={enteredPhoneNum}
-                  />
+                  {projectId && (
+                    <PaymentButton
+                      projectId={projectId}
+                      title={title}
+                      enteredFund={enteredFund}
+                      enteredPhoneNum={enteredPhoneNum}
+                      setIsUserSponsor={setIsUserSponsor}
+                    />
+                  )}
                 </>
               )}
+              {status === 'draft' && <GrayButton>프로젝트 작성중</GrayButton>}
+              {status === 'submitted' && (
+                <GrayButton>프로젝트 제출완료</GrayButton>
+              )}
             </SubContent>
-            {status !== 'draft' && (
-              <Notice noDisplay={false}>
-                * 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은
-                다음날 환불처리 됩니다.
-              </Notice>
-            )}
+            <Notice noDisplay={false}>
+              {status === 'approve' &&
+                '* 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은 다음날 환불처리 됩니다.'}
+              {status === 'draft' &&
+                '현재 프로젝트 작성중입니다. 제출 이후에는 수정하거나 삭제하실 수 없습니다.'}
+              {status === 'submitted' &&
+                '현재 프로젝트 제출하셨습니다. 제출 이후에는 수정하거나 삭제하실 수 없습니다.'}
+            </Notice>
           </RightWrap>
         </MainContent>
       </ProjectWrapper>

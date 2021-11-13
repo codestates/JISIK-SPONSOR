@@ -243,7 +243,6 @@ export const HashTagContainer = styled.div`
 `;
 
 export const HashTag = styled.button`
-  cursor: pointer;
   border: 0;
   background: none;
   strong {
@@ -337,7 +336,7 @@ export const StyledButton = styled.button`
   background: #7950f2;
 `;
 
-export const FinishedButton = styled.button`
+export const GrayButton = styled.button`
   width: 100%;
   padding: 20px 30px;
   cursor: pointer;

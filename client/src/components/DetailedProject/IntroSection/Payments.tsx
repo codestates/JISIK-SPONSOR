@@ -1,42 +1,55 @@
 import axios from 'axios';
+import { RootState } from 'index';
+import { useSelector, useDispatch } from 'react-redux';
 import { StyledButton } from './styled';
-import { useHistory } from 'react-router';
 import { REACT_APP_API_URL } from 'config';
+import { showLoginModal, showMiniMoal, insertText } from 'store/modal-slice';
 
 interface PaymentProps {
   projectId: number;
   title: string;
   enteredFund: string;
   enteredPhoneNum: string;
+  setIsUserSponsor: any;
 }
 
 const Payment = ({
   projectId,
   title,
   enteredFund,
-  enteredPhoneNum
+  enteredPhoneNum,
+  setIsUserSponsor
 }: PaymentProps) => {
-  const history = useHistory();
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
   const { IMP }: any = window;
   IMP.init('imp00267362');
 
   // 후원 결제 버튼 클릭시, 최초 유저 입력값을 전달하고 데이터를 받아오는 함수
   const paymentHandler = async () => {
-    try {
-      const order = {
-        projectId,
-        projectTitle: title,
-        amount: Number(enteredFund),
-        buyerTel: enteredPhoneNum
-      };
+    if (!enteredFund || !enteredPhoneNum) {
+      dispatch(showMiniMoal(true));
+      dispatch(insertText('후원금액과, 전화번호를 정확히 입력해주세요.'));
+    }
+    if (isLogin) {
+      try {
+        const order = {
+          projectId,
+          projectTitle: title,
+          amount: Number(enteredFund),
+          buyerTel: enteredPhoneNum
+        };
 
-      const url = `${REACT_APP_API_URL}/orders`;
-      const config = { withCredentials: true };
-      const response = await axios.post<any>(url, order, config);
-      requestPay(response.data.order);
-    } catch (err) {
-      console.log(err);
+        const url = `${REACT_APP_API_URL}/orders`;
+        const config = { withCredentials: true };
+        const response = await axios.post<any>(url, order, config);
+        requestPay(response.data.order);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      dispatch(showLoginModal(true));
     }
   };
 
@@ -63,8 +76,11 @@ const Payment = ({
           const data = { imp_uid, merchant_uid };
           const config = { withCredentials: true };
           await axios.post(url, data, config);
-          alert('후원해주셔서 감사합니다.');
-          history.push('/mypage');
+          dispatch(showMiniMoal(true));
+          dispatch(
+            insertText('성공적으로 후원 완료되었습니다. 🎉🎉  감사합니다!')
+          );
+          setIsUserSponsor(true);
         } catch (err) {
           console.log(err);
         }
