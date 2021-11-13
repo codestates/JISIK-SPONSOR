@@ -154,7 +154,6 @@ function TeamInfo() {
   };
 
   const removeTeamList = async (idx: number) => {
-    console.log('idx', idx);
     const copyList = memberList.slice();
     const copyId = memberId.slice();
     copyList.splice(idx, 1);
@@ -172,7 +171,6 @@ function TeamInfo() {
   };
 
   const removeBringList = async (idx: number) => {
-    console.log('idx', idx);
     const filter = bringList.filter((list: any) => list.id !== idx);
     setBringList(filter);
 

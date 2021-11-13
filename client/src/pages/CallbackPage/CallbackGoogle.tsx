@@ -21,7 +21,6 @@ function CallbackGoogle() {
           { withCredentials: true }
         )
         .then((res) => {
-          console.log('res', res);
           dispatch(login());
           history.push('/');
         })
