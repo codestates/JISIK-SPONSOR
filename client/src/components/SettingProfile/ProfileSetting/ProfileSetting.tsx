@@ -35,6 +35,7 @@ function ProfileSetting() {
   const [imgSrc, setImgSrc] = useState<string | undefined>(
     userInfo.profile_url || ''
   );
+  const [image, setImage] = useState<string>(userImg);
 
   useEffect(() => {
     axios
@@ -52,7 +53,16 @@ function ProfileSetting() {
       name: userInfo.nickname || '',
       bio: userInfo.bio || ''
     });
+    if (userInfo.profile_url) {
+      const http = userInfo.profile_url.slice(0, 4);
+      if (http === 'http') {
+        setImage(userInfo.profile_url);
+      } else {
+        setImage('https://jisiksponsor.com' + userInfo.profile_url);
+      }
+    }
   }, [userInfo]);
+
   const handleInput =
     (key: string) =>
     (
@@ -141,7 +151,7 @@ function ProfileSetting() {
             <h3>프로필 이미지</h3>
             <p>이미지를 클릭하여 변경하세요.</p>
             <label htmlFor="TeamImg">
-              <img src={`https://jisiksponsor.com${imgSrc}`} />
+              <img src={image} />
             </label>
             <input type="file" id="TeamImg" onChange={handleProfileIma} />
           </SettingImg>

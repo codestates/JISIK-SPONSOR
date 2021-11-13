@@ -83,15 +83,28 @@ export const LeftWrap = styled.div`
   width: 70%;
   padding-right: 30px;
   > span {
+    position: relative;
     display: block;
     width: 100%;
-    max-height: 500px;
+    height: 420px;
     overflow: hidden;
     margin-bottom: 20px;
     border-radius: 5px;
   }
+  > span:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    clear: both;
+    background: rgba(0, 0, 0, 0.3);
+  }
   img {
     width: 100%;
+    min-height: 100%;
   }
   @media all and (max-width: 900px) {
     width: 100%;

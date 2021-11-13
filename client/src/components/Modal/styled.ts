@@ -182,33 +182,36 @@ export const ModalHead = styled.div`
 `;
 
 export const ConflitContainer = styled(ModalContainer)`
-  width: auto;
+  width: 100%;
+  max-width: 500px;
   padding: 50px auto;
-  @media screen and (max-width: 650px) {
-    width: 100%;
-    height: 100%;
+  @media all and (max-width: 620px) {
+    width: 90%;
+    height: auto;
+    max-height: 90%;
+    border-radius: 10px;
   }
 `;
 export const ModalWraaper = styled(ModalHead)`
+  text-align: center;
+  word-break: keep-all;
   > h2 {
-    font-size: 25px;
+    font-size: 20px;
+    line-height: 1.4;
   }
-
   > p {
     font-size: 16px;
   }
-
   > button {
     background: ${({ theme }) => theme.colors.violet};
     border: 3px solid ${({ theme }) => theme.colors.violet};
-    width: 20%;
-    padding: 10px 0;
+    padding: 10px 30px;
     border-radius: 10px;
     color: #fff;
     font-size: 20px;
     line-height: 1.45em;
     font-weight: 500;
-    margin-top: 10px;
+    margin-top: 20px;
     cursor: pointer;
   }
 `;
@@ -225,6 +228,7 @@ export const MiniModalContainer = styled(ModalContainer)`
   word-break: keep-all;
   @media all and (max-width: 620px) {
     padding: 40px;
+    border-radius: 10px;
   }
 `;
 

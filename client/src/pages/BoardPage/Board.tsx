@@ -21,6 +21,8 @@ const Board = () => {
     (state: any) => state.searchContent.content
   );
 
+  const [searchState, setSearchState] = useState<string>('');
+  const [categoryName, setCategoryName] = useState<string>('');
   const [btnMessage, setBtnMessage] = useState<string>(''); // 경고 메세지
   const [projectTotal, setProjectTotal] = useState<number>(0); // 데이터베이스에 있는 프로젝트의 토탈
   const [btnClick, setBtnClick] = useState<boolean>(false); // 더보기 버튼 클릭 여부 => 스크롤과 경고 메세지와 연관
@@ -82,9 +84,10 @@ const Board = () => {
 
   // 카테고리 선택 헨들러
   const categoryQueryFn = (category: string) => {
-    // console.dir(category);
     setBtnMessage(''); // 초기화
     setProjectLimit(9); // 초기화
+    setSearchState(''); // 초기화
+    dispatch(notUsed());
     setOptionQuerys({
       ...optionQuerys,
       limit: 9, // 초기화
@@ -94,22 +97,19 @@ const Board = () => {
   };
 
   const categoryState = () => {
-    if (history.location.state !== undefined) {
-      const { search, category } = history.location.state;
-      if (search && category) {
-        setOptionQuerys({
-          ...optionQuerys,
-          search,
-          categoryName: category
-        });
-      } else if (category) {
-        setOptionQuerys({
-          ...optionQuerys,
-          search: '',
-          categoryName: category
-        });
-      }
+    let search: string = '';
+    let category: string = '';
+    if (history.location.state.search) {
+      search = history.location.state.search;
     }
+    if (history.location.state.category) {
+      category = history.location.state.category;
+    }
+    setOptionQuerys({
+      ...optionQuerys,
+      search,
+      categoryName: category
+    });
   };
 
   // 필터 선택 헨들러
@@ -129,6 +129,8 @@ const Board = () => {
     if (e.key === 'Enter' || e.target.localName === 'button') {
       setBtnMessage(''); // 초기화
       setProjectLimit(9); // 초기화
+      setSearchState(''); // 초기화
+      dispatch(notUsed());
       setOptionQuerys({
         ...optionQuerys,
         categoryName: '전체', // 초기화
@@ -160,10 +162,17 @@ const Board = () => {
   // 초기 한 번만 리렌더링
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (history.location.state === undefined) {
-      getAllProjects();
+    if (history.location.state) {
+      if (history.location.state.category) {
+        setCategoryName('');
+      }
+      if (history.location.state.search) {
+        setSearchState(history.location.state.search);
+      }
     } else {
-      categoryState();
+      setSearchState(''); // 초기화
+      dispatch(notUsed());
+      getAllProjects();
     }
   }, []);
 
@@ -174,6 +183,7 @@ const Board = () => {
 
   // 헤더 서치 변경 있을 시 리렌더링
   useEffect(() => {
+    // console.log(searchContent);
     if (history.location.state === undefined) {
       dispatch(notUsed());
     } else {
@@ -186,6 +196,30 @@ const Board = () => {
       }
     }
   }, [searchContent]);
+
+  useEffect(() => {
+    if (history.location.state) {
+      if (history.location.state.category) {
+        setSearchState(''); // 초기화
+        dispatch(notUsed());
+        setCategoryName(history.location.state.category);
+      }
+    }
+  }, [history]);
+
+  useEffect(() => {
+    if (history.location.state) categoryState();
+  }, [categoryName]);
+
+  useEffect(() => {
+    if (searchContent) {
+      setOptionQuerys({
+        ...optionQuerys,
+        categoryName: '전체',
+        search: searchContent
+      });
+    }
+  }, [searchState]);
 
   // window.addEventListener('scroll', () => {
   //   const top = document.documentElement.scrollTop;

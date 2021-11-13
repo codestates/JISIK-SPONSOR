@@ -29,7 +29,7 @@ module.exports = {
       );
 
       if (validTime.getTime() < new Date().getTime()) {
-        return res.status().json({
+        return res.status(400).json({
           currentTime: new Date(currentTime).toLocaleString(),
           signupDate: new Date(signupDate).toLocaleString(),
           validTime: new Date(validTime).toLocaleString(),
