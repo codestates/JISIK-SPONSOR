@@ -21,7 +21,6 @@ export const ProjectWrapper = styled.div`
 `;
 
 export const ResearchWord = styled.div`
-
   background: url(${Background});
 
   display: flex;
