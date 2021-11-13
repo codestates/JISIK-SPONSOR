@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Background from '../../../images/background.jpg';
 
 export const Section = styled.section`
@@ -20,7 +21,9 @@ export const ProjectWrapper = styled.div`
 `;
 
 export const ResearchWord = styled.div`
+
   background: url(${Background});
+
   display: flex;
   justify-content: center;
   & > div {

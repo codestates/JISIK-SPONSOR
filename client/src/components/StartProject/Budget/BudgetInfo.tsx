@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
   ProjectBody,
@@ -20,6 +20,7 @@ import { REACT_APP_API_URL } from 'config';
 import { RootState } from 'index';
 import BudgetItems from './BudgetItems';
 import BudgetAddItems from './BudgetAddItems';
+import { showMiniMoal, insertText } from 'store/modal-slice';
 interface BudgetMemoProps {
   planMemo: boolean;
 }
@@ -44,6 +45,7 @@ interface BringListProps {
   content: string;
 }
 function BudgetInfo() {
+  const dispatch = useDispatch();
   const ulElement = useRef<HTMLUListElement>(null);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const { projects } = useSelector((state: RootState) => state.project);
@@ -168,6 +170,8 @@ function BudgetInfo() {
         withCredentials: true
       }
     );
+    dispatch(showMiniMoal(true));
+    dispatch(insertText('저장되었습니다.'));
   };
   return (
     <Container>

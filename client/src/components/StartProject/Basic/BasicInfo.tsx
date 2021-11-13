@@ -178,6 +178,7 @@ function BasicInfo() {
 
   const handleSaveContent = async () => {
     const { title, simpleInpo } = basicInfo;
+
     await axios.patch(
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {

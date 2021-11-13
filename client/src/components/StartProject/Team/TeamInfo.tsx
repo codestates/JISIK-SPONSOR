@@ -21,9 +21,10 @@ import coverImg from 'images/icons/cover-image.png';
 import axios from 'axios';
 import { REACT_APP_API_URL } from 'config';
 import { RootState } from 'index';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TeamItems from './TeamItems';
 import TeamAddItems from './TeamAddItems';
+import { showMiniMoal, insertText } from 'store/modal-slice';
 interface TeamMemoProps {
   memberMemo: boolean;
   teamMemo: boolean;
@@ -55,6 +56,7 @@ interface imageProps {
   profile_url: string;
 }
 function TeamInfo() {
+  const dispatch = useDispatch();
   const ulElement = useRef<HTMLUListElement>(null);
   const projectId = useSelector((state: RootState) => state.projectSt.id);
   const { projects } = useSelector((state: RootState) => state.project);
@@ -64,7 +66,9 @@ function TeamInfo() {
   const [bringList, setBringList] = useState<any>(
     projects.project_team_members
   );
+
   const [imgSrc, setImgSrc] = useState<any>(
+
     projects.project_teams[0].profile_url || ''
   );
   const [showMemo, setShowMemo] = useState<TeamMemoProps>({
@@ -150,6 +154,7 @@ function TeamInfo() {
   };
 
   const removeTeamList = async (idx: number) => {
+    console.log('idx', idx);
     const copyList = memberList.slice();
     const copyId = memberId.slice();
     copyList.splice(idx, 1);
@@ -167,7 +172,8 @@ function TeamInfo() {
   };
 
   const removeBringList = async (idx: number) => {
-    const filter = memberList.filter((list: any) => list.id !== idx);
+    console.log('idx', idx);
+    const filter = bringList.filter((list: any) => list.id !== idx);
     setBringList(filter);
 
     await axios.delete<projectTeamProps>(
@@ -222,6 +228,8 @@ function TeamInfo() {
         withCredentials: true
       }
     );
+    dispatch(showMiniMoal(true));
+    dispatch(insertText('저장되었습니다.'));
   };
   return (
     <Container>

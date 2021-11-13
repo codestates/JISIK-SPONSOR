@@ -20,11 +20,7 @@ function WithDrawalModal() {
     history.push('/');
     dispatch(showWithDrawalModal(false));
     dispatch(showMiniMoal(true));
-    dispatch(
-      insertText(
-        '회원탈퇴 되었습니다. 그동안 지식스폰서를 이용해주셔서 감사합니다.'
-      )
-    );
+    dispatch(insertText('그동안 지식스폰서를 이용해주셔서 감사합니다.'));
   };
   return (
     <div>
