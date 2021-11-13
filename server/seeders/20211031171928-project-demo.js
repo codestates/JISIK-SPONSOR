@@ -51,7 +51,7 @@ module.exports = {
         pledged: 31200000,
         remainder: 0,
         sponsors: 0,
-        comments: 10,
+        comments: 5,
         wishes: 76,
         views: 1787,
         thumbnail_url: '/uploads/demo/project-02.jpg',
@@ -116,7 +116,7 @@ module.exports = {
         pledged: 3000000,
         remainder: 0,
         sponsors: 3,
-        comments: 4,
+        comments: 10,
         wishes: 24,
         views: 1024,
         thumbnail_url: '/uploads/demo/project-04.jpg',
@@ -180,7 +180,7 @@ module.exports = {
         pledged: 3000000,
         remainder: 0,
         sponsors: 10,
-        comments: 0,
+        comments: 3,
         wishes: 43,
         views: 1222,
         thumbnail_url: '/uploads/demo/project-06.jpg',
@@ -213,7 +213,7 @@ module.exports = {
         pledged: 2840000,
         remainder: 1985000,
         sponsors: 7,
-        comments: 0,
+        comments: 1,
         wishes: 71,
         views: 1887,
         thumbnail_url: '/uploads/demo/project-07.png',
@@ -245,7 +245,7 @@ module.exports = {
         pledged: 4840000,
         remainder: 10000,
         sponsors: 3,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 63,
         views: 1000,
         thumbnail_url: '/uploads/demo/project-08.jpg',
@@ -278,7 +278,7 @@ module.exports = {
         pledged: 90000,
         remainder: 200000,
         sponsors: 8,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 53,
         views: 1023,
         thumbnail_url: '/uploads/demo/project-09.jpg',
@@ -310,7 +310,7 @@ module.exports = {
         pledged: 2100000,
         remainder: 0,
         sponsors: 8,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 67,
         views: 1598,
         thumbnail_url: '/uploads/demo/project-10.jpg',
@@ -341,7 +341,7 @@ module.exports = {
         pledged: 1200000,
         remainder: 800000,
         sponsors: 8,
-        comments: 0, // 임시
+        comments: 3,
         wishes: 37,
         views: 1402,
         thumbnail_url: '/uploads/demo/project-11.jpg',
@@ -373,7 +373,7 @@ module.exports = {
         pledged: 100000,
         remainder: 56000,
         sponsors: 4,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 38,
         views: 1092,
         thumbnail_url: '/uploads/demo/project-12.jpg',
@@ -405,7 +405,7 @@ module.exports = {
         pledged: 300000,
         remainder: 1100000,
         sponsors: 8,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 10,
         views: 1005,
         thumbnail_url: '/uploads/demo/project-13.jpg',
@@ -436,7 +436,7 @@ module.exports = {
         pledged: 50000,
         remainder: 50000,
         sponsors: 8,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 35,
         views: 1002,
         thumbnail_url: '/uploads/demo/project-14.jpg',
@@ -469,7 +469,7 @@ module.exports = {
         pledged: 300000,
         remainder: 2000000,
         sponsors: 3,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 75,
         views: 1116,
         thumbnail_url: '/uploads/demo/project-15.jpg',
@@ -501,7 +501,7 @@ module.exports = {
         pledged: 500000,
         remainder: 3320000,
         sponsors: 5,
-        comments: 0, // 임시
+        comments: 6,
         wishes: 55,
         views: 1426,
         thumbnail_url: '/uploads/demo/project-16.jpg',
@@ -533,7 +533,7 @@ module.exports = {
         pledged: 50000,
         remainder: 220000,
         sponsors: 7,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 45,
         views: 1026,
         thumbnail_url: '/uploads/demo/project-17.jpg',
@@ -565,7 +565,7 @@ module.exports = {
         pledged: 1250000,
         remainder: 3450000,
         sponsors: 3,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 12,
         views: 1020,
         thumbnail_url: '/uploads/demo/project-18.jpg',
@@ -597,7 +597,7 @@ module.exports = {
         pledged: 1257000,
         remainder: 10266000,
         sponsors: 2,
-        comments: 0, // 임시
+        comments: 1,
         wishes: 12,
         views: 1020,
         thumbnail_url: '/uploads/demo/project-19.jpg',
@@ -629,7 +629,7 @@ module.exports = {
         pledged: 1500000,
         remainder: 407000,
         sponsors: 8,
-        comments: 0, // 임시
+        comments: 4,
         wishes: 51,
         views: 1100,
         thumbnail_url: '/uploads/demo/project-20.jpg',
