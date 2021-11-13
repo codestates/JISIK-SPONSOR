@@ -152,8 +152,9 @@ const CommentBox = ({
       const http = profileUrl.slice(0, 4);
       if (http === 'http') {
         setProfile(profileUrl);
+      } else {
+        setProfile('https://jisiksponsor.com' + profileUrl);
       }
-      setProfile('https://jisiksponsor.com' + profileUrl);
     } else {
       setProfile(UserIcon);
     }
