@@ -33,7 +33,7 @@ export const Section = styled.section<SectionProps>`
 
 export const Wrap = styled.div`
   width: 100%;
-  max-width: 960px;
+  max-width: 1260px;
   padding: 0 30px;
   margin: 0 auto;
   @media all and (max-width: 620px) {
@@ -101,7 +101,7 @@ export const QuestionSection = styled.div<QuestionSectionProps>`
     direction: ${(props) => props.deraction === 'right' && 'initial'};
   }
   & div:nth-child(2) {
-    width: 45%;
+    width: 65%;
     padding: ${(props) =>
     props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
   }
@@ -146,6 +146,7 @@ export const TextBoxWrap = styled.div`
     font-size: 23px;
     color: #495057;
     line-height: 160%;
+    margin-bottom: 30px;
   }
 
   @media all and (max-width: 960px) {
@@ -174,14 +175,13 @@ export const LinkWrap = styled.div`
     display: flex;
     flex-direction: row;
     gap: 10px;
-    padding: 15px 0 0 0;
 
     & > a {
     position: relative;
     font-size: 20px;
     color: #343a40;
     font-weight: 500;
-    padding: 10px 10px;
+    padding: 20px 30px;
     border-radius: 10px;
     border: 2px solid #343a40;
   }
@@ -201,6 +201,30 @@ export const LinkWrap = styled.div`
     transform: translateY(5px);
   }
 
+  @media all and (max-width: 814px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 10px;
+
+    & > a {
+      font-size: 18px;
+      padding: 20px 20px;
+    }
+  }
+
+  @media all and (max-width: 732px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 10px;
+
+    & > a {
+      font-size: 15px;
+      padding: 15px 15px;
+    }
+  }
+
   @media all and (max-width: 620px) {
     display: flex;
     flex-direction: row;
@@ -209,6 +233,7 @@ export const LinkWrap = styled.div`
 
     & > a {
       font-size: 15px;
+      padding: 10px 10px;
     }
   }
 `;

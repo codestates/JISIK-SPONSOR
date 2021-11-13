@@ -77,7 +77,7 @@ const SliderSection = () => {
                 든든한 스폰서가 되어주세요!
               </h2>
               <SlideBtnWrap>
-                <Link to="/start-project">프로젝트 시작하기</Link>
+                <Link to="/start">프로젝트 시작하기</Link>
                 <Link to="/board">모든 프로젝트 보기</Link>
               </SlideBtnWrap>
             </SlideCentent2>

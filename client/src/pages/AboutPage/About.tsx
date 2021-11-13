@@ -95,7 +95,7 @@ const About = () => {
                   자신의 아이디어를 세상에 알리고 실현시킬 수 있어요.
                 </p>
                 <LinkWrap>
-                  <Link to="/board">프로젝트 모두보기</Link>
+                  <Link to="/board">프로젝트 확인하기</Link>
                   <Link to="/faq">FAQ 보기</Link>
                 </LinkWrap>
               </TextBoxWrap>
@@ -122,7 +122,7 @@ const About = () => {
                   간단하고 빠르게 자신의 프로젝트를 올릴 수 있어요.
                 </p>
                 <LinkWrap>
-                  <Link to="/board">프로젝트 모두보기</Link>
+                  <Link to="/board">프로젝트 확인하기</Link>
                   <Link to="/faq">FAQ 보기</Link>
                 </LinkWrap>
               </TextBoxWrap>
@@ -147,7 +147,7 @@ const About = () => {
                   연구자와 교류하며 연구 결과를 받아볼 수 있어요.
                 </p>
                 <LinkWrap>
-                  <Link to="/board">프로젝트 모두보기</Link>
+                  <Link to="/board">프로젝트 확인하기</Link>
                   <Link to="/faq">FAQ 보기</Link>
                 </LinkWrap>
               </TextBoxWrap>
