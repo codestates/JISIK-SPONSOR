@@ -68,7 +68,6 @@ function TeamInfo() {
   );
 
   const [imgSrc, setImgSrc] = useState<any>(
-
     projects.project_teams[0].profile_url || ''
   );
   const [showMemo, setShowMemo] = useState<TeamMemoProps>({
