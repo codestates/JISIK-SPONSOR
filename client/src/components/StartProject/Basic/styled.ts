@@ -22,6 +22,7 @@ export const ProjectTitle = styled.div<FoucsProps>`
     max-width: 560px;
     padding: 10px;
     background: #ffffff;
+    color: #495057;
     border: 2px solid #e9ecef;
     border-radius: 5px;
     margin-top: 10px;
@@ -57,15 +58,15 @@ export const ProjectCategory = styled.div`
 
   > h3 {
     font-size: 16px;
-    font-weight: 700;
-    line-height: 1.45em;
+    font-weight: 600;
+    line-height: 1.4;
     color: #495057;
   }
 
   > p {
     font-size: 12.8px;
     font-weight: 400;
-    line-height: 1.45em;
+    line-height: 1.6;
     color: ${({ theme }) => theme.colors.suppotWord};
     margin-top: 10px;
   }
@@ -77,7 +78,8 @@ export const ProjectHashTag = styled(SubTitleCss)`
     width: 100%;
     max-width: 300px;
     padding: 10px;
-    background: #ffffff;
+    background: #fff;
+    color: #495057;
     border: 2px solid #e9ecef;
     border-radius: 5px;
     margin-top: 20px;
@@ -90,8 +92,8 @@ export const ProjectHashTag = styled(SubTitleCss)`
     display: flex;
 
     > li {
-      font-size: 12.8px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 500;
       line-height: 1.4em;
       color: #fff;
       background: ${({ theme }) => theme.colors.orange};
@@ -149,9 +151,12 @@ export const ProjectFundingPeriod = styled(SubTitleCss)<FoucsProps>`
 `;
 
 export const CustomSelect = styled(Select)`
+  .Select__single-value {
+    color: #495057;
+  }
   .Select__control {
-    border: 2px solid #e9ecef;
     border-radius: 5px;
+    border: 2px solid #e9ecef;
   }
   .Select__indicator-separator {
     display: none;
@@ -202,13 +207,13 @@ export const ProjectCoverIma = styled(ProjectCoverImage)`
 export const ProjectSelectIma = styled(ProjectCoverImage)`
   > label {
     width: 300px;
-    /* height: 174px; */
     background: #fff;
     border: none;
     padding: 0;
     > img {
       width: 100%;
       height: 100%;
+      box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
     }
   }
   @media screen and (max-width: 600px) {
@@ -232,6 +237,7 @@ export const CategoryContainer = styled.div`
     color: #495057;
     text-align: center;
     margin-right: 10px;
+    vertical-align: top;
   }
   input + label {
     cursor: pointer;
@@ -242,7 +248,7 @@ export const CategoryContainer = styled.div`
     width: 15px;
     height: 15px;
     border: 1px solid #868e96;
-    vertical-align: middle;
+    vertical-align: top;
     margin-right: 5px;
   }
   input:checked + label::before {

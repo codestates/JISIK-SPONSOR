@@ -1,4 +1,8 @@
-import React, { useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo } from 'store/userInfo-slice';
+import { showMiniMoal, insertText } from 'store/modal-slice';
 import {
   SettingNickName,
   ChangeButton,
@@ -6,16 +10,11 @@ import {
   SettingSelfIntroduction
 } from './styled';
 import { ProjectBody, Container } from 'components/StartProject/commonStyled';
-// import coverImg from 'images/icons/cover-image.png';
-import { useState } from 'react';
-import { REACT_APP_API_URL } from 'config';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'index';
-import userImg from 'images/icons/user-icon.png';
-import { getUserInfo } from 'store/userInfo-slice';
 import { UserInfoData } from 'components/Modal/type';
-import { showMiniMoal, insertText } from 'store/modal-slice';
+import userImg from 'images/icons/user-icon.png';
+import { RootState } from 'index';
+import { REACT_APP_API_URL } from 'config';
+
 interface profileProps {
   name: string;
   bio: string;
@@ -27,7 +26,6 @@ interface imageProps {
 function ProfileSetting() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
-  console.log(userInfo);
   const [profileContent, setProfileContent] = useState<profileProps>({
     name: '',
     bio: ''
@@ -71,20 +69,13 @@ function ProfileSetting() {
 
   const changeNickname = async () => {
     try {
-      const response = await axios.patch(
+      await axios.patch(
         `${REACT_APP_API_URL}/users/me`,
-        {
-          nickname: name
-        },
-        {
-          withCredentials: true
-        }
+        { nickname: name },
+        { withCredentials: true }
       );
-      console.log('222', response);
-
       dispatch(showMiniMoal(true));
       dispatch(insertText('닉네임이 성공적으로 변경되었습니다.'));
-      console.log('닉네임변경', response);
     } catch (err) {
       console.log(err);
       setIsNameVild(true);
@@ -92,19 +83,14 @@ function ProfileSetting() {
   };
 
   const handleBio = async () => {
-    const response = await axios.patch(
+    await axios.patch(
       `${REACT_APP_API_URL}/users/me`,
-      {
-        bio
-      },
-      {
-        withCredentials: true
-      }
+      { bio },
+      { withCredentials: true }
     );
 
     dispatch(showMiniMoal(true));
     dispatch(insertText('자기소개가 성공적으로 변경되었습니다.'));
-    console.log('자기소개', response);
   };
 
   const handleProfileIma = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,7 +115,6 @@ function ProfileSetting() {
       setImgSrc(response.data.profile_url);
       dispatch(showMiniMoal(true));
       dispatch(insertText('프로필 이미지가 성공적으로 변경되었습니다.'));
-      console.log('response', response);
     }
   };
   return (

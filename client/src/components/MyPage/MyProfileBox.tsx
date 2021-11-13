@@ -54,7 +54,7 @@ const MyProfileBox = () => {
         <img src={image} />
         <span>
           {userInfo.name}
-          <small>({userInfo.nickname})</small>
+          <small>{userInfo.nickname && '(' + userInfo.nickname + ')'}</small>
         </span>
         <p>{userInfo.bio}</p>
         <div>

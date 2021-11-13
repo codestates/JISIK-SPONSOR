@@ -1,7 +1,4 @@
 /*eslint-disable*/
-import { Link } from 'react-router-dom';
-import usericon from '../../../images/user-icon.png';
-import clock from '../../../images/clock.png';
 import {
   Li,
   ImageWrap,
@@ -13,14 +10,18 @@ import {
   LeftWrap,
   RightWrap
 } from './styled';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import usericon from '../../../images/user-icon.png';
+import clock from '../../../images/clock.png';
 import { Row } from '../type';
-import { REACT_APP_API_URL } from '../../../config';
 
 interface Props {
   project: Row;
 }
 
 const Postcard = ({ project }: Props) => {
+  const [image, setImage] = useState<string>(usericon);
   const goal: string = Number(project.goal).toLocaleString();
   const percent: number =
     (Number(project.pledged) / Number(project.goal)) * 100;
@@ -28,11 +29,23 @@ const Postcard = ({ project }: Props) => {
   // 카테고리 배경
   const background: string = project.category.name;
   // D-day 계산
+  const toDate = new Date();
   const startDate = new Date(project.start_date);
   const endDate = new Date(project.end_date);
   const gap = endDate.getTime() - startDate.getTime();
   let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
-  if (endDate.getTime() > new Date().getTime()) dDay = 0;
+  if (endDate.getTime() - toDate.getTime() <= 0) dDay = 0;
+
+  useEffect(() => {
+    if (project.author.profile_url) {
+      const http = project.author.profile_url.slice(0, 4);
+      if (http === 'http') {
+        setImage(project.author.profile_url);
+      } else {
+        setImage('https://jisiksponsor.com' + project.author.profile_url);
+      }
+    }
+  }, []);
 
   return (
     <Li>
@@ -47,13 +60,7 @@ const Postcard = ({ project }: Props) => {
             </TopInfo>
             <BottomInfo>
               <UserInfo>
-                <img
-                  src={
-                    project.author.profile_url
-                      ? `https://jisiksponsor.com${project.author.profile_url}`
-                      : usericon
-                  }
-                />
+                <img src={image} />
                 <span>{project.author.name}</span>
               </UserInfo>
               <BudgetInfo percent={percent}>
@@ -70,7 +77,13 @@ const Postcard = ({ project }: Props) => {
                   </LeftWrap>
                   <RightWrap>
                     <img src={clock} />
-                    <span>{dDay !== 0 ? dDay + ' days' : 'finished'}</span>
+                    <span>
+                      {project.start_date
+                        ? dDay !== 0
+                          ? dDay + ' days'
+                          : 'finished'
+                        : 'draft'}
+                    </span>
                   </RightWrap>
                 </div>
               </BudgetInfo>

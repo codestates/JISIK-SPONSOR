@@ -235,7 +235,7 @@ function BudgetInfo() {
                   type="number"
                   onChange={handleInput('amount')}
                   value={budgetContent.amount}
-                  placeholder="예산 항목 추가를 누르셔야 항목이 반영됩니다."
+                  placeholder="숫자만 입력"
                 />
               </div>
             </li>

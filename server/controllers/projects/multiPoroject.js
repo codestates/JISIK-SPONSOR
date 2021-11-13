@@ -187,6 +187,7 @@ module.exports = {
             ]
           }
         ],
+        order: [['id', 'DESC']],
         offset: (offset - 1) * limit,
         limit: limit
       });
@@ -264,6 +265,7 @@ module.exports = {
             ]
           }
         ],
+        order: [['id', 'DESC']],
         offset: (offset - 1) * limit,
         limit: limit
       });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { EditButton } from '../commonStyled';
+
 function TeamAddItems({ handleInput, removeTeamList, list, idx }: any) {
   return (
     <li id={idx}>
@@ -9,7 +10,7 @@ function TeamAddItems({ handleInput, removeTeamList, list, idx }: any) {
           type="text"
           id={String(idx)}
           onChange={handleInput('name')}
-          placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
+          placeholder="팀원 이름"
           value={list.name}
           disabled
         />
@@ -20,7 +21,7 @@ function TeamAddItems({ handleInput, removeTeamList, list, idx }: any) {
           type="text"
           id={String(idx)}
           onChange={handleInput('bio')}
-          placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다"
+          placeholder="팀원 추가를 누르셔야 작성하신 항목이 반영됩니다."
           value={list.bio}
           disabled
         />

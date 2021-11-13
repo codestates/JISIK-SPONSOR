@@ -41,13 +41,17 @@ export const AddTeamMember = styled.ul`
     > div {
       display: flex;
       flex-direction: column;
-
       > input {
         border: 2px solid #e9ecef;
         border-radius: 5px;
         margin-top: 5px;
         height: 40px;
         width: 380px;
+        padding: 10px;
+        color: #495057;
+      }
+      > input:disabled {
+        color: #868e96;
       }
 
       > label {
@@ -165,6 +169,8 @@ export const ProjectTeamName = styled(SubTitleCss)<FoucsProps>`
     border: 2px solid #e9ecef;
     border-radius: 5px;
     height: 40px;
+    padding: 10px;
+    color: #495057;
   }
   > p:last-child {
     font-size: 16px;

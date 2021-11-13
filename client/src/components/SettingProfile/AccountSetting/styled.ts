@@ -6,10 +6,11 @@ export const UserEmail = styled(SubTitleCss)`
   > input {
     width: 250px;
     height: 40px;
-    border: 2px solid #e9ecef;
-    border-radius: 5px;
-    padding: 12px 0 12px 15px;
+    padding: 10px;
+    color: #868e96;
     margin-top: 5px;
+    border-radius: 5px;
+    border: 2px solid #e9ecef;
   }
 `;
 
@@ -18,10 +19,11 @@ export const UserName = styled(SubTitleCss)`
   > input {
     width: 250px;
     height: 40px;
-    border: 2px solid #e9ecef;
-    border-radius: 5px;
-    padding: 12px 0 12px 15px;
+    padding: 10px;
+    color: #868e96;
     margin-top: 5px;
+    border-radius: 5px;
+    border: 2px solid #e9ecef;
   }
 `;
 
@@ -34,10 +36,11 @@ export const SettingChangePW = styled(SubTitleCss)`
     > input {
       width: 250px;
       height: 40px;
-      border: 2px solid #e9ecef;
-      border-radius: 5px;
-      padding: 12px 0 12px 15px;
+      color: #495057;
+      padding: 10px;
       margin-top: 5px;
+      border-radius: 5px;
+      border: 2px solid #e9ecef;
     }
 
     > input:first-child {
@@ -45,9 +48,11 @@ export const SettingChangePW = styled(SubTitleCss)`
     }
 
     > p {
-      margin-top: 5px;
-      font-size: 12px;
+      font-size: 12.9px;
+      font-weight: 500;
+      line-height: 1.4;
       color: #dd584a;
+      margin: 5px 0 10px 5px;
     }
   }
 `;
@@ -57,17 +62,20 @@ export const PhoneNumber = styled(SubTitleCss)`
   > form > input {
     width: 250px;
     height: 40px;
-    border: 2px solid #e9ecef;
-    border-radius: 5px;
-    padding: 12px 0 12px 15px;
+    padding: 10px;
+    color: #495057;
     margin-top: 5px;
     margin-right: 15px;
+    border-radius: 5px;
+    border: 2px solid #e9ecef;
   }
 
   > p:last-child {
-    margin-top: 5px;
-    font-size: 12px;
+    font-size: 12.9px;
+    font-weight: 500;
+    line-height: 1.4;
     color: #dd584a;
+    margin: 5px 0 10px 5px;
   }
 `;
 export const SettingWithdrawal = styled(SubTitleCss)`
