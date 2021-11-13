@@ -269,6 +269,8 @@ const IntroNotYet = ({ setIsUserSponsor }: Props) => {
               )}
             </SubContent>
             <Notice noDisplay={false}>
+              {status === 'inprogress' &&
+                '* 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은 다음날 환불처리 됩니다.'}
               {status === 'approve' &&
                 '* 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은 다음날 환불처리 됩니다.'}
               {status === 'draft' &&

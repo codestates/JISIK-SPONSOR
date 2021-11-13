@@ -15,6 +15,7 @@ const headerSearchSlice = createSlice({
       state: headerSearch,
       { payload }: PayloadAction<string>
     ) => {
+      // console.log(payload);
       state.content = payload;
     },
     used: (state: headerSearch) => {

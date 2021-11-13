@@ -129,12 +129,12 @@ const DetailedProject = () => {
         </>
       ) : (
         <>
-          {status === 'achieved' && <IntroFinished />}
           {status === 'inprogress' && (
             <IntroNotYet setIsUserSponsor={setIsUserSponsor} />
           )}
         </>
       )}
+      {status === 'achieved' && <IntroFinished />}
       <TabButton project={project} />
       {detailTab.overview && (
         <>

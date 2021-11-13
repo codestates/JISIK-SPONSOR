@@ -23,7 +23,7 @@ function CallbackGoogle() {
 
         .then(() => {
           dispatch(login());
-          history.push('/');
+          history.push('/mypage');
         })
         .catch((err) => {
           console.log(err);

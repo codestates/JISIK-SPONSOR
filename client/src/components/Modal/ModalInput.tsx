@@ -9,8 +9,11 @@ import { showLoginModal } from 'store/modal-slice';
 import { useDispatch } from 'react-redux';
 import { login } from 'store/login-slice';
 import { getUserInfo } from 'store/userInfo-slice';
+import { useHistory } from 'react-router';
 const ModalInput = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [enteredEmail, setEnteredEmail] = useState<string>('');
   const [enteredPassword, setEnteredPassword] = useState<string>('');
 
@@ -72,13 +75,12 @@ const ModalInput = () => {
           email: enteredEmail,
           password: enteredPassword
         },
-        {
-          withCredentials: true
-        }
+        { withCredentials: true }
       );
       dispatch(showLoginModal(false));
       dispatch(login());
       dispatch(getUserInfo(response.data));
+      history.push('/mypage');
     } catch (err) {
       console.log(err);
     }
