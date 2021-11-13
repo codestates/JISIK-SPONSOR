@@ -46,7 +46,7 @@ const MyProfileBox = () => {
         setImage('https://jisiksponsor.com' + userInfo.profile_url);
       }
     }
-  }, []);
+  }, [userInfo]);
 
   return (
     <MyprofileBox>

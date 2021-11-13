@@ -46,6 +46,7 @@ export const ProfileContent = styled.div`
     width: 120px;
     height: 120px;
     margin-right: 15px;
+    border-radius: 50%;
   }
 
   & > div:first-child {
@@ -95,7 +96,6 @@ export const ProjectTeamTitle = styled.div`
     width: 40px;
     height: 40px;
     margin-right: 15px;
-    border-radius: 50%;
   }
   span {
     display: inline-block;

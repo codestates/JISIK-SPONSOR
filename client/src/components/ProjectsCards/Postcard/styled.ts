@@ -122,6 +122,7 @@ export const UserInfo = styled.div`
   & > img {
     width: auto;
     height: 25px;
+    border-radius: 50%;
   }
   & > span {
     font-size: 16px;

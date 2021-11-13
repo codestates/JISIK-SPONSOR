@@ -28,9 +28,11 @@ const Payment = ({
 
   // 후원 결제 버튼 클릭시, 최초 유저 입력값을 전달하고 데이터를 받아오는 함수
   const paymentHandler = async () => {
-    if (!enteredFund || !enteredPhoneNum) {
-      dispatch(showMiniMoal(true));
-      dispatch(insertText('후원금액과, 전화번호를 정확히 입력해주세요.'));
+    if (isLogin) {
+      if (!enteredFund || !enteredPhoneNum) {
+        dispatch(showMiniMoal(true));
+        dispatch(insertText('후원금액과, 전화번호를 정확히 입력해주세요.'));
+      }
     }
     if (isLogin) {
       try {

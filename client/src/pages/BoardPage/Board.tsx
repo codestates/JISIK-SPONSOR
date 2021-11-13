@@ -93,6 +93,25 @@ const Board = () => {
     });
   };
 
+  const categoryState = () => {
+    if (history.location.state !== undefined) {
+      const { search, category } = history.location.state;
+      if (search && category) {
+        setOptionQuerys({
+          ...optionQuerys,
+          search,
+          categoryName: category
+        });
+      } else if (category) {
+        setOptionQuerys({
+          ...optionQuerys,
+          search: '',
+          categoryName: category
+        });
+      }
+    }
+  };
+
   // 필터 선택 헨들러
   const filterQueryFn = (e: any) => {
     // console.dir(e.target.value);
@@ -108,7 +127,6 @@ const Board = () => {
   // 검색 헨들러
   const seachQueryFn = (e: any, search: string) => {
     if (e.key === 'Enter' || e.target.localName === 'button') {
-      console.log(optionQuerys);
       setBtnMessage(''); // 초기화
       setProjectLimit(9); // 초기화
       setOptionQuerys({
@@ -142,7 +160,11 @@ const Board = () => {
   // 초기 한 번만 리렌더링
   useEffect(() => {
     window.scrollTo(0, 0);
-    getAllProjects();
+    if (history.location.state === undefined) {
+      getAllProjects();
+    } else {
+      categoryState();
+    }
   }, []);
 
   // optionQuerys 변화 있을 시 리렌더링
@@ -164,25 +186,6 @@ const Board = () => {
       }
     }
   }, [searchContent]);
-
-  useEffect(() => {
-    if (history.location.state !== undefined) {
-      const { search, category } = history.location.state;
-      if (search && category) {
-        setOptionQuerys({
-          ...optionQuerys,
-          search,
-          categoryName: category
-        });
-      } else if (category) {
-        setOptionQuerys({
-          ...optionQuerys,
-          search: '',
-          categoryName: category
-        });
-      }
-    }
-  }, [history.location]);
 
   // window.addEventListener('scroll', () => {
   //   const top = document.documentElement.scrollTop;
