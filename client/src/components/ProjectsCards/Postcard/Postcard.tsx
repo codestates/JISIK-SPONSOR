@@ -29,10 +29,10 @@ const Postcard = ({ project }: Props) => {
   // 카테고리 배경
   const background: string = project.category.name;
   // D-day 계산
+  // const startDate = new Date(project.start_date);
   const toDate = new Date();
-  const startDate = new Date(project.start_date);
   const endDate = new Date(project.end_date);
-  const gap = endDate.getTime() - startDate.getTime();
+  const gap = endDate.getTime() - toDate.getTime();
   let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
   if (endDate.getTime() - toDate.getTime() <= 0) dDay = 0;
 
@@ -78,11 +78,12 @@ const Postcard = ({ project }: Props) => {
                   <RightWrap>
                     <img src={clock} />
                     <span>
-                      {project.start_date
-                        ? dDay !== 0
-                          ? dDay + ' days'
-                          : 'finished'
-                        : 'draft'}
+                      {project.status === 'draft' && '작성중'}
+                      {project.status === 'submitted' && '제출완료'}
+                      {project.status === 'approve' && '승인완료 펀딩대기'}
+                      {project.status === 'inprogress' && dDay + ' days'}
+                      {project.status === 'achieved' && 'finished'}
+                      {project.status === 'canceled' && '펀딩실패'}
                     </span>
                   </RightWrap>
                 </div>

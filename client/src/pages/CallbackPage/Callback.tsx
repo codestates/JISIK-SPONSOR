@@ -22,7 +22,6 @@ function Callback() {
         )
 
         .then(() => {
-
           dispatch(login());
           history.push('/');
         })

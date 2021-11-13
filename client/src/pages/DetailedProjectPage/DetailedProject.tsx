@@ -15,42 +15,28 @@ import { REACT_APP_API_URL } from 'config';
 import { useHistory } from 'react-router';
 import { RootState } from 'index';
 import { Data, ProjectTeamMember } from './type';
+import { RootObject } from '../../components/DetailedProject/Sponsors/type';
 import axios from 'axios';
 import IntroFinished from 'components/DetailedProject/IntroSection/IntroFinished';
 import IntroAlready from 'components/DetailedProject/IntroSection/IntroAlready';
 
 const DetailedProject = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const detailTab = useSelector((state: RootState) => state.detailPage);
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
+  const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
+  const { id } = userInfo;
+
   const [project, setProject] = useState<any>({});
   const [teams, setTeams] = useState<any>({});
-  const [sponsorIds, setSponsorIds] = useState<number[]>([]);
   const [teamMember, setTeamMember] = useState<ProjectTeamMember[]>([]);
   const [isUserSponsor, setIsUserSponsor] = useState<boolean>(false);
   const [status, setStatus] = useState<string>('');
   const [author, setAuthor] = useState<any>({});
-
-  const isLogin = useSelector((state: RootState) => state.login.isLogin);
-  const userInfo = useSelector((state: RootState) => state.userInfo);
-  const { id } = userInfo.userInfo;
-
-  const detailTab = useSelector((state: RootState) => state.detailPage);
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  //최초 렌더링 시 특정 프로젝트의 데이터를 불러오는 함수 실행
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (isLogin) {
-      fetchUserInfo();
-    }
-    getProjects();
-  }, [id]);
-
-  // 지식스폰서 명단에 유저가 포함되어있는지 여부를 확인
-  useEffect(() => {
-    if (id && sponsorIds.includes(id)) {
-      setIsUserSponsor(true);
-    }
-  }, [id, sponsorIds]);
+  const [sponsors, setSponsors] = useState<any>([]);
+  const [count, setCount] = useState<number>(0);
 
   // 특정 프로젝트에 데이터를 불러오는 함수
   const getProjects = async () => {
@@ -58,9 +44,7 @@ const DetailedProject = () => {
       const url = window.location.pathname.slice(18);
       const response = await axios.get<Data>(
         `${REACT_APP_API_URL}/projects/single?slug=${url}`,
-        {
-          withCredentials: true
-        }
+        { withCredentials: true }
       );
       const { projects } = response.data;
       const { id, status } = response.data.projects;
@@ -76,6 +60,20 @@ const DetailedProject = () => {
     }
   };
 
+  // 모든 스폰서 목록과 수를 불러오는 함수
+  const getSponsors = async () => {
+    try {
+      const response = await axios.get<RootObject>(
+        `${REACT_APP_API_URL}/projects/${project.id}/sponsors`,
+        { withCredentials: true }
+      );
+      setCount(response.data.sponsors.count);
+      setSponsors(response.data.sponsors.rows);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   // 로그인한 유저의 정보를 받아오는 함수
   const fetchUserInfo = async () => {
     try {
@@ -88,14 +86,55 @@ const DetailedProject = () => {
     }
   };
 
+  // 최초 렌더링 시 특정 프로젝트의 데이터를 불러오는 함수 실행
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (isLogin) {
+      fetchUserInfo();
+    }
+    getProjects();
+  }, [id]);
+
+  // 프로젝트 랜더링 이후 스폰서 목록 불러오는 함수 실행
+  useEffect(() => {
+    if (project.id) getSponsors();
+  }, [project]);
+
+  //스폰서의 정보에서 유저 아이디만 추출해서 setState함수에 할당
+  useEffect(() => {
+    // 지식스폰서 명단에 유저가 포함되어있는지 여부를 확인
+    sponsors.map((el: any) => {
+      if (el.user_id === id) {
+        setIsUserSponsor(true);
+      }
+    });
+  }, [sponsors]);
+
   return (
     <ProjectContainer>
-      {(!isLogin || (isLogin && !isUserSponsor)) && status === 'inprogress' && (
-        <IntroNotYet />
+      {isLogin ? (
+        <>
+          {status === 'draft' && (
+            <IntroNotYet setIsUserSponsor={setIsUserSponsor} />
+          )}
+          {status === 'submitted' && (
+            <IntroNotYet setIsUserSponsor={setIsUserSponsor} />
+          )}
+          {status === 'achieved' && <IntroFinished />}
+          {status === 'inprogress' &&
+            (isUserSponsor ? (
+              <IntroAlready />
+            ) : (
+              <IntroNotYet setIsUserSponsor={setIsUserSponsor} />
+            ))}
+        </>
+      ) : (
+        <>
+          {status === 'inprogress' && (
+            <IntroNotYet setIsUserSponsor={setIsUserSponsor} />
+          )}
+        </>
       )}
-      {status === 'draft' && <IntroNotYet />}
-      {status === 'achieved' && <IntroFinished />}
-      {isLogin && isUserSponsor && status === 'inprogress' && <IntroAlready />}
       <TabButton project={project} />
       {detailTab.overview && (
         <>
@@ -104,7 +143,7 @@ const DetailedProject = () => {
             <Profile teams={teams} teamMember={teamMember} author={author} />
           )}
           <Comments project={project} setProject={setProject} />
-          <Sponsors setSponsorIds={setSponsorIds} sponsorIds={sponsorIds} />
+          <Sponsors sponsors={sponsors} count={count} />
           <GoTopButton href="#">
             <img src={TopButton} alt="Top-button" />
           </GoTopButton>

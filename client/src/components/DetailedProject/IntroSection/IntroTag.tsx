@@ -8,7 +8,7 @@ interface IntroTagProps {
 const IntroTag = ({ tags }: IntroTagProps) => {
   return (
     <HashTagContainer>
-      {tags.map((tag) => (
+      {tags.map((tag: any) => (
         <HashTag key={tag.id}>
           <strong>#</strong>
           <span>{tag.name}</span>

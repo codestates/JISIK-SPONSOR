@@ -77,6 +77,10 @@ module.exports = {
           {
             model: user, // users 테이블 조인
             attributes: ['name', 'nickname', 'profile_url']
+          },
+          {
+            model: project,
+            attributes: ['title', 'path']
           }
         ],
         order: [['id', 'DESC']]

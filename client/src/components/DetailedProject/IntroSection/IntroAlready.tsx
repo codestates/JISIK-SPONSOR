@@ -22,7 +22,9 @@ import IntroTitle from './IntroTitle';
 import IntroTag from './IntroTag';
 
 const IntroAlready = () => {
-  const [projectId, setProjectId] = useState<number>(1);
+  const history = useHistory();
+
+  const [projectId, setProjectId] = useState<number | null>(null);
   const [title, setTitle] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -32,10 +34,6 @@ const IntroAlready = () => {
   const [dDay, setdDay] = useState<number>(0);
   const [categoryId, setCategoryId] = useState<number>(0);
   const [category, setCategory] = useState<string>('');
-
-  const history = useHistory();
-  const TagsUrl = `${REACT_APP_API_URL}/projects/${projectId}/tags`;
-  const config = { withCredentials: true };
 
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
   const percentage = Number((pledged / goal).toFixed(2)) * 100;
@@ -79,10 +77,10 @@ const IntroAlready = () => {
       let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
       if (dDay <= 0) dDay = 0;
 
+      setProjectId(id);
       setTitle(title);
       setImage(thumbnail_url);
       setDescription(description);
-      setProjectId(id);
       setCategory(name);
       setGoal(Number(goal));
       setCategoryId(category_id);
@@ -97,7 +95,10 @@ const IntroAlready = () => {
   // 특정 프로젝트의 모든 태그를 조회하는 함수
   const getTags = async () => {
     try {
-      const response = await axios.get<Tags>(TagsUrl, config);
+      const response = await axios.get<Tags>(
+        `${REACT_APP_API_URL}/projects/${projectId}/tags`,
+        { withCredentials: true }
+      );
       const tagGroup = response.data.tags;
       setTags(tagGroup);
     } catch (err) {
@@ -108,18 +109,23 @@ const IntroAlready = () => {
   // 최초 렌더링 시 즐겨찾기, 태그, 그리고 전체 프로젝트 데이터를 실행
   useEffect(() => {
     getProjects();
-    getTags();
   }, []);
+
+  useEffect(() => {
+    if (projectId) getTags();
+  }, [projectId]);
 
   return (
     <Section>
       <ProjectWrapper>
-        <IntroTitle
-          isLogin={isLogin}
-          projectId={projectId}
-          categoryId={categoryId}
-          category={category}
-        />
+        {projectId && (
+          <IntroTitle
+            isLogin={isLogin}
+            projectId={projectId}
+            categoryId={categoryId}
+            category={category}
+          />
+        )}
         <ProjectTitle>
           <h1>{title}</h1>
           <span>{description}</span>

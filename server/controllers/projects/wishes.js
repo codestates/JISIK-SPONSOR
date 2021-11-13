@@ -23,12 +23,12 @@ module.exports = {
     if (!projectInfo) return res.status(404).json({ message: 'Not Found!' });
 
     const wishInfo = await wish.findOne({
-      where: { user_id: userInfo.id, project_id: projectInfo.id }
+      where: { user_id: userInfo.id, project_id: projectId }
     });
 
     // 찜하기가 존재하면 true를 존재하지 않는 경우 false를 리턴한다.
     if (!wishInfo) return res.status(200).json({ state: false });
-    res.status(200).json({ state: true });
+    return res.status(200).json({ state: true });
   },
   post: async (req, res) => {
     try {

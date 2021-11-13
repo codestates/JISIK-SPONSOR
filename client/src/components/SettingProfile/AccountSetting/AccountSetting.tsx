@@ -86,12 +86,8 @@ function AccountSetting() {
     if (password !== '' && checkPassword !== '' && !isVaild && !pwVaild) {
       const response = await axios.patch(
         `${REACT_APP_API_URL}/users/me/`,
-        {
-          password
-        },
-        {
-          withCredentials: true
-        }
+        { password },
+        { withCredentials: true }
       );
       console.log(response);
       dispatch(showMiniMoal(true));

@@ -17,7 +17,7 @@ import WhiteStar from '../../../images/star-white.png';
 
 interface IntroTitleProps {
   isLogin: boolean;
-  projectId: number;
+  projectId: number | null;
   categoryId: number;
   category: string;
 }
@@ -37,8 +37,7 @@ const IntroTitle = ({
         `${REACT_APP_API_URL}/projects/${projectId}/wishes`,
         { withCredentials: true }
       );
-      const state = response.data.state;
-      setFavorite(state);
+      setFavorite(response.data.state);
     } catch (err) {
       console.log(err);
     }
@@ -47,14 +46,15 @@ const IntroTitle = ({
   // 즐겨찾기의 상태를 변경하는 함수
   const FavoriteHandler = async () => {
     try {
-      if (!favorite) {
+      if (favorite === false) {
         await axios.post(
           `${REACT_APP_API_URL}/projects/${projectId}/wishes`,
           {},
           { withCredentials: true }
         );
         setFavorite(true);
-      } else {
+      }
+      if (favorite === true) {
         await axios.delete(
           `${REACT_APP_API_URL}/projects/${projectId}/wishes`,
           { withCredentials: true }
@@ -68,7 +68,7 @@ const IntroTitle = ({
 
   // 로그인이 되었있다면, 즐겨찾기 상태값을 불러옴
   useEffect(() => {
-    if (isLogin) getFavoriteState();
+    if (isLogin && projectId) getFavoriteState();
   }, []);
 
   return (
@@ -84,15 +84,18 @@ const IntroTitle = ({
         {categoryId === 8 && <img src={CategoryIcon8} alt="category-icon" />}
         <span>{category}</span>
       </div>
-      {isLogin && favorite && (
-        <button onClick={FavoriteHandler}>
-          <img src={YellowStar} alt="yellow-star" />
-        </button>
-      )}
-      {isLogin && !favorite && (
-        <button onClick={FavoriteHandler}>
-          <img src={WhiteStar} alt="yellow-star" />
-        </button>
+      {isLogin && (
+        <>
+          {favorite === true ? (
+            <button onClick={FavoriteHandler}>
+              <img src={YellowStar} alt="yellow-star" />
+            </button>
+          ) : (
+            <button onClick={FavoriteHandler}>
+              <img src={WhiteStar} alt="yellow-star" />
+            </button>
+          )}
+        </>
       )}
     </Category>
   );

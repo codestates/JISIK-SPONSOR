@@ -60,15 +60,11 @@ const CommentBox = ({
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
   const userInfo = useSelector((state: RootState) => state.userInfo);
 
-  console.log(project);
-
   const menuBox = useRef<HTMLInputElement>(null);
   const { id: userInfoId } = userInfo.userInfo;
   const { user_id: projectUserId } = project;
 
-  const config = {
-    withCredentials: true
-  };
+  const config = { withCredentials: true };
 
   //수정상자를 열고 닫는 버튼을 열고닫는 함수
   const handleDotButton = (
