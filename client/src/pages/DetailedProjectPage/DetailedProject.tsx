@@ -120,6 +120,9 @@ const DetailedProject = () => {
           {status === 'submitted' && (
             <IntroNotYet setIsUserSponsor={setIsUserSponsor} />
           )}
+          {status === 'approved' && (
+            <IntroNotYet setIsUserSponsor={setIsUserSponsor} />
+          )}
           {status === 'inprogress' &&
             (isUserSponsor ? (
               <IntroAlready />

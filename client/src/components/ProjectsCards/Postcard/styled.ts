@@ -120,7 +120,7 @@ export const UserInfo = styled.div`
   align-items: center;
   margin-bottom: 15px;
   & > img {
-    width: auto;
+    width: 25px;
     height: 25px;
     border-radius: 50%;
   }

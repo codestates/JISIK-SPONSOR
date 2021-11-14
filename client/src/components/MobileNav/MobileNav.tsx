@@ -74,7 +74,7 @@ const MobileNav = ({ showMenuBox, showNoticeMenuBox }: showProps) => {
               <Link to="/board">
                 <span>모든 프로젝트</span>
               </Link>
-              <Link to="/start-project">
+              <Link to="/start">
                 <span>프로젝트 시작하기</span>
               </Link>
               <Link to="/about">

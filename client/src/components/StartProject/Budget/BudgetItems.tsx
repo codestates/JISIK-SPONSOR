@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditButton } from '../commonStyled';
 
 function BudgetItems({ handleInput, item, removeBringList }: any) {

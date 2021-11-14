@@ -29,6 +29,7 @@ interface Props {
 }
 
 const IntroNotYet = ({ setIsUserSponsor }: Props) => {
+  const [startDay, setStartDay] = useState<any>('');
   const [projectId, setProjectId] = useState<number | null>(null);
   const [title, setTitle] = useState<string>('');
   const [status, setStatus] = useState<string>('');
@@ -87,6 +88,7 @@ const IntroNotYet = ({ setIsUserSponsor }: Props) => {
         goal,
         category_id,
         pledged,
+        start_date,
         end_date
       } = response.data.projects;
 
@@ -99,6 +101,7 @@ const IntroNotYet = ({ setIsUserSponsor }: Props) => {
       let dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
       if (dDay <= 0) dDay = 0;
 
+      setStartDay(start_date);
       setProjectId(id);
       setTitle(title);
       setStatus(status);
@@ -267,12 +270,21 @@ const IntroNotYet = ({ setIsUserSponsor }: Props) => {
               {status === 'submitted' && (
                 <GrayButton>프로젝트 제출완료</GrayButton>
               )}
+              {status === 'approved' && (
+                <GrayButton>프로젝트 펀딩 대기중</GrayButton>
+              )}
             </SubContent>
             <Notice noDisplay={false}>
               {status === 'inprogress' &&
                 '* 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은 다음날 환불처리 됩니다.'}
-              {status === 'approve' &&
-                '* 본 프로젝트 후원하기 기능은 개발자 모드로써 결제하신 금액은 다음날 환불처리 됩니다.'}
+              {status === 'approved' &&
+                '* 본 프로젝트 펀딩은 ' +
+                  new Date(startDay).toLocaleDateString('ko-KR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  }) +
+                  '부터 시작됩니다.'}
               {status === 'draft' &&
                 '현재 프로젝트 작성중입니다. 제출 이후에는 수정하거나 삭제하실 수 없습니다.'}
               {status === 'submitted' &&

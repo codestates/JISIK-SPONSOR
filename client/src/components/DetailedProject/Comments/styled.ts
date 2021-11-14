@@ -104,6 +104,7 @@ export const CommentLists = styled.div`
         height: 50px;
         width: 50px;
         margin-right: 15px;
+        border-radius: 50%;
       }
     }
 
