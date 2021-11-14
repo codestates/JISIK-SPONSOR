@@ -58,17 +58,32 @@ const TabButton = ({ project }: Props) => {
         <Tab labnote={detailTab.labnote} onClick={() => dispatch(labnote())}>
           랩 노트
         </Tab>
-        {isLogin &&
-        project.user_id === userInfo.id &&
-        project.status === 'draft' ? (
+        {isLogin && (
           <>
-            <Tab>
-              <Link to="/start-project">프로젝트 수정</Link>
-            </Tab>
-            <Tab onClick={submitProject}>프로젝트 제출</Tab>
-            <Tab onClick={deleteProject}>프로젝트 삭제</Tab>
+            {userInfo.role_id === 1 ? (
+              <>
+                <Tab>
+                  <Link to="/start-project">프로젝트 수정</Link>
+                </Tab>
+                {project.status === 'draft' && (
+                  <Tab onClick={submitProject}>프로젝트 제출</Tab>
+                )}
+                <Tab onClick={deleteProject}>프로젝트 삭제</Tab>
+              </>
+            ) : (
+              project.status === 'draft' &&
+              project.user_id === userInfo.id && (
+                <>
+                  <Tab>
+                    <Link to="/start-project">프로젝트 수정</Link>
+                  </Tab>
+                  <Tab onClick={submitProject}>프로젝트 제출</Tab>
+                  <Tab onClick={deleteProject}>프로젝트 삭제</Tab>
+                </>
+              )
+            )}
           </>
-        ) : null}
+        )}
       </Wrapper>
     </Section>
   );

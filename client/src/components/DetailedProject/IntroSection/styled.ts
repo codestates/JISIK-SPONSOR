@@ -227,7 +227,7 @@ export const FundInput = styled.div`
     font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
-    color: #ff0200;
+    color: #dd584a;
     margin-bottom: 10px;
   }
   & > div input::-webkit-outer-spin-button,

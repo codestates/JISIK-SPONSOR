@@ -598,12 +598,6 @@ module.exports = {
         status: '후원성공'
       },
       {
-        user_id: 1,
-        project_id: 6,
-        pledged: '100.00',
-        status: '후원성공'
-      },
-      {
         user_id: 5,
         project_id: 6,
         pledged: '100.00',
