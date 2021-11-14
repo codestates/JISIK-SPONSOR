@@ -160,18 +160,11 @@ const SignupInput = () => {
           dispatch(insertText('모두 동의해주셔야 회원가입 진행이 가능합니다.'));
           return;
         }
-        const response = await axios.post(
+        await axios.post(
           `${REACT_APP_API_URL}/signup`,
-          {
-            name,
-            email,
-            password
-          },
-          {
-            withCredentials: true
-          }
+          { name, email, password },
+          { withCredentials: true }
         );
-        console.log('회원가입', response);
         resetInfo();
         dispatch(showConfiltModal(true));
         dispatch(showSignupModal(false));
