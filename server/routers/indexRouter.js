@@ -8,7 +8,7 @@ router.get('/', (req, res) => res.send('Jisik Sponsor!'));
 router.get('/auth', auth.auth.get);
 router.post('/login', auth.login.post);
 router.post('/logout', auth.logout.post);
-router.post('/signup', auth.signup.post, auth.signup.patch);
+router.post('/signup', auth.signup.post);
 
 // OAuth API
 router.post('/oauth/google', oauth.google.post);
