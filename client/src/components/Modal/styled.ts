@@ -22,7 +22,9 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 900;
-
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @media all and (max-width: 620px) {
     width: 100%;
     height: 100%;
