@@ -166,7 +166,7 @@ function BudgetInfo() {
       `${REACT_APP_API_URL}/projects/${projectId}`,
       {
         budgetSynopsis: budgetPlan,
-        goalAmout: grossAmount
+        goalAmount: grossAmount
       },
       {
         withCredentials: true

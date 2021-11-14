@@ -48,6 +48,7 @@ export const SponsorsList = styled.ul`
   img {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
   }
 
   @media screen and (max-width: 718px) {

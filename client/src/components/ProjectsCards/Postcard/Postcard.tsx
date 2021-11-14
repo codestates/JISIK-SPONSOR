@@ -80,7 +80,7 @@ const Postcard = ({ project }: Props) => {
                     <span>
                       {project.status === 'draft' && '작성중'}
                       {project.status === 'submitted' && '제출완료'}
-                      {project.status === 'approve' && '승인완료 펀딩대기'}
+                      {project.status === 'approved' && '승인완료 펀딩대기'}
                       {project.status === 'inprogress' && dDay + ' days'}
                       {project.status === 'achieved' && 'finished'}
                       {project.status === 'canceled' && '펀딩실패'}
