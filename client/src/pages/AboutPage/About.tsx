@@ -1,4 +1,5 @@
 /*eslint-disable*/
+
 import {
   Section,
   Wrap,
@@ -90,9 +91,7 @@ const About = () => {
                   <br />
                   그리고 하고자하는 의지만 있다면
                   <br />
-                  <span>
-                    누구나 나이, 학력, 경력과 무관하게
-                  </span>
+                  <span>누구나 나이, 학력, 경력과 무관하게</span>
                   <br />
                   자신의 아이디어를 세상에 알리고 실현시킬 수 있어요.
                 </p>
