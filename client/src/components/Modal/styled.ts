@@ -31,6 +31,14 @@ export const ModalContainer = styled.div`
     max-height: 100%;
     border-radius: 0;
     padding: 60px 30px;
+    &::-webkit-scrollbar {
+      display: block;
+    }
+  }
+  @media all and (max-height: 620px) {
+    &::-webkit-scrollbar {
+      display: block;
+    }
   }
 `;
 
@@ -228,9 +236,6 @@ export const MiniModalContainer = styled(ModalContainer)`
   padding: 40px 80px;
   text-align: center;
   word-break: keep-all;
-  &::-webkit-scrollbar {
-    display: none;
-  }
   @media all and (max-width: 620px) {
     padding: 40px;
     border-radius: 10px;
