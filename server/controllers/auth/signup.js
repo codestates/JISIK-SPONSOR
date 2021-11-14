@@ -41,9 +41,7 @@ module.exports = {
       // 요청받은 이메일 정보로 등록된 회원이 존재하지만 인증을 하지 않은 경우 회원을 삭제한다.
       if (userInfo) {
         if (userInfo.email_verified === false) {
-          req.userId = userInfo.id;
-          await user.destroy({ where: { id: req.userId } });
-          return;
+          await user.destroy({ where: { id: userInfo.id } });
         }
       }
 
@@ -79,10 +77,10 @@ module.exports = {
       emailSend(emailContent);
 
       // 새로 생성한 회원의 아이디를 반환한다.
-      res.status(201).json({ id: newUser.dataValues.id });
+      return res.status(201).json({ id: newUser.dataValues.id });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: 'Server error!' });
+      return res.status(500).json({ message: 'Server error!' });
     }
   }
 };
