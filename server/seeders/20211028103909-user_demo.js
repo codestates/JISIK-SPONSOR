@@ -17,7 +17,9 @@ module.exports = {
         role_id: 1,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/users/profile/1/1636303118149-people1.png'
+        profile_url: '/uploads/users/profile/1/1636303118149-people1.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '관리자 데모',
@@ -27,7 +29,9 @@ module.exports = {
         role_id: 2,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/users/profile/2/1636303211320-people2.png'
+        profile_url: '/uploads/users/profile/2/1636303211320-people2.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '김코딩',
@@ -37,7 +41,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/users/profile/3/1636303251904-people3.png'
+        profile_url: '/uploads/users/profile/3/1636303251904-people3.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '박해커',
@@ -47,7 +53,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/users/profile/4/1636303289604-baksa.png'
+        profile_url: '/uploads/users/profile/4/1636303289604-baksa.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '박미소',
@@ -58,7 +66,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-01.png'
+        profile_url: '/uploads/demo/user-01.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '박철룡',
@@ -69,7 +79,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-02.png'
+        profile_url: '/uploads/demo/user-02.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '김신열',
@@ -80,7 +92,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-03.png'
+        profile_url: '/uploads/demo/user-03.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '박진철',
@@ -91,7 +105,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-04.png'
+        profile_url: '/uploads/demo/user-04.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '하종찬',
@@ -102,7 +118,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-05.png'
+        profile_url: '/uploads/demo/user-05.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '남수진',
@@ -113,7 +131,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-06.png'
+        profile_url: '/uploads/demo/user-06.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '최민국',
@@ -124,7 +144,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-07.png'
+        profile_url: '/uploads/demo/user-07.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '신미영',
@@ -135,7 +157,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-08.png'
+        profile_url: '/uploads/demo/user-08.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '조수아',
@@ -146,7 +170,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-09.png'
+        profile_url: '/uploads/demo/user-09.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '박현철',
@@ -157,7 +183,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-10.png'
+        profile_url: '/uploads/demo/user-10.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '정사랑',
@@ -168,7 +196,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-11.png'
+        profile_url: '/uploads/demo/user-11.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '전수찬',
@@ -179,7 +209,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-12.png'
+        profile_url: '/uploads/demo/user-12.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '김숙자',
@@ -190,7 +222,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-13.png'
+        profile_url: '/uploads/demo/user-13.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '박하늘',
@@ -201,7 +235,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-14.png'
+        profile_url: '/uploads/demo/user-14.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '최승훈',
@@ -212,7 +248,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-15.png'
+        profile_url: '/uploads/demo/user-15.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '김효진',
@@ -223,7 +261,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-16.png'
+        profile_url: '/uploads/demo/user-16.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '나반석',
@@ -234,7 +274,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-17.png'
+        profile_url: '/uploads/demo/user-17.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '하상윤',
@@ -245,7 +287,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-18.png'
+        profile_url: '/uploads/demo/user-18.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '최구종',
@@ -256,7 +300,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-19.png'
+        profile_url: '/uploads/demo/user-19.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '강수아',
@@ -267,7 +313,9 @@ module.exports = {
         role_id: 3,
         signup_method: '일반',
         email_verified: true,
-        profile_url: '/uploads/demo/user-20.png'
+        profile_url: '/uploads/demo/user-20.png',
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         name: '나태웅',
@@ -275,7 +323,9 @@ module.exports = {
         password: hash,
         role_id: 1,
         signup_method: '일반',
-        email_verified: true
+        email_verified: true,
+        created_at: new Date(),
+        updated_at: new Date()
       }
     ]);
   },

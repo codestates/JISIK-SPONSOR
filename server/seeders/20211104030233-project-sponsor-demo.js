@@ -227,7 +227,7 @@ module.exports = {
       },
       {
         user_id: 5,
-        project_id: 6,
+        project_id: 19,
         pledged: '100.00',
         status: '후원성공'
       },
@@ -605,7 +605,7 @@ module.exports = {
       },
       {
         user_id: 2,
-        project_id: 6,
+        project_id: 8,
         pledged: '100.00',
         status: '후원성공'
       },
@@ -683,7 +683,7 @@ module.exports = {
       },
       {
         user_id: 13,
-        project_id: 9,
+        project_id: 19,
         pledged: '100.00',
         status: '후원성공'
       },

@@ -79,7 +79,9 @@ module.exports = {
           nickname: profile.nickname,
           profile_url: profile.profile_image_url,
           signup_method: '카카오',
-          email_verified: true
+          email_verified: true,
+          created_at: new Date(),
+          updated_at: new Date()
         });
 
         // 회원의 비밀번호와 이메일 인증 코드를 삭제한다.

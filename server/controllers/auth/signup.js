@@ -67,7 +67,9 @@ module.exports = {
         email,
         password: hash,
         signup_method: '일반',
-        key_for_verify
+        key_for_verify,
+        created_at: new Date(),
+        updated_at: new Date()
       });
 
       // 이메일 인증 확인 URL
@@ -101,7 +103,12 @@ module.exports = {
 
       // 사용자 정보 업데이트
       await user.update(
-        { password: hash, key_for_verify, updated_at: new Date() },
+        {
+          name,
+          password: hash,
+          key_for_verify,
+          updated_at: new Date()
+        },
         { where: { id: req.userId } }
       );
 

@@ -67,14 +67,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DECIMAL(12, 2)
       },
       created_at: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: new Date()
+        type: DataTypes.DATE
       },
       updated_at: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: new Date()
+        type: DataTypes.DATE
       }
     },
     {

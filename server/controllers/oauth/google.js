@@ -72,7 +72,9 @@ module.exports = {
           nickname: given_name,
           profile_url: picture,
           signup_method: '구글',
-          email_verified: true
+          email_verified: true,
+          created_at: new Date(),
+          updated_at: new Date()
         });
 
         // 회원의 비밀번호와 이메일 인증 코드를 삭제한다.
