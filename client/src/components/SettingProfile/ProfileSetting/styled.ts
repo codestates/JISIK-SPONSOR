@@ -34,13 +34,14 @@ export const SettingImg = styled(ProjectCoverImage)`
   > label {
     width: 120px;
     height: 120px;
+    padding: 0;
     border-radius: 50%;
-  }
-
-  > label > img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    border: none;
+    overflow: hidden;
+    > img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   > p {

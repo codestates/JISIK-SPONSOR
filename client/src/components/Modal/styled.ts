@@ -226,6 +226,9 @@ export const MiniModalContainer = styled(ModalContainer)`
   padding: 40px 80px;
   text-align: center;
   word-break: keep-all;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @media all and (max-width: 620px) {
     padding: 40px;
     border-radius: 10px;
