@@ -14,6 +14,7 @@ import { UserInfoData } from 'components/Modal/type';
 import userImg from 'images/icons/user-icon.png';
 import { RootState } from 'index';
 import { REACT_APP_API_URL } from 'config';
+import { useHistory } from 'react-router';
 
 interface profileProps {
   name: string;
@@ -24,6 +25,7 @@ interface imageProps {
   profile_url: string;
 }
 function ProfileSetting() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const userInfo = useSelector((state: RootState) => state.userInfo.userInfo);
   const [profileContent, setProfileContent] = useState<profileProps>({
@@ -117,6 +119,7 @@ function ProfileSetting() {
       setImgSrc(response.data.profile_url);
       dispatch(showMiniMoal(true));
       dispatch(insertText('프로필 이미지가 성공적으로 변경되었습니다.'));
+      history.go(0);
     }
   };
   return (
