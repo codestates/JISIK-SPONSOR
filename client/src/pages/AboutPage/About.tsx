@@ -7,6 +7,8 @@ import {
   ImageWrap,
   SecondImageWrap,
   TextBoxWrap,
+  TextBoxWrap2,
+  TextBoxWrap3,
   LinkWrap,
   StartProjectSection
 } from './styled';
@@ -88,7 +90,9 @@ const About = () => {
                   <br />
                   그리고 하고자하는 의지만 있다면
                   <br />
-                  누구나 나이, 학력, 경력과 무관하게
+                  <span>
+                    누구나 나이, 학력, 경력과 무관하게
+                  </span>
                   <br />
                   자신의 아이디어를 세상에 알리고 실현시킬 수 있어요.
                 </p>
@@ -108,12 +112,12 @@ const About = () => {
         <Wrap>
           <Fade keyframes={customDirectionRight}>
             <QuestionSection deraction="right">
-              <TextBoxWrap>
+              <TextBoxWrap2>
                 <h2>2. 간단하고 빠른 프로젝트 올리기</h2>
                 <p>
                   지식스폰서는 ‘연구지식’에만 특화된 크라우드 펀딩 플랫폼으로,
                   <br />
-                  기존 서비스의 복잡한 절차와 번거로움을 덜어내고
+                  기존 서비스의 <span>복잡한 절차와 번거로움</span>을 덜어내고
                   <br />
                   자체적인 템플릿 개발을 통해
                   <br />
@@ -123,7 +127,7 @@ const About = () => {
                   <Link to="/board">프로젝트 확인하기</Link>
                   <Link to="/faq">FAQ 보기</Link>
                 </LinkWrap>
-              </TextBoxWrap>
+              </TextBoxWrap2>
               <SecondImageWrap>
                 <img src={question2} />
               </SecondImageWrap>
@@ -135,10 +139,10 @@ const About = () => {
         <Wrap>
           <Fade keyframes={customDirectionLeft}>
             <QuestionSection deraction="left">
-              <TextBoxWrap>
+              <TextBoxWrap3>
                 <h2>3. 커피 한 잔 가격으로 프로젝트 참여 가능</h2>
                 <p>
-                  지식스폰서에서는 커피 한 잔 가격만으로도
+                  지식스폰서에서는 <span>커피 한 잔 가격만</span>으로도
                   <br />
                   의미있고 흥미로운 프로젝트에 참여하고,
                   <br />
@@ -148,7 +152,7 @@ const About = () => {
                   <Link to="/board">프로젝트 확인하기</Link>
                   <Link to="/faq">FAQ 보기</Link>
                 </LinkWrap>
-              </TextBoxWrap>
+              </TextBoxWrap3>
               <ImageWrap>
                 <img src={question3} />
               </ImageWrap>

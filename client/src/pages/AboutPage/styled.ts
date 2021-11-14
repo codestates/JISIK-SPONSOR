@@ -1,6 +1,8 @@
 /*eslint-disable*/
 import styled from 'styled-components';
 import cloud from '../../images/cloud.png';
+import YellowLine from '../../images/YellowLine.png';
+import yellowcircle from '../../images/yellowcircle.png';
 
 interface SectionProps {
   background: string;
@@ -96,7 +98,7 @@ export const QuestionSection = styled.div<QuestionSectionProps>`
   justify-content: space-between;
   direction: ${(props) => props.deraction === 'right' && 'rtl'};
   & div:nth-child(1) {
-    width: 62%;
+    width: 70%;
     padding: ${(props) => (props.deraction === 'right' ? '0 0 0 15px' : '0')};
     direction: ${(props) => props.deraction === 'right' && 'initial'};
   }
@@ -147,6 +149,103 @@ export const TextBoxWrap = styled.div`
     color: #495057;
     line-height: 160%;
     margin-bottom: 30px;
+  }
+
+  & > p > span {
+    background-image: url(${YellowLine});
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: 0% 120%;
+  }
+
+  @media all and (max-width: 960px) {
+    & > h2 {
+      font-size: 30px;
+    }
+    & > p {
+      font-size: 20px;
+    }
+  }
+
+  @media all and (max-width: 620px) {
+    & > h2 {
+      font-size: 20px;
+    }
+  }
+
+  @media all and (max-width: 567px) {
+    & > p {
+      font-size: 15px;
+    }
+  }
+`;
+
+export const TextBoxWrap2 = styled.div`
+  word-break: keep-all;
+  & > h2 {
+    font-size: 33px;
+    color: #343a40;
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 20px;
+  }
+  & > p {
+    font-size: 23px;
+    color: #495057;
+    line-height: 160%;
+    margin-bottom: 30px;
+  }
+
+  & > p > span {
+    background-image: url(${YellowLine});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0% 90%;
+  }
+
+  @media all and (max-width: 960px) {
+    & > h2 {
+      font-size: 30px;
+    }
+    & > p {
+      font-size: 20px;
+    }
+  }
+
+  @media all and (max-width: 620px) {
+    & > h2 {
+      font-size: 20px;
+    }
+  }
+
+  @media all and (max-width: 567px) {
+    & > p {
+      font-size: 15px;
+    }
+  }
+`;
+
+export const TextBoxWrap3 = styled.div`
+  word-break: keep-all;
+  & > h2 {
+    font-size: 33px;
+    color: #343a40;
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 20px;
+  }
+  & > p {
+    font-size: 23px;
+    color: #495057;
+    line-height: 160%;
+    margin-bottom: 30px;
+  }
+
+  & > p > span {
+    background-image: url(${YellowLine});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0% 90%;
   }
 
   @media all and (max-width: 960px) {
