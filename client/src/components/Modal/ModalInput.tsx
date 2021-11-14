@@ -51,6 +51,7 @@ const ModalInput = () => {
       );
     }
   };
+
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -77,6 +78,7 @@ const ModalInput = () => {
         },
         { withCredentials: true }
       );
+
       dispatch(showLoginModal(false));
       dispatch(login());
       dispatch(getUserInfo(response.data));

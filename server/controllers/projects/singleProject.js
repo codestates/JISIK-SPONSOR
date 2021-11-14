@@ -6,7 +6,11 @@ const {
   project_team_member,
   budget_item,
   project_milestone,
-  project_tag
+  project_tag,
+  wish,
+  comment,
+  order,
+  project_sponsor
 } = require('../../models');
 const userAuthen = require('../../middlewares/authorized/userAuthen');
 
@@ -177,16 +181,17 @@ module.exports = {
         return res.status(404).json({ message: 'Not Found!' });
       }
 
-      // 현재 회원이 프로젝트를 수정할 권한이 없는 경우 다음을 리턴한다.
-      if (projectInfo.user_id !== userInfo.id && userInfo.role_id !== 1) {
-        return res.status(403).json({ message: 'Not authorized!' });
-      }
-
-      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (수정 불가)
-      if (projectInfo.status !== 'draft') {
-        return res
-          .status(403)
-          .json({ message: 'This project status is not "draft" !' });
+      if (userInfo.role_id !== 1) {
+        // 현재 회원이 프로젝트를 수정할 권한이 없는 경우 다음을 리턴한다.
+        if (projectInfo.user_id !== userInfo.id) {
+          return res.status(403).json({ message: 'Not authorized!' });
+        }
+        // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (수정 불가)
+        if (projectInfo.status !== 'draft') {
+          return res
+            .status(403)
+            .json({ message: 'This project status is not "draft" !' });
+        }
       }
 
       /**
@@ -355,16 +360,17 @@ module.exports = {
         return res.status(404).json({ message: 'Not Found!' });
       }
 
-      // 현재 회원이 프로젝트를 삭제할 권한이 없는경우 다음을 리턴한다.
-      if (projectInfo.user_id !== userInfo.id && userInfo.role_id !== 1) {
-        return res.status(403).json({ message: 'Not authorized!' });
-      }
-
-      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다. (삭제 불가능)
-      if (projectInfo.status !== 'draft') {
-        return res
-          .status(403)
-          .json({ message: 'This project status is not "draft" !' });
+      if (userInfo.role_id !== 1) {
+        // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
+        if (userInfo.id !== projectInfo.user_id) {
+          return res.status(403).json({ message: 'Not authorized!' });
+        }
+        // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
+        if (projectInfo.status !== 'draft') {
+          return res
+            .status(403)
+            .json({ message: 'This project status is not "draft" !' });
+        }
       }
 
       /**
@@ -390,8 +396,31 @@ module.exports = {
       // 프로젝트와 연관된 태그 레코드를 삭제한다.
       await project_tag.destroy({ where: { project_id: projectInfo.id } });
 
-      // 프로젝트를 삭제한다.
-      await project.destroy({ where: { id: projectInfo.id } });
+      // 프로젝트 찜 레코드를 삭제한다.
+      await wish.destroy({ where: { project_id: projectInfo.id } });
+
+      // 프로젝트 댓글 레코드를 삭제한다.
+      await comment.destroy({ where: { project_id: projectInfo.id } });
+
+      // 프로젝트 작성 중인 경우에만 진짜 삭제한다.
+      if (projectInfo.status === 'draft') {
+        // 프로젝트 주문 레코드를 삭제한다.
+        await order.destroy({ where: { project_id: projectInfo.id } });
+
+        // 프로젝트 후원 레코드를 삭제한다.
+        await project_sponsor.destroy({
+          where: { project_id: projectInfo.id }
+        });
+
+        // 프로젝트를 삭제한다.
+        await project.destroy({ where: { id: projectInfo.id } });
+      } else {
+        // 프로젝트 상태를 삭제처리한다.
+        await project.update(
+          { status: 'delete' },
+          { where: { id: projectInfo.id } }
+        );
+      }
 
       // 삭제된 프로젝트 아이디를 반환한다.
       res.status(200).json({ id: projectInfo.id });

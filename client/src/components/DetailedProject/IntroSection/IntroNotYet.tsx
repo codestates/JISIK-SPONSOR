@@ -247,7 +247,11 @@ const IntroNotYet = ({ setIsUserSponsor }: Props) => {
                         onBlur={numBlurHandler}
                       />
                     </div>
-                    {fundIsEmpty && <p>후원 금액을 입력해주세요.</p>}
+                    {fundIsEmpty && (
+                      <p>
+                        후원 금액을 입력해주세요. 최소후원 금액은 1000원입니다.
+                      </p>
+                    )}
                     {(phoneNumInvalid || phoneNumIsEmpty) && (
                       <p>
                         전화번호를 입력하지 않았거나 유효하지 않은 전화번호

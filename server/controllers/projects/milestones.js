@@ -25,16 +25,17 @@ module.exports = {
         return res.status(404).json({ message: 'Not Found!' });
       }
 
-      // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== projectInfo.user_id && userInfo.role_id !== 1) {
-        return res.status(403).json({ message: 'Not authorized!' });
-      }
-
-      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== 'draft') {
-        return res
-          .status(403)
-          .json({ message: 'This project status is not "draft" !' });
+      if (userInfo.role_id !== 1) {
+        // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
+        if (userInfo.id !== projectInfo.user_id) {
+          return res.status(403).json({ message: 'Not authorized!' });
+        }
+        // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
+        if (projectInfo.status !== 'draft') {
+          return res
+            .status(403)
+            .json({ message: 'This project status is not "draft" !' });
+        }
       }
 
       // 요청이 잘못된 경우는 다음을 리턴한다.
@@ -97,16 +98,17 @@ module.exports = {
         });
       }
 
-      // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== projectInfo.user_id && userInfo.role_id !== 1) {
-        return res.status(403).json({ message: 'Not authorized!' });
-      }
-
-      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== 'draft') {
-        return res
-          .status(403)
-          .json({ message: 'This project status is not "draft" !' });
+      if (userInfo.role_id !== 1) {
+        // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
+        if (userInfo.id !== projectInfo.user_id) {
+          return res.status(403).json({ message: 'Not authorized!' });
+        }
+        // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
+        if (projectInfo.status !== 'draft') {
+          return res
+            .status(403)
+            .json({ message: 'This project status is not "draft" !' });
+        }
       }
 
       /**
@@ -181,16 +183,17 @@ module.exports = {
         });
       }
 
-      // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
-      if (userInfo.id !== projectInfo.user_id && userInfo.role_id !== 1) {
-        return res.status(403).json({ message: 'Not authorized!' });
-      }
-
-      // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
-      if (projectInfo.status !== 'draft') {
-        return res
-          .status(403)
-          .json({ message: 'This project status is not "draft" !' });
+      if (userInfo.role_id !== 1) {
+        // 현재 회원이 프로젝트를 수정할 권한이 없는경우 다음을 리턴한다.
+        if (userInfo.id !== projectInfo.user_id) {
+          return res.status(403).json({ message: 'Not authorized!' });
+        }
+        // 현재 프로젝트가 "작성중"이 아닌경우 다음을 리턴한다.
+        if (projectInfo.status !== 'draft') {
+          return res
+            .status(403)
+            .json({ message: 'This project status is not "draft" !' });
+        }
       }
 
       /**

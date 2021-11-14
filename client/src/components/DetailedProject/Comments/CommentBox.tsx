@@ -61,7 +61,7 @@ const CommentBox = ({
   const userInfo = useSelector((state: RootState) => state.userInfo);
 
   const menuBox = useRef<HTMLInputElement>(null);
-  const { id: userInfoId } = userInfo.userInfo;
+  const { id: userInfoId, role_id: roleId } = userInfo.userInfo;
   const { user_id: projectUserId } = project;
 
   const config = { withCredentials: true };
@@ -170,7 +170,7 @@ const CommentBox = ({
         {isLogin &&
           (userInfoId === userId ||
             userInfoId === projectUserId ||
-            userInfoId === 1) && (
+            roleId === 1) && (
             <button>
               <img
                 src={DotIcon}

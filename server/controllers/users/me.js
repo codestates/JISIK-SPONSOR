@@ -13,7 +13,7 @@ module.exports = {
 
       // 회원의 비밀번호와 역할을 삭제한다.
       delete userInfo.dataValues.password;
-      delete userInfo.dataValues.role_id;
+      delete userInfo.dataValues.key_for_verify;
 
       // 회원 정보를 반환한다.
       res.status(200).json({ userInfo });

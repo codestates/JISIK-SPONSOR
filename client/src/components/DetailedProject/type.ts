@@ -6,6 +6,7 @@ export interface Author {
   name: string;
   nickname: string;
   bio?: any;
+  role_id?: number;
   profile_url: string;
 }
 

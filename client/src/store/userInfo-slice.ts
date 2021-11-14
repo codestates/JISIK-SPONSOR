@@ -8,6 +8,7 @@ export interface UserInfoProps {
     mobile?: string;
     nickname?: string;
     bio?: string;
+    role_id?: number;
     profile_url?: string;
     signup_method?: string;
     projects_supported?: number;

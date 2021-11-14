@@ -82,9 +82,9 @@ module.exports = {
           // query로 status가 들어오면 해당 not 연산자는 사용 X, 기본은 '승인됨, 진행중, 성공함'인 프로젝트만 출력함.
           [Op.not]: [
             status || author
-              ? { status: null }
+              ? { status: ['delete'] }
               : {
-                  status: ['draft', 'submitted', 'canceled']
+                  status: ['draft', 'submitted', 'canceled', 'delete']
                 }
           ],
           [Op.and]: [
@@ -169,11 +169,14 @@ module.exports = {
 
       // 모든 프로젝트를 조회한다.
       const projects = await wish.findAndCountAll({
-        where: { user_id: userInfo.id },
+        where: {
+          user_id: userInfo.id
+        },
         include: [
           {
             model: project, // projects 테이블 조인
             order: [['id', 'DESC']],
+            where: { [Op.not]: [{ status: ['delete'] }] },
             include: [
               {
                 model: category, // categories 테이블 조인
@@ -252,6 +255,7 @@ module.exports = {
           {
             model: project, // projects 테이블 조인
             order: [['id', 'DESC']],
+            where: { [Op.not]: [{ status: ['delete'] }] },
             include: [
               {
                 model: category, // categories 테이블 조인
