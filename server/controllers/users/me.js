@@ -73,7 +73,8 @@ module.exports = {
             : null,
           bio: bio ? bio : userInfo.bio ? userInfo.bio : null,
           mobile: mobile ? mobile : userInfo.mobile ? userInfo.mobile : null,
-          password: password ? hash : userInfo.password
+          password: password ? hash : userInfo.password,
+          updated_at: new Date()
         },
         { where: { id: userInfo.id } }
       );
