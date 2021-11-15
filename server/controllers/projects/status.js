@@ -67,7 +67,7 @@ module.exports = {
         // 작성중인 상태가 아니면 다음을 리턴한다.
         if (projectInfo.status !== 'draft') {
           return res.status(403).json({
-            message: 'This project status is not "draft" !'
+            message: "This project status is not 'draft'!"
           });
         }
         // 프로젝트 상태를 변경한다.
@@ -111,7 +111,7 @@ module.exports = {
         // 제출된 상태가 아니면 다음을 리턴한다.
         if (projectInfo.status !== 'submitted') {
           return res.status(403).json({
-            message: 'This project status is not "submitted" !'
+            message: "This project status is not 'submitted'!"
           });
         }
         // 프로젝트 상태를 변경한다.
@@ -153,7 +153,7 @@ module.exports = {
         // 제출된 상태가 아니면 다음을 리턴한다.
         if (projectInfo.status !== 'submitted') {
           return res.status(403).json({
-            message: 'This project status is not "submitted" !'
+            message: "This project status is not 'submitted'!"
           });
         }
         // 프로젝트 상태를 다식 '작성중'으로 변경한다.

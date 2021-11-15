@@ -17,7 +17,9 @@ module.exports = {
 
       // 관리자가 아니고 들어온 쿼리가 없다면 author을 초기화 시킨다.
       let { author, limit } = req.query;
-      if (!author && userInfo.role_id !== 1) author = userInfo.id;
+      if (userInfo.role_id !== 1) {
+        if (!author) author = userInfo.id;
+      }
 
       // 댓글을 조회할 권한이 없는경우 다음을 리턴한다.
       if (userInfo.id !== Number(author) && userInfo.role_id !== 1) {
@@ -27,7 +29,7 @@ module.exports = {
       // 모든 댓글을 조회한다.
       const comments = await comment.findAll({
         where: {
-          [Op.and]: [author ? { user_id: Number(author) } : null]
+          [Op.and]: [author ? { user_id: author } : null]
         },
         include: [
           {
@@ -40,11 +42,11 @@ module.exports = {
           }
         ],
         order: [['id', 'DESC']],
-        limit: Number(limit)
+        limit: limit ? Number(limit) : 5
       });
 
       // 모든 댓글을 반환한다.
-      res.status(200).json({ comments });
+      return res.status(200).json({ comments });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error' });
