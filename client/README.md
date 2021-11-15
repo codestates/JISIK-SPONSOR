@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+<br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> ### **"잠재력 있는 연구와 잠재적인 지지자를 연결합니다"**
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+_국내 최초 연구지식 크라우드 펀딩 플랫폼_
 
-### `yarn start`
+### 지식스폰서를 소개합니다! 🎉
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[**👉 지식스폰서 바로가기**](https://jisiksponsor.com)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<p align="left"><a href="https://jisiksponsor.com" target="_blank" art="지식스폰서 바로가기"><img src="https://user-images.githubusercontent.com/77230980/138565043-b908756e-8460-454c-9001-dad04487c069.png" width="720"><a><p>
 
-### `yarn test`
+지식스폰서 프로젝트는 국내최초 **_"연구지식 특화 크라우드 펀딩 플랫폼"_** 입니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+우리가 함께 살아가는 세상의 다양하고 복잡한 현상들, 좀 더 면밀하게 알아가고 싶지 않으신가요?
 
-### `yarn build`
+여기 세상의 다양한 궁금증과 문제 해결을 위한 흥미로운 연구들이 있습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+세상에 꼭 필요한 지식의 든든한 스폰서가 되어주세요! 💁🏼 💁🏻‍♀️
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[**👉 지식스폰서 바로가기**](https://jisiksponsor.com)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `yarn eject`
+### 지식스폰서의 주요 기능을 소개합니다 📣
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [x] 진행중이거나 이미 성사된 다양하고 흥미로운 프로젝트들을 확인하고, 후원에 참여할 수 있어요.
+- [x] 관심있는 연구분야의 프로젝트들을 카테고리별로 조회하고 해쉬태그와 키워드를 통해 찾아볼 수 있어요.
+- [x] 검색은 모든 페이지 상단에 위치한 검색 버튼을 통해서 빠르게 사용할 수 있어요.
+- [x] 필터링 기능을 통해 최신순, 인기순, 성공 임박순, 마감 임박순으로 프로젝트를 조회할 수 있어요.
+- [x] 회원가입을 통해 관심있는 연구를 찜하고, 후원하며, 댓글을 통해 연구자와 교류할 수 있어요.
+- [x] 회원가입을 통해 프로필 이미지를 변경하고, 닉네임 및 자기소개를 작성할 수 있어요.
+- [x] 연구자의 경우, 직접 프로젝트를 올려 자신의 아이디어를 세상에 알리고 물질적/정신적 지지를 통해 지속가능하게 연구를 수행할 수 있어요.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[**👉 지식스폰서 바로가기**](https://jisiksponsor.com)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🎁 &nbsp;무엇이 지식스폰서를 특별하게 만들까요?
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="left"><img src="https://user-images.githubusercontent.com/77230980/138565278-4aa6b454-aaa2-455a-a114-f91a303d7111.png" width="720"><p>

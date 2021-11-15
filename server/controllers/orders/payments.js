@@ -44,9 +44,9 @@ module.exports = {
       if (paymentData.amount !== amountToBePaid) {
         return res.status(200).json({
           status: 'forgery',
-          orderInfo,
-          payment: paymentData.amount,
-          amountToBePaid: orderInfo.amount,
+          // orderInfo, // test
+          // payment: paymentData.amount, // test
+          // amountToBePaid: orderInfo.amount, // test
           message: '위조된 결제시도'
         });
       }
@@ -103,7 +103,7 @@ module.exports = {
       );
 
       // 후원 레코드 생성
-      const newSponsor = await project_sponsor.create({
+      await project_sponsor.create({
         user_id: updateOrder.user_id,
         project_id: updateOrder.project_id,
         pledged: updateOrder.amount,
