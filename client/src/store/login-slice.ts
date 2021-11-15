@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { persistor } from 'index';
 export interface authentification {
   isLogin: boolean;
 }
@@ -15,6 +15,7 @@ const authSlice = createSlice({
     },
     logout: (state: authentification) => {
       state.isLogin = false;
+      setTimeout(() => persistor.purge(), 200);
     }
   }
 });
