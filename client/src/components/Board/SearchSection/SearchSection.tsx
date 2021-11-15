@@ -30,7 +30,7 @@ const SearchSection = ({ seachQueryFn, filterQueryFn }: Props) => {
             <option value="wishes">인기순</option>
             <option value="comments">댓글순</option>
             <option value="pledged">최다후원금순</option>
-            <option value="sponsors">최다후원임순</option>
+            <option value="sponsors">최다후원인순</option>
             <option value="remainder">성공임박순</option>
             <option value="end_date">마감임박순</option>
           </select>
