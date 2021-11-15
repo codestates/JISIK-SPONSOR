@@ -54,7 +54,7 @@ function App() {
       );
       history.push('/');
       dispatch(logout());
-      localStorage.removeItem('root');
+
       setShowBox(false);
     } catch (error) {
       console.log(error);

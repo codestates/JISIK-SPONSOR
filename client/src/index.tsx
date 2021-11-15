@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { persistReducer, persistStore, PERSIST } from 'redux-persist';
+import { persistReducer, persistStore, PERSIST, PURGE } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
@@ -51,7 +51,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [PERSIST]
+        ignoredActions: [PERSIST, PURGE]
       }
     })
 });
@@ -70,7 +70,7 @@ export interface RootState {
   searchContent: headerSearch;
 }
 // persistStore는 새로고침, 종료해도 지속될 store생성
-let persistor = persistStore(store);
+export let persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
