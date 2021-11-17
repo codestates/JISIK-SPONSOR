@@ -1,0 +1,18 @@
+doctype html
+html 
+  head
+    title= title 
+  body
+    div(style={'width':'680px', 'padding':'40px', 'margin': '0 auto', 'background': '#ADB5BD'})
+      div(style={'width':'680px', 'background': '#ffffff', 'text-align': 'center', 'box-shadow': '0 0 15px rgba(0, 0, 0, 0.2)'})
+        header(style={'padding': '30px', 'border-top': '10px solid #7950F2'})
+          p(style={'font-size': '0.8rem', 'color': '#495057', 'line-height': '140%', 'margin': '0 0 20px 0'}) 세상에 꼭 필요한 연구를 위한 크라우드 펀딩 플랫폼
+          a(href=resourceURL style={'display': 'inline-block', 'height': '30px', 'padding': '10px'})
+            img(src=resourceURL + '/resource/logo-color.png' style={'height': '30px'})
+          h1(style={'font-size': '1.8rem', 'font-weight': '400', 'color': '#343A40', 'margin': '20px 0 0 0'})= title
+        main
+          block content 
+        footer(style={'padding': '30px', 'color': '#CED4DA', 'background': '#343A40'})
+          img(src=resourceURL + '/resource/logo-gray.png' style={'height': '20px'})
+          div(style={'margin': '20px 0', 'border-top': '1px solid #CED4DA', 'opacity': '0.1'})
+          p(style={'font-size': '0.8rem', 'font-weight': '300', 'margin': '0'}) Copyright 2021 Project Jisik Sponsor<br>The HADA Project Team

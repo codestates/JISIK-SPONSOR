@@ -1,0 +1,16 @@
+extends ../layout 
+
+block content 
+  div(style={'padding': '40px', 'color': '#343A40', 'line-height': '160%', 'background': '#F1F3F5'})
+    h3(style={'margin': '0 0 10px 0', 'font-size': '1.2rem'}) 스폰서 #{name}님, 성공적으로 후원이 완료되었습니다.
+    div(style={'width':'420px', 'text-align': 'left', 'border-bottom': '1px solid #CED4DA', 'border-top': '1px solid #CED4DA', 'margin': '40px auto', 'padding': '40px 0'})
+      ul(style={'list-style': 'none', 'padding': '0', 'margin': '0'})
+        li(style={'margin': '0', 'font-size': '1rem'}) 프로젝트 명: #{order.name}
+        li(style={'margin': '0', 'font-size': '1rem'}) 후원자 명: #{order.buyer_name}
+        li(style={'margin': '0', 'font-size': '1rem'}) 후원자 연락처: #{order.buyer_tel}
+        li(style={'margin': '0', 'font-size': '1rem'}) 후원자 이메일: #{order.buyer_email}
+        li(style={'margin': '0', 'font-size': '1rem'}) 후원 금액: #{order.amount}원
+        li(style={'margin': '0', 'font-size': '1rem'}) 주문 번호: #{order.merchant_uid}
+        li(style={'margin': '0', 'font-size': '1rem'})
+          a(href= order.receipt_url) 매출전표 URL: 링크 클릭
+    a(href=url style={'display': 'inline-block', 'padding': '15px 25px', 'font-size': '1.2rem', 'font-weight': '500', 'border-radius': '5px', 'color': '#ffffff', 'background': '#7950F2', 'text-decoration': 'none'}) 프로젝트 보기

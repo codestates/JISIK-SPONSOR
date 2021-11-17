@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders</title>
+    <!-- jQuery -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+    <!-- iamport.payment.js -->
+    <script
+      type="text/javascript"
+      src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"
+    ></script>
+  </head>
+  <body>
+    <h1>Hi Import</h1>
+    <button onclick="orderFn()">결제하기</button>
+    <!-- Order Test -->
+    <script>
+      IMP.init('imp00267362'); // 가맹점 식별 코드
+      /*
+        유저가 금액, 정보와 주문하기 버튼클릭
+        => 서버 API_1 호출 레코드 생성
+        => merchant_uid 반환
+        => id 반환한 것을 가지고 "아임포트 PG 결제하기 API"
+        => 성공 (진짜 성공은 아니다.)
+        => 서버 API_2 호출 만든 레코드와 실제 결제한 내역을 비교 검증
+        => 드디어 결제 성공!
+       */
+      // 서버에 주문 레코드 생성 API 호출
+      function orderFn() {
+        const order = {
+          projectId: 1,
+          projectTitle: '심해연구',
+          amount: 100,
+          buyerTel: '010-0000-0000'
+        };
+
+        $.ajax({
+          url: '/orders',
+          method: 'POST',
+          dataType: 'JSON',
+          data: order
+        })
+          .done((data) => {
+            // 요청 성공 시
+            console.log(data);
+            console.log('주문 요청 성공');
+            requestPay(data.order);
+          })
+          .fail(() => {
+            // 요청 실패 시
+            console.log('주문 요청 실패');
+          })
+          .always(() => {
+            console.log('주문 요청 종료');
+          });
+      }
+      // 실제 결제부터 결제 검증까지
+      function requestPay(order) {
+        // PG 결제 프로세스 호출 시 전달됨
+        const param = {
+          pg: 'html5_inicis',
+          pay_method: 'card',
+          // 가맹점(나)에서 생성/관리하는 고유 주문번호
+          // 이미 결제가 승인 된(status: paid) merchant_uid로는 재결제 불가
+          // 원래는 아임포트 API 호출 전 서버에서 데이터베이스에 주문 레코드를 생성 후 해당 UID로 진행
+          merchant_uid: order.merchant_uid,
+          // 주문명 : 원활한 결제정보 확인을 위해 입력 권장
+          // PG사마다 차이가 있지만, 16자이내로 작성 권장
+          name: order.name,
+          amount: order.amount,
+          buyer_name: order.buyer_name, // (필수)
+          buyer_tel: order.buyer_tel, // (필수)
+          buyer_email: order.buyer_email, // (권장)
+          // 모바일 환경에서 PG사의 웹사이트로 리디렉션되면 콜백 함수가 실행되지 않기 때문에 아래와 같이 해준다.
+          // 결제 프로세스 완료 후 리디렉션 될 URL (성공, 실패 등 모두 포함)
+          m_redirect_url: '/payments/complete/mobile'
+        };
+
+        // PG 결제 프로세스 완료 이후 호출됨
+        const callback = (rsp) => {
+          console.log(rsp);
+          if (rsp.success) {
+            // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+            $.ajax({
+              url: '/payments/complete',
+              method: 'POST',
+              dataType: 'JSON',
+              data: {
+                imp_uid: rsp.imp_uid,
+                merchant_uid: rsp.merchant_uid
+              }
+            })
+              .done((data) => {
+                console.log(data);
+                // 응답 처리: 가맹점 서버 결제 API 성공시 로직
+                switch (data.status) {
+                  case 'success':
+                    // 결제 최종 성공 시 로직 (결제 검증 완료)
+                    break;
+                }
+              })
+              .fail(() => {
+                // 요청 실패 시
+                console.log('결제 검증 API 요청 실패');
+                // 환불 API 호출
+              })
+              .always(() => {
+                console.log('결제 검증 API 요청 종료');
+              });
+          } else {
+            console.log('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
+            $.ajax({
+              url: '/orders',
+              method: 'PATCH',
+              dataType: 'JSON',
+              data: {
+                imp_uid: rsp.imp_uid,
+                merchant_uid: rsp.merchant_uid
+              }
+            })
+              .done((data) => {
+                console.log(data);
+                // 주문 취소 요청 성공 시
+                console.log('주문 취소 API 요청 성공');
+              })
+              .fail(() => {
+                // 주문 취소 요청 실패 시
+                console.log('주문 취소 API 요청 실패');
+              })
+              .always(() => {
+                console.log('주문 취소 API 요청 종료');
+              });
+          }
+        };
+
+        // IMP.request_pay(param, callback) 결제창 호출
+        IMP.request_pay(param, callback);
+      }
+    </script>
+  </body>
+</html>

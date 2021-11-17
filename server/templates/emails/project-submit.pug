@@ -1,0 +1,10 @@
+extends ../layout 
+
+block content 
+  div(style={'padding': '40px', 'color': '#343A40', 'line-height': '160%', 'background': '#F1F3F5'})
+    h3(style={'margin': '0 0 10px 0', 'font-size': '1.2rem'}) #{name}님, 안녕하세요!
+    p(style={'margin': '0', 'font-size': '1rem'}) '#{project.title}' 프로젝트가 성공적으로 제출되었습니다.
+    p(style={'margin': '0', 'font-size': '1rem'}) 프로젝트 검수 후 결과 발표까지 최장 2주가 소요됩니다.
+    p(style={'margin': '0', 'font-size': '1rem'}) 결과는 이메일로 전달됩니다.
+    p(style={'margin': '0 0 30px 0', 'font-size': '1rem'})  감사합니다!
+    a(href=resourceURL + '/detailed-project/' + project.path style={'display': 'inline-block', 'padding': '15px 25px', 'font-size': '1.2rem', 'font-weight': '500', 'border-radius': '5px', 'color': '#ffffff', 'background': '#7950F2', 'text-decoration': 'none'}) 제출한 프로젝트 확인하기

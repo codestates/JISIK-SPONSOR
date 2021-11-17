@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project</title>
+  </head>
+  <body>
+    <h4>프로젝트 생성</h4>
+    <form action="/projects" method="POST">
+      <input type="text" name="title" placeholder="제목" />
+      <button type="submit">프로젝트 생성</button>
+    </form>
+
+    <h4>프로젝트(id 4) 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4" method="POST">
+      <input type="text" name="title" placeholder="제목" /><br />
+      <input type="text" name="categoryName" placeholder="카테고리" /><br />
+      <input type="text" name="description" placeholder="간단설명" /><br />
+      <input type="text" name="term" placeholder="기간" /><br />
+      <input type="text" name="goalAmount" placeholder="목표금액" /><br />
+      <textarea
+        name="background"
+        placeholder="프로젝트 배경 설명"
+      ></textarea><br />
+      <textarea
+        name="progress"
+        placeholder="프로젝트 진행 상황 설명"
+      ></textarea><br />
+      <textarea
+        name="budgetSynopsis"
+        placeholder="프로젝트 예산 상세 설명"
+      ></textarea><br />
+      <textarea
+        name="milestoneDescription"
+        placeholder="프로젝트 계획 상세 설명"
+      ></textarea><br />
+      </textarea>
+      <textarea
+        name="researcherWord"
+        placeholder="연구자의 한 마디"
+      ></textarea><br />
+      <button type="submit">프로젝트 수정</button>
+    </form>
+
+    <h4>프로젝트(id 4) 썸네일 업로드</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/5/thumbnail" method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" />
+      <input type="submit" value="업로드" />
+    </form>
+
+    <h4>프로젝트(id 4) 팀 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/4" method="POST">
+      <input type="text" name="teamName" placeholder="팀명"/>
+      <input type="text" name="teamDescription" placeholder="설명"/>
+      <input type="submit" value="수정" />
+    </form>
+
+    <h4>프로젝트(id 4) 팀 프로필 업로드</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/4/profile" method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" />
+      <input type="submit" value="업로드" />
+    </form>
+
+    <h4>프로젝트(id 4) 팀의 팀원 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/4/members" method="POST">
+      <input type="text" name="name" placeholder="이름"/>
+      <input type="text" name="bio" placeholder="소개"/>
+      <input type="submit" value="추가" />
+    </form>
+
+    <h4>프로젝트(id 4) 팀의 팀원(id 9) 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/teams/4/members/9" method="POST">
+      <input type="text" name="name" placeholder="이름"/>
+      <input type="text" name="bio" placeholder="소개"/>
+      <input type="submit" value="수정" />
+    </form>
+
+    <h4>프로젝트(id 4) 예산 항목 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/budgets" method="POST">
+      <input type="text" name="title" placeholder="항목명"/>
+      <input type="text" name="amount" placeholder="금액"/>
+      <input type="submit" value="추가" />
+    </form>
+
+    <h4>프로젝트(id 4) 예산 항목(id 6) 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/budgets/6" method="POST">
+      <input type="text" name="title" placeholder="항목명"/>
+      <input type="text" name="amount" placeholder="금액"/>
+      <input type="submit" value="수정" />
+    </form>
+
+    <h4>프로젝트(id 4) 계획 항목 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/milestones" method="POST">
+      <input type="text" name="title" placeholder="항목명"/>
+      <input type="text" name="goalDate" placeholder="날짜"/>
+      <input type="submit" value="추가" />
+    </form>
+
+    <h4>프로젝트(id 4) 계획 항목(id 7) 수정</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/milestones/7" method="POST">
+      <input type="text" name="title" placeholder="항목명"/>
+      <input type="text" name="goalDate" placeholder="날짜"/>
+      <input type="submit" value="수정" />
+    </form>
+
+    <h4>프로젝트(id 4) 태그 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/4/tags" method="POST">
+      <input type="text" name="tagName" placeholder="태그"/>
+      <input type="submit" value="추가" />
+    </form>
+
+    <h4>프로젝트(id 1) 댓글 추가</h4>
+    <span>form 태그의 action API URL을 수정할 프로젝트의 id로 변경하세요.</span>
+    <form action="/projects/1/comments" method="POST">
+      <input type="text" name="content" placeholder="댓글 작성"/>
+      <input type="submit" value="추가" />
+    </form>
+  </body>
+</html>
