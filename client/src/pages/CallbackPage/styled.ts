@@ -9,15 +9,15 @@ export const CallbackContainer = styled.div`
   justify-content: center;
   align-items: center;
   & > h1 {
-    margin-top: 25px;
+    margin-top: 2.5rem;
   }
   & > h1 > span {
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 900;
     line-height: 1.4em;
     color: #ffffff;
     position: relative;
-    top: 20px;
+    top: 2rem;
     display: inline-block;
     animation: bounce 0.3s ease infinite alternate;
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
@@ -26,7 +26,7 @@ export const CallbackContainer = styled.div`
   }
 
   & > p {
-    font-size: 40px;
+    font-size: 4rem;
     font-weight: 500;
     line-height: 1.35em;
     color: #ffffff;

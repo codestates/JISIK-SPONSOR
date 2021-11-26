@@ -13,7 +13,7 @@ interface QuestionSectionProps {
 }
 
 export const Section = styled.section<SectionProps>`
-  padding: 213px 0;
+  padding: 21.3rem 0;
   background-color: ${(props) =>
     props.background !== 'image' ? props.background : '#f1f3f5'};
   background-image: ${(props) =>
@@ -22,24 +22,24 @@ export const Section = styled.section<SectionProps>`
   background-size: ${(props) => props.background === 'image' && 'cover'};
 
   @media all and (max-width: 1000px) {
-    padding: 205px 0;
+    padding: 20.5rem 0;
   }
 
   @media all and (max-width: 960px) {
-    padding: 120px 0;
+    padding: 12rem 0;
   }
   @media all and (max-width: 567px) {
-    padding: 100px 0;
+    padding: 10rem 0;
   }
 `;
 
 export const Wrap = styled.div`
   width: 100%;
   max-width: 1260px;
-  padding: 0 30px;
+  padding: 0 3rem;
   margin: 0 auto;
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
@@ -47,14 +47,14 @@ export const BannerSection = styled.div`
   text-align: center;
   word-break: keep-all;
   & > h1 {
-    font-size: 43px;
+    font-size: 4.3rem;
     color: #212529;
     font-weight: 500;
     line-height: 140%;
-    margin-bottom: 40px;
+    margin-bottom: 4rem;
   }
   & > p {
-    font-size: 40px;
+    font-size: 4rem;
     color: #495057;
     line-height: 140%;
   }
@@ -65,28 +65,28 @@ export const BannerSection = styled.div`
 
   @media all and (max-width: 1000px) {
     & > h1 {
-      font-size: 38px;
+      font-size: 3.8rem;
     }
     & > p {
-      font-size: 35px;
+      font-size: 3.5rem;
     }
   }
 
   @media all and (max-width: 960px) {
     & > h1 {
-      font-size: 33px;
+      font-size: 3.3rem;
     }
     & > p {
-      font-size: 25px;
+      font-size: 2.5rem;
     }
   }
 
   @media all and (max-width: 567px) {
     & > h1 {
-      font-size: 25px;
+      font-size: 2.5rem;
     }
     & > p {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 `;
@@ -105,14 +105,14 @@ export const QuestionSection = styled.div<QuestionSectionProps>`
   & div:nth-child(2) {
     width: 65%;
     padding: ${(props) =>
-    props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
+      props.deraction === 'right' ? '0 60px 0 0' : '0 0 0 15px'};
   }
   @media all and (max-width: 620px) {
     display: block;
     & div:nth-child(1) {
       width: 100%;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 2rem;
     }
     & div:nth-child(2) {
       width: 100%;
@@ -138,17 +138,17 @@ export const SecondImageWrap = styled.div`
 export const TextBoxWrap = styled.div`
   word-break: keep-all;
   & > h2 {
-    font-size: 33px;
+    font-size: 3.3rem;
     color: #343a40;
     font-weight: 500;
     line-height: 140%;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   & > p {
-    font-size: 23px;
+    font-size: 2.3rem;
     color: #495057;
     line-height: 160%;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
 
   & > p > span {
@@ -160,22 +160,22 @@ export const TextBoxWrap = styled.div`
 
   @media all and (max-width: 960px) {
     & > h2 {
-      font-size: 30px;
+      font-size: 3rem;
     }
     & > p {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 620px) {
     & > h2 {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 567px) {
     & > p {
-      font-size: 15px;
+      font-size: 1.5rem;
     }
   }
 `;
@@ -183,17 +183,17 @@ export const TextBoxWrap = styled.div`
 export const TextBoxWrap2 = styled.div`
   word-break: keep-all;
   & > h2 {
-    font-size: 33px;
+    font-size: 3.3rem;
     color: #343a40;
     font-weight: 500;
     line-height: 140%;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   & > p {
-    font-size: 23px;
+    font-size: 2.3rem;
     color: #495057;
     line-height: 160%;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
 
   & > p > span {
@@ -205,22 +205,22 @@ export const TextBoxWrap2 = styled.div`
 
   @media all and (max-width: 960px) {
     & > h2 {
-      font-size: 30px;
+      font-size: 3rem;
     }
     & > p {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 620px) {
     & > h2 {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 567px) {
     & > p {
-      font-size: 15px;
+      font-size: 1.5rem;
     }
   }
 `;
@@ -228,17 +228,17 @@ export const TextBoxWrap2 = styled.div`
 export const TextBoxWrap3 = styled.div`
   word-break: keep-all;
   & > h2 {
-    font-size: 33px;
+    font-size: 3.3rem;
     color: #343a40;
     font-weight: 500;
     line-height: 140%;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   & > p {
-    font-size: 23px;
+    font-size: 2.3rem;
     color: #495057;
     line-height: 160%;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
 
   & > p > span {
@@ -250,37 +250,37 @@ export const TextBoxWrap3 = styled.div`
 
   @media all and (max-width: 960px) {
     & > h2 {
-      font-size: 30px;
+      font-size: 3rem;
     }
     & > p {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 620px) {
     & > h2 {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 567px) {
     & > p {
-      font-size: 15px;
+      font-size: 1.5rem;
     }
   }
 `;
 
 export const LinkWrap = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 
-    & > a {
+  & > a {
     position: relative;
-    font-size: 20px;
+    font-size: 2rem;
     color: #343a40;
     font-weight: 500;
-    padding: 20px 30px;
+    padding: 2rem 3rem;
     border-radius: 10px;
     border: 2px solid #343a40;
   }
@@ -290,11 +290,11 @@ export const LinkWrap = styled.div`
     color: #f8f9fa;
     background-color: #7950f2;
     transition: 0.2s;
-    }
+  }
 
   & a:nth-child(2) {
     transition: 0.2s;
-    }
+  }
 
   & a:hover {
     transform: translateY(5px);
@@ -304,11 +304,11 @@ export const LinkWrap = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: left;
-    gap: 10px;
+    gap: 1rem;
 
     & > a {
-      font-size: 18px;
-      padding: 20px 20px;
+      font-size: 1.8rem;
+      padding: 2rem 2rem;
     }
   }
 
@@ -316,11 +316,11 @@ export const LinkWrap = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: left;
-    gap: 10px;
+    gap: 1rem;
 
     & > a {
-      font-size: 15px;
-      padding: 15px 15px;
+      font-size: 1.5rem;
+      padding: 1.5rem;
     }
   }
 
@@ -328,11 +328,11 @@ export const LinkWrap = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 10px;
+    gap: 1rem;
 
     & > a {
-      font-size: 15px;
-      padding: 10px 10px;
+      font-size: 1.5rem;
+      padding: 1rem;
     }
   }
 `;
@@ -340,10 +340,10 @@ export const LinkWrap = styled.div`
 export const StartProjectSection = styled.div`
   text-align: center;
   & > h2 {
-    font-size: 40px;
+    font-size: 4rem;
     color: #f8f9fa;
     line-height: 140%;
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
   }
   & > div {
     z-index: 1;
@@ -354,10 +354,10 @@ export const StartProjectSection = styled.div`
     z-index: 1;
     position: relative;
     display: inline-block;
-    font-size: 40px;
+    font-size: 4rem;
     color: #343a40;
     font-weight: 500;
-    padding: 25px 60px;
+    padding: 2.5rem 6rem;
     border-radius: 10px;
     border: 3px solid #343a40;
     background-color: #f8f9fa;
@@ -366,7 +366,7 @@ export const StartProjectSection = styled.div`
   & > div > span {
     z-index: -1;
     position: absolute;
-    top: 10px;
+    top: 1rem;
     left: 0;
     width: 100%;
     height: 100%;
@@ -382,29 +382,29 @@ export const StartProjectSection = styled.div`
 
   @media all and (max-width: 960px) {
     & h2 {
-      font-size: 30px;
+      font-size: 3rem;
     }
     & > div > a {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 620px) {
     & h2 {
-      font-size: 25px;
+      font-size: 2.5rem;
     }
     & > div > a {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
 
   @media all and (max-width: 567px) {
     & h2 {
-      font-size: 20px;
-      margin-bottom: 30px;
+      font-size: 2rem;
+      margin-bottom: 3rem;
     }
     & > div > a {
-      font-size: 16px;
+      font-size: 1.6rem;
     }
   }
 `;

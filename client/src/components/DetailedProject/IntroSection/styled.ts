@@ -6,9 +6,10 @@ interface DisplayProps {
 
 export const Section = styled.section`
   width: 100%;
-  padding: 60px 0;
+  padding: 6rem 0;
+
   @media all and (max-width: 620px) {
-    padding: 40px 0;
+    padding: 4rem 0;
   }
 `;
 
@@ -16,25 +17,27 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 3rem;
+
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
 export const Category = styled.div`
   display: flex;
   justify-content: space-between;
+  font-size: 1.6rem;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
   > div {
     display: flex;
     justify-content: center;
     align-items: center;
     img {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1rem;
     }
   }
   > button {
@@ -43,32 +46,32 @@ export const Category = styled.div`
     cursor: pointer;
   }
   > button > img {
-    width: 35px;
-    height: 35px;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 `;
 
 export const ProjectTitle = styled.div`
-  margin-bottom: 35px;
+  margin-bottom: 3.5rem;
   & > h1 {
-    font-size: 39.06px;
+    font-size: 3.9rem;
     font-weight: 500;
     line-height: 1.4;
     color: #212529;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
   }
   & > span {
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 400;
     line-height: 1.6;
     color: #495057;
   }
   @media all and (max-width: 620px) {
     & > h1 {
-      font-size: 31.25px;
+      font-size: 3.125rem;
     }
     & > span {
-      font-size: 16px;
+      font-size: 1.6rem;
     }
   }
 `;
@@ -81,14 +84,14 @@ export const MainContent = styled.div`
 
 export const LeftWrap = styled.div`
   width: 70%;
-  padding-right: 30px;
+  padding-right: 3rem;
   > span {
     position: relative;
     display: block;
     width: 100%;
-    height: 420px;
+    height: 42rem;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     border-radius: 5px;
   }
   > span:after {
@@ -110,7 +113,7 @@ export const LeftWrap = styled.div`
   @media all and (max-width: 900px) {
     width: 100%;
     padding: 0;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   @media all and (max-width: 620px) {
     > span {
@@ -134,21 +137,21 @@ export const RightWrap = styled.div`
 export const SubContent = styled.div`
   width: 100%;
   & > p:first-child {
-    font-size: 32px;
+    font-size: 3.2rem;
     font-weight: 700;
     color: #212529;
     line-height: 1.4;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   & > p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #343a40;
     line-height: 1.4;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   @media screen and (max-width: 900px) {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     max-width: 600px;
     width: 100%;
   }
@@ -160,25 +163,25 @@ export const SubContent = styled.div`
 `;
 
 export const Funding = styled.div`
-  margin: 5px 0 20px 0;
+  margin: 0.5rem 0 2rem 0;
   > p {
     display: flex;
     justify-content: space-between;
   }
   & > p:first-child span:first-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #f08c00;
     line-height: 1.4;
   }
   & > p:first-child span {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #343a40;
     line-height: 1.4;
   }
   & > p {
-    font-size: 12px;
+    font-size: 1.2rem;
     font-weight: 700;
     color: #868e96;
     line-height: 1.4;
@@ -191,44 +194,44 @@ export const Funding = styled.div`
 export const FundInput = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.5rem;
   & > div {
     display: flex;
     align-items: center;
   }
   & > div > span {
     display: block;
-    width: 100px;
-    font-size: 16px;
+    width: 10rem;
+    font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.6;
     color: #343a40;
-    margin-right: 10px;
+    margin-right: 1rem;
   }
   & > div:last-child {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   > div input {
     width: 100%;
-    padding: 10px;
-    height: 40px;
+    padding: 1rem;
+    height: 4rem;
     border: 2px solid #e9ecef;
     border-radius: 3px;
-    margin: 5px 0;
+    margin: 0.5rem 0;
   }
   > div input::placeholder {
-    font-size: 12px;
+    font-size: 1.2rem;
     font-weight: 500;
     line-height: 1.4;
     color: #8d959d;
     -webkit-appearance: none;
   }
   > p {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.4;
     color: #dd584a;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
   & > div input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -244,11 +247,11 @@ export const DisplayNone = css`
 `;
 
 export const Notice = styled.div<DisplayProps>`
-  font-size: 14px;
+  font-size: 1.4rem;
   line-height: 1.4;
   font-weight: 500;
   color: #ff0200;
-  margin-top: 20px;
+  margin-top: 2rem;
   ${(props) => {
     return props.noDisplay && DisplayNone;
   }}
@@ -256,9 +259,9 @@ export const Notice = styled.div<DisplayProps>`
 
 export const HashTagContainer = styled.div`
   display: flex;
-  gap: 5px;
+  gap: 0.5rem;
   @media all and(max-width: 900px) {
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
 `;
 
@@ -266,15 +269,15 @@ export const HashTag = styled.button`
   border: 0;
   background: none;
   strong {
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 1.4;
     color: #5f3dc4;
-    margin-right: 2px;
+    margin-right: 0.2rem;
     vertical-align: middle;
   }
   span {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #495057;
     line-height: 1.4;
@@ -284,21 +287,21 @@ export const HashTag = styled.button`
 
 export const SubContentFinished = styled.div`
   & > p:nth-child(odd) {
-    font-size: 32px;
+    font-size: 3.2rem;
     font-weight: 700;
     color: #212529;
     line-height: 1.4;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   & > p:nth-child(even) {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #343a40;
     line-height: 1.4;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   @media screen and (max-width: 900px) {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     max-width: 600px;
     width: 100%;
   }
@@ -312,27 +315,27 @@ export const SubContentFinished = styled.div`
 export const SubContentAlready = styled.div`
   width: 100%;
   & > p:first-child {
-    font-size: 32px;
+    font-size: 3.2rem;
     font-weight: 700;
     color: #212529;
     line-height: 1.4;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   & > p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #343a40;
     line-height: 1.4;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   div {
-    font-size: 12.8px;
+    font-size: 1.28rem;
     font-weight: 500;
     line-height: 1.4;
     color: #dd584a;
   }
   @media screen and (max-width: 900px) {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     max-width: 600px;
     width: 100%;
   }
@@ -345,9 +348,9 @@ export const SubContentAlready = styled.div`
 
 export const StyledButton = styled.button`
   width: 100%;
-  padding: 20px 30px;
+  padding: 2rem 3rem;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 1.4;
   border: 0;
@@ -358,9 +361,9 @@ export const StyledButton = styled.button`
 
 export const GrayButton = styled.button`
   width: 100%;
-  padding: 20px 30px;
+  padding: 2rem 3rem;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 1.4;
   color: #868e96;
@@ -371,9 +374,9 @@ export const GrayButton = styled.button`
 
 export const AlreadyButton = styled.button`
   width: 100%;
-  padding: 20px 30px;
+  padding: 2rem 3rem;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 1.4;
   color: #fff;
