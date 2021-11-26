@@ -7,11 +7,11 @@ interface FoucsProps {
 
 // 프로젝트 제목
 export const ProjectTitle = styled.div<FoucsProps>`
-  margin-top: 40px;
+  margin-top: 4rem;
   position: relative;
 
   > h3 {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.45em;
     color: #495057;
@@ -20,13 +20,13 @@ export const ProjectTitle = styled.div<FoucsProps>`
   > input {
     width: 100%;
     max-width: 560px;
-    padding: 10px;
+    padding: 1rem;
     background: #ffffff;
     color: #495057;
     border: 2px solid #e9ecef;
     border-radius: 5px;
-    margin-top: 10px;
-    height: 40px;
+    margin-top: 1rem;
+    height: 4rem;
   }
 
   p {
@@ -54,21 +54,21 @@ export const ProjectTitle = styled.div<FoucsProps>`
 
 // 프로젝트 카테고리
 export const ProjectCategory = styled.div`
-  margin-top: 40px;
+  margin-top: 4rem;
 
   > h3 {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.4em;
     color: #495057;
   }
 
   > p {
-    font-size: 12.8px;
+    font-size: 1.28rem;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.6em;
     color: ${({ theme }) => theme.colors.suppotWord};
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 `;
 
@@ -77,33 +77,33 @@ export const ProjectHashTag = styled(SubTitleCss)`
   > input {
     width: 100%;
     max-width: 300px;
-    padding: 10px;
+    padding: 1rem;
     background: #fff;
     color: #495057;
     border: 2px solid #e9ecef;
     border-radius: 5px;
-    margin-top: 20px;
-    margin-right: 15px;
-    height: 40px;
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+    height: 4rem;
   }
 
   ul {
-    margin-top: 20px;
+    margin-top: 2rem;
     display: flex;
 
     > li {
-      font-size: 14px;
+      font-size: 1.4rem;
       font-weight: 500;
       line-height: 1.4em;
       color: #fff;
       background: ${({ theme }) => theme.colors.orange};
-      padding: 5px 10px;
-      margin-right: 5px;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
       text-align: center;
       border-radius: 3px;
 
       > span:first-child {
-        margin-right: 3px;
+        margin-right: 0.3rem;
       }
 
       > span:last-child {
@@ -113,7 +113,7 @@ export const ProjectHashTag = styled(SubTitleCss)`
   }
   @media screen and (max-width: 550px) {
     > button {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
   }
 `;
@@ -123,16 +123,16 @@ export const ProjectFundingPeriod = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > div {
-    margin-top: 10px;
-    width: 160px;
+    margin-top: 1rem;
+    width: 16rem;
   }
 
   > p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -151,6 +151,7 @@ export const ProjectFundingPeriod = styled(SubTitleCss)<FoucsProps>`
 `;
 
 export const CustomSelect = styled(Select)`
+  font-size: 1.6rem;
   .Select__single-value {
     color: #495057;
   }
@@ -168,11 +169,11 @@ export const ProjectSimpleInfo = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -193,8 +194,8 @@ export const ProjectSimpleInfo = styled(SubTitleCss)<FoucsProps>`
 // 프로젝트 커버이미지
 export const ProjectCoverIma = styled(ProjectCoverImage)`
   > label {
-    width: 300px;
-    height: 174px;
+    width: 30rem;
+    height: 17.4rem;
     padding: 0;
   }
   @media screen and (max-width: 600px) {
@@ -206,7 +207,7 @@ export const ProjectCoverIma = styled(ProjectCoverImage)`
 
 export const ProjectSelectIma = styled(ProjectCoverImage)`
   > label {
-    width: 300px;
+    width: 30rem;
     background: #fff;
     border: none;
     padding: 0;
@@ -224,7 +225,7 @@ export const ProjectSelectIma = styled(ProjectCoverImage)`
 `;
 
 export const CategoryContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 1rem;
   div {
     display: inline;
   }
@@ -232,11 +233,11 @@ export const CategoryContainer = styled.div`
     display: none;
   }
   label {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     color: #495057;
     text-align: center;
-    margin-right: 10px;
+    margin-right: 1rem;
     vertical-align: top;
   }
   input + label {
@@ -245,11 +246,11 @@ export const CategoryContainer = styled.div`
   input + label::before {
     content: '';
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 1.5rem;
+    height: 1.5rem;
     border: 1px solid #868e96;
     vertical-align: top;
-    margin-right: 5px;
+    margin-right: 0.5rem;
   }
   input:checked + label::before {
     content: '\f00c';
@@ -257,7 +258,7 @@ export const CategoryContainer = styled.div`
     font-weight: 900;
     color: #ffffff;
     background-color: #0dbd7e;
-    font-size: 13px;
+    font-size: 1.3rem;
     text-align: center;
   }
 
@@ -269,7 +270,7 @@ export const CategoryContainer = styled.div`
   }
   @media all and (max-width: 480px) {
     > div > label {
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 `;

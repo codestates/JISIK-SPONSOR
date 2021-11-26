@@ -16,7 +16,7 @@ export const ModalContainer = styled.div`
   max-height: 90%;
   overflow-y: scroll;
   border-radius: 10px;
-  padding: 60px 80px;
+  padding: 6rem 8rem;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -30,7 +30,7 @@ export const ModalContainer = styled.div`
     height: 100%;
     max-height: 100%;
     border-radius: 0;
-    padding: 60px 30px;
+    padding: 6rem 3rem;
     &::-webkit-scrollbar {
       display: block;
     }
@@ -54,8 +54,8 @@ export const PersonalInfoBack = styled.div`
 
 export const PersonalInfo = styled.div`
   position: fixed;
-  padding: 20px;
-  width: 515px;
+  padding: 2rem;
+  width: 51.5rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -72,29 +72,29 @@ export const PersonalInfo = styled.div`
   }
 
   > h1 {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.45em;
     color: #495057;
   }
 
   > div {
-    width: 450px;
-    height: 300px;
+    width: 45rem;
+    height: 30rem;
     border: none;
-    margin-top: 30px;
+    margin-top: 3rem;
     overflow-x: hidden;
 
     & > h2,
     & > h3 {
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 700;
       line-height: 1.45em;
       color: #495057;
     }
 
     & > p {
-      font-size: 12px;
+      font-size: 1.2rem;
       line-height: 1.45em;
     }
   }
@@ -111,8 +111,8 @@ export const ConditionInfoBack = styled.div`
 `;
 
 export const ConditionInfo = styled.div`
-  width: 515px;
-  padding: 20px;
+  width: 51.5rem;
+  padding: 2rem;
   border-radius: 10px;
   background-color: #ffff;
   position: fixed;
@@ -129,7 +129,7 @@ export const ConditionInfo = styled.div`
   }
 
   > h3 {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.45em;
     color: #495057;
@@ -137,10 +137,10 @@ export const ConditionInfo = styled.div`
 
   > textarea {
     resize: none;
-    width: 450px;
-    height: 300px;
+    width: 45rem;
+    height: 30rem;
     border: none;
-    margin-top: 30px;
+    margin-top: 3rem;
     overflow-x: hidden;
   }
 `;
@@ -151,10 +151,10 @@ export const ModalHead = styled.div`
 
   > span {
     position: absolute;
-    padding: 20px;
+    padding: 2rem;
     top: 0;
     right: 0;
-    font-size: 20px;
+    font-size: 2rem;
     cursor: pointer;
   }
   > span:hover {
@@ -165,14 +165,14 @@ export const ModalHead = styled.div`
   > h2 {
     color: ${({ theme }) => theme.colors.violetWord};
     font-weight: 700;
-    font-size: 39.06px;
+    font-size: 3.906rem;
   }
 
   > p {
     font-weight: 400;
-    font-size: 12.8px;
+    font-size: 1.28rem;
     line-height: 1.45em;
-    margin-top: 15px;
+    margin-top: 1.5rem;
     color: #868e96;
 
     > button {
@@ -186,7 +186,7 @@ export const ModalHead = styled.div`
   }
   @media all and (max-width: 620px) {
     > span {
-      font-size: 30px;
+      font-size: 3rem;
     }
   }
 `;
@@ -194,7 +194,7 @@ export const ModalHead = styled.div`
 export const ConflitContainer = styled(ModalContainer)`
   width: 100%;
   max-width: 500px;
-  padding: 50px auto;
+  padding: 5rem auto;
   @media all and (max-width: 620px) {
     width: 90%;
     height: auto;
@@ -206,22 +206,22 @@ export const ModalWraaper = styled(ModalHead)`
   text-align: center;
   word-break: keep-all;
   > h2 {
-    font-size: 20px;
-    line-height: 1.4;
+    font-size: 2rem;
+    line-height: 1.4em;
   }
   > p {
-    font-size: 16px;
+    font-size: 1.6rem;
   }
   > button {
     background: ${({ theme }) => theme.colors.violet};
     border: 3px solid ${({ theme }) => theme.colors.violet};
-    padding: 10px 30px;
+    padding: 1rem 3rem;
     border-radius: 10px;
     color: #fff;
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 1.45em;
     font-weight: 500;
-    margin-top: 20px;
+    margin-top: 2rem;
     cursor: pointer;
   }
 `;
@@ -233,11 +233,11 @@ export const MiniModalContainer = styled(ModalContainer)`
   width: 90%;
   max-width: 500px;
   height: auto;
-  padding: 40px 80px;
+  padding: 4rem 8rem;
   text-align: center;
   word-break: keep-all;
   @media all and (max-width: 620px) {
-    padding: 40px;
+    padding: 4rem;
     border-radius: 10px;
   }
 `;
@@ -248,8 +248,8 @@ export const MiniModalBack = styled(ModalBackup)`
 export const MiniModalText = styled(ModalWraaper)`
   > h2 {
     width: 100%;
-    font-size: 20px;
-    line-height: 1.4;
+    font-size: 2rem;
+    line-height: 1.4em;
   }
 
   > button {
@@ -257,24 +257,24 @@ export const MiniModalText = styled(ModalWraaper)`
     height: auto;
     font-weight: 400;
     border-radius: 5px;
-    padding: 5px 30px;
-    margin-top: 20px;
+    padding: 0.5rem 3rem;
+    margin-top: 2rem;
   }
 `;
 export const ModalBody = styled.div`
-  margin-top: 25px;
+  margin-top: 2.5rem;
 
   > form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 12.8px;
+    gap: 1rem;
+    font-size: 1.28rem;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.4em;
     color: #212529;
 
     > input {
-      height: 40px;
+      height: 4rem;
       border-radius: 5px;
       border: 2px solid #e9ecef;
       &.invalid {
@@ -285,7 +285,7 @@ export const ModalBody = styled.div`
   }
 
   p {
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #dd584a;
   }
 `;
@@ -296,7 +296,7 @@ export const ErrMsg = styled.div`
   }
 
   &.errMsg {
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #dd584a;
   }
 `;
@@ -305,21 +305,21 @@ export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 3rem;
 `;
 
 export const DeleteButtonGroup = styled.div`
   display: flex;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 1.5rem;
+  margin-top: 3rem;
   > button {
     width: auto;
     height: auto;
-    font-size: 20px;
-    line-height: 1.4;
+    font-size: 2rem;
+    line-height: 1.4em;
     color: #fff;
     cursor: pointer;
-    padding: 5px 30px;
+    padding: 0.5rem 3rem;
     border-radius: 5px;
     background: ${({ theme }) => theme.colors.violet};
     border: 3px solid ${({ theme }) => theme.colors.violet};
@@ -333,11 +333,11 @@ export const LoginButton = styled.button`
   justify-content: center;
   cursor: pointer;
   width: 100%;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.4em;
   color: #495057;
-  padding: 15px 0;
+  padding: 1.5rem 0;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
@@ -355,12 +355,12 @@ export const LoginButton = styled.button`
     border: 1px solid #ffe710;
   }
   & + & {
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 
   > img {
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
     position: absolute;
     left: 10px;
   }
@@ -368,13 +368,13 @@ export const LoginButton = styled.button`
 export const CheckBoxConainter = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 2rem;
   > div {
     &:nth-child(2) {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
     &:nth-child(3) {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
   }
   input {
@@ -388,11 +388,11 @@ export const CheckBoxConainter = styled.div`
   input + label::before {
     content: '';
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 1.5rem;
+    height: 1.5rem;
     border: 1px solid #868e96;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-right: 1rem;
   }
 
   input:checked + label::before {
@@ -401,18 +401,18 @@ export const CheckBoxConainter = styled.div`
     font-weight: 900;
     color: #ffffff;
     background-color: #0dbd7e;
-    font-size: 13px;
+    font-size: 1.28rem;
     text-align: center;
   }
 
   label {
-    font-size: 12.8px;
+    font-size: 1.28rem;
     font-weight: 400;
     line-height: 1.45em;
     color: ${({ theme }) => theme.colors.suppotWord};
   }
   a {
-    font-size: 12.8px;
+    font-size: 1.27rem;
     line-height: 1.45em;
     font-weight: 500;
     background: none;
@@ -428,24 +428,24 @@ export const CheckBoxConainter = styled.div`
 export const SignupButton = styled.button`
   cursor: pointer;
   width: 100%;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.4em;
   color: #fff;
-  padding: 20px 0;
-  margin-top: 30px;
+  padding: 2rem 0;
+  margin-top: 3rem;
   border-radius: 5px;
   border: 1px solid #7950f2;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background: ${({ theme }) => theme.colors.violet};
   @media all and (max-width: 620px) {
-    margin-top: 15px;
+    margin-top: 1.5rem;
   }
 `;
 
 export const DeleteText = styled(MiniModalText)`
   > p {
-    font-size: 16px;
-    margin-top: 5px;
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
   }
 `;

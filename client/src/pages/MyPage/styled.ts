@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
   width: 100vw;
-  padding: 80px 0 120px 0;
+  padding: 8rem 0 12rem 0;
   background: #f8f9fa;
   @media all and (max-width: 620px) {
-    padding: 30px 0;
+    padding: 3rem 0;
   }
 `;
 
@@ -15,7 +15,7 @@ export const MypageWrapper = styled.div`
   width: 100%;
   max-width: 1260px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 3rem;
 
   > div:first-child {
     width: 25%;
@@ -38,6 +38,6 @@ export const MypageWrapper = styled.div`
     }
   }
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;

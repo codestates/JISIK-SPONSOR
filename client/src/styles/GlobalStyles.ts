@@ -7,8 +7,11 @@ const GlobalStyles = createGlobalStyle`
 * {
   box-sizing: border-box;
   font-family: 'Noto Sans KR', sans-serif;
+  
 }
-
+html {
+  font-size: 62.5%;
+}
 body {
   margin: 0;
   width: 100vw;
@@ -109,8 +112,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
   font-family: 'Noto Sans KR', sans-serif;
 }

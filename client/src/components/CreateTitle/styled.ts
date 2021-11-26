@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  padding: 120px 0;
+  padding: 12rem 0;
   background: #f8f9fa;
   @media all and (max-width: 620px) {
-    padding: 80px 0;
+    padding: 8rem 0;
   }
 `;
 
@@ -15,10 +15,10 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   max-width: 960px;
-  padding: 0 30px;
+  padding: 0 3rem;
   margin: 0 auto;
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
@@ -26,40 +26,40 @@ export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 8rem;
   word-break: keep-all;
   text-align: center;
 
   h1 {
-    font-size: 48.83px;
+    font-size: 4.883rem;
     color: #343a40;
     font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 30px;
+    line-height: 1.2em;
+    margin-bottom: 3rem;
   }
   p {
-    font-size: 25px;
-    line-height: 1.4;
+    font-size: 2.5rem;
+    line-height: 1.4em;
     color: ${({ theme }) => theme.colors.suppotWord};
   }
   @media all and (max-width: 1200px) {
-    margin-bottom: 40px;
+    margin-bottom: 4rem;
     h1 {
-      font-size: 31.25px;
-      margin-bottom: 20px;
+      font-size: 3.125rem;
+      margin-bottom: 2rem;
     }
     p {
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
   @media all and (max-width: 620px) {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     h1 {
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
     p {
-      font-size: 16px;
+      font-size: 1.6rem;
     }
   }
 `;
@@ -67,7 +67,7 @@ export const TitleWrap = styled.div`
 export const InputWrap = styled.div`
   width: 100%;
   display: flex;
-  gap: 60px;
+  gap: 6rem;
   flex-direction: column;
   align-items: center;
   input {
@@ -75,17 +75,17 @@ export const InputWrap = styled.div`
     width: 100%;
     background: none;
     max-width: 1200px;
-    font-size: 25px;
-    padding: 20px 30px;
+    font-size: 2.5rem;
+    padding: 2rem 3rem;
     border-radius: 5px 5px 0 0;
     border-bottom: 3px solid #343a40;
     background: none;
   }
   button {
     display: block;
-    width: 160px;
-    padding: 10px;
-    font-size: 20px;
+    width: 16rem;
+    padding: 1rem;
+    font-size: 2rem;
     font-weight: 500;
     line-height: 1.4em;
     color: #fff;
@@ -103,18 +103,18 @@ export const InputWrap = styled.div`
     transition: 0.3s;
   }
   @media all and (max-width: 1200px) {
-    gap: 30px;
+    gap: 3rem;
     input {
-      font-size: 20px;
-      padding: 10px 20px;
+      font-size: 2rem;
+      padding: 1rem 2rem;
       border-bottom: 2px solid #343a40;
     }
   }
   @media all and (max-width: 620px) {
-    gap: 30px;
+    gap: 3rem;
     input {
-      font-size: 16px;
-      padding: 10px 20px;
+      font-size: 1.6rem;
+      padding: 1rem 2rem;
       border-bottom: 2px solid #343a40;
     }
   }

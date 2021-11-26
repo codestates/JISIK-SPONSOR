@@ -4,11 +4,11 @@ import { SubTitleCss, AddButton } from 'components/StartProject/commonStyled';
 // 아이디
 export const UserEmail = styled(SubTitleCss)`
   > input {
-    width: 250px;
-    height: 40px;
-    padding: 10px;
+    width: 25rem;
+    height: 4rem;
+    padding: 1rem;
     color: #868e96;
-    margin-top: 5px;
+    margin-top: 0.5rem;
     border-radius: 5px;
     border: 2px solid #e9ecef;
   }
@@ -17,11 +17,11 @@ export const UserEmail = styled(SubTitleCss)`
 // 이름
 export const UserName = styled(SubTitleCss)`
   > input {
-    width: 250px;
-    height: 40px;
-    padding: 10px;
+    width: 25rem;
+    height: 4rem;
+    padding: 1rem;
     color: #868e96;
-    margin-top: 5px;
+    margin-top: 0.5rem;
     border-radius: 5px;
     border: 2px solid #e9ecef;
   }
@@ -34,25 +34,25 @@ export const SettingChangePW = styled(SubTitleCss)`
     flex-direction: column;
 
     > input {
-      width: 250px;
-      height: 40px;
+      width: 25rem;
+      height: 4rem;
       color: #495057;
-      padding: 10px;
-      margin-top: 5px;
+      padding: 1rem;
+      margin-top: 0.5rem;
       border-radius: 5px;
       border: 2px solid #e9ecef;
     }
 
     > input:first-child {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
 
     > p {
-      font-size: 12.9px;
+      font-size: 1.28rem;
       font-weight: 500;
-      line-height: 1.4;
+      line-height: 1.4em;
       color: #dd584a;
-      margin: 5px 0 10px 5px;
+      margin: 0.5rem 0 1rem 0.5rem;
     }
   }
 `;
@@ -60,22 +60,22 @@ export const SettingChangePW = styled(SubTitleCss)`
 // 전화번호
 export const PhoneNumber = styled(SubTitleCss)`
   > form > input {
-    width: 250px;
-    height: 40px;
-    padding: 10px;
+    width: 25rem;
+    height: 4rem;
+    padding: 1rem;
     color: #495057;
-    margin-top: 5px;
-    margin-right: 15px;
+    margin-top: 0.5rem;
+    margin-right: 1.5rem;
     border-radius: 5px;
     border: 2px solid #e9ecef;
   }
 
   > p:last-child {
-    font-size: 12.9px;
+    font-size: 1.28rem;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.4em;
     color: #dd584a;
-    margin: 5px 0 10px 5px;
+    margin: 0.5rem 0 1rem 0.5rem;
   }
 `;
 export const SettingWithdrawal = styled(SubTitleCss)`
@@ -92,15 +92,15 @@ export const SettingWithdrawal = styled(SubTitleCss)`
 `;
 
 export const ChangeButton = styled(AddButton)`
-  width: 90px;
-  margin-top: 10px;
+  width: 9rem;
+  margin-top: 1rem;
 `;
 
 export const NumberAddButton = styled(AddButton)`
-  width: 90px;
-  margin-top: 10px;
+  width: 9rem;
+  margin-top: 1rem;
 `;
 export const WithdrawalButton = styled(AddButton)`
-  width: 123px;
-  margin-top: 10px;
+  width: 12.3rem;
+  margin-top: 1rem;
 `;
