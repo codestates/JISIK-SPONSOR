@@ -12,10 +12,10 @@ export const Wrap = styled.div`
     max-width: 300px;
   }
   div > p {
-    font-size: 20px;
+    font-size: 2rem;
     color: #343a40;
     font-weight: 500;
-    line-height: 1.4;
-    margin-top: 20px;
+    line-height: 1.4em;
+    margin-top: 2rem;
   }
 `;
