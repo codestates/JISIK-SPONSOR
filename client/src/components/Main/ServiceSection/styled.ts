@@ -5,10 +5,10 @@ import yellowhighlight from '../../../images/yellowhighlight.png';
 
 export const Section = styled.section`
   width: 100%;
-  padding: 60px 0;
+  padding: 6rem 0;
   background: #f1f3f5;
   @media all and (max-width: 620px) {
-    padding: 30px 0;
+    padding: 3rem 0;
   }
 `;
 
@@ -16,20 +16,20 @@ export const Wrap = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 3rem;
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
 export const Title = styled.h2`
   position: relative;
-  font-size: 25px;
+  font-size: 2.5rem;
   color: #343a40;
   font-weight: 600;
   text-align: center;
   line-height: 140%;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
   & > span {
     z-index: 1;
     position: relative;
@@ -50,15 +50,15 @@ export const Title = styled.h2`
     transform: translate(-50%, -50%);
   }
   @media all and (max-width: 620px) {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
     word-break: keep-all;
   }
 `;
 
 export const CardWrap = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 3rem;
   justify-content: center;
   @media all and (max-width: 620px) {
     flex-wrap: wrap;
@@ -95,28 +95,28 @@ export const ImageWrap = styled.div`
   text-align: center;
   & > img {
     width: auto;
-    height: 160px;
+    height: 16rem;
   }
 `;
 
 export const InfoWrap = styled.div`
-  padding: 35px 25px 25px;
+  padding: 3.5rem 2.5rem 2.5rem;
   background: #fff;
   & > h3 {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #343a40;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
   & > p {
-    font-size: 12.8px;
+    font-size: 1.28rem;
     color: #868e96;
     line-height: 140%;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
   }
   & > span {
     display: block;
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #7950f2;
     font-weight: 600;
   }

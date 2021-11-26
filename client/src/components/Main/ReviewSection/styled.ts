@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 export const Section = styled.section`
   width: 100%;
-  padding: 60px 0;
+  padding: 6rem 0;
   background-color: #f1f3f5;
   @media all and (max-width: 620px) {
-    padding: 30px 0;
+    padding: 3rem 0;
   }
 `;
 
@@ -14,23 +14,23 @@ export const Wrap = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 3rem;
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
 export const Title = styled.h2`
   position: relative;
-  font-size: 25px;
+  font-size: 2.5rem;
   color: #343a40;
   font-weight: 600;
   text-align: center;
   line-height: 140%;
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
   @media all and (max-width: 620px) {
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -44,7 +44,7 @@ export const Ul = styled.ul`
   justify-content: space-between;
   @media all and (max-width: 720px) {
     justify-content: center;
-    gap: 30px;
+    gap: 3rem;
   }
 `;
 
@@ -54,7 +54,7 @@ export const Li = styled.li`
   max-width: 220px;
   text-align: center;
   & > div {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
   }
   & > div > img {
     display: inline-block;
@@ -63,18 +63,18 @@ export const Li = styled.li`
   }
   & > div > span {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 600;
     color: #212529;
     margin: 5px 0;
   }
   & > div > small {
     display: block;
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #868e96;
   }
   & > p {
-    font-size: 12.8px;
+    font-size: 1.28rem;
     color: #495057;
     line-height: 140%;
     word-break: keep-all;

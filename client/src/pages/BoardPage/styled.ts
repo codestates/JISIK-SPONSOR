@@ -2,18 +2,18 @@ import styled from 'styled-components';
 
 export const GoTopButton = styled.a`
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 3rem;
+  right: 3rem;
   img {
-    width: 80px;
-    height: 80px;
+    width: 8rem;
+    height: 8rem;
   }
   @media screen and (max-width: 1200px) {
-    bottom: 80px;
-    right: 20px;
+    bottom: 8rem;
+    right: 2rem;
     img {
-      width: 60px;
-      height: 60px;
+      width: 6rem;
+      height: 6rem;
     }
   }
 `;

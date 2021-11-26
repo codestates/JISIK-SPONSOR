@@ -16,9 +16,9 @@ export const NavContainer = styled.div<SearchHeaderProp>`
   position: relative;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 3rem;
   width: 100%;
-  height: 70px;
+  height: 7rem;
   transition: all 0.3s;
   transform: ${(props) =>
     props.searchHeader ? 'translateX(-100%)' : 'translateX(0%)'};
@@ -46,31 +46,31 @@ export const NavContainer = styled.div<SearchHeaderProp>`
     color: #7950f2;
   }
   @media all and (max-width: 960px) {
-    padding: 10px 15px;
+    padding: 1rem 1.5rem;
     justify-content: center;
     div {
       display: none;
     }
   }
   @media all and (max-width: 580px) {
-    height: 50px;
+    height: 5rem;
   }
 `;
 
 export const NavbarL = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 2rem;
   align-items: center;
   justify-content: left;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
   color: #495057;
   @media all and (max-width: 1200px) {
-    font-size: 16px;
-    gap: 10px;
+    font-size: 1.6rem;
+    gap: 1rem;
   }
   @media all and (max-width: 1000px) {
-    font-size: 12.8px;
+    font-size: 1.28rem;
   }
 `;
 
@@ -79,11 +79,11 @@ export const NavbarR = styled.div`
   justify-content: flex-end;
   align-items: center;
   text-align: right;
-  gap: 10px;
+  gap: 1rem;
   img {
-    width: 32px;
-    height: 32px;
-    margin-right: 10px;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-right: 1rem;
     cursor: pointer;
   }
   img.userIcon {
@@ -92,9 +92,9 @@ export const NavbarR = styled.div`
   }
   @media all and (max-width: 1200px) {
     img {
-      width: 30px;
-      height: 30px;
-      margin-right: 5px;
+      width: 3rem;
+      height: 3rem;
+      margin-right: 0.5rem;
     }
   }
 `;
@@ -106,15 +106,15 @@ export const MenuBox = styled.div`
   align-items: center;
   z-index: 5;
   position: absolute;
-  top: 40px;
-  right: 55px;
-  padding: 15px 10px;
+  top: 4rem;
+  right: 5.5rem;
+  padding: 1.5rem 1rem;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
   button {
     display: block;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 600;
     border: none;
     color: #404040;
@@ -125,29 +125,29 @@ export const MenuBox = styled.div`
     color: ${({ theme }) => theme.colors.violet};
   }
   @media all and (max-width: 1200px) {
-    right: 50px;
+    right: 5rem;
   }
   @media all and (max-width: 960px) {
     z-index: 5;
     position: fixed;
     top: auto;
-    right: 125px;
-    bottom: 35px;
+    right: 12.5rem;
+    bottom: 3.5rem;
   }
 `;
 
 export const NoticeMenuBox = styled.div`
   z-index: 5;
   position: absolute;
-  top: 40px;
-  right: 110px;
-  padding: 15px 10px;
+  top: 4rem;
+  right: 11rem;
+  padding: 1.5rem 1rem;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
   button {
     display: block;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 600;
     border: none;
     color: #404040;
@@ -158,14 +158,14 @@ export const NoticeMenuBox = styled.div`
     color: ${({ theme }) => theme.colors.violet};
   }
   @media all and (max-width: 1200px) {
-    right: 95px;
+    right: 9.5rem;
   }
   @media all and (max-width: 960px) {
     z-index: 5;
     position: fixed;
     top: auto;
-    right: 80px;
-    bottom: 35px;
+    right: 8rem;
+    bottom: 3.5rem;
   }
 `;
 
@@ -173,9 +173,9 @@ export const NavButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 20px;
+  padding: 0.8rem 2rem;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.4;
   color: #7950f2;
@@ -189,7 +189,7 @@ export const NavButton = styled.button`
     background-color: #7950f2;
   }
   @media all and (max-width: 1200px) {
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 `;
 
@@ -197,21 +197,21 @@ export const SearchBoxWrap = styled.div<SearchHeaderProp>`
   display: flex;
   align-items: center;
   justify-content: right;
-  gap: 10px;
+  gap: 1rem;
   position: absolute;
   left: 100%;
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 0 30px;
+  padding: 0 3rem;
   text-align: right;
   transition: all 0.3s;
   transform: ${(props) =>
     props.searchHeader ? 'translateX(-100%)' : 'translateX(100%)'};
   & > img {
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 1rem;
     cursor: pointer;
   }
   & > label {
@@ -222,25 +222,25 @@ export const SearchBoxWrap = styled.div<SearchHeaderProp>`
   & > label > input {
     position: relative;
     display: block;
-    width: 250px;
-    height: 48px;
-    font-size: 16px;
+    width: 25rem;
+    height: 4.8rem;
+    font-size: 1.6rem;
     color: #343a40;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     border: 2px solid #868e96;
   }
   & > label > input::placeholder {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #868e96;
   }
   & > label > span {
     position: absolute;
     right: 0;
     top: 0;
-    width: 60px;
+    width: 6rem;
     display: block;
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #fff;
     font-weight: 400;
     line-height: 48px;

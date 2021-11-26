@@ -7,28 +7,29 @@ export const Section = styled.section`
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 6rem;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 60px 30px;
+  padding: 6rem 3rem;
+
   @media all and (max-width: 620px) {
-    padding: 40px 15px;
+    padding: 4rem 1.5rem;
   }
 `;
 
 export const ProfileTitle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 31.25px;
+  font-size: 3.125rem;
   font-weight: 700;
   color: #343a40;
-  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
 
   img {
-    width: 40px;
-    height: 40px;
-    margin-right: 15px;
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1.5rem;
   }
   span {
     display: inline-block;
@@ -39,13 +40,13 @@ export const ProfileContent = styled.div`
   display: flex;
   width: 100%;
   max-width: 600px;
-  gap: 60px;
+  gap: 6rem;
   word-break: keep-all;
 
   img {
-    width: 120px;
-    height: 120px;
-    margin-right: 15px;
+    width: 12rem;
+    height: 12rem;
+    margin-right: 1.5rem;
     border-radius: 50%;
   }
 
@@ -56,31 +57,31 @@ export const ProfileContent = styled.div`
   }
 
   > div:nth-child(2) {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.4;
     color: #495057;
 
     div {
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1.4;
       color: #343a40;
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
     }
   }
 
   h4 {
-    font-size: 16px;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 
   @media screen and (max-width: 620px) {
     flex-direction: column;
-    gap: 15px;
+    gap: 1.5rem;
     img {
-      width: 80px;
-      height: 80px;
+      width: 8rem;
+      height: 8rem;
     }
   }
 `;
@@ -88,14 +89,14 @@ export const ProfileContent = styled.div`
 export const ProjectTeamTitle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 31.25px;
+  font-size: 3.125rem;
   font-weight: 700;
   color: #343a40;
-  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
   img {
-    width: 40px;
-    height: 40px;
-    margin-right: 15px;
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1.5rem;
   }
   span {
     display: inline-block;
@@ -106,35 +107,35 @@ export const Team = styled.div`
   display: flex;
   width: 100%;
   max-width: 600px;
-  gap: 60px;
+  gap: 6rem;
 
   img {
-    height: 120px;
-    width: 120px;
-    margin-right: 15px;
+    height: 12rem;
+    width: 12rem;
+    margin-right: 1.5rem;
     border-radius: 50%;
   }
 
   h4 {
-    font-size: 16px;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 
   span {
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 1.4;
     color: #343a40;
     display: inline-block;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
   }
 
   p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.4;
     color: #495057;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
 
     strong {
       font-weight: 700;
@@ -144,15 +145,15 @@ export const Team = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2rem;
   }
 
   @media screen and (max-width: 620px) {
     flex-direction: column;
-    gap: 15px;
+    gap: 1.5rem;
     img {
-      width: 80px;
-      height: 80px;
+      width: 8rem;
+      height: 8rem;
     }
   }
 `;

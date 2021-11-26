@@ -10,13 +10,13 @@ export const Section = styled.section`
 export const ProjectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 4rem;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 60px 30px;
+  padding: 6rem 3rem;
   @media all and (max-width: 620px) {
-    padding: 40px 15px;
+    padding: 4rem 1.5rem;
   }
 `;
 
@@ -30,21 +30,21 @@ export const ResearchWord = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 60px 40px;
+    padding: 6rem 4rem;
     background: rgba(0, 0, 0, 0.3);
   }
 
   & > div > h2 {
-    font-size: 31.25px;
+    font-size: 3.125rem;
     max-width: 585px;
     font-weight: 600;
     line-height: 1.45em;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
 
   & > div > p {
-    font-size: 20px;
+    font-size: 2rem;
     max-width: 500px;
     line-height: 1.8;
     color: #ffffff;
@@ -56,32 +56,32 @@ export const ProjectHeader = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #e9ecef;
-  padding-bottom: 40px;
-  gap: 20px;
+  padding-bottom: 4rem;
+  gap: 2rem;
   :last-child {
     border: 0;
     padding: 0;
   }
   & > div:first-child {
     display: flex;
-    gap: 15px;
+    gap: 1.5rem;
     align-items: center;
   }
 
   & > div img {
-    width: 40px;
-    height: 40px;
+    width: 4rem;
+    height: 4rem;
   }
 
   & > div h2 {
-    font-size: 32px;
+    font-size: 3.2rem;
     font-weight: 700;
     line-height: 1.4;
     color: #343a40;
   }
 
   & > p {
-    font-size: 20px;
+    font-size: 2rem;
     max-width: 680px;
     line-height: 1.6;
     color: #495057;
@@ -89,10 +89,10 @@ export const ProjectHeader = styled.div`
 
   @media all and (max-width: 620px) {
     & > div h2 {
-      font-size: 25px;
+      font-size: 2.5rem;
     }
     p {
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 400;
       line-height: 1.8;
     }
@@ -102,7 +102,7 @@ export const ProjectHeader = styled.div`
 export const BudgetDetail = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.4;
   color: #343a40;
@@ -110,7 +110,7 @@ export const BudgetDetail = styled.div`
   div {
     line-height: 1.6;
     display: flex;
-    gap: 15px;
+    gap: 1.5rem;
   }
 `;
 
@@ -118,13 +118,13 @@ export const Timeline = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.6;
   color: #343a40;
   > div {
     display: flex;
-    gap: 15px;
+    gap: 1.5rem;
   }
   > div > span {
   }
