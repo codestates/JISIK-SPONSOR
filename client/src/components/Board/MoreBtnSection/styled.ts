@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 export const Section = styled.section`
   width: 100%;
-  padding-bottom: 60px;
+  padding-bottom: 6rem;
 `;
 
 export const Wrap = styled.section`
   width: 100%;
-  max-width: 960px;
-  padding: 0 30px;
+  max-width: 96rem;
+  padding: 0 3rem;
   margin: 0 auto;
   text-align: center;
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
@@ -23,13 +23,13 @@ export const ButtonWrap = styled.div`
 `;
 
 export const BtnMessage = styled.div`
-  margin: 30px 0;
+  margin: 3rem 0;
   span {
     display: inline-block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 500;
     color: #343a40;
-    padding: 20px;
+    padding: 2rem;
     border-radius: 5px;
     border: 2px solid #343a40;
   }

@@ -35,7 +35,7 @@ export const Li = styled.li`
 export const ImageWrap = styled.div<ThumbnailProp>`
   position: relative;
   width: 100%;
-  height: 165px;
+  height: 16.5rem;
   background-image: ${(props) =>
     props.thumbnail
       ? `url(${'https://jisiksponsor.com' + props.thumbnail})`
@@ -58,19 +58,19 @@ export const ImageWrap = styled.div<ThumbnailProp>`
 `;
 
 export const InfoWrap = styled.div`
-  padding: 15px 20px 20px;
+  padding: 1.5rem 2rem 2rem;
   background-color: #fff;
 `;
 
 export const TopInfo = styled.div<CategoryProp>`
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   & > span {
     display: inline-block;
-    font-size: 12.8px;
+    font-size: 1.28rem;
     color: #fff;
     font-weight: 500;
     line-height: 160%;
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     border-radius: 20px;
     background-color: ${(props) => {
       if (props.background === '인문학') return '#FF8D8D';
@@ -85,12 +85,12 @@ export const TopInfo = styled.div<CategoryProp>`
     }};
   }
   & > h2 {
-    font-size: 16px;
-    line-height: 20px;
-    height: 42px;
+    font-size: 1.6rem;
+    line-height: 1.25em;
+    height: 4.2rem;
     color: #212529;
     font-weight: 600;
-    margin: 10px 0 15px 0;
+    margin: 1rem 0 1.5rem 0;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
@@ -98,9 +98,9 @@ export const TopInfo = styled.div<CategoryProp>`
     -webkit-box-orient: vertical;
   }
   & > p {
-    font-size: 12.8px;
-    line-height: 18px;
-    height: 36px;
+    font-size: 1.28rem;
+    line-height: 1.4em;
+    height: 3.6rem;
     color: #868e96;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -116,16 +116,16 @@ export const BottomInfo = styled.div`
 
 export const UserInfo = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 0.8rem;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
   & > img {
-    width: 25px;
-    height: 25px;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
   }
   & > span {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #212529;
     font-weight: 500;
   }
@@ -136,10 +136,10 @@ export const BudgetInfo = styled.div<PercentProp>`
     position: relative;
     overflow: hidden;
     display: block;
-    height: 8px;
+    height: 0.8rem;
     border-radius: 10px;
     background-color: #dee2e6;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
   & > span:after {
     position: absolute;
@@ -161,14 +161,14 @@ export const BudgetInfo = styled.div<PercentProp>`
 
 export const LeftWrap = styled.div`
   display: flex;
-  gap: 5px;
+  gap: 0.5rem;
   & > big {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #495057;
     font-weight: 600;
   }
   & > small {
-    font-size: 12.8px;
+    font-size: 1.28rem;
     color: #f08c00;
     font-weight: 500;
   }
@@ -176,11 +176,11 @@ export const LeftWrap = styled.div`
 export const RightWrap = styled.div`
   & > img {
     vertical-align: middle;
-    margin-right: 5px;
-    height: 16px;
+    margin-right: 0.5rem;
+    height: 1.6rem;
   }
   & > span {
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #868e96;
   }
 `;

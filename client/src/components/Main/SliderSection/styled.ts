@@ -6,10 +6,10 @@ import back from '../../../images/back-icon.png';
 import forward from '../../../images/forward-icon.png';
 
 export const Section = styled.section`
-  padding: 60px 0;
+  padding: 6rem 0;
   background-color: #fff;
   @media all and (max-width: 620px) {
-    padding: 40px 0;
+    padding: 4rem 0;
   }
 `;
 
@@ -18,9 +18,9 @@ export const Wrap = styled.div`
   width: 100%;
   max-width: 960px;
   margin: auto;
-  padding: 0 30px;
+  padding: 0 3rem;
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
@@ -64,21 +64,21 @@ export const SlideCentent1 = styled.div`
   background-position: 100% 100%;
   & > span {
     display: block;
-    font-size: 25px;
+    font-size: 2.5rem;
     color: #959ca3;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   & > h2 {
-    font-size: 39.06px;
+    font-size: 3.906rem;
     color: #212529;
     line-height: 140%;
-    margin-bottom: 25px;
+    margin-bottom: 2.5rem;
   }
   & > h1 {
-    font-size: 61.04px;
+    font-size: 6.104rem;
     color: #212529;
     font-weight: 500;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
   & > h1 > span {
     position: relative;
@@ -87,8 +87,8 @@ export const SlideCentent1 = styled.div`
     position: absolute;
     top: 0;
     left: 50%;
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
     display: block;
     content: '';
     clear: both;
@@ -97,10 +97,10 @@ export const SlideCentent1 = styled.div`
     background-color: #7950f2;
   }
   & > p {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #868e96;
     line-height: 160%;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
 
   @media all and (max-width: 940px) {
@@ -110,18 +110,18 @@ export const SlideCentent1 = styled.div`
     background-position: 80% 90%;
     width: 100%;
     & span {
-      font-size: 22px;
+      font-size: 2.2rem;
     }
     & h1 > span {
-      font-size: 55px;
+      font-size: 5.5rem;
     }
 
     & h2 {
-      font-size: 35px;
+      font-size: 3.5rem;
     }
 
     & p {
-      font-size: 15px;
+      font-size: 1.5rem;
     }
   }
 
@@ -136,16 +136,16 @@ export const SlideCentent1 = styled.div`
     }
     & h2 {
       text-align: center;
-      font-size: 20px;
+      font-size: 2rem;
     }
     & h1 {
       text-align: center;
-      font-size: 31.25px;
-      margin-bottom: 10px;
+      font-size: 3.125rem;
+      margin-bottom: 1rem;
     }
     & p {
       text-align: center;
-      font-size: 12.8px;
+      font-size: 1.28rem;
     }
   }
 `;
@@ -159,24 +159,24 @@ export const SlideCentent2 = styled.div`
 
   & > span {
     display: block;
-    font-size: 25px;
+    font-size: 2.5rem;
     color: #959ca3;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   & > h3 {
-    font-size: 31.25px;
+    font-size: 3.125rem;
     color: #7950f2;
     font-weight: 300;
     line-height: 120%;
-    margin-bottom: 25px;
+    margin-bottom: 2.5rem;
   }
   & > h2 {
     word-break: keep-all;
-    font-size: 39.06px;
+    font-size: 3.906rem;
     color: #212529;
     font-weight: 500;
     line-height: 130%;
-    margin-bottom: 100px;
+    margin-bottom: 10rem;
   }
 
   @media all and (max-width: 940px) {
@@ -186,10 +186,10 @@ export const SlideCentent2 = styled.div`
     background-size: auto 60%;
     background-position: 5% 100%;
     & h3 {
-      font-size: 25px;
+      font-size: 2.5rem;
     }
     & h2 {
-      font-size: 31.25px;
+      font-size: 3.125rem;
     }
   }
 
@@ -206,27 +206,27 @@ export const SlideCentent2 = styled.div`
     padding: 0;
     text-align: center;
     & span {
-      font-size: 20px;
+      font-size: 2rem;
     }
     & h2 {
-      font-size: 25px;
+      font-size: 2.5rem;
     }
     & h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
     }
   }
 `;
 
 export const SlideBtnWrap = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 2rem;
   & > a {
     display: inline-block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 500;
-    padding: 18px 35px;
-    border-radius: 10px;
+    padding: 1.8rem 3.5rem;
+    border-radius: 1rem;
     transition: 0.3s;
   }
   & > a:nth-child(1) {
@@ -250,10 +250,10 @@ export const SlideBtnWrap = styled.div`
   @media all and (max-width: 940px) {
     width: 100%;
     display: flex;
-    gap: 15px;
+    gap: 1.5rem;
     flex-direction: row;
     & a {
-      font-size: 18px;
+      font-size: 1.8rem;
       border-radius: 5px;
     }
   }
@@ -264,48 +264,47 @@ export const SlideBtnWrap = styled.div`
       word-break: keep-all;
       text-align: center;
       line-height: 1.4;
-      font-size: 16px;
-      padding: 15px 25px;
-      margin-top: 80px;
+      font-size: 1.6rem;
+      padding: 1.5rem 2.5rem;
+      margin-top: 8rem;
     }
   }
   @media all and (max-width: 480px) {
-    gap: 5px;
+    gap: 0.5rem;
     & a {
       width: 100%;
-      font-size: 12.8px;
-      padding: 15px 18px;
+      font-size: 1.28rem;
+      padding: 1.5rem 1.8rem;
     }
   }
 `;
 
 export const SliderButtonWrapper = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 3rem;
 `;
 
 export const SliderButton = styled.button`
   display: inline-block;
-  padding: 8px 8px;
+  padding: 0.8rem 0.8rem;
   border-radius: 10px;
   transition: 0.3s;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 
   color: #343a40;
   border: 0px solid #343a40;
   background-color: #ced4da;
 
-
-    &:hover{
-      color: #fff;
-      border: 0px solid #343a40;
-      background-color: #bebebe;
-      transition: 0.3s;
-      cursor: pointer;
-    }
+  &:hover {
+    color: #fff;
+    border: 0px solid #343a40;
+    background-color: #bebebe;
+    transition: 0.3s;
+    cursor: pointer;
+  }
 
   &.is-selected-true {
     color: #fff;
@@ -328,7 +327,7 @@ export const BackIcon = styled.div`
   margin-left: -15%;
   margin-top: -29%;
 
-  padding: 30px;
+  padding: 3rem;
   cursor: pointer;
 
   @media all and (max-width: 1150px) {
@@ -353,7 +352,7 @@ export const FowardIcon = styled.div`
   margin-left: 100%;
   margin-top: -29%;
 
-  padding: 30px;
+  padding: 3rem;
   cursor: pointer;
 
   @media all and (max-width: 1150px) {

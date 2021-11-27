@@ -7,35 +7,35 @@ export const FaqHeaderWapper = styled.section`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 5rem;
   > h2 {
-    font-size: 39.06px;
+    font-size: 3.906rem;
     font-weight: 600;
     color: ${({ theme }) => theme.colors.violetWord};
   }
   > p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 400;
     line-height: 1.45em;
     word-break: keep-all;
     text-align: center;
     width: 80%;
     color: ${({ theme }) => theme.colors.suppotWord};
-    margin-top: 20px;
+    margin-top: 2rem;
   }
   @media all and (max-width: 620px) {
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
 `;
 
 export const FaqUlWapper = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1.5rem;
 `;
 
 export const FaqLiWapper = styled.li<showProps>`
-  padding: 20px 30px;
+  padding: 2rem 3rem;
   border-radius: 10px;
   border: 1px solid #e9ecef;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
@@ -55,23 +55,23 @@ export const FaqLiWapper = styled.li<showProps>`
     align-items: center;
     cursor: pointer;
     > h3 {
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 500;
       color: #495057;
       line-height: 1.4em;
       word-break: keep-all;
     }
     > img {
-      width: 31.25px;
-      height: 31.25px;
+      width: 3.125rem;
+      height: 3.125rem;
       cursor: pointer;
     }
   }
   @media all and (max-width: 620px) {
-    padding: 15px 20px;
+    padding: 1.5rem 2rem;
     > div {
       > h3 {
-        font-size: 16px;
+        font-size: 1.6rem;
       }
     }
   }
@@ -79,11 +79,11 @@ export const FaqLiWapper = styled.li<showProps>`
 
 export const Answer = styled.p<showProps>`
   display: none;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #343a40;
-  line-height: 1.6;
-  padding: 20px 35px 20px 20px;
+  line-height: 1.6em;
+  padding: 2rem 3.5rem 2rem 2rem;
 
   ${(props) =>
     props.showAnswer &&

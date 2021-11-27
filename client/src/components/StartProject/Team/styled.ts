@@ -10,11 +10,11 @@ export const ProjectTeamMember = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -33,21 +33,21 @@ export const ProjectTeamMember = styled(SubTitleCss)<FoucsProps>`
 `;
 
 export const AddTeamMember = styled.ul`
-  margin-top: 20px;
+  margin-top: 2rem;
   > li {
     display: flex;
     align-items: flex-end;
-    margin-top: 5px;
+    margin-top: 0.5rem;
     > div {
       display: flex;
       flex-direction: column;
       > input {
         border: 2px solid #e9ecef;
         border-radius: 5px;
-        margin-top: 5px;
-        height: 40px;
-        width: 380px;
-        padding: 10px;
+        margin-top: 0.5rem;
+        height: 4rem;
+        width: 38rem;
+        padding: 1rem;
         color: #495057;
       }
       > input:disabled {
@@ -55,7 +55,7 @@ export const AddTeamMember = styled.ul`
       }
 
       > label {
-        font-size: 12.8px;
+        font-size: 1.28rem;
         font-weight: 700;
         line-height: 1.45em;
         color: ${({ theme }) => theme.colors.suppotWord};
@@ -63,42 +63,42 @@ export const AddTeamMember = styled.ul`
     }
 
     > div:first-child {
-      margin-right: 20px;
+      margin-right: 2rem;
 
       > input {
-        width: 160px;
+        width: 16rem;
       }
     }
 
     > div:nth-child(2) {
-      margin-right: 10px;
+      margin-right: 1rem;
     }
 
     > button:nth-child(3) {
-      margin-right: 5px;
+      margin-right: 0.5rem;
     }
 
     @media screen and (max-width: 900px) {
       > div:first-child {
         > input:last-child {
-          width: 100px;
+          width: 10rem;
         }
       }
       > div:nth-child(2) {
         > input:last-child {
-          width: 300px;
+          width: 30rem;
         }
       }
     }
     @media screen and (max-width: 700px) {
       > div:first-child {
         > input:last-child {
-          width: 80px;
+          width: 8rem;
         }
       }
       > div:nth-child(2) {
         > input:last-child {
-          width: 200px;
+          width: 20rem;
         }
       }
     }
@@ -113,7 +113,7 @@ export const AddTeamMember = styled.ul`
 
     > li > button,
     div:nth-child(2) {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
   }
 
@@ -123,7 +123,7 @@ export const AddTeamMember = styled.ul`
 `;
 
 export const AddTeamMemberButton = styled(AddButton)`
-  margin-top: 20px;
+  margin-top: 2rem;
   border: 3px solid ${({ theme }) => theme.colors.orange};
   transition: 0.3s;
 
@@ -138,20 +138,19 @@ export const ProjectTeamInfo = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
-
-    ${(props) =>
-      props.showMemo
-        ? css`
-            display: block;
-          `
-        : css`
-            display: none;
-          `}
+    margin-top: 1rem
+      ${(props) =>
+        props.showMemo
+          ? css`
+              display: block;
+            `
+          : css`
+              display: none;
+            `};
   }
   @media screen and (max-width: 1200px) {
     > p:last-child {
@@ -165,19 +164,19 @@ export const ProjectTeamName = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > input {
-    margin-top: 10px;
+    margin-top: 1rem;
     border: 2px solid #e9ecef;
-    border-radius: 5px;
-    height: 40px;
-    padding: 10px;
+    border-radius: 0.5rem;
+    height: 4rem;
+    padding: 1rem;
     color: #495057;
   }
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -198,20 +197,20 @@ export const ProjectTeamName = styled(SubTitleCss)<FoucsProps>`
 // 프로젝트 팀 이미지
 export const ProjectTeamImg = styled(ProjectCoverImage)`
   > label {
-    width: 120px;
-    height: 120px;
+    width: 12rem;
+    height: 12rem;
     border-radius: 50%;
 
     > img {
-      width: 50px;
-      height: 50px;
+      width: 5rem;
+      height: 5rem;
     }
   }
 `;
 export const ProjectSelectIma = styled(ProjectCoverImage)`
   > label {
-    width: 120px;
-    height: 120px;
+    width: 12rem;
+    height: 12rem;
     padding: 0;
     border-radius: 50%;
     border: none;
@@ -232,11 +231,11 @@ export const ProjectLastSentence = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo

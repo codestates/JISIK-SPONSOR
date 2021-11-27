@@ -11,11 +11,11 @@ export const ProjectMotive = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -38,11 +38,11 @@ export const ProjectProgress = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -65,11 +65,11 @@ export const ProjectGoal = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -92,11 +92,11 @@ export const ProjectAddOptions = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   > p:last-child {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -119,11 +119,11 @@ export const ProjectTimeLine = styled(SubTitleCss)<FoucsProps>`
   position: relative;
 
   p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo
@@ -146,11 +146,11 @@ export const ProjectTimeLine = styled(SubTitleCss)<FoucsProps>`
 `;
 
 export const TimeLineListContainer = styled.ul`
-  margin-top: 20px;
+  margin-top: 2rem;
 
   > li {
     display: flex;
-    margin-top: 5px;
+    margin-top: 0.5rem;
     align-items: flex-end;
     > div {
       display: flex;
@@ -159,10 +159,10 @@ export const TimeLineListContainer = styled.ul`
       > input {
         border: 2px solid #e9ecef;
         border-radius: 5px;
-        margin-top: 5px;
-        height: 40px;
-        width: 160px;
-        padding: 10px;
+        margin-top: 0.5rem;
+        height: 4rem;
+        width: 16rem;
+        padding: 1rem;
         color: #495057;
       }
       > input:disabled {
@@ -170,7 +170,7 @@ export const TimeLineListContainer = styled.ul`
       }
 
       > label {
-        font-size: 12.8px;
+        font-size: 1.28rem;
         font-weight: 700;
         line-height: 1.45em;
         color: ${({ theme }) => theme.colors.suppotWord};
@@ -178,17 +178,17 @@ export const TimeLineListContainer = styled.ul`
     }
 
     > div:first-child {
-      margin-right: 20px;
+      margin-right: 2rem;
 
       > input {
-        width: 380px;
+        width: 38rem;
       }
     }
 
     > div:nth-child(2) {
-      margin-right: 10px;
+      margin-right: 1rem;
       > span {
-        font-size: 12.8px;
+        font-size: 1.28rem;
         font-weight: 700;
         line-height: 1.45em;
         color: ${({ theme }) => theme.colors.suppotWord};
@@ -197,34 +197,34 @@ export const TimeLineListContainer = styled.ul`
       > input {
         border: 2px solid #e9ecef;
         border-radius: 5px;
-        width: 160px;
+        width: 16rem;
       }
     }
 
     > button:nth-child(3) {
-      margin-right: 5px;
+      margin-right: 0.5rem;
     }
     @media screen and (max-width: 850px) {
       > div:first-child {
         > input:last-child {
-          width: 300px;
+          width: 30rem;
         }
       }
       > div:nth-child(2) {
         > input:last-child {
-          width: 120px;
+          width: 12rem;
         }
       }
     }
     @media screen and (max-width: 640px) {
       > div:first-child {
         > input:last-child {
-          width: 200px;
+          width: 20rem;
         }
       }
       > div:nth-child(2) {
         input {
-          width: 120px;
+          width: 12rem;
         }
       }
     }
@@ -236,16 +236,16 @@ export const TimeLineListContainer = styled.ul`
 `;
 
 export const DateInput = styled(DatePicker)`
-  width: 160px;
-  height: 40px;
+  width: 16rem;
+  height: 4rem;
   border: 2px solid #e9ecef;
   border-radius: 5px;
-  margin-top: 5px;
+  margin-top: 0.5rem;
 `;
 
 export const AddTimeLineButton = styled(AddButton)`
-  width: 163px;
-  margin-top: 20px;
+  width: 16.3rem;
+  margin-top: 2rem;
   border: 3px solid ${({ theme }) => theme.colors.orange};
   transition: 0.3s;
 
@@ -259,11 +259,11 @@ export const AddTimeLineButton = styled(AddButton)`
 export const ProjectTimeLineDetail = styled(SubTitleCss)<FoucsProps>`
   position: relative;
   p {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.45em;
     color: #495057;
-    margin-top: 10px;
+    margin-top: 1rem;
 
     ${(props) =>
       props.showMemo

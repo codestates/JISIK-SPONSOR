@@ -5,32 +5,32 @@ export const ProjectContainer = styled.div`
 `;
 
 export const Section = styled.section`
-  padding: 60px 0;
+  padding: 6rem 0;
   background-color: beige;
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
   max-width: 960px;
-  font-size: 40px;
+  font-size: 4rem;
   margin: 0 auto;
-  padding: 60px 30px;
+  padding: 6rem 3rem;
 `;
 
 export const GoTopButton = styled.a`
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 3rem;
+  right: 3rem;
   img {
-    width: 80px;
-    height: 80px;
+    width: 8rem;
+    height: 8rem;
   }
   @media screen and (max-width: 1200px) {
-    bottom: 80px;
-    right: 20px;
+    bottom: 8rem;
+    right: 2rem;
     img {
-      width: 60px;
-      height: 60px;
+      width: 6rem;
+      height: 6rem;
     }
   }
 `;

@@ -2,10 +2,10 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  padding: 60px 0;
+  padding: 6rem 0;
   background: #fff;
   @media all and (max-width: 620px) {
-    padding: 30px 0;
+    padding: 3rem 0;
   }
 `;
 
@@ -15,9 +15,9 @@ export const Wrap = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 3rem;
   @media all and (max-width: 620px) {
-    padding: 0 15px;
+    padding: 0 1.5rem;
   }
 `;
 
@@ -25,19 +25,19 @@ export const TitleWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   & > h2 {
-    font-size: 20px;
+    font-size: 2rem;
     color: #343a40;
     font-weight: 600;
   }
   & > a {
     display: inline-block;
-    font-size: 12.8px;
+    font-size: 1.28rem;
     color: #fff;
     line-height: 140%;
     font-weight: 600;
-    padding: 10px 20px;
+    padding: 1rem 2rem;
     border-radius: 3px;
     border: 2px solid #7950f2;
     background-color: #7950f2;

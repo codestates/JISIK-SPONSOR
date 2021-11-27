@@ -10,9 +10,9 @@ export const Wrap = styled.div`
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 25px 0;
+  padding: 2.5rem 0;
   @media all and (max-width: 620px) {
-    padding: 15px;
+    padding: 1.5rem;
   }
 `;
 
@@ -20,7 +20,7 @@ export const ImageWrap = styled.div`
   position: absolute;
   bottom: 0;
   width: 35%;
-  padding: 0 60px 0 30px;
+  padding: 0 6rem 0 3rem;
   text-align: right;
   & img {
     max-width: 100%;
@@ -28,7 +28,7 @@ export const ImageWrap = styled.div`
   @media all and (max-width: 620px) {
     position: relative;
     width: 100%;
-    padding: 0 0 15px 0;
+    padding: 0 0 1.5rem 0;
     text-align: center;
   }
   @media all and (max-width: 380px) {
@@ -40,7 +40,7 @@ export const LinkWrap = styled.div`
   position: relative;
   top: 0;
   width: 100%;
-  padding: 0 30px 0 35%;
+  padding: 0 3rem 0 35%;
   @media all and (max-width: 620px) {
     width: 100%;
     padding: 0;
@@ -58,22 +58,22 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
   display: inline-block;
-  margin: 7.5px 30px 7.5px 0;
+  margin: 0.75rem 3rem 0.75rem 0;
   & a {
     display: inline-block;
     cursor: pointer;
   }
   & img {
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-right: 1rem;
     transition: all 0.3s;
   }
   & span {
     vertical-align: middle;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     color: #495057;
   }
@@ -87,12 +87,12 @@ export const Li = styled.li`
     transition: all 0.3s;
   }
   @media all and (max-width: 620px) {
-    margin: 7.5px 15px;
+    margin: 0.75rem 1.5rem;
   }
   @media all and (max-width: 380px) {
-    margin: 7.5px;
+    margin: 0.75rem;
     & span {
-      font-size: 12.8px;
+      font-size: 1.28rem;
     }
   }
 `;
